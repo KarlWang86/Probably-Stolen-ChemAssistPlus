@@ -1,0 +1,48 @@
+其他化学品配方调查（2026-11-10，仅研究，未实现）
+
+依据：当前游戏 Assembly-CSharp.dll，SHA256 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05；成品中文名直接来自简体中文语言包。
+
+原生成型机列出7种配方。已有常用两种为一小瓶“梦尘”和咖啡因药片，另外5种如下。
+
+1. 一小瓶“梦魇尘”（nightmare_dust）
+梦魇帽菇 -> 搅拌得到梦魇帽菇原浆（nightmare_cap_mush） -> 酒精萃取 -> 梦魇帽菇萃取液（nightmare_extract） -> 除杂、干燥、成型。
+原生反应要求温度>=40°C；50°C以上进入热降解分支，建议研究路线采用40至不足50°C。45°C是现有Mod配置，不是原生唯一温度。
+酒精量/剩余原浆量>=5时，当前处理原浆的50%变为萃取液，其余变植物残渣；不足5倍时按比例降低提取率。酒精在此提取方法中不直接作为反应物扣除。
+原生成型requiredVolume=4000μL（4mL），isRequireDry=true。
+
+2. 芬太片（fanta_pill）
+N-羟甲基碱（methylol）+还原剂（reducing_agent） -> 芬太（fanta） -> 除杂、干燥、成型。
+前体瓶原始设置为125mL N-羟甲基碱+125mL稳定剂，之后再加入随机杂质；原生可反应量受max(0,N-羟甲基碱-稳定剂)限制，因此须先处理稳定剂。
+HandleStabilizingAgentSedimentation中酸或碱可使稳定剂转为debris；会另耗酸/碱，不能按简单1:1净消耗推断用量。
+110<=温度<120°C时每拍比例0.025；120<=温度<130°C时0.15，且存在每拍最低处理量与剩余量上限。>=130°C不再合成，已有芬太每拍保留98%。
+每处理1体积前体，消耗约0.75体积还原剂，生成约0.1体积芬太（逐拍舍入）。
+原生成型requiredVolume=500μL（0.5mL），isRequireDry=true。
+
+3. 奥克莫吸注射器（pink_alt_injector）
+梦帽菇萃取液（dream_cap_extract）+还原剂+脂合剂（lipobond_agent） -> 奥克莫吸（nomore） -> 除杂、干燥、成型。
+原生反应温度45至55°C（含端点），酒精体积必须<=整瓶总体积10%；两种反应物与脂合剂均须>0。
+每拍反应量按较少的梦帽菇萃取液/还原剂计算：45至不足50°C基础5%，50至55°C基础10%；乘min(1,4*脂合剂/当前萃取液)，另有最低处理量及剩余量限制。
+梦帽菇萃取液与还原剂按1:1扣除；按反应量生成60%奥克莫吸与40%debris（逐拍舍入）。脂合剂在该方法中不扣除。脂合剂达到当前萃取液的1/4时不再降低反应速率；这不是消耗比例。
+原生成型requiredVolume=4000μL（4mL），isRequireDry=true。虽然名称是注射器，原生配方仍要求干燥。
+
+4. 山奈德片（zyanide_pill）
+活性成分zyanide，原生成型requiredVolume=600μL（0.6mL），isRequireDry=true。
+5. 避孕药（birth_control_pill）
+活性成分contraceptive，原生成型requiredVolume=100μL（0.1mL），isRequireDry=true。
+对4/5扫描当前程序集所有方法IL中的成分ID引用，仅发现成品初始化、成型表、成分表及反馈判断；未发现独立原生合成反应。因此目前证据只支持从已有含成分材料回收/再加工，不能声称存在从普通原料合成的路线。
+
+用量说明：requiredVolume是成型时每件所需的整份干料总体积，不是保证纯活性成分用量。CanOutput核对总体积及IsWet，成品纯度还取决于活性成分占比。
+
+现有Mod状态：Core.cs已列7个配方项，但列入目录不代表完整自动路线成立。尤其奥克莫吸当前项只以nomore为输入，不涵盖梦帽菇萃取液的二次合成；芬太片还有稳定剂前处理需求。本轮不修改这些实现。
+
+证据文件（均在本目录）：
+chem-finisher-recipes-il.txt：InitRecipes、CanOutput及成品纯度计算。
+chem-all-reactions-il.txt：原生反应、降解及沉淀。
+chem-fanta-consumption-il.txt、chem-nomore-consumption-il.txt：真实反应物扣除与产率。
+chem-stabilizer-il.txt：稳定剂沉淀。
+chem-composition-il.txt、chem-prebuilt-il.txt、chem-meds-il.txt：原料与成品初始化。
+chem-zyanide-contraceptive-sources-il.txt：全程序集定向成分引用调查。
+chem-chinese-names.json：原生简体中文名，按shared table entry ID与中文表关联。
+extract-localization.py及localization*.bin：本地语言包只读解包材料，无外部依赖。
+
+本轮未改功能源码、未构建Mod、未部署/上传、未启动游戏、未改存档、未运行测试。查询脚本构建受NuGet用户配置读取权限限制，随后直接使用既有AssemblyQuery工具完成只读元数据/IL查询。

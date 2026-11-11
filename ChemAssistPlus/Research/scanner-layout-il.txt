@@ -1,0 +1,1575 @@
+﻿BetterLiquidScanner.ComponentKind BetterLiquidScanner.ComponentRow::Classify(System.String)
+IL_0000: ldarg.0
+IL_0001: brfalse IL_02d3
+IL_0006: ldarg.0
+IL_0007: call System.Int32 System.String::get_Length()
+IL_000c: stloc.0
+IL_000d: ldloc.0
+IL_000e: ldc.i4.5
+IL_000f: sub
+IL_0010: switch IL_005a,IL_02af,IL_00b1,IL_0108,IL_02be,IL_02d3,IL_0077,IL_01c8,IL_0094,IL_0231,IL_02d3,IL_02d3,IL_0125,IL_00eb,IL_02d3,IL_00ce
+IL_0055: br IL_02d3
+IL_005a: ldarg.0
+IL_005b: ldc.i4.0
+IL_005c: call System.Char System.String::get_Chars(System.Int32)
+IL_0061: stloc.1
+IL_0062: ldloc.1
+IL_0063: ldc.i4.s 102
+IL_0065: beq IL_015f
+IL_006a: ldloc.1
+IL_006b: ldc.i4.s 119
+IL_006d: beq IL_014a
+IL_0072: br IL_02d3
+IL_0077: ldarg.0
+IL_0078: ldc.i4.0
+IL_0079: call System.Char System.String::get_Chars(System.Int32)
+IL_007e: stloc.1
+IL_007f: ldloc.1
+IL_0080: ldc.i4.s 99
+IL_0082: beq IL_0189
+IL_0087: ldloc.1
+IL_0088: ldc.i4.s 104
+IL_008a: beq IL_0174
+IL_008f: br IL_02d3
+IL_0094: ldarg.0
+IL_0095: ldc.i4.0
+IL_0096: call System.Char System.String::get_Chars(System.Int32)
+IL_009b: stloc.1
+IL_009c: ldloc.1
+IL_009d: ldc.i4.s 99
+IL_009f: beq IL_01b3
+IL_00a4: ldloc.1
+IL_00a5: ldc.i4.s 111
+IL_00a7: beq IL_019e
+IL_00ac: br IL_02d3
+IL_00b1: ldarg.0
+IL_00b2: ldc.i4.0
+IL_00b3: call System.Char System.String::get_Chars(System.Int32)
+IL_00b8: stloc.1
+IL_00b9: ldloc.1
+IL_00ba: ldc.i4.s 109
+IL_00bc: beq IL_01dd
+IL_00c1: ldloc.1
+IL_00c2: ldc.i4.s 122
+IL_00c4: beq IL_01f2
+IL_00c9: br IL_02d3
+IL_00ce: ldarg.0
+IL_00cf: ldc.i4.0
+IL_00d0: call System.Char System.String::get_Chars(System.Int32)
+IL_00d5: stloc.1
+IL_00d6: ldloc.1
+IL_00d7: ldc.i4.s 99
+IL_00d9: beq IL_0207
+IL_00de: ldloc.1
+IL_00df: ldc.i4.s 112
+IL_00e1: beq IL_021c
+IL_00e6: br IL_02d3
+IL_00eb: ldarg.0
+IL_00ec: ldc.i4.0
+IL_00ed: call System.Char System.String::get_Chars(System.Int32)
+IL_00f2: stloc.1
+IL_00f3: ldloc.1
+IL_00f4: ldc.i4.s 108
+IL_00f6: beq IL_0255
+IL_00fb: ldloc.1
+IL_00fc: ldc.i4.s 110
+IL_00fe: beq IL_0246
+IL_0103: br IL_02d3
+IL_0108: ldarg.0
+IL_0109: ldc.i4.0
+IL_010a: call System.Char System.String::get_Chars(System.Int32)
+IL_010f: stloc.1
+IL_0110: ldloc.1
+IL_0111: ldc.i4.s 99
+IL_0113: beq IL_0273
+IL_0118: ldloc.1
+IL_0119: ldc.i4.s 109
+IL_011b: beq IL_0264
+IL_0120: br IL_02d3
+IL_0125: ldarg.0
+IL_0126: ldc.i4.0
+IL_0127: call System.Char System.String::get_Chars(System.Int32)
+IL_012c: stloc.1
+IL_012d: ldloc.1
+IL_012e: ldc.i4.s 100
+IL_0130: beq IL_0282
+IL_0135: ldloc.1
+IL_0136: ldc.i4.s 108
+IL_0138: beq IL_02a0
+IL_013d: ldloc.1
+IL_013e: ldc.i4.s 110
+IL_0140: beq IL_0291
+IL_0145: br IL_02d3
+IL_014a: ldarg.0
+IL_014b: ldstr "water"
+IL_0150: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0155: brtrue IL_02cd
+IL_015a: br IL_02d3
+IL_015f: ldarg.0
+IL_0160: ldstr "fanta"
+IL_0165: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_016a: brtrue IL_02d1
+IL_016f: br IL_02d3
+IL_0174: ldarg.0
+IL_0175: ldstr "heavy_metal"
+IL_017a: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_017f: brtrue IL_02cf
+IL_0184: br IL_02d3
+IL_0189: ldarg.0
+IL_018a: ldstr "coffee_mush"
+IL_018f: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0194: brtrue IL_02d1
+IL_0199: br IL_02d3
+IL_019e: ldarg.0
+IL_019f: ldstr "organic_waste"
+IL_01a4: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01a9: brtrue IL_02cf
+IL_01ae: br IL_02d3
+IL_01b3: ldarg.0
+IL_01b4: ldstr "contraceptive"
+IL_01b9: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01be: brtrue IL_02d1
+IL_01c3: br IL_02d3
+IL_01c8: ldarg.0
+IL_01c9: ldstr "microplastic"
+IL_01ce: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01d3: brtrue IL_02cf
+IL_01d8: br IL_02d3
+IL_01dd: ldarg.0
+IL_01de: ldstr "microbe"
+IL_01e3: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01e8: brtrue IL_02cf
+IL_01ed: br IL_02d3
+IL_01f2: ldarg.0
+IL_01f3: ldstr "zyanide"
+IL_01f8: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_01fd: brtrue IL_02d1
+IL_0202: br IL_02d3
+IL_0207: ldarg.0
+IL_0208: ldstr "chemical_contaminant"
+IL_020d: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0212: brtrue IL_02cf
+IL_0217: br IL_02d3
+IL_021c: ldarg.0
+IL_021d: ldstr "physical_contaminant"
+IL_0222: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0227: brtrue IL_02cf
+IL_022c: br IL_02d3
+IL_0231: ldarg.0
+IL_0232: ldstr "dream_cap_mush"
+IL_0237: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_023c: brtrue IL_02d1
+IL_0241: br IL_02d3
+IL_0246: ldarg.0
+IL_0247: ldstr "nightmare_cap_mush"
+IL_024c: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0251: brtrue.s IL_02d1
+IL_0253: br.s IL_02d3
+IL_0255: ldarg.0
+IL_0256: ldstr "livestock_immunity"
+IL_025b: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0260: brtrue.s IL_02d1
+IL_0262: br.s IL_02d3
+IL_0264: ldarg.0
+IL_0265: ldstr "methylol"
+IL_026a: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_026f: brtrue.s IL_02d1
+IL_0271: br.s IL_02d3
+IL_0273: ldarg.0
+IL_0274: ldstr "caffeine"
+IL_0279: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_027e: brtrue.s IL_02d1
+IL_0280: br.s IL_02d3
+IL_0282: ldarg.0
+IL_0283: ldstr "dream_cap_extract"
+IL_0288: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_028d: brtrue.s IL_02d1
+IL_028f: br.s IL_02d3
+IL_0291: ldarg.0
+IL_0292: ldstr "nightmare_extract"
+IL_0297: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_029c: brtrue.s IL_02d1
+IL_029e: br.s IL_02d3
+IL_02a0: ldarg.0
+IL_02a1: ldstr "livestock_steroid"
+IL_02a6: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_02ab: brtrue.s IL_02d1
+IL_02ad: br.s IL_02d3
+IL_02af: ldarg.0
+IL_02b0: ldstr "nomore"
+IL_02b5: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_02ba: brtrue.s IL_02d1
+IL_02bc: br.s IL_02d3
+IL_02be: ldarg.0
+IL_02bf: ldstr "synaprest"
+IL_02c4: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_02c9: brtrue.s IL_02d1
+IL_02cb: br.s IL_02d3
+IL_02cd: ldc.i4.1
+IL_02ce: ret
+IL_02cf: ldc.i4.2
+IL_02d0: ret
+IL_02d1: ldc.i4.3
+IL_02d2: ret
+IL_02d3: ldc.i4.0
+IL_02d4: ret
+System.Void BetterLiquidScanner.ScannerPanel::Render(BetterLiquidScanner.CompositionSnapshot)
+IL_0000: ldarg.0
+IL_0001: call System.Boolean BetterLiquidScanner.ScannerPanel::get_IsAlive()
+IL_0006: brfalse.s IL_000b
+IL_0008: ldarg.1
+IL_0009: brtrue.s IL_000c
+IL_000b: ret
+IL_000c: ldarg.0
+IL_000d: ldarg.1
+IL_000e: stfld BetterLiquidScanner.CompositionSnapshot BetterLiquidScanner.ScannerPanel::latest
+IL_0013: ldarg.0
+IL_0014: ldfld System.Boolean BetterLiquidScanner.ScannerPanel::pinsLoaded
+IL_0019: brtrue.s IL_008b
+IL_001b: ldarg.0
+IL_001c: ldc.i4.1
+IL_001d: stfld System.Boolean BetterLiquidScanner.ScannerPanel::pinsLoaded
+IL_0022: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::persistPinsSetting
+IL_0027: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_002c: brfalse.s IL_008b
+IL_002e: ldarg.0
+IL_002f: call ConfigEntry`1<System.String> BetterLiquidScanner.ScannerPanel::get_SavedPins()
+IL_0034: callvirt !0 ConfigEntry`1<System.String>::get_Value()
+IL_0039: ldc.i4.s 124
+IL_003b: ldc.i4.0
+IL_003c: callvirt System.String[] System.String::Split(System.Char,System.StringSplitOptions)
+IL_0041: stloc.s V_4
+IL_0043: ldc.i4.0
+IL_0044: stloc.s V_5
+IL_0046: br.s IL_0083
+IL_0048: ldloc.s V_4
+IL_004a: ldloc.s V_5
+IL_004c: ldelem.ref
+IL_004d: stloc.s V_6
+IL_004f: ldloc.s V_6
+IL_0051: call System.Boolean System.String::IsNullOrEmpty(System.String)
+IL_0056: brtrue.s IL_007d
+IL_0058: ldloc.s V_6
+IL_005a: call System.String System.Uri::UnescapeDataString(System.String)
+IL_005f: stloc.s V_7
+IL_0061: ldarg.0
+IL_0062: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::pins
+IL_0067: ldloc.s V_7
+IL_0069: callvirt System.Boolean System.Collections.Generic.List`1<System.String>::Contains(!0)
+IL_006e: brtrue.s IL_007d
+IL_0070: ldarg.0
+IL_0071: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::pins
+IL_0076: ldloc.s V_7
+IL_0078: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_007d: ldloc.s V_5
+IL_007f: ldc.i4.1
+IL_0080: add
+IL_0081: stloc.s V_5
+IL_0083: ldloc.s V_5
+IL_0085: ldloc.s V_4
+IL_0087: ldlen
+IL_0088: conv.i4
+IL_0089: blt.s IL_0048
+IL_008b: ldarg.0
+IL_008c: ldfld UnityEngine.UI.Toggle BetterLiquidScanner.ScannerPanel::persistPinsToggle
+IL_0091: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::persistPinsSetting
+IL_0096: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_009b: callvirt System.Void UnityEngine.UI.Toggle::SetIsOnWithoutNotify(System.Boolean)
+IL_00a0: ldarg.0
+IL_00a1: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_00a6: ldnull
+IL_00a7: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_00ac: brtrue.s IL_00cc
+IL_00ae: ldarg.0
+IL_00af: ldfld WaterScannerUIManager BetterLiquidScanner.ScannerPanel::water
+IL_00b4: ldnull
+IL_00b5: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_00ba: brtrue.s IL_00bf
+IL_00bc: ldnull
+IL_00bd: br.s IL_00d7
+IL_00bf: ldarg.0
+IL_00c0: ldfld WaterScannerUIManager BetterLiquidScanner.ScannerPanel::water
+IL_00c5: ldfld GameItem WaterScannerUIManager::currentWaterContainer
+IL_00ca: br.s IL_00d7
+IL_00cc: ldarg.0
+IL_00cd: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_00d2: ldfld GameItem ChemScannerUIManager::currentScannedItem
+IL_00d7: stloc.0
+IL_00d8: ldarg.0
+IL_00d9: ldfld GameItem BetterLiquidScanner.ScannerPanel::previousItem
+IL_00de: ldloc.0
+IL_00df: beq.s IL_00fe
+IL_00e1: ldarg.0
+IL_00e2: ldfld System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow> BetterLiquidScanner.ScannerPanel::remembered
+IL_00e7: callvirt System.Void System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow>::Clear()
+IL_00ec: ldarg.0
+IL_00ed: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::displayOrder
+IL_00f2: callvirt System.Void System.Collections.Generic.List`1<System.String>::Clear()
+IL_00f7: ldarg.0
+IL_00f8: ldc.i4.1
+IL_00f9: stfld System.Boolean BetterLiquidScanner.ScannerPanel::forceOrder
+IL_00fe: ldarg.1
+IL_00ff: callvirt System.Collections.Generic.IReadOnlyList`1<BetterLiquidScanner.ComponentRow> BetterLiquidScanner.CompositionSnapshot::get_Rows()
+IL_0104: callvirt System.Collections.Generic.IEnumerator`1<!0> System.Collections.Generic.IEnumerable`1<BetterLiquidScanner.ComponentRow>::GetEnumerator()
+IL_0109: stloc.s V_8
+IL_010b: br.s IL_012a
+IL_010d: ldloc.s V_8
+IL_010f: callvirt !0 System.Collections.Generic.IEnumerator`1<BetterLiquidScanner.ComponentRow>::get_Current()
+IL_0114: stloc.s V_9
+IL_0116: ldarg.0
+IL_0117: ldfld System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow> BetterLiquidScanner.ScannerPanel::remembered
+IL_011c: ldloc.s V_9
+IL_011e: callvirt System.String BetterLiquidScanner.ComponentRow::get_Identifier()
+IL_0123: ldloc.s V_9
+IL_0125: callvirt System.Void System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow>::set_Item(!0,!1)
+IL_012a: ldloc.s V_8
+IL_012c: callvirt System.Boolean System.Collections.IEnumerator::MoveNext()
+IL_0131: brtrue.s IL_010d
+IL_0133: leave.s IL_0141
+IL_0135: ldloc.s V_8
+IL_0137: brfalse.s IL_0140
+IL_0139: ldloc.s V_8
+IL_013b: callvirt System.Void System.IDisposable::Dispose()
+IL_0140: endfinally
+IL_0141: ldarg.1
+IL_0142: callvirt System.Collections.Generic.IReadOnlyList`1<BetterLiquidScanner.ComponentRow> BetterLiquidScanner.CompositionSnapshot::get_Rows()
+IL_0147: newobj System.Void System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::.ctor(System.Collections.Generic.IEnumerable`1<!0>)
+IL_014c: stloc.1
+IL_014d: ldarg.0
+IL_014e: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::pins
+IL_0153: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<System.String>::GetEnumerator()
+IL_0158: stloc.s V_10
+IL_015a: br IL_0268
+IL_015f: newobj System.Void BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::.ctor()
+IL_0164: stloc.s V_11
+IL_0166: ldloc.s V_11
+IL_0168: ldloca.s V_10
+IL_016a: call !0 System.Collections.Generic.List`1/Enumerator<System.String>::get_Current()
+IL_016f: stfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_0174: ldloc.1
+IL_0175: ldloc.s V_11
+IL_0177: ldftn System.Boolean BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::<Render>b__2(BetterLiquidScanner.ComponentRow)
+IL_017d: newobj System.Void System.Predicate`1<BetterLiquidScanner.ComponentRow>::.ctor(System.Object,System.IntPtr)
+IL_0182: callvirt System.Boolean System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::Exists(System.Predicate`1<!0>)
+IL_0187: brtrue IL_0268
+IL_018c: ldarg.0
+IL_018d: ldfld System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow> BetterLiquidScanner.ScannerPanel::remembered
+IL_0192: ldloc.s V_11
+IL_0194: ldfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_0199: ldloca.s V_12
+IL_019b: callvirt System.Boolean System.Collections.Generic.Dictionary`2<System.String,BetterLiquidScanner.ComponentRow>::TryGetValue(!0,!1&)
+IL_01a0: brfalse.s IL_01ce
+IL_01a2: ldloc.1
+IL_01a3: ldloc.s V_11
+IL_01a5: ldfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_01aa: ldloc.s V_12
+IL_01ac: callvirt System.String BetterLiquidScanner.ComponentRow::get_Name()
+IL_01b1: ldc.i4.0
+IL_01b2: ldloc.s V_12
+IL_01b4: callvirt System.Int32 BetterLiquidScanner.ComponentRow::get_RegistryIndex()
+IL_01b9: ldarg.1
+IL_01ba: callvirt System.Int64 BetterLiquidScanner.CompositionSnapshot::get_TotalUl()
+IL_01bf: newobj System.Void BetterLiquidScanner.ComponentRow::.ctor(System.String,System.String,System.Int32,System.Int32,System.Int64)
+IL_01c4: callvirt System.Void System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::Add(!0)
+IL_01c9: br IL_0268
+IL_01ce: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::persistPinsSetting
+IL_01d3: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_01d8: brfalse IL_0268
+IL_01dd: ldloc.s V_11
+IL_01df: ldfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_01e4: stloc.s V_13
+IL_01e6: ldc.i4 2147483647
+IL_01eb: stloc.s V_14
+IL_01ed: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_01f2: stloc.s V_15
+IL_01f4: ldloc.s V_15
+IL_01f6: brfalse.s IL_024b
+IL_01f8: ldc.i4.0
+IL_01f9: stloc.s V_16
+IL_01fb: br.s IL_0240
+IL_01fd: ldloc.s V_15
+IL_01ff: ldloc.s V_16
+IL_0201: callvirt !0 System.Collections.Generic.List`1<Liquid>::get_Item(System.Int32)
+IL_0206: brfalse.s IL_023a
+IL_0208: ldloc.s V_15
+IL_020a: ldloc.s V_16
+IL_020c: callvirt !0 System.Collections.Generic.List`1<Liquid>::get_Item(System.Int32)
+IL_0211: ldfld System.String Liquid::identifier
+IL_0216: ldloc.s V_11
+IL_0218: ldfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_021d: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_0222: brfalse.s IL_023a
+IL_0224: ldloc.s V_15
+IL_0226: ldloc.s V_16
+IL_0228: callvirt !0 System.Collections.Generic.List`1<Liquid>::get_Item(System.Int32)
+IL_022d: call System.String BetterLiquidScanner.L10n::LiquidName(Liquid)
+IL_0232: stloc.s V_13
+IL_0234: ldloc.s V_16
+IL_0236: stloc.s V_14
+IL_0238: br.s IL_024b
+IL_023a: ldloc.s V_16
+IL_023c: ldc.i4.1
+IL_023d: add
+IL_023e: stloc.s V_16
+IL_0240: ldloc.s V_16
+IL_0242: ldloc.s V_15
+IL_0244: callvirt System.Int32 System.Collections.Generic.List`1<Liquid>::get_Count()
+IL_0249: blt.s IL_01fd
+IL_024b: ldloc.1
+IL_024c: ldloc.s V_11
+IL_024e: ldfld System.String BetterLiquidScanner.ScannerPanel/<>c__DisplayClass137_0::id
+IL_0253: ldloc.s V_13
+IL_0255: ldc.i4.0
+IL_0256: ldloc.s V_14
+IL_0258: ldarg.1
+IL_0259: callvirt System.Int64 BetterLiquidScanner.CompositionSnapshot::get_TotalUl()
+IL_025e: newobj System.Void BetterLiquidScanner.ComponentRow::.ctor(System.String,System.String,System.Int32,System.Int32,System.Int64)
+IL_0263: callvirt System.Void System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::Add(!0)
+IL_0268: ldloca.s V_10
+IL_026a: call System.Boolean System.Collections.Generic.List`1/Enumerator<System.String>::MoveNext()
+IL_026f: brtrue IL_015f
+IL_0274: leave.s IL_0284
+IL_0276: ldloca.s V_10
+IL_0278: constrained. System.Collections.Generic.List`1/Enumerator<System.String>
+IL_027e: callvirt System.Void System.IDisposable::Dispose()
+IL_0283: endfinally
+IL_0284: ldloc.1
+IL_0285: ldarg.0
+IL_0286: ldftn System.Int32 BetterLiquidScanner.ScannerPanel::<Render>b__137_0(BetterLiquidScanner.ComponentRow,BetterLiquidScanner.ComponentRow)
+IL_028c: newobj System.Void System.Comparison`1<BetterLiquidScanner.ComponentRow>::.ctor(System.Object,System.IntPtr)
+IL_0291: callvirt System.Void System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::Sort(System.Comparison`1<!0>)
+IL_0296: ldarg.0
+IL_0297: ldloc.1
+IL_0298: ldarg.0
+IL_0299: ldftn System.Boolean BetterLiquidScanner.ScannerPanel::<Render>b__137_1(BetterLiquidScanner.ComponentRow)
+IL_029f: newobj System.Void System.Predicate`1<BetterLiquidScanner.ComponentRow>::.ctor(System.Object,System.IntPtr)
+IL_02a4: callvirt System.Collections.Generic.List`1<!0> System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::FindAll(System.Predicate`1<!0>)
+IL_02a9: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_02ae: stfld System.Int32 BetterLiquidScanner.ScannerPanel::pinnedCount
+IL_02b3: ldarg.0
+IL_02b4: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::displayOrder
+IL_02b9: callvirt System.Void System.Collections.Generic.List`1<System.String>::Clear()
+IL_02be: ldloc.1
+IL_02bf: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::GetEnumerator()
+IL_02c4: stloc.s V_17
+IL_02c6: br.s IL_02e3
+IL_02c8: ldloca.s V_17
+IL_02ca: call !0 System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::get_Current()
+IL_02cf: stloc.s V_18
+IL_02d1: ldarg.0
+IL_02d2: ldfld System.Collections.Generic.List`1<System.String> BetterLiquidScanner.ScannerPanel::displayOrder
+IL_02d7: ldloc.s V_18
+IL_02d9: callvirt System.String BetterLiquidScanner.ComponentRow::get_Identifier()
+IL_02de: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_02e3: ldloca.s V_17
+IL_02e5: call System.Boolean System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::MoveNext()
+IL_02ea: brtrue.s IL_02c8
+IL_02ec: leave.s IL_02fc
+IL_02ee: ldloca.s V_17
+IL_02f0: constrained. System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>
+IL_02f6: callvirt System.Void System.IDisposable::Dispose()
+IL_02fb: endfinally
+IL_02fc: ldarg.0
+IL_02fd: ldc.i4.0
+IL_02fe: stfld System.Boolean BetterLiquidScanner.ScannerPanel::forceOrder
+IL_0303: ldarg.0
+IL_0304: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::template
+IL_0309: ldc.i4.0
+IL_030a: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_030f: ldarg.0
+IL_0310: call System.Void BetterLiquidScanner.ScannerPanel::SyncFonts()
+IL_0315: ldarg.0
+IL_0316: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::settingsTitle
+IL_031b: ldstr "settings_title"
+IL_0320: call !!0[] System.Array::Empty<System.Object>()
+IL_0325: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_032a: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_032f: ldarg.0
+IL_0330: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::barsLabel
+IL_0335: ldstr "show_bars"
+IL_033a: call !!0[] System.Array::Empty<System.Object>()
+IL_033f: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0344: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0349: ldarg.0
+IL_034a: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::legendLabel
+IL_034f: ldstr "show_legend"
+IL_0354: call !!0[] System.Array::Empty<System.Object>()
+IL_0359: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_035e: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0363: ldarg.0
+IL_0364: ldfld UnityEngine.UI.Toggle BetterLiquidScanner.ScannerPanel::legendToggle
+IL_0369: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::legendSetting
+IL_036e: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_0373: callvirt System.Void UnityEngine.UI.Toggle::SetIsOnWithoutNotify(System.Boolean)
+IL_0378: ldarg.0
+IL_0379: ldfld UnityEngine.UI.Toggle BetterLiquidScanner.ScannerPanel::legendToggle
+IL_037e: ldarg.0
+IL_037f: call System.Boolean BetterLiquidScanner.ScannerPanel::get_ShowBars()
+IL_0384: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_0389: ldarg.0
+IL_038a: ldfld UnityEngine.CanvasGroup BetterLiquidScanner.ScannerPanel::legendSettingGroup
+IL_038f: ldarg.0
+IL_0390: call System.Boolean BetterLiquidScanner.ScannerPanel::get_ShowBars()
+IL_0395: brtrue.s IL_039e
+IL_0397: ldc.r4 0.45
+IL_039c: br.s IL_03a3
+IL_039e: ldc.r4 1
+IL_03a3: callvirt System.Void UnityEngine.CanvasGroup::set_alpha(System.Single)
+IL_03a8: ldarg.0
+IL_03a9: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::heightModeLabel
+IL_03ae: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_03b3: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_03b8: brtrue.s IL_03cb
+IL_03ba: ldstr "mode_auto"
+IL_03bf: call !!0[] System.Array::Empty<System.Object>()
+IL_03c4: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_03c9: br.s IL_03da
+IL_03cb: ldstr "mode_fixed"
+IL_03d0: call !!0[] System.Array::Empty<System.Object>()
+IL_03d5: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_03da: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_03df: ldarg.0
+IL_03e0: ldfld UnityEngine.CanvasGroup BetterLiquidScanner.ScannerPanel::heightControlsGroup
+IL_03e5: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_03ea: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_03ef: brtrue.s IL_03f8
+IL_03f1: ldc.r4 0.4
+IL_03f6: br.s IL_03fd
+IL_03f8: ldc.r4 1
+IL_03fd: callvirt System.Void UnityEngine.CanvasGroup::set_alpha(System.Single)
+IL_0402: ldarg.0
+IL_0403: ldfld UnityEngine.CanvasGroup BetterLiquidScanner.ScannerPanel::heightControlsGroup
+IL_0408: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_040d: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_0412: callvirt System.Void UnityEngine.CanvasGroup::set_interactable(System.Boolean)
+IL_0417: ldarg.0
+IL_0418: ldfld UnityEngine.CanvasGroup BetterLiquidScanner.ScannerPanel::heightControlsGroup
+IL_041d: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_0422: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_0427: callvirt System.Void UnityEngine.CanvasGroup::set_blocksRaycasts(System.Boolean)
+IL_042c: ldarg.0
+IL_042d: ldfld UnityEngine.UI.Toggle BetterLiquidScanner.ScannerPanel::heightModeToggle
+IL_0432: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_0437: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_043c: callvirt System.Void UnityEngine.UI.Toggle::SetIsOnWithoutNotify(System.Boolean)
+IL_0441: ldarg.0
+IL_0442: ldfld TMPro.TMP_InputField BetterLiquidScanner.ScannerPanel::heightInput
+IL_0447: callvirt System.Boolean TMPro.TMP_InputField::get_isFocused()
+IL_044c: brtrue.s IL_0468
+IL_044e: ldarg.0
+IL_044f: ldfld TMPro.TMP_InputField BetterLiquidScanner.ScannerPanel::heightInput
+IL_0454: ldarg.0
+IL_0455: call System.Int32 BetterLiquidScanner.ScannerPanel::get_ShellHeight()
+IL_045a: stloc.s V_5
+IL_045c: ldloca.s V_5
+IL_045e: call System.String System.Int32::ToString()
+IL_0463: callvirt System.Void TMPro.TMP_InputField::SetTextWithoutNotify(System.String)
+IL_0468: ldarg.0
+IL_0469: ldfld TMPro.TMP_InputField BetterLiquidScanner.ScannerPanel::heightInput
+IL_046e: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_0473: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_0478: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_047d: ldarg.0
+IL_047e: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::heightMinus
+IL_0483: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_0488: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_048d: brfalse.s IL_049e
+IL_048f: ldarg.0
+IL_0490: call System.Int32 BetterLiquidScanner.ScannerPanel::get_ShellHeight()
+IL_0495: ldc.i4 620
+IL_049a: cgt
+IL_049c: br.s IL_049f
+IL_049e: ldc.i4.0
+IL_049f: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_04a4: ldarg.0
+IL_04a5: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::heightPlus
+IL_04aa: ldsfld ConfigEntry`1<System.Boolean> BetterLiquidScanner.ScannerPanel::fixedHeightSetting
+IL_04af: callvirt !0 ConfigEntry`1<System.Boolean>::get_Value()
+IL_04b4: brfalse.s IL_04c5
+IL_04b6: ldarg.0
+IL_04b7: call System.Int32 BetterLiquidScanner.ScannerPanel::get_ShellHeight()
+IL_04bc: ldc.i4 1000
+IL_04c1: clt
+IL_04c3: br.s IL_04c6
+IL_04c5: ldc.i4.0
+IL_04c6: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_04cb: ldarg.0
+IL_04cc: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::fontLabel
+IL_04d1: ldstr "font_size"
+IL_04d6: call !!0[] System.Array::Empty<System.Object>()
+IL_04db: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_04e0: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_04e5: ldarg.0
+IL_04e6: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::fontValue
+IL_04eb: ldarg.0
+IL_04ec: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_04f1: stloc.s V_5
+IL_04f3: ldloca.s V_5
+IL_04f5: call System.String System.Int32::ToString()
+IL_04fa: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_04ff: ldarg.0
+IL_0500: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::spacingLabel
+IL_0505: ldstr "row_spacing"
+IL_050a: call !!0[] System.Array::Empty<System.Object>()
+IL_050f: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0514: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0519: ldarg.0
+IL_051a: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::spacingValue
+IL_051f: ldarg.0
+IL_0520: call System.Int32 BetterLiquidScanner.ScannerPanel::get_RowSpacing()
+IL_0525: stloc.s V_5
+IL_0527: ldloca.s V_5
+IL_0529: call System.String System.Int32::ToString()
+IL_052e: ldstr "%"
+IL_0533: call System.String System.String::Concat(System.String,System.String)
+IL_0538: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_053d: ldarg.0
+IL_053e: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::spacingMinus
+IL_0543: ldarg.0
+IL_0544: call System.Int32 BetterLiquidScanner.ScannerPanel::get_RowSpacing()
+IL_0549: ldc.i4.s 70
+IL_054b: cgt
+IL_054d: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_0552: ldarg.0
+IL_0553: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::spacingPlus
+IL_0558: ldarg.0
+IL_0559: call System.Int32 BetterLiquidScanner.ScannerPanel::get_RowSpacing()
+IL_055e: ldc.i4 150
+IL_0563: clt
+IL_0565: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_056a: ldarg.0
+IL_056b: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::fontMinus
+IL_0570: ldarg.0
+IL_0571: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_0576: ldc.i4.s 10
+IL_0578: cgt
+IL_057a: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_057f: ldarg.0
+IL_0580: ldfld UnityEngine.UI.Button BetterLiquidScanner.ScannerPanel::fontPlus
+IL_0585: ldarg.0
+IL_0586: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_058b: ldc.i4.s 18
+IL_058d: clt
+IL_058f: callvirt System.Void UnityEngine.UI.Selectable::set_interactable(System.Boolean)
+IL_0594: ldarg.0
+IL_0595: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::emptyLabel
+IL_059a: ldarg.0
+IL_059b: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_05a0: conv.r4
+IL_05a1: callvirt System.Void TMPro.TMP_Text::set_fontSize(System.Single)
+IL_05a6: ldarg.0
+IL_05a7: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::scroll
+IL_05ac: ldarg.0
+IL_05ad: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_05b2: callvirt System.Void UnityEngine.UI.ScrollRect::set_scrollSensitivity(System.Single)
+IL_05b7: ldarg.0
+IL_05b8: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::pinnedScroll
+IL_05bd: ldnull
+IL_05be: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_05c3: brfalse.s IL_05d6
+IL_05c5: ldarg.0
+IL_05c6: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::pinnedScroll
+IL_05cb: ldarg.0
+IL_05cc: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_05d1: callvirt System.Void UnityEngine.UI.ScrollRect::set_scrollSensitivity(System.Single)
+IL_05d6: ldarg.0
+IL_05d7: ldfld UnityEngine.UI.Toggle BetterLiquidScanner.ScannerPanel::barsToggle
+IL_05dc: ldarg.0
+IL_05dd: call System.Boolean BetterLiquidScanner.ScannerPanel::get_ShowBars()
+IL_05e2: callvirt System.Void UnityEngine.UI.Toggle::SetIsOnWithoutNotify(System.Boolean)
+IL_05e7: ldarg.0
+IL_05e8: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::heading
+IL_05ed: ldstr "composition_title"
+IL_05f2: call !!0[] System.Array::Empty<System.Object>()
+IL_05f7: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_05fc: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0601: ldarg.0
+IL_0602: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::orderLabel
+IL_0607: ldarg.0
+IL_0608: ldfld System.Boolean BetterLiquidScanner.ScannerPanel::descending
+IL_060d: brtrue.s IL_0616
+IL_060f: ldstr "order_original"
+IL_0614: br.s IL_061b
+IL_0616: ldstr "order_desc"
+IL_061b: call !!0[] System.Array::Empty<System.Object>()
+IL_0620: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0625: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_062a: ldarg.0
+IL_062b: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::emptyLabel
+IL_0630: ldstr "empty"
+IL_0635: call !!0[] System.Array::Empty<System.Object>()
+IL_063a: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_063f: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0644: ldarg.0
+IL_0645: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::emptyLabel
+IL_064a: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_064f: ldloc.1
+IL_0650: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_0655: ldc.i4.0
+IL_0656: ceq
+IL_0658: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_065d: ldarg.0
+IL_065e: ldfld TMPro.TextMeshProUGUI[] BetterLiquidScanner.ScannerPanel::legend
+IL_0663: ldc.i4.0
+IL_0664: ldelem.ref
+IL_0665: ldstr "legend_water"
+IL_066a: call !!0[] System.Array::Empty<System.Object>()
+IL_066f: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0674: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0679: ldarg.0
+IL_067a: ldfld TMPro.TextMeshProUGUI[] BetterLiquidScanner.ScannerPanel::legend
+IL_067f: ldc.i4.1
+IL_0680: ldelem.ref
+IL_0681: ldstr "legend_ingredient"
+IL_0686: call !!0[] System.Array::Empty<System.Object>()
+IL_068b: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0690: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0695: ldarg.0
+IL_0696: ldfld TMPro.TextMeshProUGUI[] BetterLiquidScanner.ScannerPanel::legend
+IL_069b: ldc.i4.2
+IL_069c: ldelem.ref
+IL_069d: ldstr "legend_other"
+IL_06a2: call !!0[] System.Array::Empty<System.Object>()
+IL_06a7: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_06ac: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_06b1: ldarg.0
+IL_06b2: ldfld TMPro.TextMeshProUGUI[] BetterLiquidScanner.ScannerPanel::legend
+IL_06b7: ldc.i4.3
+IL_06b8: ldelem.ref
+IL_06b9: ldstr "legend_pollutant"
+IL_06be: call !!0[] System.Array::Empty<System.Object>()
+IL_06c3: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_06c8: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_06cd: ldc.i4.0
+IL_06ce: stloc.2
+IL_06cf: ldloc.1
+IL_06d0: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::GetEnumerator()
+IL_06d5: stloc.s V_17
+IL_06d7: br.s IL_06f1
+IL_06d9: ldloca.s V_17
+IL_06db: call !0 System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::get_Current()
+IL_06e0: stloc.s V_19
+IL_06e2: ldloc.2
+IL_06e3: ldc.i4.1
+IL_06e4: ldloc.s V_19
+IL_06e6: callvirt BetterLiquidScanner.ComponentKind BetterLiquidScanner.ComponentRow::get_Kind()
+IL_06eb: ldc.i4.s 31
+IL_06ed: and
+IL_06ee: shl
+IL_06ef: or
+IL_06f0: stloc.2
+IL_06f1: ldloca.s V_17
+IL_06f3: call System.Boolean System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::MoveNext()
+IL_06f8: brtrue.s IL_06d9
+IL_06fa: leave.s IL_070a
+IL_06fc: ldloca.s V_17
+IL_06fe: constrained. System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>
+IL_0704: callvirt System.Void System.IDisposable::Dispose()
+IL_0709: endfinally
+IL_070a: ldc.r4 0
+IL_070f: stloc.3
+IL_0710: ldloc.1
+IL_0711: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::GetEnumerator()
+IL_0716: stloc.s V_17
+IL_0718: br.s IL_078a
+IL_071a: ldloca.s V_17
+IL_071c: call !0 System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::get_Current()
+IL_0721: stloc.s V_20
+IL_0723: ldarg.0
+IL_0724: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::emptyLabel
+IL_0729: ldloc.s V_20
+IL_072b: callvirt System.String BetterLiquidScanner.ComponentRow::get_Name()
+IL_0730: callvirt UnityEngine.Vector2 TMPro.TMP_Text::GetPreferredValues(System.String)
+IL_0735: ldfld System.Single UnityEngine.Vector2::x
+IL_073a: call System.Single UnityEngine.Mathf::Ceil(System.Single)
+IL_073f: ldc.r4 1
+IL_0744: add
+IL_0745: stloc.s V_21
+IL_0747: ldarg.0
+IL_0748: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::emptyLabel
+IL_074d: ldstr "inline_volume"
+IL_0752: ldc.i4.1
+IL_0753: newarr System.Object
+IL_0758: dup
+IL_0759: ldc.i4.0
+IL_075a: ldloc.s V_20
+IL_075c: callvirt System.String BetterLiquidScanner.ComponentRow::get_VolumeText()
+IL_0761: stelem.ref
+IL_0762: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0767: callvirt UnityEngine.Vector2 TMPro.TMP_Text::GetPreferredValues(System.String)
+IL_076c: ldfld System.Single UnityEngine.Vector2::x
+IL_0771: call System.Single UnityEngine.Mathf::Ceil(System.Single)
+IL_0776: ldc.r4 2
+IL_077b: add
+IL_077c: stloc.s V_22
+IL_077e: ldloc.3
+IL_077f: ldloc.s V_21
+IL_0781: ldloc.s V_22
+IL_0783: add
+IL_0784: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0789: stloc.3
+IL_078a: ldloca.s V_17
+IL_078c: call System.Boolean System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>::MoveNext()
+IL_0791: brtrue.s IL_071a
+IL_0793: leave.s IL_07a3
+IL_0795: ldloca.s V_17
+IL_0797: constrained. System.Collections.Generic.List`1/Enumerator<BetterLiquidScanner.ComponentRow>
+IL_079d: callvirt System.Void System.IDisposable::Dispose()
+IL_07a2: endfinally
+IL_07a3: ldarg.0
+IL_07a4: ldc.r4 174
+IL_07a9: ldarg.0
+IL_07aa: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_07af: ldc.i4.s 13
+IL_07b1: sub
+IL_07b2: conv.r4
+IL_07b3: ldc.r4 5
+IL_07b8: mul
+IL_07b9: add
+IL_07ba: ldloc.3
+IL_07bb: ldc.r4 4
+IL_07c0: add
+IL_07c1: ldc.r4 18
+IL_07c6: add
+IL_07c7: call System.Single UnityEngine.Mathf::Min(System.Single,System.Single)
+IL_07cc: stfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_07d1: ldarg.0
+IL_07d2: ldloc.1
+IL_07d3: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_07d8: ldloc.2
+IL_07d9: call System.Void BetterLiquidScanner.ScannerPanel::Layout(System.Int32,System.Int32)
+IL_07de: ldarg.0
+IL_07df: call System.Void BetterLiquidScanner.ScannerPanel::PositionEffects()
+IL_07e4: ldarg.0
+IL_07e5: ldarg.0
+IL_07e6: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_07eb: ldnull
+IL_07ec: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_07f1: brtrue.s IL_0800
+IL_07f3: ldarg.0
+IL_07f4: ldfld WaterScannerUIManager BetterLiquidScanner.ScannerPanel::water
+IL_07f9: ldfld UnityEngine.UI.Button WaterScannerUIManager::matchButton
+IL_07fe: br.s IL_080b
+IL_0800: ldarg.0
+IL_0801: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_0806: ldfld UnityEngine.UI.Button ChemScannerUIManager::matchButton
+IL_080b: call System.Void BetterLiquidScanner.ScannerPanel::PositionAction(UnityEngine.UI.Button)
+IL_0810: ldarg.0
+IL_0811: ldarg.0
+IL_0812: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_0817: ldnull
+IL_0818: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_081d: brtrue.s IL_082c
+IL_081f: ldarg.0
+IL_0820: ldfld WaterScannerUIManager BetterLiquidScanner.ScannerPanel::water
+IL_0825: ldfld UnityEngine.UI.Button WaterScannerUIManager::confrontButton
+IL_082a: br.s IL_0837
+IL_082c: ldarg.0
+IL_082d: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_0832: ldfld UnityEngine.UI.Button ChemScannerUIManager::confrontButton
+IL_0837: call System.Void BetterLiquidScanner.ScannerPanel::PositionAction(UnityEngine.UI.Button)
+IL_083c: ldarg.0
+IL_083d: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel::scrollHint
+IL_0842: ldloc.1
+IL_0843: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_0848: conv.r4
+IL_0849: ldarg.0
+IL_084a: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_084f: mul
+IL_0850: ldarg.0
+IL_0851: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewHeight
+IL_0856: bgt.s IL_085f
+IL_0858: ldsfld System.String System.String::Empty
+IL_085d: br.s IL_086e
+IL_085f: ldstr "scroll_hint"
+IL_0864: call !!0[] System.Array::Empty<System.Object>()
+IL_0869: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_086e: stfld System.String CustomUITooltipTrigger::tooltipText
+IL_0873: ldarg.0
+IL_0874: ldfld BetterLiquidScanner.WaterQualityText BetterLiquidScanner.ScannerPanel::waterQualityText
+IL_0879: ldloc.0
+IL_087a: ldarg.0
+IL_087b: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_0880: ldnull
+IL_0881: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_0886: brtrue.s IL_089b
+IL_0888: ldloc.0
+IL_0889: brfalse.s IL_089b
+IL_088b: ldloc.0
+IL_088c: ldstr "CHEM_ITEM_TAG"
+IL_0891: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0896: ldc.i4.0
+IL_0897: ceq
+IL_0899: br.s IL_089c
+IL_089b: ldc.i4.1
+IL_089c: ldarg.0
+IL_089d: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_08a2: callvirt System.Void BetterLiquidScanner.WaterQualityText::Refresh(GameItem,System.Boolean,System.Int32)
+IL_08a7: ldarg.0
+IL_08a8: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_08ad: ldnull
+IL_08ae: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_08b3: brfalse.s IL_08de
+IL_08b5: ldarg.0
+IL_08b6: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_08bb: ldfld TMPro.TextMeshProUGUI ChemScannerUIManager::totalVolumeTMP
+IL_08c0: ldstr "total_volume"
+IL_08c5: ldc.i4.1
+IL_08c6: newarr System.Object
+IL_08cb: dup
+IL_08cc: ldc.i4.0
+IL_08cd: ldarg.1
+IL_08ce: callvirt System.String BetterLiquidScanner.CompositionSnapshot::get_TotalVolumeText()
+IL_08d3: stelem.ref
+IL_08d4: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_08d9: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_08de: ldarg.0
+IL_08df: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_08e4: ldnull
+IL_08e5: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_08ea: brfalse.s IL_0915
+IL_08ec: ldarg.0
+IL_08ed: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_08f2: ldfld TMPro.TextMeshProUGUI ChemScannerUIManager::productNameTMP
+IL_08f7: ldnull
+IL_08f8: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_08fd: brfalse.s IL_0915
+IL_08ff: ldarg.0
+IL_0900: ldfld ChemScannerUIManager BetterLiquidScanner.ScannerPanel::chem
+IL_0905: ldfld TMPro.TextMeshProUGUI ChemScannerUIManager::productNameTMP
+IL_090a: ldloc.0
+IL_090b: call System.String BetterLiquidScanner.L10n::ItemHeading(GameItem)
+IL_0910: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0915: ldarg.0
+IL_0916: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::waterHeading
+IL_091b: ldnull
+IL_091c: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_0921: brfalse.s IL_0976
+IL_0923: ldarg.0
+IL_0924: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::waterHeading
+IL_0929: ldloc.0
+IL_092a: call System.String BetterLiquidScanner.L10n::ItemHeading(GameItem)
+IL_092f: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0934: ldarg.0
+IL_0935: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::waterVolume
+IL_093a: ldstr "total_volume"
+IL_093f: ldc.i4.1
+IL_0940: newarr System.Object
+IL_0945: dup
+IL_0946: ldc.i4.0
+IL_0947: ldarg.1
+IL_0948: callvirt System.String BetterLiquidScanner.CompositionSnapshot::get_TotalVolumeText()
+IL_094d: stelem.ref
+IL_094e: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0953: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0958: br.s IL_0976
+IL_095a: ldarg.0
+IL_095b: ldfld System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView> BetterLiquidScanner.ScannerPanel::rows
+IL_0960: ldarg.0
+IL_0961: ldarg.0
+IL_0962: ldfld System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView> BetterLiquidScanner.ScannerPanel::rows
+IL_0967: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView>::get_Count()
+IL_096c: call BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel::CreateRow(System.Int32)
+IL_0971: callvirt System.Void System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView>::Add(!0)
+IL_0976: ldarg.0
+IL_0977: ldfld System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView> BetterLiquidScanner.ScannerPanel::rows
+IL_097c: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView>::get_Count()
+IL_0981: ldloc.1
+IL_0982: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_0987: blt.s IL_095a
+IL_0989: ldc.i4.0
+IL_098a: stloc.s V_23
+IL_098c: br IL_0cf5
+IL_0991: ldarg.0
+IL_0992: ldfld System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView> BetterLiquidScanner.ScannerPanel::rows
+IL_0997: ldloc.s V_23
+IL_0999: callvirt !0 System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView>::get_Item(System.Int32)
+IL_099e: stloc.s V_24
+IL_09a0: ldloc.s V_24
+IL_09a2: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel/RowView::Root
+IL_09a7: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_09ac: ldloc.s V_23
+IL_09ae: ldloc.1
+IL_09af: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_09b4: clt
+IL_09b6: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_09bb: ldloc.s V_23
+IL_09bd: ldloc.1
+IL_09be: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_09c3: bge IL_0cef
+IL_09c8: ldloc.1
+IL_09c9: ldloc.s V_23
+IL_09cb: callvirt !0 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Item(System.Int32)
+IL_09d0: stloc.s V_25
+IL_09d2: ldloc.s V_23
+IL_09d4: ldarg.0
+IL_09d5: ldfld System.Int32 BetterLiquidScanner.ScannerPanel::pinnedCount
+IL_09da: clt
+IL_09dc: stloc.s V_26
+IL_09de: ldloc.s V_24
+IL_09e0: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel/RowView::Root
+IL_09e5: ldarg.0
+IL_09e6: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::content
+IL_09eb: ldc.i4.0
+IL_09ec: callvirt System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
+IL_09f1: ldloc.s V_24
+IL_09f3: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel/RowView::Root
+IL_09f8: ldc.r4 0
+IL_09fd: ldloc.s V_23
+IL_09ff: neg
+IL_0a00: conv.r4
+IL_0a01: ldarg.0
+IL_0a02: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0a07: mul
+IL_0a08: ldloc.s V_26
+IL_0a0a: brtrue.s IL_0a15
+IL_0a0c: ldarg.0
+IL_0a0d: ldfld System.Int32 BetterLiquidScanner.ScannerPanel::pinnedCount
+IL_0a12: ldc.i4.0
+IL_0a13: bgt.s IL_0a1c
+IL_0a15: ldc.r4 0
+IL_0a1a: br.s IL_0a21
+IL_0a1c: ldc.r4 6
+IL_0a21: sub
+IL_0a22: ldarg.0
+IL_0a23: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewWidth
+IL_0a28: ldarg.0
+IL_0a29: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0a2e: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_0a33: ldloc.s V_24
+IL_0a35: ldloc.s V_25
+IL_0a37: callvirt System.String BetterLiquidScanner.ComponentRow::get_Identifier()
+IL_0a3c: stfld System.String BetterLiquidScanner.ScannerPanel/RowView::Identifier
+IL_0a41: ldloc.s V_24
+IL_0a43: ldfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_0a48: ldloc.s V_26
+IL_0a4a: brtrue.s IL_0a63
+IL_0a4c: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::ScreenColor
+IL_0a51: ldarg.0
+IL_0a52: call UnityEngine.Color BetterLiquidScanner.ScannerPanel::get_BodyTextColor()
+IL_0a57: ldc.r4 0.55
+IL_0a5c: call UnityEngine.Color UnityEngine.Color::Lerp(UnityEngine.Color,UnityEngine.Color,System.Single)
+IL_0a61: br.s IL_0a69
+IL_0a63: ldarg.0
+IL_0a64: call UnityEngine.Color BetterLiquidScanner.ScannerPanel::get_ThemeColor()
+IL_0a69: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_0a6e: ldloc.s V_24
+IL_0a70: ldfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_0a75: ldloc.s V_26
+IL_0a77: stfld System.Boolean BetterLiquidScanner.ScannerPinGraphic::Pinned
+IL_0a7c: ldloc.s V_24
+IL_0a7e: ldfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_0a83: callvirt System.Void UnityEngine.UI.Graphic::SetVerticesDirty()
+IL_0a88: ldloc.s V_24
+IL_0a8a: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::PinTooltip
+IL_0a8f: ldloc.s V_26
+IL_0a91: brtrue.s IL_0a9a
+IL_0a93: ldstr "pin"
+IL_0a98: br.s IL_0a9f
+IL_0a9a: ldstr "unpin"
+IL_0a9f: call !!0[] System.Array::Empty<System.Object>()
+IL_0aa4: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0aa9: stfld System.String CustomUITooltipTrigger::tooltipText
+IL_0aae: ldloc.s V_24
+IL_0ab0: ldfld UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel/RowView::Fill
+IL_0ab5: callvirt UnityEngine.Transform UnityEngine.Component::get_transform()
+IL_0aba: callvirt UnityEngine.Transform UnityEngine.Transform::get_parent()
+IL_0abf: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0ac4: ldarg.0
+IL_0ac5: call System.Boolean BetterLiquidScanner.ScannerPanel::get_ShowBars()
+IL_0aca: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_0acf: ldloc.s V_24
+IL_0ad1: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Name
+IL_0ad6: ldloc.s V_24
+IL_0ad8: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Volume
+IL_0add: ldarg.0
+IL_0ade: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_0ae3: conv.r4
+IL_0ae4: dup
+IL_0ae5: stloc.s V_27
+IL_0ae7: callvirt System.Void TMPro.TMP_Text::set_fontSize(System.Single)
+IL_0aec: ldloc.s V_27
+IL_0aee: callvirt System.Void TMPro.TMP_Text::set_fontSize(System.Single)
+IL_0af3: ldloc.s V_24
+IL_0af5: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Percent
+IL_0afa: ldarg.0
+IL_0afb: call System.Int32 BetterLiquidScanner.ScannerPanel::get_FontSize()
+IL_0b00: ldc.i4.1
+IL_0b01: add
+IL_0b02: conv.r4
+IL_0b03: callvirt System.Void TMPro.TMP_Text::set_fontSize(System.Single)
+IL_0b08: ldloc.s V_24
+IL_0b0a: ldfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_0b0f: callvirt UnityEngine.RectTransform UnityEngine.UI.Graphic::get_rectTransform()
+IL_0b14: ldc.r4 0
+IL_0b19: ldc.r4 0
+IL_0b1e: ldc.r4 18
+IL_0b23: ldarg.0
+IL_0b24: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0b29: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_0b2e: ldloc.s V_24
+IL_0b30: ldfld UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel/RowView::Fill
+IL_0b35: callvirt UnityEngine.Transform UnityEngine.Component::get_transform()
+IL_0b3a: callvirt UnityEngine.Transform UnityEngine.Transform::get_parent()
+IL_0b3f: castclass UnityEngine.RectTransform
+IL_0b44: ldarg.0
+IL_0b45: ldfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_0b4a: ldarg.0
+IL_0b4b: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0b50: ldc.r4 8
+IL_0b55: sub
+IL_0b56: neg
+IL_0b57: ldc.r4 0.5
+IL_0b5c: mul
+IL_0b5d: ldarg.0
+IL_0b5e: ldfld System.Single BetterLiquidScanner.ScannerPanel::trackWidth
+IL_0b63: ldc.r4 8
+IL_0b68: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_0b6d: ldloc.s V_24
+IL_0b6f: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Percent
+IL_0b74: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_0b79: ldarg.0
+IL_0b7a: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewWidth
+IL_0b7f: ldarg.0
+IL_0b80: call System.Single BetterLiquidScanner.ScannerPanel::get_PercentWidth()
+IL_0b85: sub
+IL_0b86: ldc.r4 0
+IL_0b8b: ldarg.0
+IL_0b8c: call System.Single BetterLiquidScanner.ScannerPanel::get_PercentWidth()
+IL_0b91: ldarg.0
+IL_0b92: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0b97: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_0b9c: ldloc.s V_24
+IL_0b9e: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Name
+IL_0ba3: ldloc.s V_25
+IL_0ba5: callvirt System.String BetterLiquidScanner.ComponentRow::get_Name()
+IL_0baa: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0baf: ldloc.s V_24
+IL_0bb1: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Volume
+IL_0bb6: ldstr "inline_volume"
+IL_0bbb: ldc.i4.1
+IL_0bbc: newarr System.Object
+IL_0bc1: dup
+IL_0bc2: ldc.i4.0
+IL_0bc3: ldloc.s V_25
+IL_0bc5: callvirt System.String BetterLiquidScanner.ComponentRow::get_VolumeText()
+IL_0bca: stelem.ref
+IL_0bcb: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0bd0: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0bd5: ldarg.0
+IL_0bd6: ldloc.s V_24
+IL_0bd8: call System.Void BetterLiquidScanner.ScannerPanel::LayoutRowLabel(BetterLiquidScanner.ScannerPanel/RowView)
+IL_0bdd: ldloc.s V_24
+IL_0bdf: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Percent
+IL_0be4: ldloc.s V_25
+IL_0be6: callvirt System.String BetterLiquidScanner.ComponentRow::get_PercentText()
+IL_0beb: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0bf0: ldloc.s V_24
+IL_0bf2: ldfld UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel/RowView::Fill
+IL_0bf7: ldloc.s V_25
+IL_0bf9: callvirt BetterLiquidScanner.ComponentKind BetterLiquidScanner.ComponentRow::get_Kind()
+IL_0bfe: ldc.i4.1
+IL_0bff: beq.s IL_0c2a
+IL_0c01: ldloc.s V_25
+IL_0c03: callvirt BetterLiquidScanner.ComponentKind BetterLiquidScanner.ComponentRow::get_Kind()
+IL_0c08: ldc.i4.3
+IL_0c09: beq.s IL_0c23
+IL_0c0b: ldloc.s V_25
+IL_0c0d: callvirt BetterLiquidScanner.ComponentKind BetterLiquidScanner.ComponentRow::get_Kind()
+IL_0c12: ldc.i4.2
+IL_0c13: beq.s IL_0c1c
+IL_0c15: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::OtherColor
+IL_0c1a: br.s IL_0c2f
+IL_0c1c: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::PollutantColor
+IL_0c21: br.s IL_0c2f
+IL_0c23: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::IngredientColor
+IL_0c28: br.s IL_0c2f
+IL_0c2a: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::WaterColor
+IL_0c2f: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_0c34: ldloc.s V_24
+IL_0c36: ldfld UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel/RowView::Fill
+IL_0c3b: callvirt UnityEngine.RectTransform UnityEngine.UI.Graphic::get_rectTransform()
+IL_0c40: ldloc.s V_25
+IL_0c42: callvirt System.Double BetterLiquidScanner.ComponentRow::get_Fraction()
+IL_0c47: conv.r4
+IL_0c48: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+IL_0c4d: ldc.r4 1
+IL_0c52: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_0c57: callvirt System.Void UnityEngine.RectTransform::set_anchorMax(UnityEngine.Vector2)
+IL_0c5c: ldloc.s V_24
+IL_0c5e: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::Tooltip
+IL_0c63: ldstr "component_tooltip"
+IL_0c68: ldc.i4.3
+IL_0c69: newarr System.Object
+IL_0c6e: dup
+IL_0c6f: ldc.i4.0
+IL_0c70: ldloc.s V_25
+IL_0c72: callvirt System.String BetterLiquidScanner.ComponentRow::get_Name()
+IL_0c77: stelem.ref
+IL_0c78: dup
+IL_0c79: ldc.i4.1
+IL_0c7a: ldloc.s V_25
+IL_0c7c: callvirt System.String BetterLiquidScanner.ComponentRow::get_VolumeText()
+IL_0c81: stelem.ref
+IL_0c82: dup
+IL_0c83: ldc.i4.2
+IL_0c84: ldloc.s V_25
+IL_0c86: callvirt System.String BetterLiquidScanner.ComponentRow::get_PercentText()
+IL_0c8b: stelem.ref
+IL_0c8c: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0c91: ldstr "
+"
+IL_0c96: ldstr "amount_exact"
+IL_0c9b: ldc.i4.1
+IL_0c9c: newarr System.Object
+IL_0ca1: dup
+IL_0ca2: ldc.i4.0
+IL_0ca3: ldloc.s V_25
+IL_0ca5: callvirt System.Int64 BetterLiquidScanner.ComponentRow::get_AmountUl()
+IL_0caa: box System.Int64
+IL_0caf: stelem.ref
+IL_0cb0: call System.String BetterLiquidScanner.L10n::T(System.String,System.Object[])
+IL_0cb5: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_0cba: stfld System.String CustomUITooltipTrigger::tooltipText
+IL_0cbf: ldloc.s V_24
+IL_0cc1: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::VolumeTooltip
+IL_0cc6: ldloc.s V_24
+IL_0cc8: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::Tooltip
+IL_0ccd: ldfld System.String CustomUITooltipTrigger::tooltipText
+IL_0cd2: stfld System.String CustomUITooltipTrigger::tooltipText
+IL_0cd7: ldloc.s V_24
+IL_0cd9: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::PercentTooltip
+IL_0cde: ldloc.s V_24
+IL_0ce0: ldfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::Tooltip
+IL_0ce5: ldfld System.String CustomUITooltipTrigger::tooltipText
+IL_0cea: stfld System.String CustomUITooltipTrigger::tooltipText
+IL_0cef: ldloc.s V_23
+IL_0cf1: ldc.i4.1
+IL_0cf2: add
+IL_0cf3: stloc.s V_23
+IL_0cf5: ldloc.s V_23
+IL_0cf7: ldarg.0
+IL_0cf8: ldfld System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView> BetterLiquidScanner.ScannerPanel::rows
+IL_0cfd: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ScannerPanel/RowView>::get_Count()
+IL_0d02: blt IL_0991
+IL_0d07: ldarg.0
+IL_0d08: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::content
+IL_0d0d: ldc.i4.1
+IL_0d0e: ldarg.0
+IL_0d0f: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::viewport
+IL_0d14: callvirt UnityEngine.Rect UnityEngine.RectTransform::get_rect()
+IL_0d19: stloc.s V_28
+IL_0d1b: ldloca.s V_28
+IL_0d1d: call System.Single UnityEngine.Rect::get_height()
+IL_0d22: ldloc.1
+IL_0d23: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_0d28: conv.r4
+IL_0d29: ldarg.0
+IL_0d2a: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0d2f: mul
+IL_0d30: ldarg.0
+IL_0d31: ldfld System.Int32 BetterLiquidScanner.ScannerPanel::pinnedCount
+IL_0d36: ldc.i4.0
+IL_0d37: ble.s IL_0d47
+IL_0d39: ldarg.0
+IL_0d3a: ldfld System.Int32 BetterLiquidScanner.ScannerPanel::pinnedCount
+IL_0d3f: ldloc.1
+IL_0d40: callvirt System.Int32 System.Collections.Generic.List`1<BetterLiquidScanner.ComponentRow>::get_Count()
+IL_0d45: blt.s IL_0d4e
+IL_0d47: ldc.r4 0
+IL_0d4c: br.s IL_0d53
+IL_0d4e: ldc.r4 6
+IL_0d53: add
+IL_0d54: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0d59: callvirt System.Void UnityEngine.RectTransform::SetSizeWithCurrentAnchors(UnityEngine.RectTransform/Axis,System.Single)
+IL_0d5e: ldarg.0
+IL_0d5f: ldfld GameItem BetterLiquidScanner.ScannerPanel::previousItem
+IL_0d64: ldloc.0
+IL_0d65: beq.s IL_0db4
+IL_0d67: ldarg.0
+IL_0d68: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::scroll
+IL_0d6d: callvirt System.Void UnityEngine.UI.ScrollRect::StopMovement()
+IL_0d72: ldarg.0
+IL_0d73: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::content
+IL_0d78: call UnityEngine.Vector2 UnityEngine.Vector2::get_zero()
+IL_0d7d: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0d82: ldarg.0
+IL_0d83: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::scroll
+IL_0d88: ldc.r4 1
+IL_0d8d: callvirt System.Void UnityEngine.UI.ScrollRect::set_verticalNormalizedPosition(System.Single)
+IL_0d92: ldarg.0
+IL_0d93: ldfld UnityEngine.UI.ScrollRect BetterLiquidScanner.ScannerPanel::pinnedScroll
+IL_0d98: callvirt System.Void UnityEngine.UI.ScrollRect::StopMovement()
+IL_0d9d: ldarg.0
+IL_0d9e: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::pinnedRoot
+IL_0da3: call UnityEngine.Vector2 UnityEngine.Vector2::get_zero()
+IL_0da8: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0dad: ldarg.0
+IL_0dae: ldloc.0
+IL_0daf: stfld GameItem BetterLiquidScanner.ScannerPanel::previousItem
+IL_0db4: ret
+BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel::CreateRow(System.Int32)
+IL_0000: newobj System.Void BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: stfld BetterLiquidScanner.ScannerPanel BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::<>4__this
+IL_000d: ldstr "Row"
+IL_0012: ldarga.s index
+IL_0014: call System.String System.Int32::ToString()
+IL_0019: call System.String System.String::Concat(System.String,System.String)
+IL_001e: ldarg.0
+IL_001f: ldfld UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::content
+IL_0024: call UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::Child(System.String,UnityEngine.Transform)
+IL_0029: stloc.1
+IL_002a: ldloc.1
+IL_002b: ldc.r4 0
+IL_0030: ldarg.1
+IL_0031: neg
+IL_0032: conv.r4
+IL_0033: ldarg.0
+IL_0034: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0039: mul
+IL_003a: ldarg.0
+IL_003b: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewWidth
+IL_0040: ldarg.0
+IL_0041: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_0046: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_004b: ldloc.1
+IL_004c: call UnityEngine.Color UnityEngine.Color::get_clear()
+IL_0051: ldc.i4.1
+IL_0052: call UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel::AddImage(UnityEngine.RectTransform,UnityEngine.Color,System.Boolean)
+IL_0057: pop
+IL_0058: ldarg.0
+IL_0059: ldloc.1
+IL_005a: ldstr "Name"
+IL_005f: ldc.r4 13
+IL_0064: ldarg.0
+IL_0065: call UnityEngine.Color BetterLiquidScanner.ScannerPanel::get_BodyTextColor()
+IL_006a: ldc.i4 4097
+IL_006f: call TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::Text(UnityEngine.RectTransform,System.String,System.Single,UnityEngine.Color,TMPro.TextAlignmentOptions)
+IL_0074: stloc.2
+IL_0075: ldloc.2
+IL_0076: ldc.i4.1
+IL_0077: callvirt System.Void UnityEngine.UI.Graphic::set_raycastTarget(System.Boolean)
+IL_007c: ldloc.2
+IL_007d: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0082: callvirt !!0 UnityEngine.GameObject::AddComponent<CustomUITooltipTrigger>()
+IL_0087: stloc.3
+IL_0088: ldloc.2
+IL_0089: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_008e: ldc.r4 0
+IL_0093: ldc.r4 0
+IL_0098: ldarg.0
+IL_0099: ldfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_009e: ldc.r4 4
+IL_00a3: sub
+IL_00a4: ldarg.0
+IL_00a5: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_00aa: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_00af: ldarg.0
+IL_00b0: ldloc.1
+IL_00b1: ldstr "Volume"
+IL_00b6: ldc.r4 13
+IL_00bb: ldarg.0
+IL_00bc: call UnityEngine.Color BetterLiquidScanner.ScannerPanel::get_BodyTextColor()
+IL_00c1: ldc.i4 4097
+IL_00c6: call TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::Text(UnityEngine.RectTransform,System.String,System.Single,UnityEngine.Color,TMPro.TextAlignmentOptions)
+IL_00cb: stloc.s V_4
+IL_00cd: ldloc.s V_4
+IL_00cf: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_00d4: ldc.r4 0
+IL_00d9: ldc.r4 0
+IL_00de: ldarg.0
+IL_00df: ldfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_00e4: ldc.r4 4
+IL_00e9: sub
+IL_00ea: ldarg.0
+IL_00eb: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_00f0: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_00f5: ldstr "Track"
+IL_00fa: ldloc.1
+IL_00fb: call UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::Child(System.String,UnityEngine.Transform)
+IL_0100: stloc.s V_5
+IL_0102: ldloc.s V_5
+IL_0104: ldarg.0
+IL_0105: ldfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_010a: ldc.r4 -11
+IL_010f: ldarg.0
+IL_0110: ldfld System.Single BetterLiquidScanner.ScannerPanel::trackWidth
+IL_0115: ldc.r4 8
+IL_011a: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_011f: ldloc.s V_5
+IL_0121: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::TrackColor
+IL_0126: ldc.i4.0
+IL_0127: call UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel::AddImage(UnityEngine.RectTransform,UnityEngine.Color,System.Boolean)
+IL_012c: pop
+IL_012d: ldstr "Fill"
+IL_0132: ldloc.s V_5
+IL_0134: call UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::Child(System.String,UnityEngine.Transform)
+IL_0139: dup
+IL_013a: call System.Void BetterLiquidScanner.ScannerPanel::Stretch(UnityEngine.RectTransform)
+IL_013f: dup
+IL_0140: ldc.r4 0
+IL_0145: ldc.r4 0.5
+IL_014a: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_014f: callvirt System.Void UnityEngine.RectTransform::set_pivot(UnityEngine.Vector2)
+IL_0154: ldsfld UnityEngine.Color BetterLiquidScanner.ScannerPanel::OtherColor
+IL_0159: ldc.i4.0
+IL_015a: call UnityEngine.UI.Image BetterLiquidScanner.ScannerPanel::AddImage(UnityEngine.RectTransform,UnityEngine.Color,System.Boolean)
+IL_015f: stloc.s V_6
+IL_0161: ldarg.0
+IL_0162: ldloc.1
+IL_0163: ldstr "Percent"
+IL_0168: ldc.r4 14
+IL_016d: ldarg.0
+IL_016e: call UnityEngine.Color BetterLiquidScanner.ScannerPanel::get_BodyTextColor()
+IL_0173: ldc.i4 4100
+IL_0178: call TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel::Text(UnityEngine.RectTransform,System.String,System.Single,UnityEngine.Color,TMPro.TextAlignmentOptions)
+IL_017d: stloc.s V_7
+IL_017f: ldloc.s V_7
+IL_0181: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_0186: ldarg.0
+IL_0187: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewWidth
+IL_018c: ldarg.0
+IL_018d: call System.Single BetterLiquidScanner.ScannerPanel::get_PercentWidth()
+IL_0192: sub
+IL_0193: ldc.r4 -1
+IL_0198: ldarg.0
+IL_0199: call System.Single BetterLiquidScanner.ScannerPanel::get_PercentWidth()
+IL_019e: ldc.r4 28
+IL_01a3: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_01a8: ldloc.0
+IL_01a9: ldloc.1
+IL_01aa: ldloc.2
+IL_01ab: ldloc.s V_4
+IL_01ad: ldloc.s V_7
+IL_01af: ldloc.s V_6
+IL_01b1: ldloc.3
+IL_01b2: newobj System.Void BetterLiquidScanner.ScannerPanel/RowView::.ctor(UnityEngine.RectTransform,TMPro.TextMeshProUGUI,TMPro.TextMeshProUGUI,TMPro.TextMeshProUGUI,UnityEngine.UI.Image,CustomUITooltipTrigger)
+IL_01b7: stfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_01bc: ldloc.s V_4
+IL_01be: ldc.i4.1
+IL_01bf: callvirt System.Void UnityEngine.UI.Graphic::set_raycastTarget(System.Boolean)
+IL_01c4: ldloc.s V_7
+IL_01c6: ldc.i4.1
+IL_01c7: callvirt System.Void UnityEngine.UI.Graphic::set_raycastTarget(System.Boolean)
+IL_01cc: ldloc.0
+IL_01cd: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_01d2: ldloc.s V_4
+IL_01d4: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_01d9: callvirt !!0 UnityEngine.GameObject::AddComponent<CustomUITooltipTrigger>()
+IL_01de: stfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::VolumeTooltip
+IL_01e3: ldloc.0
+IL_01e4: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_01e9: ldloc.s V_7
+IL_01eb: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_01f0: callvirt !!0 UnityEngine.GameObject::AddComponent<CustomUITooltipTrigger>()
+IL_01f5: stfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::PercentTooltip
+IL_01fa: ldstr "Pin"
+IL_01ff: ldloc.1
+IL_0200: call UnityEngine.RectTransform BetterLiquidScanner.ScannerPanel::Child(System.String,UnityEngine.Transform)
+IL_0205: stloc.s V_8
+IL_0207: ldloc.s V_8
+IL_0209: ldc.r4 0
+IL_020e: ldc.r4 0
+IL_0213: ldc.r4 18
+IL_0218: ldarg.0
+IL_0219: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_021e: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_0223: ldloc.0
+IL_0224: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_0229: ldloc.s V_8
+IL_022b: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0230: callvirt !!0 UnityEngine.GameObject::AddComponent<BetterLiquidScanner.ScannerPinGraphic>()
+IL_0235: stfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_023a: ldloc.0
+IL_023b: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_0240: ldloc.s V_8
+IL_0242: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0247: callvirt !!0 UnityEngine.GameObject::AddComponent<CustomUITooltipTrigger>()
+IL_024c: stfld CustomUITooltipTrigger BetterLiquidScanner.ScannerPanel/RowView::PinTooltip
+IL_0251: ldloc.s V_8
+IL_0253: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0258: callvirt !!0 UnityEngine.GameObject::AddComponent<UnityEngine.UI.Button>()
+IL_025d: dup
+IL_025e: ldloc.0
+IL_025f: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_0264: ldfld BetterLiquidScanner.ScannerPinGraphic BetterLiquidScanner.ScannerPanel/RowView::Pin
+IL_0269: callvirt System.Void UnityEngine.UI.Selectable::set_targetGraphic(UnityEngine.UI.Graphic)
+IL_026e: callvirt UnityEngine.UI.Button/ButtonClickedEvent UnityEngine.UI.Button::get_onClick()
+IL_0273: ldloc.0
+IL_0274: ldftn System.Void BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::<CreateRow>b__0()
+IL_027a: newobj System.Void UnityEngine.Events.UnityAction::.ctor(System.Object,System.IntPtr)
+IL_027f: callvirt System.Void UnityEngine.Events.UnityEvent::AddListener(UnityEngine.Events.UnityAction)
+IL_0284: ldloc.0
+IL_0285: ldfld BetterLiquidScanner.ScannerPanel/RowView BetterLiquidScanner.ScannerPanel/<>c__DisplayClass154_0::row
+IL_028a: ret
+System.Void BetterLiquidScanner.ScannerPanel::LayoutRowLabel(BetterLiquidScanner.ScannerPanel/RowView)
+IL_0000: ldarg.0
+IL_0001: call System.Boolean BetterLiquidScanner.ScannerPanel::get_ShowBars()
+IL_0006: brtrue.s IL_001d
+IL_0008: ldarg.0
+IL_0009: ldfld System.Single BetterLiquidScanner.ScannerPanel::viewWidth
+IL_000e: ldarg.0
+IL_000f: call System.Single BetterLiquidScanner.ScannerPanel::get_PercentWidth()
+IL_0014: sub
+IL_0015: ldc.r4 4
+IL_001a: sub
+IL_001b: br.s IL_0023
+IL_001d: ldarg.0
+IL_001e: ldfld System.Single BetterLiquidScanner.ScannerPanel::barLeft
+IL_0023: stloc.0
+IL_0024: ldarg.1
+IL_0025: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Volume
+IL_002a: ldarg.1
+IL_002b: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Volume
+IL_0030: callvirt System.String TMPro.TMP_Text::get_text()
+IL_0035: callvirt UnityEngine.Vector2 TMPro.TMP_Text::GetPreferredValues(System.String)
+IL_003a: ldfld System.Single UnityEngine.Vector2::x
+IL_003f: call System.Single UnityEngine.Mathf::Ceil(System.Single)
+IL_0044: ldc.r4 2
+IL_0049: add
+IL_004a: stloc.1
+IL_004b: ldarg.1
+IL_004c: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Name
+IL_0051: ldarg.1
+IL_0052: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Name
+IL_0057: callvirt System.String TMPro.TMP_Text::get_text()
+IL_005c: callvirt UnityEngine.Vector2 TMPro.TMP_Text::GetPreferredValues(System.String)
+IL_0061: ldfld System.Single UnityEngine.Vector2::x
+IL_0066: call System.Single UnityEngine.Mathf::Ceil(System.Single)
+IL_006b: ldc.r4 1
+IL_0070: add
+IL_0071: ldc.r4 0
+IL_0076: ldloc.0
+IL_0077: ldc.r4 4
+IL_007c: sub
+IL_007d: ldloc.1
+IL_007e: sub
+IL_007f: ldc.r4 18
+IL_0084: sub
+IL_0085: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_008a: call System.Single UnityEngine.Mathf::Min(System.Single,System.Single)
+IL_008f: stloc.2
+IL_0090: ldarg.1
+IL_0091: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Name
+IL_0096: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_009b: ldc.r4 18
+IL_00a0: ldc.r4 0
+IL_00a5: ldloc.2
+IL_00a6: ldarg.0
+IL_00a7: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_00ac: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_00b1: ldarg.1
+IL_00b2: ldfld TMPro.TextMeshProUGUI BetterLiquidScanner.ScannerPanel/RowView::Volume
+IL_00b7: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_00bc: ldc.r4 18
+IL_00c1: ldloc.2
+IL_00c2: add
+IL_00c3: ldc.r4 0
+IL_00c8: ldloc.1
+IL_00c9: ldarg.0
+IL_00ca: call System.Single BetterLiquidScanner.ScannerPanel::get_RowHeight()
+IL_00cf: call System.Void BetterLiquidScanner.ScannerPanel::TopLeft(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)
+IL_00d4: ret

@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/build/
+**/staging/
+**/releases/
+*.zip
+*.dll
+*.exe
+*.pdb
+*.bin
+**/GameRoot.local.txt
+.vs/
+.vscode/

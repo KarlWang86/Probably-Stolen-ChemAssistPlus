@@ -1,0 +1,214 @@
+METHOD System.Void OneClickCraft.OneShot::EnsureAuxMaterials(OneClickCraft.Chain,GameItem,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>&)
+IL_0000: nop
+IL_0001: ldarg.3
+IL_0002: newobj System.Void System.Collections.Generic.List`1<System.String>::.ctor()
+IL_0007: stind.ref
+IL_0008: nop
+IL_0009: call OneClickCraft.ChemScan OneClickCraft.ChemScan::Run()
+IL_000e: stloc.0
+IL_000f: ldc.i4 2500
+IL_0014: stloc.1
+IL_0015: ldarg.1
+IL_0016: ldstr "acid"
+IL_001b: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0020: ldc.i4.0
+IL_0021: bgt.s IL_0033
+IL_0023: ldarg.1
+IL_0024: ldstr "base"
+IL_0029: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_002e: ldc.i4.0
+IL_002f: cgt
+IL_0031: br.s IL_0034
+IL_0033: ldc.i4.1
+IL_0034: stloc.2
+IL_0035: ldloc.2
+IL_0036: ldc.i4.0
+IL_0037: ceq
+IL_0039: stloc.s V_4
+IL_003b: ldloc.s V_4
+IL_003d: brfalse.s IL_0094
+IL_003f: nop
+IL_0040: ldloc.0
+IL_0041: ldstr "acid"
+IL_0046: ldloc.1
+IL_0047: ldarg.1
+IL_0048: ldnull
+IL_0049: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_004e: stloc.s V_5
+IL_0050: ldloc.s V_5
+IL_0052: ldc.i4.0
+IL_0053: cgt
+IL_0055: ldc.i4.0
+IL_0056: ceq
+IL_0058: stloc.s V_6
+IL_005a: ldloc.s V_6
+IL_005c: brfalse.s IL_006e
+IL_005e: ldloc.0
+IL_005f: ldstr "base"
+IL_0064: ldloc.1
+IL_0065: ldarg.1
+IL_0066: ldnull
+IL_0067: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_006c: stloc.s V_5
+IL_006e: ldloc.s V_5
+IL_0070: ldc.i4.0
+IL_0071: cgt
+IL_0073: ldc.i4.0
+IL_0074: ceq
+IL_0076: stloc.s V_7
+IL_0078: ldloc.s V_7
+IL_007a: brfalse.s IL_0093
+IL_007c: ldarg.3
+IL_007d: ldind.ref
+IL_007e: ldstr "酸或碱"
+IL_0083: ldstr "acid or base"
+IL_0088: call System.String OneClickCraft.L::T(System.String,System.String)
+IL_008d: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0092: nop
+IL_0093: nop
+IL_0094: ldarg.1
+IL_0095: ldstr "lipobond_agent"
+IL_009a: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_009f: ldc.i4.0
+IL_00a0: cgt
+IL_00a2: ldc.i4.0
+IL_00a3: ceq
+IL_00a5: stloc.s V_8
+IL_00a7: ldloc.s V_8
+IL_00a9: brfalse.s IL_00de
+IL_00ab: nop
+IL_00ac: ldloc.0
+IL_00ad: ldstr "lipobond_agent"
+IL_00b2: ldloc.1
+IL_00b3: ldarg.1
+IL_00b4: ldnull
+IL_00b5: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_00ba: ldc.i4.0
+IL_00bb: cgt
+IL_00bd: ldc.i4.0
+IL_00be: ceq
+IL_00c0: stloc.s V_9
+IL_00c2: ldloc.s V_9
+IL_00c4: brfalse.s IL_00dd
+IL_00c6: ldarg.3
+IL_00c7: ldind.ref
+IL_00c8: ldstr "脂合剂"
+IL_00cd: ldstr "lipobond agent"
+IL_00d2: call System.String OneClickCraft.L::T(System.String,System.String)
+IL_00d7: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_00dc: nop
+IL_00dd: nop
+IL_00de: ldarg.0
+IL_00df: ldfld System.String OneClickCraft.Chain::ProductId
+IL_00e4: ldstr "fanta_pill"
+IL_00e9: call System.Boolean System.String::op_Inequality(System.String,System.String)
+IL_00ee: brfalse.s IL_0103
+IL_00f0: ldarg.1
+IL_00f1: ldstr "stabilizing_agent"
+IL_00f6: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_00fb: ldc.i4.0
+IL_00fc: cgt
+IL_00fe: ldc.i4.0
+IL_00ff: ceq
+IL_0101: br.s IL_0104
+IL_0103: ldc.i4.0
+IL_0104: stloc.s V_10
+IL_0106: ldloc.s V_10
+IL_0108: brfalse.s IL_013d
+IL_010a: nop
+IL_010b: ldloc.0
+IL_010c: ldstr "stabilizing_agent"
+IL_0111: ldloc.1
+IL_0112: ldarg.1
+IL_0113: ldnull
+IL_0114: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_0119: ldc.i4.0
+IL_011a: cgt
+IL_011c: ldc.i4.0
+IL_011d: ceq
+IL_011f: stloc.s V_11
+IL_0121: ldloc.s V_11
+IL_0123: brfalse.s IL_013c
+IL_0125: ldarg.3
+IL_0126: ldind.ref
+IL_0127: ldstr "稳定剂"
+IL_012c: ldstr "stabilizing agent"
+IL_0131: call System.String OneClickCraft.L::T(System.String,System.String)
+IL_0136: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_013b: nop
+IL_013c: nop
+IL_013d: ldarg.0
+IL_013e: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_0143: brfalse.s IL_0165
+IL_0145: ldarg.0
+IL_0146: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_014b: ldlen
+IL_014c: conv.i4
+IL_014d: ldc.i4.1
+IL_014e: ble.s IL_0165
+IL_0150: ldarg.0
+IL_0151: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_0156: ldc.i4.1
+IL_0157: ldelem.ref
+IL_0158: ldstr "alcohol"
+IL_015d: ldc.i4.5
+IL_015e: call System.Boolean System.String::Equals(System.String,System.String,System.StringComparison)
+IL_0163: br.s IL_0166
+IL_0165: ldc.i4.0
+IL_0166: stloc.3
+IL_0167: ldloc.3
+IL_0168: brtrue.s IL_0199
+IL_016a: ldarg.1
+IL_016b: ldstr "alcohol"
+IL_0170: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0175: ldc.i4.0
+IL_0176: bgt.s IL_0199
+IL_0178: ldarg.1
+IL_0179: ldstr "acid"
+IL_017e: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0183: ldc.i4.0
+IL_0184: bgt.s IL_0199
+IL_0186: ldarg.1
+IL_0187: ldstr "base"
+IL_018c: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0191: ldc.i4.0
+IL_0192: cgt
+IL_0194: ldc.i4.0
+IL_0195: ceq
+IL_0197: br.s IL_019a
+IL_0199: ldc.i4.0
+IL_019a: stloc.s V_12
+IL_019c: ldloc.s V_12
+IL_019e: brfalse.s IL_01b5
+IL_01a0: nop
+IL_01a1: ldloc.0
+IL_01a2: ldstr "alcohol"
+IL_01a7: ldc.i4 2000
+IL_01ac: ldarg.1
+IL_01ad: ldnull
+IL_01ae: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_01b3: pop
+IL_01b4: nop
+IL_01b5: ldarg.2
+IL_01b6: ldstr "⓿.5 辅助材料：酸/碱/脂合剂/稳定剂 已就位（缺的会降纯度并提示）
+"
+IL_01bb: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_01c0: pop
+IL_01c1: nop
+IL_01c2: leave.s IL_01f2
+IL_01c4: stloc.s V_13
+IL_01c6: nop
+IL_01c7: ldstr "OCC.Aux"
+IL_01cc: ldloc.s V_13
+IL_01ce: callvirt System.Type System.Exception::GetType()
+IL_01d3: callvirt System.String System.Reflection.MemberInfo::get_Name()
+IL_01d8: ldstr ": "
+IL_01dd: ldloc.s V_13
+IL_01df: callvirt System.String System.Exception::get_Message()
+IL_01e4: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_01e9: call System.Void OneClickCraft.Log::WarnOnce(System.String,System.String)
+IL_01ee: nop
+IL_01ef: nop
+IL_01f0: leave.s IL_01f2
+IL_01f2: ret
+

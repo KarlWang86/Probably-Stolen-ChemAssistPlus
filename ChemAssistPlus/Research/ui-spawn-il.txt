@@ -1,0 +1,447 @@
+METHOD CustomUIBuilder CustomUIBuilder::SetSize(System.Single,System.Single)
+IL_0000: ldarg.0
+IL_0001: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0006: ldarg.1
+IL_0007: ldarg.2
+IL_0008: callvirt System.Void CustomUIWindow::SetSize(System.Single,System.Single)
+IL_000d: ldarg.0
+IL_000e: ret
+METHOD CustomUIBuilder CustomUIBuilder::SetPosition(UnityEngine.Vector2)
+IL_0000: ldarg.0
+IL_0001: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0006: ldarg.1
+IL_0007: callvirt System.Void CustomUIWindow::SetPosition(UnityEngine.Vector2)
+IL_000c: ldarg.0
+IL_000d: ret
+METHOD CustomUIWindow CustomUIBuilder::Show()
+IL_0000: ldarg.0
+IL_0001: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0006: callvirt System.Void CustomUIWindow::Show()
+IL_000b: ldarg.0
+IL_000c: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0011: ret
+METHOD CustomUIBuilder CustomUIBuilder::UseMetaPrefabs(System.Boolean)
+IL_0000: ldarg.0
+IL_0001: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0006: ldarg.1
+IL_0007: stfld System.Boolean CustomUIWindow::useMetaPrefabs
+IL_000c: ldarg.0
+IL_000d: ret
+METHOD UnityEngine.GameObject CustomUIBuilder::NewChild(System.String)
+IL_0000: ldarg.1
+IL_0001: ldc.i4.1
+IL_0002: newarr System.Type
+IL_0007: dup
+IL_0008: ldc.i4.0
+IL_0009: ldtoken UnityEngine.RectTransform
+IL_000e: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_0013: stelem.ref
+IL_0014: newobj System.Void UnityEngine.GameObject::.ctor(System.String,System.Type[])
+IL_0019: dup
+IL_001a: callvirt UnityEngine.Transform UnityEngine.GameObject::get_transform()
+IL_001f: ldarg.0
+IL_0020: call UnityEngine.RectTransform CustomUIBuilder::get_CurrentParent()
+IL_0025: ldc.i4.0
+IL_0026: callvirt System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
+IL_002b: ret
+METHOD System.Void CustomUIBuilder::ConfigureGroup(UnityEngine.UI.HorizontalOrVerticalLayoutGroup,System.Single,UnityEngine.TextAnchor)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_spacing(System.Single)
+IL_0007: ldarg.0
+IL_0008: ldc.i4.1
+IL_0009: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childControlWidth(System.Boolean)
+IL_000e: ldarg.0
+IL_000f: ldc.i4.1
+IL_0010: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childControlHeight(System.Boolean)
+IL_0015: ldarg.0
+IL_0016: ldc.i4.0
+IL_0017: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childForceExpandWidth(System.Boolean)
+IL_001c: ldarg.0
+IL_001d: ldc.i4.0
+IL_001e: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childForceExpandHeight(System.Boolean)
+IL_0023: ldarg.0
+IL_0024: ldarg.2
+IL_0025: callvirt System.Void UnityEngine.UI.LayoutGroup::set_childAlignment(UnityEngine.TextAnchor)
+IL_002a: ret
+METHOD CustomUIBuilder CustomUIBuilder::BeginScrollInternal(System.Action`1<UnityEngine.UI.LayoutElement>)
+IL_0000: ldarg.0
+IL_0001: ldfld CustomUIManager CustomUIBuilder::manager
+IL_0006: ldc.i4.s 9
+IL_0008: ldarg.0
+IL_0009: call UnityEngine.RectTransform CustomUIBuilder::get_CurrentParent()
+IL_000e: ldarg.0
+IL_000f: ldfld CustomUIWindow CustomUIBuilder::window
+IL_0014: ldstr "scroll"
+IL_0019: callvirt UnityEngine.GameObject CustomUIManager::SpawnElement(CustomUIManager/ElementKind,UnityEngine.Transform,CustomUIWindow,System.String)
+IL_001e: stloc.0
+IL_001f: ldloc.0
+IL_0020: ldnull
+IL_0021: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_0026: brfalse.s IL_003f
+IL_0028: ldstr "[CustomUI] No scrollViewPrefab assigned, BeginScroll falls back to a plain column"
+IL_002d: call System.Void Debug::LogError(System.Object)
+IL_0032: ldarg.0
+IL_0033: ldc.r4 4
+IL_0038: ldc.i4.0
+IL_0039: call CustomUIBuilder CustomUIBuilder::BeginColumn(System.Single,UnityEngine.TextAnchor)
+IL_003e: ret
+IL_003f: ldloc.0
+IL_0040: callvirt !!0 UnityEngine.GameObject::GetComponent<UnityEngine.UI.LayoutElement>()
+IL_0045: stloc.1
+IL_0046: ldloc.1
+IL_0047: ldnull
+IL_0048: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_004d: brfalse.s IL_0056
+IL_004f: ldloc.0
+IL_0050: callvirt !!0 UnityEngine.GameObject::AddComponent<UnityEngine.UI.LayoutElement>()
+IL_0055: stloc.1
+IL_0056: ldarg.1
+IL_0057: ldloc.1
+IL_0058: callvirt System.Void System.Action`1<UnityEngine.UI.LayoutElement>::Invoke(!0)
+IL_005d: ldloc.0
+IL_005e: ldc.i4.1
+IL_005f: callvirt !!0 UnityEngine.GameObject::GetComponentInChildren<UnityEngine.UI.ScrollRect>(System.Boolean)
+IL_0064: stloc.2
+IL_0065: ldloc.2
+IL_0066: ldnull
+IL_0067: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_006c: brtrue.s IL_007c
+IL_006e: ldloc.2
+IL_006f: callvirt UnityEngine.RectTransform UnityEngine.UI.ScrollRect::get_content()
+IL_0074: ldnull
+IL_0075: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_007a: brfalse.s IL_009e
+IL_007c: ldstr "[CustomUI] scrollViewPrefab has no ScrollRect with a content, using prefab root as parent"
+IL_0081: call System.Void Debug::LogError(System.Object)
+IL_0086: ldarg.0
+IL_0087: ldfld System.Collections.Generic.Stack`1<UnityEngine.RectTransform> CustomUIBuilder::parents
+IL_008c: ldloc.0
+IL_008d: callvirt UnityEngine.Transform UnityEngine.GameObject::get_transform()
+IL_0092: isinst UnityEngine.RectTransform
+IL_0097: callvirt System.Void System.Collections.Generic.Stack`1<UnityEngine.RectTransform>::Push(!0)
+IL_009c: br.s IL_00af
+IL_009e: ldarg.0
+IL_009f: ldfld System.Collections.Generic.Stack`1<UnityEngine.RectTransform> CustomUIBuilder::parents
+IL_00a4: ldloc.2
+IL_00a5: callvirt UnityEngine.RectTransform UnityEngine.UI.ScrollRect::get_content()
+IL_00aa: callvirt System.Void System.Collections.Generic.Stack`1<UnityEngine.RectTransform>::Push(!0)
+IL_00af: ldarg.0
+IL_00b0: ret
+METHOD System.Void CustomUIWindow::Show()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0006: ldnull
+IL_0007: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_000c: brfalse.s IL_000f
+IL_000e: ret
+IL_000f: ldarg.0
+IL_0010: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0015: ldc.i4.1
+IL_0016: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_001b: ldarg.0
+IL_001c: call System.Void CustomUIWindow::BringToFront()
+IL_0021: ret
+METHOD System.Void CustomUIWindow::SetSize(System.Single,System.Single)
+IL_0000: ldarg.0
+IL_0001: call UnityEngine.RectTransform CustomUIWindow::get_Rect()
+IL_0006: ldnull
+IL_0007: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_000c: brfalse.s IL_0020
+IL_000e: ldarg.0
+IL_000f: call UnityEngine.RectTransform CustomUIWindow::get_Rect()
+IL_0014: ldarg.1
+IL_0015: ldarg.2
+IL_0016: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_001b: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_0020: ret
+METHOD System.Void CustomUIWindow::SetPosition(UnityEngine.Vector2)
+IL_0000: ldarg.0
+IL_0001: call UnityEngine.RectTransform CustomUIWindow::get_Rect()
+IL_0006: ldnull
+IL_0007: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_000c: brfalse.s IL_001a
+IL_000e: ldarg.0
+IL_000f: call UnityEngine.RectTransform CustomUIWindow::get_Rect()
+IL_0014: ldarg.1
+IL_0015: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_001a: ret
+METHOD CustomUIBuilder CustomUIManager::CreateWindow(System.String,System.String,System.String,UnityEngine.GameObject,CustomUIManager/Style)
+IL_0000: ldstr "customui "
+IL_0005: ldarg.1
+IL_0006: call System.String System.String::Concat(System.String,System.String)
+IL_000b: call System.Void StallWatchdog::Crumb(System.String)
+IL_0010: ldarg.0
+IL_0011: call System.Void CustomUIManager::PruneDeadWindows()
+IL_0016: ldarg.0
+IL_0017: ldfld System.Collections.Generic.Dictionary`2<System.String,CustomUIWindow> CustomUIManager::windowsById
+IL_001c: ldarg.1
+IL_001d: ldloca.s V_0
+IL_001f: callvirt System.Boolean System.Collections.Generic.Dictionary`2<System.String,CustomUIWindow>::TryGetValue(!0,!1&)
+IL_0024: brfalse.s IL_002c
+IL_0026: ldloc.0
+IL_0027: callvirt System.Void CustomUIWindow::Close()
+IL_002c: ldarg.0
+IL_002d: ldarg.3
+IL_002e: call CustomUICanvasAnchor CustomUIManager::ResolveAnchor(System.String)
+IL_0033: stloc.1
+IL_0034: ldloc.1
+IL_0035: ldnull
+IL_0036: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_003b: brtrue.s IL_0045
+IL_003d: ldarg.0
+IL_003e: call UnityEngine.RectTransform CustomUIManager::OverlayRoot()
+IL_0043: br.s IL_004b
+IL_0045: ldloc.1
+IL_0046: callvirt UnityEngine.RectTransform CustomUICanvasAnchor::get_Root()
+IL_004b: stloc.2
+IL_004c: newobj System.Void CustomUIWindow::.ctor()
+IL_0051: dup
+IL_0052: ldarg.1
+IL_0053: stfld System.String CustomUIWindow::id
+IL_0058: dup
+IL_0059: ldarg.3
+IL_005a: stfld System.String CustomUIWindow::layerId
+IL_005f: dup
+IL_0060: ldarg.s style
+IL_0062: ldc.i4.2
+IL_0063: beq.s IL_0074
+IL_0065: ldarg.s style
+IL_0067: brtrue.s IL_0071
+IL_0069: ldarg.3
+IL_006a: call System.Boolean CustomUIManager::IsMetaLayer(System.String)
+IL_006f: br.s IL_0075
+IL_0071: ldc.i4.0
+IL_0072: br.s IL_0075
+IL_0074: ldc.i4.1
+IL_0075: stfld System.Boolean CustomUIWindow::useMetaPrefabs
+IL_007a: dup
+IL_007b: ldarg.s style
+IL_007d: ldc.i4.3
+IL_007e: ceq
+IL_0080: stfld System.Boolean CustomUIWindow::useMachineryStyle
+IL_0085: stloc.3
+IL_0086: ldarg.s windowPrefabOverride
+IL_0088: ldnull
+IL_0089: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_008e: brtrue.s IL_0098
+IL_0090: ldarg.0
+IL_0091: ldfld UnityEngine.GameObject CustomUIManager::windowPrefab
+IL_0096: br.s IL_009a
+IL_0098: ldarg.s windowPrefabOverride
+IL_009a: stloc.s V_4
+IL_009c: ldarg.s style
+IL_009e: ldc.i4.3
+IL_009f: bne.un.s IL_00e3
+IL_00a1: ldarg.s windowPrefabOverride
+IL_00a3: ldnull
+IL_00a4: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_00a9: brfalse.s IL_00e3
+IL_00ab: ldloc.3
+IL_00ac: ldloc.2
+IL_00ad: call UnityEngine.GameObject CustomUIMachineryStyle::CreateFrame(UnityEngine.Transform)
+IL_00b2: stfld UnityEngine.GameObject CustomUIWindow::root
+IL_00b7: ldloc.3
+IL_00b8: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_00bd: ldstr "custom_window_"
+IL_00c2: ldarg.1
+IL_00c3: call System.String System.String::Concat(System.String,System.String)
+IL_00c8: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_00cd: ldloc.3
+IL_00ce: ldloc.3
+IL_00cf: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_00d4: callvirt !!0 UnityEngine.GameObject::GetComponent<CustomUIWindowFrame>()
+IL_00d9: stfld CustomUIWindowFrame CustomUIWindow::frame
+IL_00de: br IL_01b8
+IL_00e3: ldloc.s V_4
+IL_00e5: ldnull
+IL_00e6: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_00eb: brfalse.s IL_015a
+IL_00ed: ldstr "[CustomUI] No windowPrefab assigned on CustomUIManager"
+IL_00f2: call System.Void Debug::LogError(System.Object)
+IL_00f7: ldloc.3
+IL_00f8: ldstr "custom_window_"
+IL_00fd: ldarg.1
+IL_00fe: call System.String System.String::Concat(System.String,System.String)
+IL_0103: ldc.i4.1
+IL_0104: newarr System.Type
+IL_0109: dup
+IL_010a: ldc.i4.0
+IL_010b: ldtoken UnityEngine.RectTransform
+IL_0110: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+IL_0115: stelem.ref
+IL_0116: newobj System.Void UnityEngine.GameObject::.ctor(System.String,System.Type[])
+IL_011b: stfld UnityEngine.GameObject CustomUIWindow::root
+IL_0120: ldloc.3
+IL_0121: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0126: callvirt UnityEngine.Transform UnityEngine.GameObject::get_transform()
+IL_012b: ldloc.2
+IL_012c: ldc.i4.0
+IL_012d: callvirt System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
+IL_0132: ldloc.3
+IL_0133: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0138: callvirt !!0 UnityEngine.GameObject::AddComponent<UnityEngine.UI.VerticalLayoutGroup>()
+IL_013d: dup
+IL_013e: ldc.i4.1
+IL_013f: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childControlWidth(System.Boolean)
+IL_0144: dup
+IL_0145: ldc.i4.1
+IL_0146: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childControlHeight(System.Boolean)
+IL_014b: dup
+IL_014c: ldc.i4.0
+IL_014d: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childForceExpandWidth(System.Boolean)
+IL_0152: ldc.i4.0
+IL_0153: callvirt System.Void UnityEngine.UI.HorizontalOrVerticalLayoutGroup::set_childForceExpandHeight(System.Boolean)
+IL_0158: br.s IL_01b8
+IL_015a: ldloc.3
+IL_015b: ldloc.s V_4
+IL_015d: ldloc.2
+IL_015e: call !!0 UnityEngine.Object::Instantiate<UnityEngine.GameObject>(!!0,UnityEngine.Transform)
+IL_0163: stfld UnityEngine.GameObject CustomUIWindow::root
+IL_0168: ldloc.3
+IL_0169: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_016e: ldstr "custom_window_"
+IL_0173: ldarg.1
+IL_0174: call System.String System.String::Concat(System.String,System.String)
+IL_0179: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_017e: ldloc.3
+IL_017f: ldloc.3
+IL_0180: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0185: callvirt !!0 UnityEngine.GameObject::GetComponent<CustomUIWindowFrame>()
+IL_018a: stfld CustomUIWindowFrame CustomUIWindow::frame
+IL_018f: ldloc.3
+IL_0190: ldfld CustomUIWindowFrame CustomUIWindow::frame
+IL_0195: ldnull
+IL_0196: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_019b: brfalse.s IL_01b8
+IL_019d: ldstr "[CustomUI] window prefab '"
+IL_01a2: ldloc.s V_4
+IL_01a4: callvirt System.String UnityEngine.Object::get_name()
+IL_01a9: ldstr "' has no CustomUIWindowFrame, content goes on the window root"
+IL_01ae: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_01b3: call System.Void Debug::LogError(System.Object)
+IL_01b8: ldloc.1
+IL_01b9: ldnull
+IL_01ba: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_01bf: brfalse.s IL_0206
+IL_01c1: ldloc.1
+IL_01c2: ldfld System.Boolean CustomUICanvasAnchor::attachStoreUI
+IL_01c7: brfalse.s IL_0206
+IL_01c9: ldloc.3
+IL_01ca: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_01cf: callvirt !!0 UnityEngine.GameObject::AddComponent<StoreUI>()
+IL_01d4: ldloc.1
+IL_01d5: ldfld System.Boolean CustomUICanvasAnchor::isPaperUI
+IL_01da: stfld System.Boolean StoreUI::isPaperUI
+IL_01df: ldloc.1
+IL_01e0: ldfld System.Boolean CustomUICanvasAnchor::isPaperUI
+IL_01e5: brfalse.s IL_0206
+IL_01e7: ldloc.3
+IL_01e8: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_01ed: callvirt !!0 UnityEngine.GameObject::GetComponent<PaperPanelFocusStamp>()
+IL_01f2: ldnull
+IL_01f3: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_01f8: brfalse.s IL_0206
+IL_01fa: ldloc.3
+IL_01fb: ldfld UnityEngine.GameObject CustomUIWindow::root
+IL_0200: callvirt !!0 UnityEngine.GameObject::AddComponent<PaperPanelFocusStamp>()
+IL_0205: pop
+IL_0206: ldarg.2
+IL_0207: brfalse.s IL_0210
+IL_0209: ldloc.3
+IL_020a: ldarg.2
+IL_020b: callvirt System.Void CustomUIWindow::SetTitle(System.String)
+IL_0210: ldloc.3
+IL_0211: ldfld CustomUIWindowFrame CustomUIWindow::frame
+IL_0216: ldnull
+IL_0217: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_021c: brfalse.s IL_0252
+IL_021e: ldloc.3
+IL_021f: ldfld CustomUIWindowFrame CustomUIWindow::frame
+IL_0224: ldfld UnityEngine.UI.Button CustomUIWindowFrame::closeButton
+IL_0229: ldnull
+IL_022a: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_022f: brfalse.s IL_0252
+IL_0231: ldloc.3
+IL_0232: ldfld CustomUIWindowFrame CustomUIWindow::frame
+IL_0237: ldfld UnityEngine.UI.Button CustomUIWindowFrame::closeButton
+IL_023c: callvirt UnityEngine.UI.Button/ButtonClickedEvent UnityEngine.UI.Button::get_onClick()
+IL_0241: ldloc.3
+IL_0242: ldftn System.Void CustomUIWindow::Close()
+IL_0248: newobj System.Void UnityEngine.Events.UnityAction::.ctor(System.Object,System.IntPtr)
+IL_024d: callvirt System.Void UnityEngine.Events.UnityEvent::AddListener(UnityEngine.Events.UnityAction)
+IL_0252: ldarg.0
+IL_0253: ldfld System.Collections.Generic.Dictionary`2<System.String,CustomUIWindow> CustomUIManager::windowsById
+IL_0258: ldarg.1
+IL_0259: ldloc.3
+IL_025a: callvirt System.Void System.Collections.Generic.Dictionary`2<System.String,CustomUIWindow>::set_Item(!0,!1)
+IL_025f: ldarg.0
+IL_0260: ldfld System.Collections.Generic.List`1<CustomUIWindow> CustomUIManager::windowOrder
+IL_0265: ldloc.3
+IL_0266: callvirt System.Void System.Collections.Generic.List`1<CustomUIWindow>::Add(!0)
+IL_026b: ldarg.0
+IL_026c: ldloc.3
+IL_026d: newobj System.Void CustomUIBuilder::.ctor(CustomUIManager,CustomUIWindow)
+IL_0272: ret
+METHOD UnityEngine.GameObject CustomUIManager::SpawnElement(CustomUIManager/ElementKind,UnityEngine.Transform,CustomUIWindow,System.String)
+IL_0000: ldarg.3
+IL_0001: brfalse.s IL_0050
+IL_0003: ldarg.3
+IL_0004: ldfld System.Boolean CustomUIWindow::useMachineryStyle
+IL_0009: brfalse.s IL_0050
+IL_000b: ldarg.1
+IL_000c: ldarg.2
+IL_000d: call UnityEngine.GameObject CustomUIMachineryStyle::Create(CustomUIManager/ElementKind,UnityEngine.Transform)
+IL_0012: stloc.1
+IL_0013: ldloc.1
+IL_0014: ldnull
+IL_0015: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_001a: brfalse.s IL_0026
+IL_001c: ldloc.1
+IL_001d: ldarg.s name
+IL_001f: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_0024: ldloc.1
+IL_0025: ret
+IL_0026: ldarg.0
+IL_0027: ldarg.1
+IL_0028: ldc.i4.0
+IL_0029: call UnityEngine.GameObject CustomUIManager::GetPrefab(CustomUIManager/ElementKind,System.Boolean)
+IL_002e: stloc.2
+IL_002f: ldloc.2
+IL_0030: ldnull
+IL_0031: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_0036: brfalse.s IL_003a
+IL_0038: ldnull
+IL_0039: ret
+IL_003a: ldloc.2
+IL_003b: ldarg.2
+IL_003c: call !!0 UnityEngine.Object::Instantiate<UnityEngine.GameObject>(!!0,UnityEngine.Transform)
+IL_0041: dup
+IL_0042: ldarg.s name
+IL_0044: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_0049: dup
+IL_004a: call System.Void CustomUIMachineryStyle::Reskin(UnityEngine.GameObject)
+IL_004f: ret
+IL_0050: ldarg.0
+IL_0051: ldarg.1
+IL_0052: ldarg.3
+IL_0053: brfalse.s IL_005d
+IL_0055: ldarg.3
+IL_0056: ldfld System.Boolean CustomUIWindow::useMetaPrefabs
+IL_005b: br.s IL_005e
+IL_005d: ldc.i4.0
+IL_005e: call UnityEngine.GameObject CustomUIManager::GetPrefab(CustomUIManager/ElementKind,System.Boolean)
+IL_0063: stloc.0
+IL_0064: ldloc.0
+IL_0065: ldnull
+IL_0066: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_006b: brfalse.s IL_006f
+IL_006d: ldnull
+IL_006e: ret
+IL_006f: ldloc.0
+IL_0070: ldarg.2
+IL_0071: call !!0 UnityEngine.Object::Instantiate<UnityEngine.GameObject>(!!0,UnityEngine.Transform)
+IL_0076: dup
+IL_0077: ldarg.s name
+IL_0079: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_007e: ret

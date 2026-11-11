@@ -1,0 +1,2188 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void AmenitiesItemDirectory::InitDirectory()
+IL_0000: ldarg.0
+IL_0001: ldstr "box_tampon"
+IL_0006: ldarg.0
+IL_0007: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_0()
+IL_000d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0012: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0017: pop
+IL_0018: ldarg.0
+IL_0019: ldstr "packet_red_cigarette"
+IL_001e: ldarg.0
+IL_001f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_1()
+IL_0025: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_002a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_002f: pop
+IL_0030: ldarg.0
+IL_0031: ldstr "pack_condom"
+IL_0036: ldarg.0
+IL_0037: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_2()
+IL_003d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0042: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0047: pop
+IL_0048: ldarg.0
+IL_0049: ldstr "shampoo"
+IL_004e: ldarg.0
+IL_004f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_3()
+IL_0055: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_005a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_005f: pop
+IL_0060: ldarg.0
+IL_0061: ldstr "toothpaste"
+IL_0066: ldarg.0
+IL_0067: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_4()
+IL_006d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0072: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0077: pop
+IL_0078: ldarg.0
+IL_0079: ldstr "paper_towel"
+IL_007e: ldarg.0
+IL_007f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_5()
+IL_0085: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_008a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_008f: pop
+IL_0090: ldarg.0
+IL_0091: ldstr "toilet_paper"
+IL_0096: ldarg.0
+IL_0097: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_6()
+IL_009d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00a2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00a7: pop
+IL_00a8: ldarg.0
+IL_00a9: ldstr "water_test_container"
+IL_00ae: ldarg.0
+IL_00af: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_7()
+IL_00b5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00ba: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00bf: pop
+IL_00c0: ldarg.0
+IL_00c1: ldstr "water_test_strip"
+IL_00c6: ldarg.0
+IL_00c7: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_8()
+IL_00cd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00d2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00d7: pop
+IL_00d8: ldarg.0
+IL_00d9: ldstr "aquascan"
+IL_00de: ldarg.0
+IL_00df: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_9()
+IL_00e5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00ea: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00ef: pop
+IL_00f0: ldarg.0
+IL_00f1: ldstr "uv_filter"
+IL_00f6: ldarg.0
+IL_00f7: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_10()
+IL_00fd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0102: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0107: pop
+IL_0108: ldarg.0
+IL_0109: ldstr "metal_scanner"
+IL_010e: ldarg.0
+IL_010f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_11()
+IL_0115: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_011a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_011f: pop
+IL_0120: ldarg.0
+IL_0121: ldstr "gene_scanner"
+IL_0126: ldarg.0
+IL_0127: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_12()
+IL_012d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0132: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0137: pop
+IL_0138: ldarg.0
+IL_0139: ldstr "water_tablet_container"
+IL_013e: ldarg.0
+IL_013f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_13()
+IL_0145: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_014a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_014f: pop
+IL_0150: ldarg.0
+IL_0151: ldstr "water_tablet"
+IL_0156: ldarg.0
+IL_0157: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_14()
+IL_015d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0162: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0167: pop
+IL_0168: ldarg.0
+IL_0169: ldstr "water_filter"
+IL_016e: ldarg.0
+IL_016f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_15()
+IL_0175: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_017a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_017f: pop
+IL_0180: ldarg.0
+IL_0181: ldstr "water_filter_adv"
+IL_0186: ldarg.0
+IL_0187: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_16()
+IL_018d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0192: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0197: pop
+IL_0198: ldarg.0
+IL_0199: ldstr "portable_water_purifier"
+IL_019e: ldarg.0
+IL_019f: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_17()
+IL_01a5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01aa: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01af: pop
+IL_01b0: ldarg.0
+IL_01b1: ldstr "water_pitcher"
+IL_01b6: ldarg.0
+IL_01b7: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_18()
+IL_01bd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01c2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01c7: pop
+IL_01c8: ldarg.0
+IL_01c9: ldstr "water_tank"
+IL_01ce: ldsfld System.Func`1<GameItem> AmenitiesItemDirectory/<>c::<>9__0_19
+IL_01d3: dup
+IL_01d4: brtrue.s IL_01ed
+IL_01d6: pop
+IL_01d7: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_01dc: ldftn GameItem AmenitiesItemDirectory/<>c::<InitDirectory>b__0_19()
+IL_01e2: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01e7: dup
+IL_01e8: stsfld System.Func`1<GameItem> AmenitiesItemDirectory/<>c::<>9__0_19
+IL_01ed: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01f2: pop
+IL_01f3: ldarg.0
+IL_01f4: ldstr "hydroreed_filter"
+IL_01f9: ldarg.0
+IL_01fa: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_20()
+IL_0200: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0205: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_020a: pop
+IL_020b: ldarg.0
+IL_020c: ldstr "kotton_fabric"
+IL_0211: ldarg.0
+IL_0212: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_21()
+IL_0218: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_021d: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0222: pop
+IL_0223: ldarg.0
+IL_0224: ldstr "nutrient_tablet"
+IL_0229: ldarg.0
+IL_022a: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_22()
+IL_0230: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0235: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_023a: pop
+IL_023b: ldarg.0
+IL_023c: ldstr "nutrient_tablet_container"
+IL_0241: ldarg.0
+IL_0242: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_23()
+IL_0248: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_024d: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0252: pop
+IL_0253: ldarg.0
+IL_0254: ldstr "lottery_ticket"
+IL_0259: ldarg.0
+IL_025a: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_24()
+IL_0260: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0265: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_026a: pop
+IL_026b: ldarg.0
+IL_026c: ldstr "lottery_ticket_old"
+IL_0271: ldarg.0
+IL_0272: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_25()
+IL_0278: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_027d: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0282: pop
+IL_0283: ldarg.0
+IL_0284: ldstr "skincare_cream"
+IL_0289: ldarg.0
+IL_028a: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_26()
+IL_0290: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0295: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_029a: pop
+IL_029b: ldarg.0
+IL_029c: ldstr "neuroactive_perfume"
+IL_02a1: ldarg.0
+IL_02a2: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_27()
+IL_02a8: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_02ad: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_02b2: pop
+IL_02b3: ldarg.0
+IL_02b4: ldstr "self_refilling_neuroactive_perfume"
+IL_02b9: ldarg.0
+IL_02ba: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_28()
+IL_02c0: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_02c5: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_02ca: pop
+IL_02cb: ldarg.0
+IL_02cc: ldstr "pheromone_perfume"
+IL_02d1: ldarg.0
+IL_02d2: ldftn GameItem AmenitiesItemDirectory::<InitDirectory>b__0_29()
+IL_02d8: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_02dd: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_02e2: pop
+IL_02e3: ret
+GameItem AmenitiesItemDirectory::SkincareCream()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "skincare_cream"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_skincare_cream_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldc.i4 500
+IL_0030: conv.i8
+IL_0031: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0036: pop
+IL_0037: dup
+IL_0038: ldstr "LUXURY_ITEM"
+IL_003d: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0042: dup
+IL_0043: ldstr "solana"
+IL_0048: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004d: dup
+IL_004e: ldstr "item_skincare_cream_flavor"
+IL_0053: call !!0[] System.Array::Empty<System.Object>()
+IL_0058: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005d: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0062: dup
+IL_0063: ldstr "item_skincare_cream_desc"
+IL_0068: call !!0[] System.Array::Empty<System.Object>()
+IL_006d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0072: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0077: dup
+IL_0078: call System.Void AudioHelper::InitGlass(GameItem)
+IL_007d: ret
+GameItem AmenitiesItemDirectory::BoxTampon()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "box_tampon"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_box_tampon_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "LUXURY_ITEM"
+IL_003b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0040: dup
+IL_0041: ldstr "amenities_hygene"
+IL_0046: ldc.i4.2
+IL_0047: ldc.i4.s 20
+IL_0049: callvirt System.Void GameItem::AddAmenities(System.String,System.Int32,System.Int32)
+IL_004e: dup
+IL_004f: ldstr "pastel"
+IL_0054: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0059: dup
+IL_005a: ldc.i4.s 100
+IL_005c: conv.i8
+IL_005d: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0062: dup
+IL_0063: ldstr "item_box_tampon_flavor"
+IL_0068: call !!0[] System.Array::Empty<System.Object>()
+IL_006d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0072: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0077: dup
+IL_0078: call System.Void AudioHelper::InitCartonBox(GameItem)
+IL_007d: ret
+GameItem AmenitiesItemDirectory::PackCondom()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "pack_condom"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_pack_condom_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "amenities_wellbeing"
+IL_003b: ldc.i4.2
+IL_003c: ldc.i4.s 10
+IL_003e: callvirt System.Void GameItem::AddAmenities(System.String,System.Int32,System.Int32)
+IL_0043: dup
+IL_0044: ldstr "pastel"
+IL_0049: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004e: dup
+IL_004f: ldc.i4.s 35
+IL_0051: conv.i8
+IL_0052: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0057: dup
+IL_0058: ldstr "item_pack_condom_flavor"
+IL_005d: call !!0[] System.Array::Empty<System.Object>()
+IL_0062: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0067: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_006c: ret
+GameItem AmenitiesItemDirectory::PacketCigaretteRed()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "cig_red"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_packet_red_cigarette_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_packet_red_cigarette_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.s 80
+IL_0042: conv.i8
+IL_0043: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0048: dup
+IL_0049: call System.Void InsCigaretteHelper::SetGenuine(GameItem)
+IL_004e: dup
+IL_004f: ldstr "amenities_substance"
+IL_0054: ldc.i4.3
+IL_0055: ldc.i4.s 20
+IL_0057: callvirt System.Void GameItem::AddAmenities(System.String,System.Int32,System.Int32)
+IL_005c: dup
+IL_005d: ldstr "pastel"
+IL_0062: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0067: dup
+IL_0068: ldstr "CIGARETTE_TAG"
+IL_006d: ldc.i4.0
+IL_006e: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0073: pop
+IL_0074: dup
+IL_0075: ldstr "SUBSTANCE"
+IL_007a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007f: dup
+IL_0080: call System.Void InspectableHelper::InitInspectableItem(GameItem)
+IL_0085: dup
+IL_0086: ldc.i4.3
+IL_0087: call System.Void ConsumableHelper::InitNicotine(GameItem,System.Int32)
+IL_008c: ret
+GameItem AmenitiesItemDirectory::Shampoo()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "shampoo"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_shampoo_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldc.i4.s 30
+IL_0038: conv.i8
+IL_0039: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_003e: pop
+IL_003f: dup
+IL_0040: ldstr "pastel"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldstr "item_shampoo_flavor"
+IL_0050: call !!0[] System.Array::Empty<System.Object>()
+IL_0055: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_005f: ret
+GameItem AmenitiesItemDirectory::Toothpaste()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "toothpaste"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_toothpaste_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldc.i4.s 15
+IL_0038: conv.i8
+IL_0039: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_003e: pop
+IL_003f: dup
+IL_0040: ldstr "pastel"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldstr "item_toothpaste_flavor"
+IL_0050: call !!0[] System.Array::Empty<System.Object>()
+IL_0055: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_005f: ret
+GameItem AmenitiesItemDirectory::PaperTowel()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "paper_towel"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_paper_towel_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldc.i4.s 35
+IL_0038: conv.i8
+IL_0039: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_003e: pop
+IL_003f: ret
+GameItem AmenitiesItemDirectory::ToiletPaper()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "toilet_paper"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_toilet_paper_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "HOUSEHOLD_GOOD"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldc.i4.s 25
+IL_0038: conv.i8
+IL_0039: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_003e: pop
+IL_003f: dup
+IL_0040: ldstr "item_toilet_paper_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: call System.Void AudioHelper::InitTextile(GameItem)
+IL_005a: ret
+GameItem AmenitiesItemDirectory::WaterTestKit()
+  local 0: PixelWindow
+  local 1: GameItem
+IL_0000: ldc.i4.s 10
+IL_0002: ldc.i4.2
+IL_0003: ldc.i4.1
+IL_0004: call System.ValueTuple`2<PixelWindow,GameInventory> DirectoryUtils::CreateInventoryWindow(System.Int32,System.Int32,System.Boolean)
+IL_0009: dup
+IL_000a: ldfld !0 System.ValueTuple`2<PixelWindow,GameInventory>::Item1
+IL_000f: stloc.0
+IL_0010: ldfld !1 System.ValueTuple`2<PixelWindow,GameInventory>::Item2
+IL_0015: ldarg.0
+IL_0016: callvirt T Directory`1<GameItem>::Empty()
+IL_001b: ldloc.0
+IL_001c: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_0021: ldstr "Items/items_amenities"
+IL_0026: ldstr "water_test_container"
+IL_002b: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0030: stloc.1
+IL_0031: ldloc.1
+IL_0032: ldstr "item_water_test_container_name"
+IL_0037: call !!0[] System.Array::Empty<System.Object>()
+IL_003c: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0041: callvirt System.Void GameItem::set_name(System.String)
+IL_0046: ldloc.1
+IL_0047: ldstr "item_water_test_container_desc"
+IL_004c: call !!0[] System.Array::Empty<System.Object>()
+IL_0051: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0056: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_005b: ldloc.1
+IL_005c: ldstr "HOUSEHOLD_GOOD"
+IL_0061: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0066: ldloc.1
+IL_0067: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_006c: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0071: ldloc.1
+IL_0072: ldstr "davre"
+IL_0077: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_007c: ldloc.1
+IL_007d: ldc.i4.1
+IL_007e: conv.i8
+IL_007f: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0084: pop
+IL_0085: ldloc.1
+IL_0086: ldstr "PRE_CONTAINER_TAG"
+IL_008b: ldc.i4.0
+IL_008c: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0091: pop
+IL_0092: ldloc.1
+IL_0093: ldstr "WATER_TESTING_STRIP_TAG"
+IL_0098: ldc.i4.0
+IL_0099: call System.Void ContainerHelper::AllowOnlyTaggedItemOwn(GameInventory,GameItem,System.String,System.Boolean)
+IL_009e: ldloc.1
+IL_009f: call System.Void AudioHelper::InitPlasticVial(GameItem)
+IL_00a4: ldloc.1
+IL_00a5: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00aa: ldloc.1
+IL_00ab: ldstr "CONTAINER_TOOLTIP_TAG"
+IL_00b0: ldc.i4.0
+IL_00b1: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b6: pop
+IL_00b7: ldloc.1
+IL_00b8: ret
+GameItem AmenitiesItemDirectory::WaterTestStrip()
+  local 0: AmenitiesItemDirectory/<>c__DisplayClass14_0
+IL_0000: newobj System.Void AmenitiesItemDirectory/<>c__DisplayClass14_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: callvirt T Directory`1<GameItem>::Empty()
+IL_000d: ldstr "Items/items_amenities"
+IL_0012: ldstr "strip_new"
+IL_0017: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_001c: stfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0021: ldloc.0
+IL_0022: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0027: ldstr "item_water_test_strip_name"
+IL_002c: call !!0[] System.Array::Empty<System.Object>()
+IL_0031: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0036: callvirt System.Void GameItem::set_name(System.String)
+IL_003b: ldloc.0
+IL_003c: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0041: ldstr "item_water_test_strip_desc"
+IL_0046: call !!0[] System.Array::Empty<System.Object>()
+IL_004b: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0050: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0055: ldloc.0
+IL_0056: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_005b: ldstr "HOUSEHOLD_GOOD"
+IL_0060: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0065: ldloc.0
+IL_0066: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_006b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: ldloc.0
+IL_0076: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_007b: ldstr "davre"
+IL_0080: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0085: ldloc.0
+IL_0086: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_008b: ldc.i4.3
+IL_008c: conv.i8
+IL_008d: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0092: pop
+IL_0093: ldloc.0
+IL_0094: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0099: ldstr "WATER_TESTING_STRIP_TAG"
+IL_009e: ldc.i4.0
+IL_009f: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00a4: pop
+IL_00a5: ldloc.0
+IL_00a6: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_00ab: ldstr "CAN_USE_ON_NON_OWNED_TAG"
+IL_00b0: ldc.i4.0
+IL_00b1: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b6: pop
+IL_00b7: ldloc.0
+IL_00b8: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_00bd: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_0
+IL_00c2: dup
+IL_00c3: brtrue.s IL_00dc
+IL_00c5: pop
+IL_00c6: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00cb: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_0(GameItem,GameInventory,SlotMarker)
+IL_00d1: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00d6: dup
+IL_00d7: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_0
+IL_00dc: callvirt System.Void GameItemFunc::set_maySelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00e1: ldloc.0
+IL_00e2: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_00e7: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_1
+IL_00ec: dup
+IL_00ed: brtrue.s IL_0106
+IL_00ef: pop
+IL_00f0: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00f5: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_1(GameItem,GameInventory,SlotMarker)
+IL_00fb: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0100: dup
+IL_0101: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_1
+IL_0106: callvirt System.Void GameItemFunc::set_canSelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_010b: ldloc.0
+IL_010c: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0111: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_2
+IL_0116: dup
+IL_0117: brtrue.s IL_0130
+IL_0119: pop
+IL_011a: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_011f: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_2(GameItem,GameItem)
+IL_0125: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_012a: dup
+IL_012b: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_2
+IL_0130: callvirt System.Void GameItemFunc::set_mayItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_0135: ldloc.0
+IL_0136: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_013b: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_3
+IL_0140: dup
+IL_0141: brtrue.s IL_015a
+IL_0143: pop
+IL_0144: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0149: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_3(GameItem,GameItem)
+IL_014f: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0154: dup
+IL_0155: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_3
+IL_015a: callvirt System.Void GameItemFunc::set_canItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_015f: ldloc.0
+IL_0160: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_0165: ldloc.0
+IL_0166: ldftn System.Void AmenitiesItemDirectory/<>c__DisplayClass14_0::<WaterTestStrip>b__4(GameItem,GameItem)
+IL_016c: newobj System.Void System.Action`2<GameItem,GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0171: callvirt System.Void GameItemFunc::set_onItemTargetItemFunc(System.Action`2<GameItem,GameItem>)
+IL_0176: ldloc.0
+IL_0177: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_017c: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_5
+IL_0181: dup
+IL_0182: brtrue.s IL_019b
+IL_0184: pop
+IL_0185: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_018a: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_5(GameItem,GameInventory,SlotMarker)
+IL_0190: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0195: dup
+IL_0196: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_5
+IL_019b: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_01a0: ldloc.0
+IL_01a1: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_01a6: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_6
+IL_01ab: dup
+IL_01ac: brtrue.s IL_01c5
+IL_01ae: pop
+IL_01af: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_01b4: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_6(GameItem,GameInventory,SlotMarker)
+IL_01ba: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_01bf: dup
+IL_01c0: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__14_6
+IL_01c5: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_01ca: ldloc.0
+IL_01cb: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_01d0: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__14_7
+IL_01d5: dup
+IL_01d6: brtrue.s IL_01ef
+IL_01d8: pop
+IL_01d9: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_01de: ldftn System.Void AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_7(GameItem,GameInventory,SlotMarker)
+IL_01e4: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_01e9: dup
+IL_01ea: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__14_7
+IL_01ef: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_01f4: ldloc.0
+IL_01f5: ldfld GameItem AmenitiesItemDirectory/<>c__DisplayClass14_0::item
+IL_01fa: ret
+GameItem AmenitiesItemDirectory::UVFilter()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "uv"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_uv_filter_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_uv_filter_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_uv_filter_desc"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0054: dup
+IL_0055: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "davre"
+IL_0065: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_006a: dup
+IL_006b: ldstr "WATER_FILTER"
+IL_0070: ldc.i4.0
+IL_0071: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0076: pop
+IL_0077: dup
+IL_0078: ldc.i4 150
+IL_007d: conv.i8
+IL_007e: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0083: pop
+IL_0084: dup
+IL_0085: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_0
+IL_008a: dup
+IL_008b: brtrue.s IL_00a4
+IL_008d: pop
+IL_008e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0093: ldftn System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_0(GameItem,GameInventory,SlotMarker)
+IL_0099: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_009e: dup
+IL_009f: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_0
+IL_00a4: callvirt System.Void GameItemFunc::set_maySelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00a9: dup
+IL_00aa: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_1
+IL_00af: dup
+IL_00b0: brtrue.s IL_00c9
+IL_00b2: pop
+IL_00b3: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00b8: ldftn System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_1(GameItem,GameInventory,SlotMarker)
+IL_00be: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00c3: dup
+IL_00c4: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_1
+IL_00c9: callvirt System.Void GameItemFunc::set_canSelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ce: dup
+IL_00cf: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_2
+IL_00d4: dup
+IL_00d5: brtrue.s IL_00ee
+IL_00d7: pop
+IL_00d8: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00dd: ldftn System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_2(GameItem,GameItem)
+IL_00e3: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00e8: dup
+IL_00e9: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_2
+IL_00ee: callvirt System.Void GameItemFunc::set_mayItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_00f3: dup
+IL_00f4: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_3
+IL_00f9: dup
+IL_00fa: brtrue.s IL_0113
+IL_00fc: pop
+IL_00fd: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0102: ldftn System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_3(GameItem,GameItem)
+IL_0108: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_010d: dup
+IL_010e: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__15_3
+IL_0113: callvirt System.Void GameItemFunc::set_canItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_0118: dup
+IL_0119: ldsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__15_4
+IL_011e: dup
+IL_011f: brtrue.s IL_0138
+IL_0121: pop
+IL_0122: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0127: ldftn System.Void AmenitiesItemDirectory/<>c::<UVFilter>b__15_4(GameItem,GameItem)
+IL_012d: newobj System.Void System.Action`2<GameItem,GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0132: dup
+IL_0133: stsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__15_4
+IL_0138: callvirt System.Void GameItemFunc::set_onItemTargetItemFunc(System.Action`2<GameItem,GameItem>)
+IL_013d: ret
+GameItem AmenitiesItemDirectory::AquaScan()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "aquascan"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_aquascan_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_aquascan_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "HOUSEHOLD_GOOD"
+IL_0045: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_004a: dup
+IL_004b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0050: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0055: dup
+IL_0056: call System.Void AudioHelper::InitScanner(GameItem)
+IL_005b: dup
+IL_005c: ldstr "davre"
+IL_0061: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0066: dup
+IL_0067: ldc.i4 200
+IL_006c: conv.i8
+IL_006d: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0072: pop
+IL_0073: dup
+IL_0074: ldstr "CAN_USE_ON_NON_OWNED_TAG"
+IL_0079: ldc.i4.0
+IL_007a: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_007f: pop
+IL_0080: dup
+IL_0081: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_0
+IL_0086: dup
+IL_0087: brtrue.s IL_00a0
+IL_0089: pop
+IL_008a: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_008f: ldftn System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_0(GameItem,GameInventory,SlotMarker)
+IL_0095: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_009a: dup
+IL_009b: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_0
+IL_00a0: callvirt System.Void GameItemFunc::set_maySelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00a5: dup
+IL_00a6: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_1
+IL_00ab: dup
+IL_00ac: brtrue.s IL_00c5
+IL_00ae: pop
+IL_00af: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00b4: ldftn System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_1(GameItem,GameInventory,SlotMarker)
+IL_00ba: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00bf: dup
+IL_00c0: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_1
+IL_00c5: callvirt System.Void GameItemFunc::set_canSelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ca: dup
+IL_00cb: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_2
+IL_00d0: dup
+IL_00d1: brtrue.s IL_00ea
+IL_00d3: pop
+IL_00d4: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00d9: ldftn System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_2(GameItem,GameItem)
+IL_00df: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00e4: dup
+IL_00e5: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_2
+IL_00ea: callvirt System.Void GameItemFunc::set_mayItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_00ef: dup
+IL_00f0: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_3
+IL_00f5: dup
+IL_00f6: brtrue.s IL_010f
+IL_00f8: pop
+IL_00f9: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00fe: ldftn System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_3(GameItem,GameItem)
+IL_0104: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0109: dup
+IL_010a: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__16_3
+IL_010f: callvirt System.Void GameItemFunc::set_canItemTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_0114: dup
+IL_0115: ldsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__16_4
+IL_011a: dup
+IL_011b: brtrue.s IL_0134
+IL_011d: pop
+IL_011e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0123: ldftn System.Void AmenitiesItemDirectory/<>c::<AquaScan>b__16_4(GameItem,GameItem)
+IL_0129: newobj System.Void System.Action`2<GameItem,GameItem>::.ctor(System.Object,System.IntPtr)
+IL_012e: dup
+IL_012f: stsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__16_4
+IL_0134: callvirt System.Void GameItemFunc::set_onItemTargetItemFunc(System.Action`2<GameItem,GameItem>)
+IL_0139: ret
+GameItem AmenitiesItemDirectory::MetalScanner()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "metal_scanner"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_metal_scanner_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_metal_scanner_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_metal_scanner_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "TOOL"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldc.i4 250
+IL_0065: conv.i8
+IL_0066: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_006b: pop
+IL_006c: dup
+IL_006d: ldstr "IMPORTANT_TAG"
+IL_0072: ldc.i4.0
+IL_0073: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0078: pop
+IL_0079: dup
+IL_007a: call System.Void ScavHelper::InitScavScanner(GameItem)
+IL_007f: dup
+IL_0080: call System.Void AudioHelper::InitSmallMachine(GameItem)
+IL_0085: ret
+GameItem AmenitiesItemDirectory::GeneScanner()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "genetic_scanner"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_genetic_scanner_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_genetic_scanner_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "TOOL"
+IL_0045: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_004a: dup
+IL_004b: ldc.i4 500
+IL_0050: conv.i8
+IL_0051: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0056: pop
+IL_0057: dup
+IL_0058: ldstr "IMPORTANT_TAG"
+IL_005d: ldc.i4.0
+IL_005e: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0063: pop
+IL_0064: dup
+IL_0065: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_0
+IL_006a: dup
+IL_006b: brtrue.s IL_0084
+IL_006d: pop
+IL_006e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0073: ldftn System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_0(GameItem,GameInventory,SlotMarker)
+IL_0079: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_007e: dup
+IL_007f: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_0
+IL_0084: callvirt System.Void GameItemFunc::set_mayToggleSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0089: dup
+IL_008a: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_1
+IL_008f: dup
+IL_0090: brtrue.s IL_00a9
+IL_0092: pop
+IL_0093: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0098: ldftn System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_1(GameItem,GameInventory,SlotMarker)
+IL_009e: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00a3: dup
+IL_00a4: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_1
+IL_00a9: callvirt System.Void GameItemFunc::set_canToggleSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ae: dup
+IL_00af: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_2
+IL_00b4: dup
+IL_00b5: brtrue.s IL_00ce
+IL_00b7: pop
+IL_00b8: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00bd: ldftn System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_2(GameItem,GameInventory,SlotMarker)
+IL_00c3: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00c8: dup
+IL_00c9: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_2
+IL_00ce: callvirt System.Void GameItemFunc::set_onToggleSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00d3: dup
+IL_00d4: dup
+IL_00d5: callvirt System.Action`1<GameItem> GameItemFunc::get_onLoaded()
+IL_00da: ldnull
+IL_00db: ldftn System.Void AmenitiesItemDirectory::UpdateGeneScannerSprite(GameItem)
+IL_00e1: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00e6: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+IL_00eb: castclass System.Action`1<GameItem>
+IL_00f0: callvirt System.Void GameItemFunc::set_onLoaded(System.Action`1<GameItem>)
+IL_00f5: dup
+IL_00f6: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_3
+IL_00fb: dup
+IL_00fc: brtrue.s IL_0115
+IL_00fe: pop
+IL_00ff: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0104: ldftn System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_3(GameItem,GameInventory,SlotMarker)
+IL_010a: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_010f: dup
+IL_0110: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_3
+IL_0115: callvirt System.Void GameItemFunc::set_onOneSecondItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_011a: dup
+IL_011b: call System.Void AudioHelper::InitSmallMachine(GameItem)
+IL_0120: ret
+System.Void AmenitiesItemDirectory::UpdateGeneScannerSprite(GameItem)
+  0: GameItem scanner None
+  local 0: System.Boolean
+IL_0000: ldarg.0
+IL_0001: ldstr "IS_ITEM_TOGGLE_ON_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: stloc.0
+IL_000c: ldarg.0
+IL_000d: ldstr "Items/items_amenities"
+IL_0012: ldloc.0
+IL_0013: brtrue.s IL_001c
+IL_0015: ldstr "genetic_scanner"
+IL_001a: br.s IL_0021
+IL_001c: ldstr "genetic_scanner_on"
+IL_0021: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0026: pop
+IL_0027: ldarg.0
+IL_0028: callvirt System.Void GameItem::Validate()
+IL_002d: ret
+GameItem AmenitiesItemDirectory::WaterPurificationTabletContainer()
+  local 0: PixelWindow
+  local 1: GameItem
+IL_0000: ldc.i4.1
+IL_0001: ldc.i4.s 9
+IL_0003: ldc.i4.1
+IL_0004: call System.ValueTuple`2<PixelWindow,GameInventory> DirectoryUtils::CreateInventoryWindow(System.Int32,System.Int32,System.Boolean)
+IL_0009: dup
+IL_000a: ldfld !0 System.ValueTuple`2<PixelWindow,GameInventory>::Item1
+IL_000f: stloc.0
+IL_0010: ldfld !1 System.ValueTuple`2<PixelWindow,GameInventory>::Item2
+IL_0015: ldarg.0
+IL_0016: callvirt T Directory`1<GameItem>::Empty()
+IL_001b: ldloc.0
+IL_001c: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_0021: ldstr "Items/items_amenities"
+IL_0026: ldstr "water_tablet_container"
+IL_002b: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0030: stloc.1
+IL_0031: ldloc.1
+IL_0032: ldstr "item_water_tablet_container_name"
+IL_0037: call !!0[] System.Array::Empty<System.Object>()
+IL_003c: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0041: callvirt System.Void GameItem::set_name(System.String)
+IL_0046: ldloc.1
+IL_0047: ldstr "item_water_tablet_container_desc"
+IL_004c: call !!0[] System.Array::Empty<System.Object>()
+IL_0051: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0056: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_005b: ldloc.1
+IL_005c: ldstr "davre"
+IL_0061: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0066: ldloc.1
+IL_0067: ldstr "HOUSEHOLD_GOOD"
+IL_006c: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0071: ldloc.1
+IL_0072: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0077: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007c: ldloc.1
+IL_007d: ldstr "PRE_CONTAINER_TAG"
+IL_0082: ldc.i4.0
+IL_0083: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0088: pop
+IL_0089: ldloc.1
+IL_008a: ldc.i4.1
+IL_008b: conv.i8
+IL_008c: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0091: pop
+IL_0092: ldloc.1
+IL_0093: ldstr "WATER_PURIFICATION_TABLET"
+IL_0098: ldc.i4.0
+IL_0099: call System.Void ContainerHelper::AllowOnlyTaggedItemOwn(GameInventory,GameItem,System.String,System.Boolean)
+IL_009e: ldloc.1
+IL_009f: call System.Void AudioHelper::InitPlasticVial(GameItem)
+IL_00a4: ldloc.1
+IL_00a5: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00aa: ldloc.1
+IL_00ab: ldstr "CONTAINER_TOOLTIP_TAG"
+IL_00b0: ldc.i4.0
+IL_00b1: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b6: pop
+IL_00b7: ldloc.1
+IL_00b8: ret
+GameItem AmenitiesItemDirectory::WaterPurificationTablet()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_tablet"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_tablet_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_tablet_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "davre"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldstr "HOUSEHOLD_GOOD"
+IL_0050: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0055: dup
+IL_0056: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_005b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0060: dup
+IL_0061: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_0066: dup
+IL_0067: ldc.i4.6
+IL_0068: conv.i8
+IL_0069: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_006e: pop
+IL_006f: dup
+IL_0070: ldstr "WATER_PURIFICATION_TABLET"
+IL_0075: ldc.i4.0
+IL_0076: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_007b: pop
+IL_007c: dup
+IL_007d: ldc.i4.1
+IL_007e: ldc.i4.1
+IL_007f: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0084: dup
+IL_0085: ldstr "chlorine"
+IL_008a: ldc.r8 15
+IL_0093: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0098: ret
+GameItem AmenitiesItemDirectory::HydroponicNutrientTablet()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_hydroponic_plant"
+IL_000b: ldstr "nutrient_tablet"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_hydroponic_nutrient_tablet_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_hydroponic_nutrient_tablet_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_hydroponic_nutrient_tablet_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "FARMING_SUPPLIES"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldc.i4.5
+IL_0061: conv.i8
+IL_0062: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0067: pop
+IL_0068: dup
+IL_0069: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_006e: dup
+IL_006f: ldstr "NUTRIENT_TABLET"
+IL_0074: ldc.i4.0
+IL_0075: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_007a: pop
+IL_007b: dup
+IL_007c: ldc.i4.1
+IL_007d: ldc.i4.1
+IL_007e: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0083: dup
+IL_0084: ldstr "mineral"
+IL_0089: ldc.r8 15
+IL_0092: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0097: ret
+GameItem AmenitiesItemDirectory::NutrientTabletContainer()
+  local 0: PixelWindow
+  local 1: GameItem
+IL_0000: ldc.i4.1
+IL_0001: ldc.i4.s 9
+IL_0003: ldc.i4.1
+IL_0004: call System.ValueTuple`2<PixelWindow,GameInventory> DirectoryUtils::CreateInventoryWindow(System.Int32,System.Int32,System.Boolean)
+IL_0009: dup
+IL_000a: ldfld !0 System.ValueTuple`2<PixelWindow,GameInventory>::Item1
+IL_000f: stloc.0
+IL_0010: ldfld !1 System.ValueTuple`2<PixelWindow,GameInventory>::Item2
+IL_0015: ldarg.0
+IL_0016: callvirt T Directory`1<GameItem>::Empty()
+IL_001b: ldloc.0
+IL_001c: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_0021: ldstr "Items/items_hydroponic_plant"
+IL_0026: ldstr "nutrient_tablet_container"
+IL_002b: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0030: stloc.1
+IL_0031: ldloc.1
+IL_0032: ldstr "item_nutrient_tablet_container_name"
+IL_0037: call !!0[] System.Array::Empty<System.Object>()
+IL_003c: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0041: callvirt System.Void GameItem::set_name(System.String)
+IL_0046: ldloc.1
+IL_0047: ldstr "item_nutrient_tablet_container_desc"
+IL_004c: call !!0[] System.Array::Empty<System.Object>()
+IL_0051: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0056: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_005b: ldloc.1
+IL_005c: ldstr "item_nutrient_tablet_container_flavor"
+IL_0061: call !!0[] System.Array::Empty<System.Object>()
+IL_0066: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_006b: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0070: ldloc.1
+IL_0071: ldstr "FARMING_SUPPLIES"
+IL_0076: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007b: ldloc.1
+IL_007c: ldstr "PRE_CONTAINER_TAG"
+IL_0081: ldc.i4.0
+IL_0082: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0087: pop
+IL_0088: ldloc.1
+IL_0089: ldc.i4.1
+IL_008a: conv.i8
+IL_008b: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0090: pop
+IL_0091: ldloc.1
+IL_0092: ldstr "NUTRIENT_TABLET"
+IL_0097: ldc.i4.0
+IL_0098: call System.Void ContainerHelper::AllowOnlyTaggedItemOwn(GameInventory,GameItem,System.String,System.Boolean)
+IL_009d: ldloc.1
+IL_009e: call System.Void AudioHelper::InitPlasticVial(GameItem)
+IL_00a3: ldloc.1
+IL_00a4: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00a9: ldloc.1
+IL_00aa: ldstr "CONTAINER_TOOLTIP_TAG"
+IL_00af: ldc.i4.0
+IL_00b0: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b5: pop
+IL_00b6: ldloc.1
+IL_00b7: ret
+GameItem AmenitiesItemDirectory::KottonFabric()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_armor"
+IL_000b: ldstr "kotton_fabric"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_kotton_fabric_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_kotton_fabric_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_kotton_fabric_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "pastel"
+IL_005a: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_005f: dup
+IL_0060: ldstr "MATERIAL"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "FILTER"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldc.i4.s 65
+IL_0078: conv.i8
+IL_0079: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_007e: dup
+IL_007f: call System.Void AudioHelper::InitTextile(GameItem)
+IL_0084: dup
+IL_0085: ldstr "FILTER_SIZE_TAG"
+IL_008a: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__24_0
+IL_008f: dup
+IL_0090: brtrue.s IL_00a9
+IL_0092: pop
+IL_0093: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0098: ldftn System.Void AmenitiesItemDirectory/<>c::<KottonFabric>b__24_0(TagState)
+IL_009e: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_00a3: dup
+IL_00a4: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__24_0
+IL_00a9: ldc.i4.0
+IL_00aa: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00af: pop
+IL_00b0: dup
+IL_00b1: ldc.i4 1000
+IL_00b6: call System.Void DurabilityHelper::InitItemWithDurability(GameItem,System.Int32)
+IL_00bb: dup
+IL_00bc: ldstr "WATER_FILTER"
+IL_00c1: ldc.i4.0
+IL_00c2: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00c7: pop
+IL_00c8: ret
+GameItem AmenitiesItemDirectory::WaterFilter()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_filter"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_filter_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_filter_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_water_filter_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "HOUSEHOLD_GOOD"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "FILTER"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldstr "FILTER_SIZE_TAG"
+IL_007b: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__25_0
+IL_0080: dup
+IL_0081: brtrue.s IL_009a
+IL_0083: pop
+IL_0084: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0089: ldftn System.Void AmenitiesItemDirectory/<>c::<WaterFilter>b__25_0(TagState)
+IL_008f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0094: dup
+IL_0095: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__25_0
+IL_009a: ldc.i4.0
+IL_009b: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00a0: pop
+IL_00a1: dup
+IL_00a2: ldc.i4.s 25
+IL_00a4: conv.i8
+IL_00a5: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_00aa: pop
+IL_00ab: dup
+IL_00ac: ldstr "WATER_FILTER"
+IL_00b1: ldc.i4.0
+IL_00b2: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b7: pop
+IL_00b8: dup
+IL_00b9: ldc.i4 400
+IL_00be: ldc.i4.1
+IL_00bf: call System.Void DurabilityHelper::InitItemWithDurabilityPricingMode2(GameItem,System.Int32,System.Int32)
+IL_00c4: dup
+IL_00c5: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00ca: ret
+GameItem AmenitiesItemDirectory::WaterFilterAdvanced()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_filter_adv"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_filter_adv_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_filter_adv_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_water_filter_adv_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "HOUSEHOLD_GOOD"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "FILTER"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldstr "LUXURY_ITEM"
+IL_007b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0080: dup
+IL_0081: ldstr "FILTER_SIZE_TAG"
+IL_0086: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__26_0
+IL_008b: dup
+IL_008c: brtrue.s IL_00a5
+IL_008e: pop
+IL_008f: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0094: ldftn System.Void AmenitiesItemDirectory/<>c::<WaterFilterAdvanced>b__26_0(TagState)
+IL_009a: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_009f: dup
+IL_00a0: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__26_0
+IL_00a5: ldc.i4.0
+IL_00a6: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00ab: pop
+IL_00ac: dup
+IL_00ad: ldc.i4 350
+IL_00b2: conv.i8
+IL_00b3: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_00b8: pop
+IL_00b9: dup
+IL_00ba: ldstr "WATER_FILTER"
+IL_00bf: ldc.i4.0
+IL_00c0: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00c5: pop
+IL_00c6: dup
+IL_00c7: ldc.i4 400
+IL_00cc: call System.Void DurabilityHelper::InitItemWithDurability(GameItem,System.Int32)
+IL_00d1: dup
+IL_00d2: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00d7: dup
+IL_00d8: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__26_1
+IL_00dd: dup
+IL_00de: brtrue.s IL_00f7
+IL_00e0: pop
+IL_00e1: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00e6: ldftn System.Void AmenitiesItemDirectory/<>c::<WaterFilterAdvanced>b__26_1(GameItem,GameInventory,SlotMarker)
+IL_00ec: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00f1: dup
+IL_00f2: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__26_1
+IL_00f7: callvirt System.Void GameItemFunc::set_onCycleEndSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00fc: ret
+GameItem AmenitiesItemDirectory::PortableWaterPurifier()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "portable_water_purifier"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_portable_water_purifier_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_portable_water_purifier_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_portable_water_purifier_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "HOUSEHOLD_GOOD"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "LUXURY_ITEM"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldc.i4 325
+IL_007b: conv.i8
+IL_007c: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0081: pop
+IL_0082: dup
+IL_0083: ldc.i4 300
+IL_0088: ldc.i4.s 25
+IL_008a: call System.Void DurabilityHelper::InitItemWithDurabilityPricingMode2(GameItem,System.Int32,System.Int32)
+IL_008f: dup
+IL_0090: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0095: dup
+IL_0096: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_0
+IL_009b: dup
+IL_009c: brtrue.s IL_00b5
+IL_009e: pop
+IL_009f: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00a4: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_0(GameItem,GameInventory,SlotMarker)
+IL_00aa: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00af: dup
+IL_00b0: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_0
+IL_00b5: callvirt System.Void GameItemFunc::set_maySelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ba: dup
+IL_00bb: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_1
+IL_00c0: dup
+IL_00c1: brtrue.s IL_00da
+IL_00c3: pop
+IL_00c4: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00c9: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_1(GameItem,GameInventory,SlotMarker)
+IL_00cf: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00d4: dup
+IL_00d5: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_1
+IL_00da: callvirt System.Void GameItemFunc::set_canSelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00df: dup
+IL_00e0: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_2
+IL_00e5: dup
+IL_00e6: brtrue.s IL_00ff
+IL_00e8: pop
+IL_00e9: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00ee: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_2(GameItem,GameItem)
+IL_00f4: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00f9: dup
+IL_00fa: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_2
+IL_00ff: callvirt System.Void GameItemFunc::set_mayThisTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_0104: dup
+IL_0105: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_3
+IL_010a: dup
+IL_010b: brtrue.s IL_0124
+IL_010d: pop
+IL_010e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0113: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_3(GameItem,GameItem)
+IL_0119: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_011e: dup
+IL_011f: stsfld System.Func`3<GameItem,GameItem,System.Boolean> AmenitiesItemDirectory/<>c::<>9__27_3
+IL_0124: callvirt System.Void GameItemFunc::set_canThisTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_0129: dup
+IL_012a: ldsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__27_4
+IL_012f: dup
+IL_0130: brtrue.s IL_0149
+IL_0132: pop
+IL_0133: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0138: ldftn System.Void AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_4(GameItem,GameItem)
+IL_013e: newobj System.Void System.Action`2<GameItem,GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0143: dup
+IL_0144: stsfld System.Action`2<GameItem,GameItem> AmenitiesItemDirectory/<>c::<>9__27_4
+IL_0149: callvirt System.Void GameItemFunc::set_onThisTargetItemFunc(System.Action`2<GameItem,GameItem>)
+IL_014e: ret
+System.Boolean AmenitiesItemDirectory::CanPurifierTarget(GameItem,GameItem)
+  0: GameItem purifier None
+  1: GameItem target None
+IL_0000: ldarg.0
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brfalse.s IL_0027
+IL_0008: ldarg.1
+IL_0009: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_000e: brfalse.s IL_0027
+IL_0010: ldarg.1
+IL_0011: ldstr "LIQUID_CONTAINER_TAG"
+IL_0016: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_001b: brfalse.s IL_0027
+IL_001d: ldarg.1
+IL_001e: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_0023: ldc.i4.0
+IL_0024: ceq
+IL_0026: ret
+IL_0027: ldc.i4.0
+IL_0028: ret
+System.Void AmenitiesItemDirectory::OnPortableWaterPurifierUsed(GameItem,GameItem)
+  0: GameItem purifier None
+  1: GameItem container None
+  local 0: System.Int32
+IL_0000: ldarg.1
+IL_0001: call System.Int32 WaterHelper::GetWaterPurity(GameItem)
+IL_0006: ldc.i4 9800
+IL_000b: blt.s IL_0018
+IL_000d: ldstr "mech_portable_purifier_already_clean"
+IL_0012: call System.Void AmenitiesItemDirectory::ShowPurifierMessage(System.String)
+IL_0017: ret
+IL_0018: ldarg.1
+IL_0019: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_001e: conv.i8
+IL_001f: ldc.i4 100000
+IL_0024: conv.i8
+IL_0025: add
+IL_0026: ldc.i4.1
+IL_0027: conv.i8
+IL_0028: sub
+IL_0029: ldc.i4 100000
+IL_002e: conv.i8
+IL_002f: div
+IL_0030: conv.i4
+IL_0031: stloc.0
+IL_0032: ldloc.0
+IL_0033: ldarg.0
+IL_0034: call System.Int32 DurabilityHelper::GetRealDurability(GameItem)
+IL_0039: ble.s IL_0046
+IL_003b: ldstr "mech_portable_purifier_not_enough_charge"
+IL_0040: call System.Void AmenitiesItemDirectory::ShowPurifierMessage(System.String)
+IL_0045: ret
+IL_0046: ldarg.1
+IL_0047: call System.Void WaterHelper::PurifyToBaseWater(GameItem)
+IL_004c: ldarg.0
+IL_004d: ldloc.0
+IL_004e: neg
+IL_004f: call System.Void DurabilityHelper::ChangeDurability(GameItem,System.Int32)
+IL_0054: ret
+System.Void AmenitiesItemDirectory::ShowPurifierMessage(System.String)
+  0: System.String mechanicKey None
+IL_0000: call GenericConfirmationUIManager GenericConfirmationUIManager::get_Instance()
+IL_0005: ldarg.0
+IL_0006: call !!0[] System.Array::Empty<System.Object>()
+IL_000b: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0010: ldstr "confirm"
+IL_0015: call !!0[] System.Array::Empty<System.Object>()
+IL_001a: call System.String LocHelper::GetLocalizedMainMenu(System.String,System.Object[])
+IL_001f: ldsfld System.Action AmenitiesItemDirectory/<>c::<>9__31_0
+IL_0024: dup
+IL_0025: brtrue.s IL_003e
+IL_0027: pop
+IL_0028: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_002d: ldftn System.Void AmenitiesItemDirectory/<>c::<ShowPurifierMessage>b__31_0()
+IL_0033: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_0038: dup
+IL_0039: stsfld System.Action AmenitiesItemDirectory/<>c::<>9__31_0
+IL_003e: callvirt System.Void GenericConfirmationUIManager::OpenPanelSingleButton(System.String,System.String,System.Action)
+IL_0043: ret
+GameItem AmenitiesItemDirectory::HydroreedFilter()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_hydroponic_plant"
+IL_000b: ldstr "hydroreed_filter"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_hydroreed_filter_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_hydroreed_filter_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_hydroreed_filter_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "HOUSEHOLD_GOOD"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "FILTER"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldstr "FILTER_SIZE_TAG"
+IL_007b: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__32_0
+IL_0080: dup
+IL_0081: brtrue.s IL_009a
+IL_0083: pop
+IL_0084: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0089: ldftn System.Void AmenitiesItemDirectory/<>c::<HydroreedFilter>b__32_0(TagState)
+IL_008f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0094: dup
+IL_0095: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__32_0
+IL_009a: ldc.i4.0
+IL_009b: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00a0: pop
+IL_00a1: dup
+IL_00a2: ldc.i4.s 20
+IL_00a4: conv.i8
+IL_00a5: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_00aa: pop
+IL_00ab: dup
+IL_00ac: ldstr "WATER_FILTER"
+IL_00b1: ldc.i4.0
+IL_00b2: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b7: pop
+IL_00b8: dup
+IL_00b9: ldc.i4 200
+IL_00be: call System.Void DurabilityHelper::InitItemWithDurability(GameItem,System.Int32)
+IL_00c3: dup
+IL_00c4: ldstr "hydroreed_seed"
+IL_00c9: call !!0[] System.Array::Empty<System.String>()
+IL_00ce: call System.Void PlantGeneticsHelper::ApplyFactoryGenetics(GameItem,System.String,System.String[])
+IL_00d3: ret
+GameItem AmenitiesItemDirectory::WaterPitcher()
+  local 0: PixelWindow
+  local 1: GameSlotInventory
+IL_0000: ldc.i4.1
+IL_0001: call System.ValueTuple`2<PixelWindow,GameSlotInventory> DirectoryUtils::CreateSlotInventoryWindow(System.Boolean)
+IL_0006: dup
+IL_0007: ldfld !0 System.ValueTuple`2<PixelWindow,GameSlotInventory>::Item1
+IL_000c: stloc.0
+IL_000d: ldfld !1 System.ValueTuple`2<PixelWindow,GameSlotInventory>::Item2
+IL_0012: stloc.1
+IL_0013: ldarg.0
+IL_0014: callvirt T Directory`1<GameItem>::Empty()
+IL_0019: ldloc.0
+IL_001a: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_001f: ldstr "Items/water_container4"
+IL_0024: ldstr "pitcher"
+IL_0029: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_002e: dup
+IL_002f: ldstr "item_water_pitcher_name"
+IL_0034: call !!0[] System.Array::Empty<System.Object>()
+IL_0039: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003e: callvirt System.Void GameItem::set_name(System.String)
+IL_0043: dup
+IL_0044: ldstr "item_water_pitcher_desc"
+IL_0049: call !!0[] System.Array::Empty<System.Object>()
+IL_004e: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0053: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0058: dup
+IL_0059: ldstr "water_pitcher"
+IL_005e: callvirt System.Void GameItem::set_identifier(System.String)
+IL_0063: dup
+IL_0064: ldstr "HOUSEHOLD_GOOD"
+IL_0069: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006e: ldloc.1
+IL_006f: ldsfld System.Func`3<GameItem,GameInventory,System.Boolean> AmenitiesItemDirectory/<>c::<>9__33_0
+IL_0074: dup
+IL_0075: brtrue.s IL_008e
+IL_0077: pop
+IL_0078: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_007d: ldftn System.Boolean AmenitiesItemDirectory/<>c::<WaterPitcher>b__33_0(GameItem,GameInventory)
+IL_0083: newobj System.Void System.Func`3<GameItem,GameInventory,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0088: dup
+IL_0089: stsfld System.Func`3<GameItem,GameInventory,System.Boolean> AmenitiesItemDirectory/<>c::<>9__33_0
+IL_008e: callvirt System.Void GameInventoryFunc::set_mayInventoryAddItemFunc(System.Func`3<GameItem,GameInventory,System.Boolean>)
+IL_0093: ldloc.1
+IL_0094: ldstr "Items/items_amenities"
+IL_0099: ldstr "water_filter"
+IL_009e: ldc.r4 0.5
+IL_00a3: ldc.r4 0.5
+IL_00a8: callvirt GameSlotInventory GameSlotInventory::SetBackgroundFadeSprite(System.String,System.String,System.Single,System.Single)
+IL_00ad: pop
+IL_00ae: dup
+IL_00af: ldc.i4 3000
+IL_00b4: ldc.i4.s 25
+IL_00b6: ldc.i4.1
+IL_00b7: ldc.i4.1
+IL_00b8: ldc.i4.0
+IL_00b9: ldc.i4.1
+IL_00ba: ldc.i4.4
+IL_00bb: call System.Void WaterHelper::InitLiquidContainerItem(GameItem,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)
+IL_00c0: dup
+IL_00c1: call System.Void AudioHelper::InitWaterFilter(GameItem)
+IL_00c6: dup
+IL_00c7: ldstr "CONTAINER_TOOLTIP_TAG"
+IL_00cc: ldc.i4.0
+IL_00cd: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00d2: pop
+IL_00d3: ret
+GameItem AmenitiesItemDirectory::LotteryTicket()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "lottery"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_lottery_ticket_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_lottery_ticket_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_lottery_ticket_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: call System.Void LotteryHelper::InitLotteryTicket(GameItem)
+IL_005a: dup
+IL_005b: ldc.i4.s 25
+IL_005d: conv.i8
+IL_005e: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0063: pop
+IL_0064: dup
+IL_0065: ldstr "REPO_ELIGIBLE_OVERRIDE_TAG"
+IL_006a: ldc.i4.0
+IL_006b: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0070: pop
+IL_0071: dup
+IL_0072: call System.Void AmenitiesItemDirectory::InitLotteryPaper(GameItem)
+IL_0077: dup
+IL_0078: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__34_0
+IL_007d: dup
+IL_007e: brtrue.s IL_0097
+IL_0080: pop
+IL_0081: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0086: ldftn System.Boolean AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_0(GameItem,GameInventory,SlotMarker)
+IL_008c: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0091: dup
+IL_0092: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__34_0
+IL_0097: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_009c: dup
+IL_009d: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__34_1
+IL_00a2: dup
+IL_00a3: brtrue.s IL_00bc
+IL_00a5: pop
+IL_00a6: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00ab: ldftn System.Boolean AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_1(GameItem,GameInventory,SlotMarker)
+IL_00b1: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00b6: dup
+IL_00b7: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__34_1
+IL_00bc: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00c1: dup
+IL_00c2: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__34_2
+IL_00c7: dup
+IL_00c8: brtrue.s IL_00e1
+IL_00ca: pop
+IL_00cb: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00d0: ldftn System.Void AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_2(GameItem,GameInventory,SlotMarker)
+IL_00d6: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00db: dup
+IL_00dc: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__34_2
+IL_00e1: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00e6: dup
+IL_00e7: call System.Void AudioHelper::InitPaperSheet(GameItem)
+IL_00ec: ret
+GameItem AmenitiesItemDirectory::LotteryTicketOld()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "lottery_old"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_lottery_ticket_old_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_lottery_ticket_old_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_lottery_ticket_old_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldc.i4.1
+IL_0056: conv.i8
+IL_0057: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_005c: pop
+IL_005d: dup
+IL_005e: ldstr "REPO_ELIGIBLE_OVERRIDE_TAG"
+IL_0063: ldc.i4.0
+IL_0064: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0069: pop
+IL_006a: dup
+IL_006b: call System.Void AmenitiesItemDirectory::InitLotteryPaper(GameItem)
+IL_0070: dup
+IL_0071: call System.Void AudioHelper::InitPaperSheet(GameItem)
+IL_0076: ret
+System.Void AmenitiesItemDirectory::InitLotteryPaper(GameItem)
+  0: GameItem item None
+IL_0000: ldarg.0
+IL_0001: ldstr "LOTTERY_PAPER_TAG"
+IL_0006: ldc.i4.0
+IL_0007: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_000c: pop
+IL_000d: ldarg.0
+IL_000e: dup
+IL_000f: callvirt System.Action`1<GameItem> GameItemFunc::get_onLoaded()
+IL_0014: ldsfld System.Action`1<GameItem> AmenitiesItemDirectory/<>c::<>9__36_0
+IL_0019: dup
+IL_001a: brtrue.s IL_0033
+IL_001c: pop
+IL_001d: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0022: ldftn System.Void AmenitiesItemDirectory/<>c::<InitLotteryPaper>b__36_0(GameItem)
+IL_0028: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_002d: dup
+IL_002e: stsfld System.Action`1<GameItem> AmenitiesItemDirectory/<>c::<>9__36_0
+IL_0033: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+IL_0038: castclass System.Action`1<GameItem>
+IL_003d: callvirt System.Void GameItemFunc::set_onLoaded(System.Action`1<GameItem>)
+IL_0042: ret
+GameItem AmenitiesItemDirectory::NeuroactivePerfume()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "perfume1"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_neuroactive_perfume_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldc.i4 150
+IL_0030: conv.i8
+IL_0031: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0036: pop
+IL_0037: dup
+IL_0038: ldstr "LUXURY_ITEM"
+IL_003d: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0042: dup
+IL_0043: ldstr "solana"
+IL_0048: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004d: dup
+IL_004e: ldstr "item_neuroactive_perfume_flavor"
+IL_0053: call !!0[] System.Array::Empty<System.Object>()
+IL_0058: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005d: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0062: dup
+IL_0063: ldstr "item_neuroactive_perfume_desc"
+IL_0068: call !!0[] System.Array::Empty<System.Object>()
+IL_006d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0072: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0077: dup
+IL_0078: call System.Void AudioHelper::InitGlass(GameItem)
+IL_007d: dup
+IL_007e: call System.Void AmenitiesItemDirectory::InitNeuroactivePerfumeSpray(GameItem)
+IL_0083: dup
+IL_0084: ldc.i4.5
+IL_0085: ldc.i4.1
+IL_0086: ldc.i4.1
+IL_0087: ldc.i4.1
+IL_0088: ldc.i4.0
+IL_0089: ldc.i4.s 30
+IL_008b: call System.Void UseCountHelper::InitUseCountItem(GameItem,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)
+IL_0090: ret
+System.Void AmenitiesItemDirectory::InitNeuroactivePerfumeSpray(GameItem)
+  0: GameItem item None
+IL_0000: ldarg.0
+IL_0001: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__38_0
+IL_0006: dup
+IL_0007: brtrue.s IL_0020
+IL_0009: pop
+IL_000a: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_000f: ldftn System.Boolean AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_0(GameItem,GameInventory,SlotMarker)
+IL_0015: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_001a: dup
+IL_001b: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__38_0
+IL_0020: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0025: ldarg.0
+IL_0026: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__38_1
+IL_002b: dup
+IL_002c: brtrue.s IL_0045
+IL_002e: pop
+IL_002f: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0034: ldftn System.Boolean AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_1(GameItem,GameInventory,SlotMarker)
+IL_003a: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_003f: dup
+IL_0040: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__38_1
+IL_0045: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_004a: ldarg.0
+IL_004b: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__38_2
+IL_0050: dup
+IL_0051: brtrue.s IL_006a
+IL_0053: pop
+IL_0054: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0059: ldftn System.Void AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_2(GameItem,GameInventory,SlotMarker)
+IL_005f: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_0064: dup
+IL_0065: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__38_2
+IL_006a: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_006f: ret
+GameItem AmenitiesItemDirectory::SelfRefillingNeuroactivePerfume()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_misc"
+IL_000b: ldstr "eleanor_perfume"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_self_refilling_perfume_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldc.i4 1000
+IL_0030: conv.i8
+IL_0031: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0036: pop
+IL_0037: dup
+IL_0038: ldstr "LUXURY_ITEM"
+IL_003d: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0042: dup
+IL_0043: ldstr "solana"
+IL_0048: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004d: dup
+IL_004e: ldstr "item_self_refilling_perfume_flavor"
+IL_0053: call !!0[] System.Array::Empty<System.Object>()
+IL_0058: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005d: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0062: dup
+IL_0063: ldstr "item_self_refilling_perfume_desc"
+IL_0068: call !!0[] System.Array::Empty<System.Object>()
+IL_006d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0072: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0077: dup
+IL_0078: call System.Void AudioHelper::InitGlass(GameItem)
+IL_007d: dup
+IL_007e: call System.Void AmenitiesItemDirectory::InitNeuroactivePerfumeSpray(GameItem)
+IL_0083: dup
+IL_0084: ldstr "IMPORTANT_TAG"
+IL_0089: ldc.i4.0
+IL_008a: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_008f: pop
+IL_0090: dup
+IL_0091: ldc.i4.5
+IL_0092: ldc.i4.1
+IL_0093: ldc.i4.0
+IL_0094: ldc.i4.0
+IL_0095: ldc.i4.0
+IL_0096: ldc.i4.0
+IL_0097: call System.Void UseCountHelper::InitUseCountItem(GameItem,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)
+IL_009c: dup
+IL_009d: ldc.i4.3
+IL_009e: call System.Void UseCountHelper::InitAutoRefill(GameItem,System.Int32)
+IL_00a3: ret
+GameItem AmenitiesItemDirectory::PheromonePerfume()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "perfume2"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_pheromone_perfume_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldc.i4.2
+IL_002c: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_0031: dup
+IL_0032: ldc.i4 200
+IL_0037: conv.i8
+IL_0038: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_003d: pop
+IL_003e: dup
+IL_003f: ldstr "LUXURY_ITEM"
+IL_0044: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0049: dup
+IL_004a: ldstr "solana"
+IL_004f: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0054: dup
+IL_0055: ldstr "item_pheromone_perfume_flavor"
+IL_005a: call !!0[] System.Array::Empty<System.Object>()
+IL_005f: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0064: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0069: dup
+IL_006a: ldstr "item_pheromone_perfume_desc"
+IL_006f: call !!0[] System.Array::Empty<System.Object>()
+IL_0074: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0079: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_007e: dup
+IL_007f: call System.Void AudioHelper::InitGlass(GameItem)
+IL_0084: dup
+IL_0085: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__42_0
+IL_008a: dup
+IL_008b: brtrue.s IL_00a4
+IL_008d: pop
+IL_008e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0093: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_0(GameItem,GameInventory,SlotMarker)
+IL_0099: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_009e: dup
+IL_009f: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__42_0
+IL_00a4: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00a9: dup
+IL_00aa: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__42_1
+IL_00af: dup
+IL_00b0: brtrue.s IL_00c9
+IL_00b2: pop
+IL_00b3: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00b8: ldftn System.Boolean AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_1(GameItem,GameInventory,SlotMarker)
+IL_00be: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00c3: dup
+IL_00c4: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__42_1
+IL_00c9: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ce: dup
+IL_00cf: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__42_2
+IL_00d4: dup
+IL_00d5: brtrue.s IL_00ee
+IL_00d7: pop
+IL_00d8: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00dd: ldftn System.Void AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_2(GameItem,GameInventory,SlotMarker)
+IL_00e3: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00e8: dup
+IL_00e9: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__42_2
+IL_00ee: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00f3: dup
+IL_00f4: ldc.i4.5
+IL_00f5: ldc.i4.1
+IL_00f6: ldc.i4.1
+IL_00f7: ldc.i4.1
+IL_00f8: ldc.i4.0
+IL_00f9: ldc.i4.s 40
+IL_00fb: call System.Void UseCountHelper::InitUseCountItem(GameItem,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)
+IL_0100: ret
+System.Void AmenitiesItemDirectory::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void ItemDirectory::.ctor()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_0()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::BoxTampon()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_1()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::PacketCigaretteRed()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_2()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::PackCondom()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_3()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::Shampoo()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_4()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::Toothpaste()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_5()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::PaperTowel()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_6()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::ToiletPaper()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_7()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterTestKit()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_8()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterTestStrip()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_9()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::AquaScan()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_10()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::UVFilter()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_11()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::MetalScanner()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_12()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::GeneScanner()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_13()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterPurificationTabletContainer()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_14()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterPurificationTablet()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_15()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterFilter()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_16()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterFilterAdvanced()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_17()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::PortableWaterPurifier()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_18()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::WaterPitcher()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_20()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::HydroreedFilter()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_21()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::KottonFabric()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_22()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::HydroponicNutrientTablet()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_23()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::NutrientTabletContainer()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_24()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::LotteryTicket()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_25()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::LotteryTicketOld()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_26()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::SkincareCream()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_27()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::NeuroactivePerfume()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_28()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::SelfRefillingNeuroactivePerfume()
+IL_0006: ret
+GameItem AmenitiesItemDirectory::<InitDirectory>b__0_29()
+IL_0000: ldarg.0
+IL_0001: call GameItem AmenitiesItemDirectory::PheromonePerfume()
+IL_0006: ret

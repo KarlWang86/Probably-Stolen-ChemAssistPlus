@@ -1,0 +1,398 @@
+﻿GameItem AmenitiesItemDirectory::WaterPurificationTablet()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_tablet"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_tablet_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_tablet_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "davre"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldstr "HOUSEHOLD_GOOD"
+IL_0050: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0055: dup
+IL_0056: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_005b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0060: dup
+IL_0061: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_0066: dup
+IL_0067: ldc.i4.6
+IL_0068: conv.i8
+IL_0069: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_006e: pop
+IL_006f: dup
+IL_0070: ldstr "WATER_PURIFICATION_TABLET"
+IL_0075: ldc.i4.0
+IL_0076: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_007b: pop
+IL_007c: dup
+IL_007d: ldc.i4.1
+IL_007e: ldc.i4.1
+IL_007f: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0084: dup
+IL_0085: ldstr "chlorine"
+IL_008a: ldc.r8 15
+IL_0093: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0098: ret
+System.Void ChemicalHelper::DissolveInto(GameItem,GameItem)
+IL_0000: ldarg.1
+IL_0001: call System.Int32 WaterHelper::GetFreeCapacity(GameItem)
+IL_0006: stloc.0
+IL_0007: ldarg.0
+IL_0008: call System.Int32 ChemicalHelper::GetTotalVolume(GameItem)
+IL_000d: stloc.1
+IL_000e: ldloc.1
+IL_000f: ldloc.0
+IL_0010: bgt IL_0098
+IL_0015: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_001a: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_001f: stloc.2
+IL_0020: br.s IL_007c
+IL_0022: ldloca.s V_2
+IL_0024: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_0029: stloc.3
+IL_002a: newobj System.Void ChemicalHelper/<>c__DisplayClass14_0::.ctor()
+IL_002f: stloc.s V_4
+IL_0031: ldloc.s V_4
+IL_0033: ldarg.0
+IL_0034: ldloc.3
+IL_0035: ldfld System.String Liquid::currentPart
+IL_003a: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_003f: callvirt System.Int32 TagState::GetInt()
+IL_0044: stfld System.Int32 ChemicalHelper/<>c__DisplayClass14_0::amount
+IL_0049: ldloc.s V_4
+IL_004b: ldarg.1
+IL_004c: ldloc.3
+IL_004d: ldfld System.String Liquid::currentPart
+IL_0052: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0057: callvirt System.Int32 TagState::GetInt()
+IL_005c: stfld System.Int32 ChemicalHelper/<>c__DisplayClass14_0::currentAmount
+IL_0061: ldarg.1
+IL_0062: ldloc.3
+IL_0063: ldfld System.String Liquid::currentPart
+IL_0068: ldloc.s V_4
+IL_006a: ldftn System.Void ChemicalHelper/<>c__DisplayClass14_0::<DissolveInto>b__0(TagState)
+IL_0070: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0075: ldc.i4.1
+IL_0076: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_007b: pop
+IL_007c: ldloca.s V_2
+IL_007e: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_0083: brtrue.s IL_0022
+IL_0085: leave IL_0129
+IL_008a: ldloca.s V_2
+IL_008c: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_0092: callvirt System.Void System.IDisposable::Dispose()
+IL_0097: endfinally
+IL_0098: ldloc.1
+IL_0099: ldloc.0
+IL_009a: sub
+IL_009b: stloc.s V_5
+IL_009d: ldarg.1
+IL_009e: ldloc.s V_5
+IL_00a0: call System.Void WaterHelper::Remove(GameItem,System.Int32)
+IL_00a5: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_00aa: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_00af: stloc.2
+IL_00b0: br.s IL_0110
+IL_00b2: ldloca.s V_2
+IL_00b4: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_00b9: stloc.s V_6
+IL_00bb: newobj System.Void ChemicalHelper/<>c__DisplayClass14_1::.ctor()
+IL_00c0: stloc.s V_7
+IL_00c2: ldloc.s V_7
+IL_00c4: ldarg.0
+IL_00c5: ldloc.s V_6
+IL_00c7: ldfld System.String Liquid::currentPart
+IL_00cc: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_00d1: callvirt System.Int32 TagState::GetInt()
+IL_00d6: stfld System.Int32 ChemicalHelper/<>c__DisplayClass14_1::amount
+IL_00db: ldloc.s V_7
+IL_00dd: ldarg.1
+IL_00de: ldloc.s V_6
+IL_00e0: ldfld System.String Liquid::currentPart
+IL_00e5: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_00ea: callvirt System.Int32 TagState::GetInt()
+IL_00ef: stfld System.Int32 ChemicalHelper/<>c__DisplayClass14_1::currentAmount
+IL_00f4: ldarg.1
+IL_00f5: ldloc.s V_6
+IL_00f7: ldfld System.String Liquid::currentPart
+IL_00fc: ldloc.s V_7
+IL_00fe: ldftn System.Void ChemicalHelper/<>c__DisplayClass14_1::<DissolveInto>b__1(TagState)
+IL_0104: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0109: ldc.i4.1
+IL_010a: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_010f: pop
+IL_0110: ldloca.s V_2
+IL_0112: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_0117: brtrue.s IL_00b2
+IL_0119: leave.s IL_0129
+IL_011b: ldloca.s V_2
+IL_011d: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_0123: callvirt System.Void System.IDisposable::Dispose()
+IL_0128: endfinally
+IL_0129: ldarg.0
+IL_012a: callvirt System.Void GameItem::Destroy()
+IL_012f: ldarg.1
+IL_0130: ldc.i4.0
+IL_0131: call System.Void WaterFeatureHelper::UpdateWaterFeature(GameItem,System.Boolean)
+IL_0136: ldarg.1
+IL_0137: call System.Void SpriteHelper::UpdateWaterContainerSprite(GameItem)
+IL_013c: ret
+System.Int32 ChemicalHelper::HandleChlorine(GameItem)
+IL_0000: newobj System.Void ChemicalHelper/<>c__DisplayClass36_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.0
+IL_0007: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_000c: brfalse.s IL_0010
+IL_000e: ldc.i4.0
+IL_000f: ret
+IL_0010: ldarg.0
+IL_0011: ldstr "chlorine"
+IL_0016: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_001b: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0020: callvirt System.Int32 TagState::GetInt()
+IL_0025: stloc.1
+IL_0026: ldloc.0
+IL_0027: ldarg.0
+IL_0028: ldstr "microbe"
+IL_002d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0032: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0037: callvirt System.Int32 TagState::GetInt()
+IL_003c: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_0041: ldarg.0
+IL_0042: ldstr "chemical_contaminant"
+IL_0047: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_004c: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0051: callvirt System.Int32 TagState::GetInt()
+IL_0056: stloc.2
+IL_0057: ldarg.0
+IL_0058: ldstr "water"
+IL_005d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0062: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0067: callvirt System.Int32 TagState::GetInt()
+IL_006c: stloc.3
+IL_006d: ldarg.0
+IL_006e: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0073: stloc.s V_4
+IL_0075: ldloc.1
+IL_0076: ldc.i4.0
+IL_0077: ble.s IL_007d
+IL_0079: ldloc.3
+IL_007a: ldc.i4.0
+IL_007b: bgt.s IL_007f
+IL_007d: ldc.i4.0
+IL_007e: ret
+IL_007f: ldloc.1
+IL_0080: ldc.i4 15000
+IL_0085: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_008a: stloc.s V_5
+IL_008c: ldloc.s V_5
+IL_008e: conv.r8
+IL_008f: ldc.r8 5.1
+IL_0098: mul
+IL_0099: conv.i8
+IL_009a: stloc.s V_6
+IL_009c: ldloc.s V_4
+IL_009e: conv.r4
+IL_009f: ldc.r4 0.007
+IL_00a4: mul
+IL_00a5: conv.i4
+IL_00a6: stloc.s V_7
+IL_00a8: ldloc.2
+IL_00a9: ldloc.s V_7
+IL_00ab: bgt.s IL_00b0
+IL_00ad: ldc.i4.0
+IL_00ae: br.s IL_00bd
+IL_00b0: ldloc.2
+IL_00b1: ldloc.s V_7
+IL_00b3: sub
+IL_00b4: conv.i8
+IL_00b5: ldloc.s V_6
+IL_00b7: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00bc: conv.i4
+IL_00bd: stloc.s V_8
+IL_00bf: ldloc.s V_6
+IL_00c1: ldloc.s V_8
+IL_00c3: conv.i8
+IL_00c4: sub
+IL_00c5: stloc.s V_6
+IL_00c7: ldloc.0
+IL_00c8: ldloc.2
+IL_00c9: ldloc.s V_8
+IL_00cb: sub
+IL_00cc: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::newChemicals
+IL_00d1: ldloc.0
+IL_00d2: ldloc.0
+IL_00d3: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_00d8: conv.i8
+IL_00d9: ldloc.s V_6
+IL_00db: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00e0: conv.i4
+IL_00e1: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbesDestroyed
+IL_00e6: ldloc.0
+IL_00e7: ldloc.1
+IL_00e8: ldloc.s V_5
+IL_00ea: sub
+IL_00eb: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f0: ldloc.0
+IL_00f1: ldloc.0
+IL_00f2: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f7: ldc.i4 1000
+IL_00fc: ldloc.0
+IL_00fd: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_0102: conv.r8
+IL_0103: ldc.r8 0.2
+IL_010c: mul
+IL_010d: conv.i4
+IL_010e: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0113: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0118: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::selfDegraded
+IL_011d: ldarg.0
+IL_011e: ldstr "chlorine"
+IL_0123: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0128: ldloc.0
+IL_0129: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__0(TagState)
+IL_012f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0134: ldc.i4.1
+IL_0135: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_013a: pop
+IL_013b: ldarg.0
+IL_013c: ldstr "microbe"
+IL_0141: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0146: ldloc.0
+IL_0147: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__1(TagState)
+IL_014d: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0152: ldc.i4.1
+IL_0153: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0158: pop
+IL_0159: ldarg.0
+IL_015a: ldstr "chemical_contaminant"
+IL_015f: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0164: ldloc.0
+IL_0165: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__2(TagState)
+IL_016b: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0170: ldc.i4.1
+IL_0171: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0176: pop
+IL_0177: ldc.i4.1
+IL_0178: ret
+System.Void ChemicalHelper/<>c__DisplayClass9_0::<InitChemItem>b__4(GameItem,GameItem)
+IL_0000: ldarg.2
+IL_0001: ldstr "LIQUID_CONTAINER_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brfalse.s IL_0019
+IL_000d: ldarg.0
+IL_000e: ldfld GameItem ChemicalHelper/<>c__DisplayClass9_0::item
+IL_0013: ldarg.2
+IL_0014: call System.Void ChemicalHelper::DissolveInto(GameItem,GameItem)
+IL_0019: ret
+System.Collections.Generic.List`1<GameItem> PlayerStore::FindAllItem(System.Boolean)
+IL_0000: newobj System.Void System.Collections.Generic.List`1<GameItem>::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_000c: callvirt PixelWindow EmporiumEntry::get_frontInvWindow()
+IL_0011: ldnull
+IL_0012: ldnull
+IL_0013: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0018: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_001d: ldloc.0
+IL_001e: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0023: callvirt PixelWindow EmporiumEntry::get_backInvWindow()
+IL_0028: ldnull
+IL_0029: ldnull
+IL_002a: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_002f: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0034: ldloc.0
+IL_0035: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_003a: callvirt GameGridInventory EmporiumEntry::get_backInvinvElementCounter()
+IL_003f: ldnull
+IL_0040: ldnull
+IL_0041: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0046: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_004b: ldloc.0
+IL_004c: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0051: callvirt PixelWindow EmporiumEntry::get_invWindow()
+IL_0056: ldnull
+IL_0057: ldnull
+IL_0058: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_005d: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0062: ldloc.0
+IL_0063: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0068: callvirt PixelWindow EmporiumEntry::get_showcaseWindow()
+IL_006d: ldnull
+IL_006e: ldnull
+IL_006f: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0074: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0079: ldloc.0
+IL_007a: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_007f: callvirt PixelWindow EmporiumEntry::get_trashInvWindow()
+IL_0084: ldnull
+IL_0085: ldnull
+IL_0086: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_008b: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0090: ldloc.0
+IL_0091: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0096: callvirt PixelWindow EmporiumEntry::get_docInvWindow()
+IL_009b: ldnull
+IL_009c: ldnull
+IL_009d: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00a2: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00a7: ldloc.0
+IL_00a8: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00ad: callvirt PixelWindow EmporiumEntry::get_hiddenWindow()
+IL_00b2: ldnull
+IL_00b3: ldnull
+IL_00b4: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00b9: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00be: ldloc.0
+IL_00bf: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00c4: ldfld PixelWindow EmporiumEntry::afterhourWindow
+IL_00c9: ldnull
+IL_00ca: ldnull
+IL_00cb: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00d0: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00d5: ldloc.0
+IL_00d6: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00db: callvirt PixelWindow EmporiumEntry::get_vendingFountainWindow()
+IL_00e0: ldnull
+IL_00e1: ldnull
+IL_00e2: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00e7: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00ec: ldloc.0
+IL_00ed: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00f2: callvirt PixelWindow EmporiumEntry::get_vendingMachineWindow()
+IL_00f7: ldnull
+IL_00f8: ldnull
+IL_00f9: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00fe: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0103: ldarg.1
+IL_0104: brfalse.s IL_0131
+IL_0106: ldloc.0
+IL_0107: ldsfld System.Func`2<GameItem,System.Boolean> PlayerStore/<>c::<>9__290_0
+IL_010c: dup
+IL_010d: brtrue.s IL_0126
+IL_010f: pop
+IL_0110: ldsfld PlayerStore/<>c PlayerStore/<>c::<>9
+IL_0115: ldftn System.Boolean PlayerStore/<>c::<FindAllItem>b__290_0(GameItem)
+IL_011b: newobj System.Void System.Func`2<GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0120: dup
+IL_0121: stsfld System.Func`2<GameItem,System.Boolean> PlayerStore/<>c::<>9__290_0
+IL_0126: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Where<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_012b: call System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_0130: stloc.0
+IL_0131: ldloc.0
+IL_0132: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Distinct<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_0137: call System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_013c: ret

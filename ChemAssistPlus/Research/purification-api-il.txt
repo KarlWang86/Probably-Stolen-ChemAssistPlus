@@ -1,0 +1,361 @@
+﻿GameItem AmenitiesItemDirectory::WaterPurificationTabletContainer()
+IL_0000: ldc.i4.1
+IL_0001: ldc.i4.s 9
+IL_0003: ldc.i4.1
+IL_0004: call System.ValueTuple`2<PixelWindow,GameInventory> DirectoryUtils::CreateInventoryWindow(System.Int32,System.Int32,System.Boolean)
+IL_0009: dup
+IL_000a: ldfld !0 System.ValueTuple`2<PixelWindow,GameInventory>::Item1
+IL_000f: stloc.0
+IL_0010: ldfld !1 System.ValueTuple`2<PixelWindow,GameInventory>::Item2
+IL_0015: ldarg.0
+IL_0016: callvirt T Directory`1<GameItem>::Empty()
+IL_001b: ldloc.0
+IL_001c: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_0021: ldstr "Items/items_amenities"
+IL_0026: ldstr "water_tablet_container"
+IL_002b: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0030: stloc.1
+IL_0031: ldloc.1
+IL_0032: ldstr "item_water_tablet_container_name"
+IL_0037: call !!0[] System.Array::Empty<System.Object>()
+IL_003c: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0041: callvirt System.Void GameItem::set_name(System.String)
+IL_0046: ldloc.1
+IL_0047: ldstr "item_water_tablet_container_desc"
+IL_004c: call !!0[] System.Array::Empty<System.Object>()
+IL_0051: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0056: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_005b: ldloc.1
+IL_005c: ldstr "davre"
+IL_0061: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0066: ldloc.1
+IL_0067: ldstr "HOUSEHOLD_GOOD"
+IL_006c: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0071: ldloc.1
+IL_0072: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0077: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007c: ldloc.1
+IL_007d: ldstr "PRE_CONTAINER_TAG"
+IL_0082: ldc.i4.0
+IL_0083: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0088: pop
+IL_0089: ldloc.1
+IL_008a: ldc.i4.1
+IL_008b: conv.i8
+IL_008c: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0091: pop
+IL_0092: ldloc.1
+IL_0093: ldstr "WATER_PURIFICATION_TABLET"
+IL_0098: ldc.i4.0
+IL_0099: call System.Void ContainerHelper::AllowOnlyTaggedItemOwn(GameInventory,GameItem,System.String,System.Boolean)
+IL_009e: ldloc.1
+IL_009f: call System.Void AudioHelper::InitPlasticVial(GameItem)
+IL_00a4: ldloc.1
+IL_00a5: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00aa: ldloc.1
+IL_00ab: ldstr "CONTAINER_TOOLTIP_TAG"
+IL_00b0: ldc.i4.0
+IL_00b1: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b6: pop
+IL_00b7: ldloc.1
+IL_00b8: ret
+GameItem AmenitiesItemDirectory::WaterPurificationTablet()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_tablet"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_tablet_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_tablet_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "davre"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldstr "HOUSEHOLD_GOOD"
+IL_0050: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0055: dup
+IL_0056: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_005b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0060: dup
+IL_0061: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_0066: dup
+IL_0067: ldc.i4.6
+IL_0068: conv.i8
+IL_0069: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_006e: pop
+IL_006f: dup
+IL_0070: ldstr "WATER_PURIFICATION_TABLET"
+IL_0075: ldc.i4.0
+IL_0076: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_007b: pop
+IL_007c: dup
+IL_007d: ldc.i4.1
+IL_007e: ldc.i4.1
+IL_007f: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0084: dup
+IL_0085: ldstr "chlorine"
+IL_008a: ldc.r8 15
+IL_0093: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0098: ret
+System.Int32 ChemicalHelper::HandleChlorine(GameItem)
+IL_0000: newobj System.Void ChemicalHelper/<>c__DisplayClass36_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.0
+IL_0007: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_000c: brfalse.s IL_0010
+IL_000e: ldc.i4.0
+IL_000f: ret
+IL_0010: ldarg.0
+IL_0011: ldstr "chlorine"
+IL_0016: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_001b: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0020: callvirt System.Int32 TagState::GetInt()
+IL_0025: stloc.1
+IL_0026: ldloc.0
+IL_0027: ldarg.0
+IL_0028: ldstr "microbe"
+IL_002d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0032: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0037: callvirt System.Int32 TagState::GetInt()
+IL_003c: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_0041: ldarg.0
+IL_0042: ldstr "chemical_contaminant"
+IL_0047: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_004c: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0051: callvirt System.Int32 TagState::GetInt()
+IL_0056: stloc.2
+IL_0057: ldarg.0
+IL_0058: ldstr "water"
+IL_005d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0062: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0067: callvirt System.Int32 TagState::GetInt()
+IL_006c: stloc.3
+IL_006d: ldarg.0
+IL_006e: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0073: stloc.s V_4
+IL_0075: ldloc.1
+IL_0076: ldc.i4.0
+IL_0077: ble.s IL_007d
+IL_0079: ldloc.3
+IL_007a: ldc.i4.0
+IL_007b: bgt.s IL_007f
+IL_007d: ldc.i4.0
+IL_007e: ret
+IL_007f: ldloc.1
+IL_0080: ldc.i4 15000
+IL_0085: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_008a: stloc.s V_5
+IL_008c: ldloc.s V_5
+IL_008e: conv.r8
+IL_008f: ldc.r8 5.1
+IL_0098: mul
+IL_0099: conv.i8
+IL_009a: stloc.s V_6
+IL_009c: ldloc.s V_4
+IL_009e: conv.r4
+IL_009f: ldc.r4 0.007
+IL_00a4: mul
+IL_00a5: conv.i4
+IL_00a6: stloc.s V_7
+IL_00a8: ldloc.2
+IL_00a9: ldloc.s V_7
+IL_00ab: bgt.s IL_00b0
+IL_00ad: ldc.i4.0
+IL_00ae: br.s IL_00bd
+IL_00b0: ldloc.2
+IL_00b1: ldloc.s V_7
+IL_00b3: sub
+IL_00b4: conv.i8
+IL_00b5: ldloc.s V_6
+IL_00b7: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00bc: conv.i4
+IL_00bd: stloc.s V_8
+IL_00bf: ldloc.s V_6
+IL_00c1: ldloc.s V_8
+IL_00c3: conv.i8
+IL_00c4: sub
+IL_00c5: stloc.s V_6
+IL_00c7: ldloc.0
+IL_00c8: ldloc.2
+IL_00c9: ldloc.s V_8
+IL_00cb: sub
+IL_00cc: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::newChemicals
+IL_00d1: ldloc.0
+IL_00d2: ldloc.0
+IL_00d3: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_00d8: conv.i8
+IL_00d9: ldloc.s V_6
+IL_00db: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00e0: conv.i4
+IL_00e1: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbesDestroyed
+IL_00e6: ldloc.0
+IL_00e7: ldloc.1
+IL_00e8: ldloc.s V_5
+IL_00ea: sub
+IL_00eb: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f0: ldloc.0
+IL_00f1: ldloc.0
+IL_00f2: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f7: ldc.i4 1000
+IL_00fc: ldloc.0
+IL_00fd: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_0102: conv.r8
+IL_0103: ldc.r8 0.2
+IL_010c: mul
+IL_010d: conv.i4
+IL_010e: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0113: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0118: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::selfDegraded
+IL_011d: ldarg.0
+IL_011e: ldstr "chlorine"
+IL_0123: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0128: ldloc.0
+IL_0129: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__0(TagState)
+IL_012f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0134: ldc.i4.1
+IL_0135: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_013a: pop
+IL_013b: ldarg.0
+IL_013c: ldstr "microbe"
+IL_0141: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0146: ldloc.0
+IL_0147: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__1(TagState)
+IL_014d: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0152: ldc.i4.1
+IL_0153: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0158: pop
+IL_0159: ldarg.0
+IL_015a: ldstr "chemical_contaminant"
+IL_015f: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0164: ldloc.0
+IL_0165: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__2(TagState)
+IL_016b: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0170: ldc.i4.1
+IL_0171: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0176: pop
+IL_0177: ldc.i4.1
+IL_0178: ret
+System.Void WaterHelper::OnWaterPurificationTabletAdded2(GameItem)
+IL_0000: newobj System.Void WaterHelper/<>c__DisplayClass32_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.0
+IL_0007: ldstr "LIQUID_CONTAINER_TAG"
+IL_000c: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0011: brtrue.s IL_0014
+IL_0013: ret
+IL_0014: ldarg.0
+IL_0015: ldstr "microbe"
+IL_001a: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_001f: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0024: callvirt System.Int32 TagState::GetInt()
+IL_0029: stloc.1
+IL_002a: ldloc.0
+IL_002b: ldc.i4.0
+IL_002c: ldloc.1
+IL_002d: ldc.i4 50000
+IL_0032: sub
+IL_0033: call System.Int32 UnityEngine.Mathf::Max(System.Int32,System.Int32)
+IL_0038: stfld System.Int32 WaterHelper/<>c__DisplayClass32_0::newMicrobialAmount
+IL_003d: ldarg.0
+IL_003e: ldstr "microbe"
+IL_0043: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0048: ldloc.0
+IL_0049: ldftn System.Void WaterHelper/<>c__DisplayClass32_0::<OnWaterPurificationTabletAdded2>b__0(TagState)
+IL_004f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0054: ldc.i4.0
+IL_0055: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_005a: pop
+IL_005b: ldarg.0
+IL_005c: ldstr "chemical_contaminant"
+IL_0061: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0066: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_006b: callvirt System.Int32 TagState::GetInt()
+IL_0070: stloc.2
+IL_0071: ldloc.0
+IL_0072: ldc.i4 500
+IL_0077: ldloc.2
+IL_0078: ldc.i4 5000
+IL_007d: sub
+IL_007e: call System.Int32 UnityEngine.Mathf::Max(System.Int32,System.Int32)
+IL_0083: stfld System.Int32 WaterHelper/<>c__DisplayClass32_0::newChemicalAmount
+IL_0088: ldarg.0
+IL_0089: ldstr "chemical_contaminant"
+IL_008e: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0093: ldloc.0
+IL_0094: ldftn System.Void WaterHelper/<>c__DisplayClass32_0::<OnWaterPurificationTabletAdded2>b__1(TagState)
+IL_009a: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_009f: ldc.i4.0
+IL_00a0: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00a5: pop
+IL_00a6: ldarg.0
+IL_00a7: ldc.i4.0
+IL_00a8: call System.Void WaterFeatureHelper::UpdateWaterFeature(GameItem,System.Boolean)
+IL_00ad: ret
+System.Void WaterHelper::OnWaterPurificationTabletAdded(GameItem)
+IL_0000: newobj System.Void WaterHelper/<>c__DisplayClass33_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.0
+IL_0007: ldstr "LIQUID_CONTAINER_TAG"
+IL_000c: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0011: brtrue.s IL_0014
+IL_0013: ret
+IL_0014: ldloc.0
+IL_0015: ldarg.0
+IL_0016: ldstr "microbe"
+IL_001b: ldc.i4 75000
+IL_0020: ldc.i4.0
+IL_0021: ldc.i4.m1
+IL_0022: call System.Int32 WaterHelper::RemoveContaminantFromContainer(GameItem,System.String,System.Int32,System.Int32,System.Int32)
+IL_0027: stfld System.Int32 WaterHelper/<>c__DisplayClass33_0::amount1
+IL_002c: ldloc.0
+IL_002d: ldarg.0
+IL_002e: ldstr "chemical_contaminant"
+IL_0033: ldc.i4 10000
+IL_0038: ldc.i4.5
+IL_0039: ldc.i4.m1
+IL_003a: call System.Int32 WaterHelper::RemoveContaminantFromContainer(GameItem,System.String,System.Int32,System.Int32,System.Int32)
+IL_003f: stfld System.Int32 WaterHelper/<>c__DisplayClass33_0::amount2
+IL_0044: ldloc.0
+IL_0045: ldarg.0
+IL_0046: ldstr "water"
+IL_004b: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0050: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0055: callvirt System.Int32 TagState::GetInt()
+IL_005a: stfld System.Int32 WaterHelper/<>c__DisplayClass33_0::targetPartAmount
+IL_005f: ldarg.0
+IL_0060: ldstr "water"
+IL_0065: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_006a: ldloc.0
+IL_006b: ldftn System.Void WaterHelper/<>c__DisplayClass33_0::<OnWaterPurificationTabletAdded>b__0(TagState)
+IL_0071: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0076: ldc.i4.0
+IL_0077: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_007c: pop
+IL_007d: ldloc.0
+IL_007e: ldarg.0
+IL_007f: ldstr "water"
+IL_0084: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0089: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_008e: callvirt System.Int32 TagState::GetInt()
+IL_0093: stfld System.Int32 WaterHelper/<>c__DisplayClass33_0::targetPartAmount
+IL_0098: ldarg.0
+IL_0099: ldstr "water"
+IL_009e: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_00a3: ldloc.0
+IL_00a4: ldftn System.Void WaterHelper/<>c__DisplayClass33_0::<OnWaterPurificationTabletAdded>b__1(TagState)
+IL_00aa: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_00af: ldc.i4.0
+IL_00b0: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00b5: pop
+IL_00b6: ldarg.0
+IL_00b7: ldc.i4.0
+IL_00b8: call System.Void WaterFeatureHelper::UpdateWaterFeature(GameItem,System.Boolean)
+IL_00bd: ret

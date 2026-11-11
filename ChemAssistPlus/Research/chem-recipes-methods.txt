@@ -1,0 +1,117 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+  0: GameItem item None
+  1: System.Boolean isBlendable Optional, HasDefault
+  2: System.Boolean isSoluble Optional, HasDefault
+System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+  0: GameItem item None
+  1: System.String liquidID None
+  2: System.Double volume None
+System.Void ChemicalHelper::SetChemContentUL(GameItem,System.String,System.Int32)
+  0: GameItem item None
+  1: System.String liquidID None
+  2: System.Int32 volume None
+System.Void ChemicalHelper::AddChemContentUL(GameItem,System.String,System.Int32)
+  0: GameItem item None
+  1: System.String liquidID None
+  2: System.Int32 volume None
+System.Void ChemicalHelper::BlendInto(GameItem,GameItem,System.Int32)
+  0: GameItem chemicalItem None
+  1: GameItem liquidContainer None
+  2: System.Int32 loss Optional, HasDefault
+System.Void ChemicalHelper::DissolveInto(GameItem,GameItem)
+  0: GameItem chemicalItem None
+  1: GameItem liquidContainer None
+System.Double ChemicalHelper::GetCooledTemp(System.Double,System.Double,System.Int32,System.Double,System.Double)
+  0: System.Double initialTemp None
+  1: System.Double ambientTemp None
+  2: System.Int32 volume None
+  3: System.Double timeSeconds None
+  4: System.Double coolingFactor Optional, HasDefault
+System.Void ChemicalHelper::HandleAmbientTempDrop(GameItem)
+  0: GameItem container None
+System.Void ChemicalHelper::InitContainerTempFunction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::GetTotalVolume(GameItem)
+  0: GameItem chemicalItem None
+System.Int32 ChemicalHelper::RemoveVolume(GameItem,System.Int32)
+  0: GameItem chemicalItem None
+  1: System.Int32 percentToRemove None
+System.Void ChemicalHelper::HandleTemperatureReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleDreamCapExtractDegradation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleBoilingReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleDreamCapMushDegradation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleCoffeeBeanExtractionSolvent(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleCoffeeBeanExtractionWater(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleDreamCapMushReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleNightmareCapMushReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleNomoreReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleNightmareCapExtractDegradation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleNightmareCapMushDegradation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleChlorine(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleAcidBaseNeutralization(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleOrganicWasteMineralization(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleAcidBaseMicrobeKill(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleStabilizingAgentSedimentation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleProteinPrecipitation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleLipobondAgentSedimentation(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleMethylolHeatReaction(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleFantaHeat(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleMicrobeHeat(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleMicrobeAlcohol(GameItem)
+  0: GameItem container None
+System.Int32 ChemicalHelper::HandleOrganicWasteHeat(GameItem)
+  0: GameItem container None
+System.Double ChemicalHelper::MixTemperature(System.Int32,System.Double,System.Int32,System.Double)
+  0: System.Int32 receiverVolume None
+  1: System.Double receiverTemp None
+  2: System.Int32 incomingVolume None
+  3: System.Double incomingTemp None
+System.Void ChemicalHelper::HandleReceiveLiquidTemp(GameItem,System.Int32,System.Double)
+  0: GameItem container None
+  1: System.Int32 volume None
+  2: System.Double sourceTemp Optional, HasDefault
+System.Void ChemicalHelper::HandleReceiveLiquidTemp(GameItem,System.Int32,GameItem)
+  0: GameItem container None
+  1: System.Int32 volume None
+  2: GameItem sourceContainer None
+System.Void ChemicalHelper::HandleEmptyContainerTemp(GameItem)
+  0: GameItem container None
+System.Void ChemicalHelper::InitContainerTemp(GameItem)
+  0: GameItem container None
+System.Double ChemicalHelper::ConvertCtoK(System.Double)
+  0: System.Double celsius None
+System.Void ChemicalHelper::TransferLiquidToChem(GameItem,GameItem,System.Int32)
+  0: GameItem container None
+  1: GameItem chemicalItem None
+  2: System.Int32 volumeInPart None
+System.Void ChemicalHelper::AddLiquidToChemFromList(GameItem,System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>>)
+  0: GameItem chemicalItem None
+  1: System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>> liquidList None
+System.Void ChemicalHelper::RemoveAllLiquid(GameItem)
+  0: GameItem chemicalItem None
+System.Void ChemicalHelper::RunNightlyChemicalSimulation()
+System.Void ChemicalHelper::.ctor()
+System.Void ChemicalHelper::.cctor()

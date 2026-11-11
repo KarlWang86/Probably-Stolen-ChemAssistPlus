@@ -1,0 +1,100 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void WaterFeatureHelper::UpdateWaterFeature(GameItem,System.Boolean)
+  0: GameItem gameItem None
+  1: System.Boolean isExpose None
+  local 0: ItemFeature
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Int32
+  local 4: System.Int32
+  local 5: System.Int32
+IL_0000: ldarg.0
+IL_0001: call ItemFeature WaterFeatureHelper::GetWaterFeature(GameItem)
+IL_0006: stloc.0
+IL_0007: ldloc.0
+IL_0008: ldfld System.Int32 ItemFeature::customIntValue1
+IL_000d: ldarg.0
+IL_000e: call System.Int32 WaterHelper::GetWaterPurity(GameItem)
+IL_0013: stloc.1
+IL_0014: ldarg.0
+IL_0015: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_001a: stloc.2
+IL_001b: ldloc.0
+IL_001c: ldarg.0
+IL_001d: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_0022: stfld System.Boolean ItemFeature::isDisabled
+IL_0027: ldarg.0
+IL_0028: call System.Void WaterHelper::ResetLastScanResult(GameItem)
+IL_002d: ldarg.1
+IL_002e: brfalse.s IL_0037
+IL_0030: ldloc.0
+IL_0031: ldloc.1
+IL_0032: stfld System.Int32 ItemFeature::customIntValue1
+IL_0037: ldloc.0
+IL_0038: ldarg.0
+IL_0039: call System.String WaterFeatureHelper::GetWaterDisplayName(GameItem)
+IL_003e: ldstr " ("
+IL_0043: ldsfld System.String[] WaterFeatureHelper::WATER_VALUE_DISPLAY
+IL_0048: ldloc.1
+IL_0049: call System.Int32 WaterFeatureHelper::GetPurityArrayIndex(System.Int32)
+IL_004e: ldelem.ref
+IL_004f: ldstr " Purity)"
+IL_0054: call System.String System.String::Concat(System.String,System.String,System.String,System.String)
+IL_0059: callvirt ItemFeature ItemFeature::SetActualDisplay(System.String)
+IL_005e: pop
+IL_005f: ldloc.1
+IL_0060: bne.un.s IL_006b
+IL_0062: ldloc.0
+IL_0063: ldc.i4.1
+IL_0064: callvirt System.Void ItemFeature::set_isFeatureMatch(System.Boolean)
+IL_0069: br.s IL_00cb
+IL_006b: ldloc.2
+IL_006c: call System.Int32 WaterFeatureHelper::GetWaterPrice(System.Int32)
+IL_0071: stloc.3
+IL_0072: ldloc.2
+IL_0073: call System.Int32 WaterFeatureHelper::GetWaterPrice(System.Int32)
+IL_0078: stloc.s V_4
+IL_007a: ldloc.0
+IL_007b: ldc.i4.0
+IL_007c: callvirt System.Void ItemFeature::set_isFeatureMatch(System.Boolean)
+IL_0081: ldloc.0
+IL_0082: ldloc.1
+IL_0083: call ItemCondition WaterFeatureHelper::GetConditionFromPurity(System.Int32)
+IL_0088: stfld ItemCondition ItemFeature::realCondition
+IL_008d: ldc.i4.0
+IL_008e: stloc.s V_5
+IL_0090: ldloc.0
+IL_0091: ldarg.1
+IL_0092: callvirt System.Void ItemFeature::SetExposed(System.Boolean)
+IL_0097: ldarg.1
+IL_0098: brtrue.s IL_00be
+IL_009a: ldarg.0
+IL_009b: ldstr "STRIP_TESTED_TAG"
+IL_00a0: ldc.i4.1
+IL_00a1: callvirt System.Boolean GameItem::DisableTag(System.String,System.Boolean)
+IL_00a6: pop
+IL_00a7: ldloc.3
+IL_00a8: brtrue.s IL_00af
+IL_00aa: ldc.i4.0
+IL_00ab: stloc.s V_5
+IL_00ad: br.s IL_00c2
+IL_00af: ldc.i4.s 100
+IL_00b1: ldloc.s V_4
+IL_00b3: ldc.i4.s 100
+IL_00b5: mul
+IL_00b6: ldloc.3
+IL_00b7: div
+IL_00b8: sub
+IL_00b9: neg
+IL_00ba: stloc.s V_5
+IL_00bc: br.s IL_00c2
+IL_00be: ldloc.s V_4
+IL_00c0: stloc.s V_5
+IL_00c2: ldloc.0
+IL_00c3: ldloc.s V_5
+IL_00c5: callvirt ItemFeature ItemFeature::SetValueModifier(System.Int32)
+IL_00ca: pop
+IL_00cb: ldarg.0
+IL_00cc: call System.Void ChemicalHelper::HandleEmptyContainerTemp(GameItem)
+IL_00d1: ret

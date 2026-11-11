@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+using HarmonyLib;
+
+namespace ChemAssistPlus
+{
+    public static partial class Plus
+    {
+        static int activeTarget, originalTarget, activeModules;
+        static bool HeatingHookReady()
+        {
+            var info = Harmony.GetPatchInfo(AccessTools.Method(typeof(MachineHeatingPlate), "HandleHeating"));
+            return info != null && info.Prefixes.Any(p => p.PatchMethod.DeclaringType == typeof(HeatingControl));
+        }
+        internal static void ControlHeating(GameSlotInventory slot, GameItem machine)
+        {
+            // Native low-tier machines reset their target immediately before HandleHeating.
+            // Override only our running batch; preserve the game's heating and reaction ticks.
+            if (!busy || job == null || machine != activePlate || activeTarget <= 0) return;
+            if (slot?.childItem != contextPot || !Owned(machine)
+                || MachineBlender.GetUpgradeCount(machine) != activeModules)
+            { StopPlate(); throw new InvalidOperationException("自动控温条件改变，已关闭本批加热板。"); }
+            if (activeModules < 2)
+                machine.ModifyTag(MachineHeatingPlate.CURRENT_TARGET_TEMP, s => s.SetInt(activeTarget), true);
+        }
+    }
+
+    [HarmonyPatch(typeof(MachineHeatingPlate), "HandleHeating")]
+    internal static class HeatingControl
+    {
+        static void Prefix(GameSlotInventory __0, GameItem __2) => Plus.ControlHeating(__0, __2);
+    }
+}

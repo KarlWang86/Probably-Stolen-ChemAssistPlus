@@ -1,0 +1,1512 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MedsItemDirectory::InitDirectory()
+IL_0000: ldarg.0
+IL_0001: ldstr "black_injector"
+IL_0006: ldarg.0
+IL_0007: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_0()
+IL_000d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0012: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0017: pop
+IL_0018: ldarg.0
+IL_0019: ldstr "pink_injector"
+IL_001e: ldarg.0
+IL_001f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_1()
+IL_0025: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_002a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_002f: pop
+IL_0030: ldarg.0
+IL_0031: ldstr "pink_alt_injector"
+IL_0036: ldarg.0
+IL_0037: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_2()
+IL_003d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0042: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0047: pop
+IL_0048: ldarg.0
+IL_0049: ldstr "large_purple_injector"
+IL_004e: ldarg.0
+IL_004f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_3()
+IL_0055: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_005a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_005f: pop
+IL_0060: ldarg.0
+IL_0061: ldstr "pure_white_injector"
+IL_0066: ldarg.0
+IL_0067: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_4()
+IL_006d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0072: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0077: pop
+IL_0078: ldarg.0
+IL_0079: ldstr "birth_control_pill"
+IL_007e: ldarg.0
+IL_007f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_5()
+IL_0085: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_008a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_008f: pop
+IL_0090: ldarg.0
+IL_0091: ldstr "fanta_pill"
+IL_0096: ldarg.0
+IL_0097: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_6()
+IL_009d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00a2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00a7: pop
+IL_00a8: ldarg.0
+IL_00a9: ldstr "phagimycin_pill"
+IL_00ae: ldarg.0
+IL_00af: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_7()
+IL_00b5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00ba: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00bf: pop
+IL_00c0: ldarg.0
+IL_00c1: ldstr "unlicensed_phagimycin_pill"
+IL_00c6: ldarg.0
+IL_00c7: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_8()
+IL_00cd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00d2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00d7: pop
+IL_00d8: ldarg.0
+IL_00d9: ldstr "zyanide_pill"
+IL_00de: ldarg.0
+IL_00df: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_9()
+IL_00e5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00ea: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_00ef: pop
+IL_00f0: ldarg.0
+IL_00f1: ldstr "smelling_salt"
+IL_00f6: ldarg.0
+IL_00f7: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_10()
+IL_00fd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0102: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0107: pop
+IL_0108: ldarg.0
+IL_0109: ldstr "bandage_item"
+IL_010e: ldarg.0
+IL_010f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_11()
+IL_0115: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_011a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_011f: pop
+IL_0120: ldarg.0
+IL_0121: ldstr "hemostatic_bandage_item"
+IL_0126: ldarg.0
+IL_0127: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_12()
+IL_012d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0132: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0137: pop
+IL_0138: ldarg.0
+IL_0139: ldstr "topical_bandage_item"
+IL_013e: ldarg.0
+IL_013f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_13()
+IL_0145: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_014a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_014f: pop
+IL_0150: ldarg.0
+IL_0151: ldstr "blood_bag"
+IL_0156: ldarg.0
+IL_0157: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_14()
+IL_015d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0162: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0167: pop
+IL_0168: ldarg.0
+IL_0169: ldstr "blue_blood_bag"
+IL_016e: ldarg.0
+IL_016f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_15()
+IL_0175: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_017a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_017f: pop
+IL_0180: ldarg.0
+IL_0181: ldstr "dream_dust"
+IL_0186: ldarg.0
+IL_0187: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_16()
+IL_018d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0192: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0197: pop
+IL_0198: ldarg.0
+IL_0199: ldstr "nightmare_dust"
+IL_019e: ldarg.0
+IL_019f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_17()
+IL_01a5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01aa: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01af: pop
+IL_01b0: ldarg.0
+IL_01b1: ldstr "caffeine_pill"
+IL_01b6: ldarg.0
+IL_01b7: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_18()
+IL_01bd: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01c2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01c7: pop
+IL_01c8: ldarg.0
+IL_01c9: ldstr "salve"
+IL_01ce: ldarg.0
+IL_01cf: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_19()
+IL_01d5: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01da: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01df: pop
+IL_01e0: ldarg.0
+IL_01e1: ldstr "rubbing_alcohol"
+IL_01e6: ldarg.0
+IL_01e7: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_20()
+IL_01ed: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_01f2: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_01f7: pop
+IL_01f8: ldarg.0
+IL_01f9: ldstr "zerochew"
+IL_01fe: ldarg.0
+IL_01ff: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_21()
+IL_0205: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_020a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_020f: pop
+IL_0210: ldarg.0
+IL_0211: ldstr "chem_scanner"
+IL_0216: ldarg.0
+IL_0217: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_22()
+IL_021d: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0222: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_0227: pop
+IL_0228: ldarg.0
+IL_0229: ldstr "surgery_tool"
+IL_022e: ldarg.0
+IL_022f: ldftn GameItem MedsItemDirectory::<InitDirectory>b__0_23()
+IL_0235: newobj System.Void System.Func`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_023a: callvirt System.Boolean Directory`1<GameItem>::Add(System.String,System.Func`1<T>)
+IL_023f: pop
+IL_0240: ret
+GameItem MedsItemDirectory::BirthControlPill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "items_medical_15"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_birth_control_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_birth_control_pill_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.1
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_004c: ldstr "null"
+IL_0051: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_0056: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_005b: dup
+IL_005c: ldc.i4.s 15
+IL_005e: conv.i8
+IL_005f: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0064: dup
+IL_0065: ldstr "MEDICAL"
+IL_006a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006f: dup
+IL_0070: ldc.i4.1
+IL_0071: ldc.i4.1
+IL_0072: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0077: dup
+IL_0078: ldstr "birth_control_pill"
+IL_007d: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_0082: dup
+IL_0083: ldstr "contraceptive"
+IL_0088: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_008d: dup
+IL_008e: ldc.i4.6
+IL_008f: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_0094: ret
+GameItem MedsItemDirectory::PhagimycinPill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "pill1"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_phagimycin_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_phagimycin_pill_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.1
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: ldstr "carmicheal"
+IL_004c: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0051: dup
+IL_0052: ldc.i4.s 25
+IL_0054: conv.i8
+IL_0055: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_005a: ret
+GameItem MedsItemDirectory::UnlicensedPhagimycinPill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "pill2"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_unlicensed_phagimycin_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_unlicensed_phagimycin_pill_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.1
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: ldc.i4.2
+IL_0048: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_004d: dup
+IL_004e: ldstr "spacer"
+IL_0053: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0058: dup
+IL_0059: ldc.i4.5
+IL_005a: conv.i8
+IL_005b: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0060: dup
+IL_0061: ldstr "MEDICAL"
+IL_0066: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006b: ret
+GameItem MedsItemDirectory::ZyanidePill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "items_medical_12"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_zyanide_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_zyanide_pill_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.0
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: ldc.i4.s 33
+IL_0049: conv.i8
+IL_004a: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_004f: dup
+IL_0050: ldstr "POISON"
+IL_0055: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005a: dup
+IL_005b: ldc.i4.2
+IL_005c: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_0061: dup
+IL_0062: ldc.i4.1
+IL_0063: ldc.i4.1
+IL_0064: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0069: dup
+IL_006a: ldstr "zyanide_pill"
+IL_006f: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_0074: dup
+IL_0075: ldstr "zyanide"
+IL_007a: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_007f: dup
+IL_0080: ldstr "zyanide"
+IL_0085: ldc.r8 1
+IL_008e: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0093: dup
+IL_0094: ldc.i4.5
+IL_0095: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_009a: ret
+GameItem MedsItemDirectory::FentanylPill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "oxycodone_pill"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_fanta_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldc.i4.1
+IL_002c: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0031: dup
+IL_0032: ldstr "spacer"
+IL_0037: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_003c: dup
+IL_003d: ldc.i4.s 12
+IL_003f: conv.i8
+IL_0040: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0045: dup
+IL_0046: ldc.i4.3
+IL_0047: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_004c: dup
+IL_004d: ldstr "MEDICAL"
+IL_0052: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0057: dup
+IL_0058: ldstr "NARCOTIC"
+IL_005d: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0062: dup
+IL_0063: ldstr "SUBSTANCE"
+IL_0068: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006d: dup
+IL_006e: ldstr "item_fanta_pill_desc"
+IL_0073: call !!0[] System.Array::Empty<System.Object>()
+IL_0078: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_007d: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0082: dup
+IL_0083: ldstr "item_fanta_pill_flavor"
+IL_0088: call !!0[] System.Array::Empty<System.Object>()
+IL_008d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0092: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0097: dup
+IL_0098: ldc.i4.3
+IL_0099: call System.Void ConsumableHelper::InitNarcotic(GameItem,System.Int32)
+IL_009e: dup
+IL_009f: ldc.i4.1
+IL_00a0: ldc.i4.1
+IL_00a1: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_00a6: dup
+IL_00a7: ldstr "fanta_pill"
+IL_00ac: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_00b1: dup
+IL_00b2: ldstr "fanta"
+IL_00b7: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_00bc: dup
+IL_00bd: ldc.i4.3
+IL_00be: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_00c3: ret
+GameItem MedsItemDirectory::ZeroChew()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "zerochew"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_zerochew_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_zerochew_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_zerochew_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldc.i4.1
+IL_0056: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_005b: dup
+IL_005c: ldstr "carmicheal"
+IL_0061: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0066: dup
+IL_0067: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_006c: dup
+IL_006d: ldc.i4.8
+IL_006e: conv.i8
+IL_006f: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0074: dup
+IL_0075: ldstr "FOOD"
+IL_007a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007f: dup
+IL_0080: ldstr "HOUSEHOLD_GOOD"
+IL_0085: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_008a: dup
+IL_008b: ldstr "MEDICAL"
+IL_0090: callvirt System.Void GameItem::RemoveGameItemType(System.String)
+IL_0095: ret
+GameItem MedsItemDirectory::SmellingSalt()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "smelling_salt"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_smelling_salt_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: call System.Void AudioHelper::InitTinyItem(GameItem)
+IL_0030: dup
+IL_0031: ldstr "carmicheal"
+IL_0036: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_003b: dup
+IL_003c: call System.Void AudioHelper::InitPillAudio(GameItem)
+IL_0041: dup
+IL_0042: ldc.i4.s 15
+IL_0044: conv.i8
+IL_0045: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_004a: dup
+IL_004b: ldstr "ITEM_MEDICAL_TAG"
+IL_0050: ldc.i4.0
+IL_0051: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0056: pop
+IL_0057: dup
+IL_0058: ldstr "item_smelling_salt_desc"
+IL_005d: call !!0[] System.Array::Empty<System.Object>()
+IL_0062: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0067: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_006c: dup
+IL_006d: ldstr "MEDICAL"
+IL_0072: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0077: ret
+GameItem MedsItemDirectory::BloodBag()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "blood_bag"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_blood_bag_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: call System.Void AudioHelper::InitEdibleAudio(GameItem)
+IL_003b: dup
+IL_003c: ldc.i4.s 33
+IL_003e: conv.i8
+IL_003f: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0044: dup
+IL_0045: ldstr "item_blood_bag_desc"
+IL_004a: call !!0[] System.Array::Empty<System.Object>()
+IL_004f: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0054: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0059: dup
+IL_005a: ldstr "MEDICAL_PROFICIENCY"
+IL_005f: callvirt System.Void GameItem::EnableProficiency(System.String)
+IL_0064: dup
+IL_0065: ldstr "ITEM_MEDICAL_TAG"
+IL_006a: ldc.i4.0
+IL_006b: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0070: pop
+IL_0071: ret
+GameItem MedsItemDirectory::BlueBloodBag()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "blue_blood_bag"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_blue_blood_bag_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "LUXURY_ITEM"
+IL_003b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0040: dup
+IL_0041: call System.Void AudioHelper::InitEdibleAudio(GameItem)
+IL_0046: dup
+IL_0047: ldstr "ashvins"
+IL_004c: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0051: dup
+IL_0052: ldc.i4 250
+IL_0057: conv.i8
+IL_0058: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_005d: dup
+IL_005e: ldstr "item_blue_blood_bag_desc"
+IL_0063: call !!0[] System.Array::Empty<System.Object>()
+IL_0068: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_006d: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0072: dup
+IL_0073: ldstr "item_blue_blood_bag_flavor"
+IL_0078: call !!0[] System.Array::Empty<System.Object>()
+IL_007d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0082: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0087: dup
+IL_0088: ldstr "MEDICAL_PROFICIENCY"
+IL_008d: callvirt System.Void GameItem::EnableProficiency(System.String)
+IL_0092: dup
+IL_0093: ldstr "ITEM_MEDICAL_TAG"
+IL_0098: ldc.i4.0
+IL_0099: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_009e: pop
+IL_009f: ret
+GameItem MedsItemDirectory::DreamDust()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "dream_dust"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_dream_dust_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "NARCOTIC"
+IL_003b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0040: dup
+IL_0041: ldstr "SUBSTANCE"
+IL_0046: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_004b: dup
+IL_004c: ldc.i4.2
+IL_004d: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_0052: dup
+IL_0053: ldstr "item_dream_dust_flavor"
+IL_0058: call !!0[] System.Array::Empty<System.Object>()
+IL_005d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0062: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0067: dup
+IL_0068: ldc.i4.s 18
+IL_006a: conv.i8
+IL_006b: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0070: dup
+IL_0071: ldc.i4.1
+IL_0072: call System.Void ConsumableHelper::InitNarcotic(GameItem,System.Int32)
+IL_0077: dup
+IL_0078: ldc.i4.1
+IL_0079: ldc.i4.1
+IL_007a: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_007f: dup
+IL_0080: ldstr "dream_dust"
+IL_0085: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_008a: dup
+IL_008b: ldstr "dream_cap_extract"
+IL_0090: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_0095: dup
+IL_0096: ldc.i4.3
+IL_0097: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_009c: dup
+IL_009d: call System.Void AudioHelper::InitGlassVial(GameItem)
+IL_00a2: ret
+GameItem MedsItemDirectory::NightmareDust()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "nightmare_dust"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_nightmare_dust_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "POISON"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldc.i4.3
+IL_0037: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_003c: dup
+IL_003d: ldstr "item_nightmare_dust_flavor"
+IL_0042: call !!0[] System.Array::Empty<System.Object>()
+IL_0047: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004c: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0051: dup
+IL_0052: ldc.i4.s 36
+IL_0054: conv.i8
+IL_0055: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_005a: dup
+IL_005b: call System.Void AudioHelper::InitGlassVial(GameItem)
+IL_0060: dup
+IL_0061: ldc.i4.1
+IL_0062: ldc.i4.1
+IL_0063: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0068: dup
+IL_0069: ldstr "nightmare_dust"
+IL_006e: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_0073: dup
+IL_0074: ldstr "nightmare_extract"
+IL_0079: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_007e: dup
+IL_007f: ldc.i4.5
+IL_0080: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_0085: ret
+GameItem MedsItemDirectory::CaffeinePill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "cafeine_pill"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_caffeine_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "HOUSEHOLD_GOOD"
+IL_003b: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0040: dup
+IL_0041: ldstr "spacer"
+IL_0046: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004b: dup
+IL_004c: ldstr "item_caffeine_pill_flavor"
+IL_0051: call !!0[] System.Array::Empty<System.Object>()
+IL_0056: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_005b: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0060: dup
+IL_0061: ldc.i4.s 10
+IL_0063: conv.i8
+IL_0064: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0069: dup
+IL_006a: ldc.i4.1
+IL_006b: ldc.i4.1
+IL_006c: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0071: dup
+IL_0072: ldstr "caffeine_pill"
+IL_0077: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_007c: dup
+IL_007d: ldstr "caffeine"
+IL_0082: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_0087: dup
+IL_0088: ldc.i4.4
+IL_0089: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_008e: ret
+GameItem MedsItemDirectory::HealingSalve()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "salve"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_salve_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "spacer"
+IL_003b: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0040: dup
+IL_0041: ldstr "item_salve_flavor"
+IL_0046: call !!0[] System.Array::Empty<System.Object>()
+IL_004b: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0050: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0055: dup
+IL_0056: ldc.i4.s 80
+IL_0058: conv.i8
+IL_0059: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_005e: ret
+GameItem MedsItemDirectory::RubbingAlcohol()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "black_bottle"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_rubbing_alcohol_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "MEDICAL"
+IL_0030: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0035: dup
+IL_0036: ldstr "item_rubbing_alcohol_flavor"
+IL_003b: call !!0[] System.Array::Empty<System.Object>()
+IL_0040: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0045: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_004a: dup
+IL_004b: ldc.i4.s 35
+IL_004d: conv.i8
+IL_004e: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0053: ret
+GameItem MedsItemDirectory::Bandage()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "bandage_small"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_bandage_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__15_0
+IL_0030: dup
+IL_0031: brtrue.s IL_004a
+IL_0033: pop
+IL_0034: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0039: ldftn System.Boolean MedsItemDirectory/<>c::<Bandage>b__15_0(GameItem,GameInventory,SlotMarker)
+IL_003f: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0044: dup
+IL_0045: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__15_0
+IL_004a: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_004f: dup
+IL_0050: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__15_1
+IL_0055: dup
+IL_0056: brtrue.s IL_006f
+IL_0058: pop
+IL_0059: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_005e: ldftn System.Boolean MedsItemDirectory/<>c::<Bandage>b__15_1(GameItem,GameInventory,SlotMarker)
+IL_0064: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0069: dup
+IL_006a: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__15_1
+IL_006f: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0074: dup
+IL_0075: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__15_2
+IL_007a: dup
+IL_007b: brtrue.s IL_0094
+IL_007d: pop
+IL_007e: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0083: ldftn System.Void MedsItemDirectory/<>c::<Bandage>b__15_2(GameItem,GameInventory,SlotMarker)
+IL_0089: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_008e: dup
+IL_008f: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__15_2
+IL_0094: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_0099: dup
+IL_009a: ldstr "MEDICAL_PROFICIENCY"
+IL_009f: callvirt System.Void GameItem::EnableProficiency(System.String)
+IL_00a4: dup
+IL_00a5: ldstr "ITEM_MEDICAL_TAG"
+IL_00aa: ldc.i4.0
+IL_00ab: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b0: pop
+IL_00b1: dup
+IL_00b2: call System.Void AudioHelper::InitTextile(GameItem)
+IL_00b7: dup
+IL_00b8: ldstr "MEDICAL"
+IL_00bd: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_00c2: dup
+IL_00c3: ldc.i4.8
+IL_00c4: conv.i8
+IL_00c5: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_00ca: dup
+IL_00cb: ldstr "item_bandage_desc"
+IL_00d0: call !!0[] System.Array::Empty<System.Object>()
+IL_00d5: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00da: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_00df: ret
+GameItem MedsItemDirectory::HemostaticBandage()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "hemostatic_bandage_small"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_hemostatic_bandage_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__16_0
+IL_0030: dup
+IL_0031: brtrue.s IL_004a
+IL_0033: pop
+IL_0034: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0039: ldftn System.Boolean MedsItemDirectory/<>c::<HemostaticBandage>b__16_0(GameItem,GameInventory,SlotMarker)
+IL_003f: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0044: dup
+IL_0045: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__16_0
+IL_004a: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_004f: dup
+IL_0050: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__16_1
+IL_0055: dup
+IL_0056: brtrue.s IL_006f
+IL_0058: pop
+IL_0059: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_005e: ldftn System.Boolean MedsItemDirectory/<>c::<HemostaticBandage>b__16_1(GameItem,GameInventory,SlotMarker)
+IL_0064: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0069: dup
+IL_006a: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__16_1
+IL_006f: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0074: dup
+IL_0075: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__16_2
+IL_007a: dup
+IL_007b: brtrue.s IL_0094
+IL_007d: pop
+IL_007e: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0083: ldftn System.Void MedsItemDirectory/<>c::<HemostaticBandage>b__16_2(GameItem,GameInventory,SlotMarker)
+IL_0089: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_008e: dup
+IL_008f: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__16_2
+IL_0094: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_0099: dup
+IL_009a: ldstr "MEDICAL_PROFICIENCY"
+IL_009f: callvirt System.Void GameItem::EnableProficiency(System.String)
+IL_00a4: dup
+IL_00a5: ldstr "ITEM_MEDICAL_TAG"
+IL_00aa: ldc.i4.0
+IL_00ab: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b0: pop
+IL_00b1: dup
+IL_00b2: call System.Void AudioHelper::InitTextile(GameItem)
+IL_00b7: dup
+IL_00b8: ldstr "MEDICAL"
+IL_00bd: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_00c2: dup
+IL_00c3: ldc.i4.s 16
+IL_00c5: conv.i8
+IL_00c6: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_00cb: dup
+IL_00cc: ldstr "item_hemostatic_bandage_desc"
+IL_00d1: call !!0[] System.Array::Empty<System.Object>()
+IL_00d6: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00db: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_00e0: ret
+GameItem MedsItemDirectory::TopicalBandage()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "topical_bandage_small"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_topical_bandage_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__17_0
+IL_0030: dup
+IL_0031: brtrue.s IL_004a
+IL_0033: pop
+IL_0034: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0039: ldftn System.Boolean MedsItemDirectory/<>c::<TopicalBandage>b__17_0(GameItem,GameInventory,SlotMarker)
+IL_003f: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0044: dup
+IL_0045: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__17_0
+IL_004a: callvirt System.Void GameItemFunc::set_canActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_004f: dup
+IL_0050: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__17_1
+IL_0055: dup
+IL_0056: brtrue.s IL_006f
+IL_0058: pop
+IL_0059: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_005e: ldftn System.Boolean MedsItemDirectory/<>c::<TopicalBandage>b__17_1(GameItem,GameInventory,SlotMarker)
+IL_0064: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0069: dup
+IL_006a: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__17_1
+IL_006f: callvirt System.Void GameItemFunc::set_mayActivateSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0074: dup
+IL_0075: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__17_2
+IL_007a: dup
+IL_007b: brtrue.s IL_0094
+IL_007d: pop
+IL_007e: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0083: ldftn System.Void MedsItemDirectory/<>c::<TopicalBandage>b__17_2(GameItem,GameInventory,SlotMarker)
+IL_0089: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_008e: dup
+IL_008f: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> MedsItemDirectory/<>c::<>9__17_2
+IL_0094: callvirt System.Void GameItemFunc::set_onActivateSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_0099: dup
+IL_009a: ldstr "ITEM_MEDICAL_TAG"
+IL_009f: ldc.i4.0
+IL_00a0: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00a5: pop
+IL_00a6: dup
+IL_00a7: call System.Void AudioHelper::InitTextile(GameItem)
+IL_00ac: dup
+IL_00ad: ldstr "MEDICAL"
+IL_00b2: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_00b7: dup
+IL_00b8: ldc.i4.s 16
+IL_00ba: conv.i8
+IL_00bb: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_00c0: dup
+IL_00c1: ldstr "item_topical_bandage_desc"
+IL_00c6: call !!0[] System.Array::Empty<System.Object>()
+IL_00cb: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00d0: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_00d5: ret
+GameItem MedsItemDirectory::ImmunivaxInjector()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "injector_purple_large"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_large_purple_injector_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_large_purple_injector_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldc.i4 160
+IL_0045: conv.i8
+IL_0046: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_004b: dup
+IL_004c: call System.Void InsInjectorHelper::Init(GameItem)
+IL_0051: dup
+IL_0052: call System.Void InsInjectorHelper::SetGenuine(GameItem)
+IL_0057: dup
+IL_0058: ldstr "carmicheal"
+IL_005d: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0062: dup
+IL_0063: call System.Void AudioHelper::InitInjectorAudio(GameItem)
+IL_0068: dup
+IL_0069: ldstr "MEDICAL"
+IL_006e: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0073: dup
+IL_0074: call System.Void ConsumableHelper::InitImmunivax(GameItem)
+IL_0079: ret
+GameItem MedsItemDirectory::SynaprestInjector()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "injector_black"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_black_injector_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_black_injector_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_black_injector_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldc.i4 350
+IL_005a: conv.i8
+IL_005b: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0060: dup
+IL_0061: call System.Void AudioHelper::InitInjectorAudio(GameItem)
+IL_0066: dup
+IL_0067: ldstr "MEDICAL"
+IL_006c: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0071: dup
+IL_0072: ldstr "LUXURY_ITEM"
+IL_0077: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_007c: dup
+IL_007d: ldstr "pastel"
+IL_0082: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0087: dup
+IL_0088: call System.Void ConsumableHelper::InitSynaprest(GameItem)
+IL_008d: ret
+System.Void MedsItemDirectory::SetNomoreInjectorPurity(GameItem,System.Int32,System.Int32)
+  0: GameItem item None
+  1: System.Int32 minPurity None
+  2: System.Int32 maxPurity None
+IL_0000: ldarg.0
+IL_0001: call System.Void ChemicalHelper::RemoveAllLiquid(GameItem)
+IL_0006: ldarg.0
+IL_0007: ldarg.1
+IL_0008: ldarg.2
+IL_0009: ldc.i4 4000
+IL_000e: ldstr "nomore"
+IL_0013: call System.Void ChemFinisherRecipe::SetCompositionByPurity(GameItem,System.Int32,System.Int32,System.Int32,System.String)
+IL_0018: ldarg.0
+IL_0019: call System.Void ChemicalProductHelper::GradeProduct(GameItem)
+IL_001e: ret
+GameItem MedsItemDirectory::Injector(MedsItemDirectory/InjectorColor,System.String,System.String)
+  0: MedsItemDirectory/InjectorColor color Optional, HasDefault
+  1: System.String name Optional, HasDefault
+  2: System.String ability Optional, HasDefault
+  local 0: GameItem
+  local 1: System.String
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: stloc.0
+IL_0007: ldstr "injector_white"
+IL_000c: stloc.1
+IL_000d: ldloc.0
+IL_000e: ldstr "carmicheal"
+IL_0013: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0018: ldarg.1
+IL_0019: switch IL_0087,IL_00b0,IL_00bb,IL_0104,IL_0142,IL_0180,IL_0220,IL_0254,IL_01e8,IL_0053,IL_0292,IL_02d5
+IL_004e: br IL_032f
+IL_0053: ldstr "injector_pure_white_s"
+IL_0058: stloc.1
+IL_0059: ldloc.0
+IL_005a: ldstr "item_pure_white_injector_desc"
+IL_005f: call !!0[] System.Array::Empty<System.Object>()
+IL_0064: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0069: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_006e: ldloc.0
+IL_006f: ldstr "NARCOTIC"
+IL_0074: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0079: ldloc.0
+IL_007a: ldc.i4.s 30
+IL_007c: conv.i8
+IL_007d: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0082: br IL_032f
+IL_0087: ldstr "injector_white"
+IL_008c: stloc.1
+IL_008d: ldloc.0
+IL_008e: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0093: ldstr "white_stim_heal"
+IL_0098: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_009d: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_00a2: ldloc.0
+IL_00a3: ldc.i4.s 75
+IL_00a5: conv.i8
+IL_00a6: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_00ab: br IL_032f
+IL_00b0: ldstr "injector_black"
+IL_00b5: stloc.1
+IL_00b6: br IL_032f
+IL_00bb: ldstr "injector_red"
+IL_00c0: stloc.1
+IL_00c1: ldloc.0
+IL_00c2: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_00c7: ldstr "red_stim_heal"
+IL_00cc: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_00d1: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_00d6: ldloc.0
+IL_00d7: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_00dc: ldstr "red_stim_bleed"
+IL_00e1: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_00e6: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_00eb: ldloc.0
+IL_00ec: ldstr "vision"
+IL_00f1: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_00f6: ldloc.0
+IL_00f7: ldc.i4.s 35
+IL_00f9: conv.i8
+IL_00fa: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_00ff: br IL_032f
+IL_0104: ldstr "injector_green"
+IL_0109: stloc.1
+IL_010a: ldloc.0
+IL_010b: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0110: ldstr "green_stim_heal"
+IL_0115: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_011a: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_011f: ldloc.0
+IL_0120: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0125: ldstr "antitoxin"
+IL_012a: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_012f: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_0134: ldloc.0
+IL_0135: ldc.i4.s 50
+IL_0137: conv.i8
+IL_0138: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_013d: br IL_032f
+IL_0142: ldstr "injector_turquoise"
+IL_0147: stloc.1
+IL_0148: ldloc.0
+IL_0149: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_014e: ldstr "combat_stim_acc_buff"
+IL_0153: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_0158: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_015d: ldloc.0
+IL_015e: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0163: ldstr "combat_stim_cc_buff"
+IL_0168: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_016d: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_0172: ldloc.0
+IL_0173: ldc.i4.s 40
+IL_0175: conv.i8
+IL_0176: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_017b: br IL_032f
+IL_0180: ldstr "injector_purple"
+IL_0185: stloc.1
+IL_0186: ldloc.0
+IL_0187: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_018c: ldstr "white_stim_heal"
+IL_0191: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_0196: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_019b: ldloc.0
+IL_019c: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_01a1: ldstr "green_stim_heal"
+IL_01a6: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_01ab: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_01b0: ldloc.0
+IL_01b1: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_01b6: ldstr "red_stim_heal"
+IL_01bb: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_01c0: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_01c5: ldloc.0
+IL_01c6: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_01cb: ldstr "red_stim_bleed"
+IL_01d0: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_01d5: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_01da: ldloc.0
+IL_01db: ldc.i4.s 80
+IL_01dd: conv.i8
+IL_01de: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_01e3: br IL_032f
+IL_01e8: ldstr "injector_purple_large"
+IL_01ed: stloc.1
+IL_01ee: ldloc.0
+IL_01ef: ldstr "item_large_purple_injector_desc"
+IL_01f4: call !!0[] System.Array::Empty<System.Object>()
+IL_01f9: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_01fe: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0203: ldloc.0
+IL_0204: ldc.i4 160
+IL_0209: conv.i8
+IL_020a: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_020f: ldloc.0
+IL_0210: call System.Void InsInjectorHelper::Init(GameItem)
+IL_0215: ldloc.0
+IL_0216: call System.Void InsInjectorHelper::SetGenuine(GameItem)
+IL_021b: br IL_032f
+IL_0220: ldstr "injector_blue"
+IL_0225: stloc.1
+IL_0226: ldloc.0
+IL_0227: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_022c: ldstr "blue_stim_heal"
+IL_0231: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_0236: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_023b: ldloc.0
+IL_023c: ldstr "vision"
+IL_0241: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_0246: ldloc.0
+IL_0247: ldc.i4.s 25
+IL_0249: conv.i8
+IL_024a: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_024f: br IL_032f
+IL_0254: ldstr "injector_blood_red"
+IL_0259: stloc.1
+IL_025a: ldloc.0
+IL_025b: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0260: ldstr "blood_red_max_health"
+IL_0265: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_026a: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_026f: ldloc.0
+IL_0270: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_0275: ldstr "blood_red_heal"
+IL_027a: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_027f: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_0284: ldloc.0
+IL_0285: ldc.i4.s 65
+IL_0287: conv.i8
+IL_0288: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_028d: br IL_032f
+IL_0292: ldstr "injector_pink"
+IL_0297: stloc.1
+IL_0298: ldloc.0
+IL_0299: ldstr "item_pink_injector_desc"
+IL_029e: call !!0[] System.Array::Empty<System.Object>()
+IL_02a3: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_02a8: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_02ad: ldloc.0
+IL_02ae: ldc.i4.s 50
+IL_02b0: conv.i8
+IL_02b1: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_02b6: ldloc.0
+IL_02b7: ldstr "NARCOTIC"
+IL_02bc: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_02c1: ldloc.0
+IL_02c2: ldstr "SUBSTANCE"
+IL_02c7: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_02cc: ldloc.0
+IL_02cd: ldc.i4.1
+IL_02ce: call System.Void ConsumableHelper::InitNarcotic(GameItem,System.Int32)
+IL_02d3: br.s IL_032f
+IL_02d5: ldstr "injector_pink_alt"
+IL_02da: stloc.1
+IL_02db: ldloc.0
+IL_02dc: ldstr "item_pink_alt_injector_desc"
+IL_02e1: call !!0[] System.Array::Empty<System.Object>()
+IL_02e6: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_02eb: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_02f0: ldloc.0
+IL_02f1: ldc.i4.s 50
+IL_02f3: conv.i8
+IL_02f4: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_02f9: ldloc.0
+IL_02fa: ldstr "MEDICAL"
+IL_02ff: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0304: ldloc.0
+IL_0305: ldc.i4.1
+IL_0306: call System.Void ConsumableHelper::InitNarcoticRelief(GameItem,System.Int32)
+IL_030b: ldloc.0
+IL_030c: ldc.i4.1
+IL_030d: ldc.i4.1
+IL_030e: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0313: ldloc.0
+IL_0314: ldc.i4.s 45
+IL_0316: ldc.i4.s 60
+IL_0318: call System.Void MedsItemDirectory::SetNomoreInjectorPurity(GameItem,System.Int32,System.Int32)
+IL_031d: ldloc.0
+IL_031e: ldstr "nomore"
+IL_0323: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_0328: ldloc.0
+IL_0329: ldc.i4.4
+IL_032a: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_032f: ldarg.3
+IL_0330: brtrue.s IL_0339
+IL_0332: ldstr "nothing"
+IL_0337: starg.s ability
+IL_0339: ldloc.0
+IL_033a: ldstr "Items/items_medical"
+IL_033f: ldloc.1
+IL_0340: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0345: pop
+IL_0346: ldloc.0
+IL_0347: ldarg.2
+IL_0348: callvirt System.Void GameItem::set_name(System.String)
+IL_034d: ldloc.0
+IL_034e: ldc.i4 1000
+IL_0353: callvirt System.Void GameItem::set_bonusAccuracy(System.Int32)
+IL_0358: ldloc.0
+IL_0359: ldstr "injector"
+IL_035e: ldc.i4.0
+IL_035f: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0364: pop
+IL_0365: ldloc.0
+IL_0366: ldstr "MEDICAL_PROFICIENCY"
+IL_036b: callvirt System.Void GameItem::EnableProficiency(System.String)
+IL_0370: ldloc.0
+IL_0371: ldstr "ITEM_MEDICAL_TAG"
+IL_0376: ldc.i4.0
+IL_0377: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_037c: pop
+IL_037d: ldloc.0
+IL_037e: ldstr "MEDICAL"
+IL_0383: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0388: ldloc.0
+IL_0389: call System.Void AudioHelper::InitInjectorAudio(GameItem)
+IL_038e: ldloc.0
+IL_038f: ret
+GameItem MedsItemDirectory::ChemScanner()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "chem_scanner"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_chem_scanner_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_chem_scanner_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "carmicheal"
+IL_0045: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_004a: dup
+IL_004b: ldc.i4 400
+IL_0050: conv.i8
+IL_0051: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0056: pop
+IL_0057: dup
+IL_0058: call System.Void AudioHelper::InitScanner(GameItem)
+IL_005d: dup
+IL_005e: ldstr "CAN_USE_ON_NON_OWNED_TAG"
+IL_0063: ldc.i4.0
+IL_0064: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0069: pop
+IL_006a: dup
+IL_006b: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__25_0
+IL_0070: dup
+IL_0071: brtrue.s IL_008a
+IL_0073: pop
+IL_0074: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_0079: ldftn System.Boolean MedsItemDirectory/<>c::<ChemScanner>b__25_0(GameItem,GameInventory,SlotMarker)
+IL_007f: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0084: dup
+IL_0085: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__25_0
+IL_008a: callvirt System.Void GameItemFunc::set_maySelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_008f: dup
+IL_0090: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__25_1
+IL_0095: dup
+IL_0096: brtrue.s IL_00af
+IL_0098: pop
+IL_0099: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_009e: ldftn System.Boolean MedsItemDirectory/<>c::<ChemScanner>b__25_1(GameItem,GameInventory,SlotMarker)
+IL_00a4: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00a9: dup
+IL_00aa: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> MedsItemDirectory/<>c::<>9__25_1
+IL_00af: callvirt System.Void GameItemFunc::set_canSelectSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00b4: dup
+IL_00b5: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> MedsItemDirectory/<>c::<>9__25_2
+IL_00ba: dup
+IL_00bb: brtrue.s IL_00d4
+IL_00bd: pop
+IL_00be: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_00c3: ldftn System.Boolean MedsItemDirectory/<>c::<ChemScanner>b__25_2(GameItem,GameItem)
+IL_00c9: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00ce: dup
+IL_00cf: stsfld System.Func`3<GameItem,GameItem,System.Boolean> MedsItemDirectory/<>c::<>9__25_2
+IL_00d4: callvirt System.Void GameItemFunc::set_mayThisTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_00d9: dup
+IL_00da: ldsfld System.Func`3<GameItem,GameItem,System.Boolean> MedsItemDirectory/<>c::<>9__25_3
+IL_00df: dup
+IL_00e0: brtrue.s IL_00f9
+IL_00e2: pop
+IL_00e3: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_00e8: ldftn System.Boolean MedsItemDirectory/<>c::<ChemScanner>b__25_3(GameItem,GameItem)
+IL_00ee: newobj System.Void System.Func`3<GameItem,GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00f3: dup
+IL_00f4: stsfld System.Func`3<GameItem,GameItem,System.Boolean> MedsItemDirectory/<>c::<>9__25_3
+IL_00f9: callvirt System.Void GameItemFunc::set_canThisTargetItemFunc(System.Func`3<GameItem,GameItem,System.Boolean>)
+IL_00fe: dup
+IL_00ff: ldsfld System.Action`2<GameItem,GameItem> MedsItemDirectory/<>c::<>9__25_4
+IL_0104: dup
+IL_0105: brtrue.s IL_011e
+IL_0107: pop
+IL_0108: ldsfld MedsItemDirectory/<>c MedsItemDirectory/<>c::<>9
+IL_010d: ldftn System.Void MedsItemDirectory/<>c::<ChemScanner>b__25_4(GameItem,GameItem)
+IL_0113: newobj System.Void System.Action`2<GameItem,GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0118: dup
+IL_0119: stsfld System.Action`2<GameItem,GameItem> MedsItemDirectory/<>c::<>9__25_4
+IL_011e: callvirt System.Void GameItemFunc::set_onItemTargetItemFunc(System.Action`2<GameItem,GameItem>)
+IL_0123: ret
+GameItem MedsItemDirectory::SurgeryToolset()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_tool"
+IL_000b: ldstr "surgery_toolkit"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_surgery_tool_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_surgery_tool_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldstr "MEDICAL"
+IL_0045: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_004a: dup
+IL_004b: ldstr "MEDICAL_TOOL"
+IL_0050: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0055: dup
+IL_0056: ldc.i4 200
+IL_005b: conv.i8
+IL_005c: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0061: dup
+IL_0062: call System.Void AquacultureHelper::InitEggSurgeryTool(GameItem)
+IL_0067: dup
+IL_0068: call System.Void HusbandryHelper::InitAnimalSurgeryTool(GameItem)
+IL_006d: ret
+System.Void MedsItemDirectory::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void ItemDirectory::.ctor()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_0()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::SynaprestInjector()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_1()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.s 10
+IL_0003: ldstr "item_pink_injector_name"
+IL_0008: call !!0[] System.Array::Empty<System.Object>()
+IL_000d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0012: ldstr "pink_injector"
+IL_0017: call GameItem MedsItemDirectory::Injector(MedsItemDirectory/InjectorColor,System.String,System.String)
+IL_001c: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_2()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.s 11
+IL_0003: ldstr "item_pink_alt_injector_name"
+IL_0008: call !!0[] System.Array::Empty<System.Object>()
+IL_000d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0012: ldstr "pink_injector_alt"
+IL_0017: call GameItem MedsItemDirectory::Injector(MedsItemDirectory/InjectorColor,System.String,System.String)
+IL_001c: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_3()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::ImmunivaxInjector()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_4()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.s 9
+IL_0003: ldstr "item_pure_white_injector_name"
+IL_0008: call !!0[] System.Array::Empty<System.Object>()
+IL_000d: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0012: ldstr "experimental_injector_white"
+IL_0017: call GameItem MedsItemDirectory::Injector(MedsItemDirectory/InjectorColor,System.String,System.String)
+IL_001c: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_5()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::BirthControlPill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_6()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::FentanylPill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_7()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::PhagimycinPill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_8()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::UnlicensedPhagimycinPill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_9()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::ZyanidePill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_10()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::SmellingSalt()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_11()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::Bandage()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_12()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::HemostaticBandage()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_13()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::TopicalBandage()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_14()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::BloodBag()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_15()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::BlueBloodBag()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_16()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::DreamDust()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_17()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::NightmareDust()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_18()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::CaffeinePill()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_19()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::HealingSalve()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_20()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::RubbingAlcohol()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_21()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::ZeroChew()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_22()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::ChemScanner()
+IL_0006: ret
+GameItem MedsItemDirectory::<InitDirectory>b__0_23()
+IL_0000: ldarg.0
+IL_0001: call GameItem MedsItemDirectory::SurgeryToolset()
+IL_0006: ret

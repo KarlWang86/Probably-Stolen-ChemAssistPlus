@@ -1,0 +1,201 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+  0: GameItem gameItem None
+  1: System.Int32 minImpurity None
+  2: System.Int32 maxImpurity None
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Int32
+  local 4: System.Int32
+IL_0000: ldarg.0
+IL_0001: ldstr "LIQUID_CONTAINER_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brtrue.s IL_000e
+IL_000d: ret
+IL_000e: ldarg.1
+IL_000f: ldarg.2
+IL_0010: call System.Int32 RNG::GetRandomInt(System.Int32,System.Int32)
+IL_0015: stloc.0
+IL_0016: ldarg.0
+IL_0017: call System.Int32 WaterHelper::GetCurrentCapacityUL(GameItem)
+IL_001c: conv.i8
+IL_001d: ldloc.0
+IL_001e: conv.i8
+IL_001f: mul
+IL_0020: ldc.i4 10000
+IL_0025: conv.i8
+IL_0026: div
+IL_0027: conv.i4
+IL_0028: stloc.1
+IL_0029: ldarg.0
+IL_002a: ldloc.1
+IL_002b: call System.Void WaterHelper::Remove(GameItem,System.Int32)
+IL_0030: ldloc.1
+IL_0031: stloc.2
+IL_0032: ldc.i4.0
+IL_0033: stloc.3
+IL_0034: br.s IL_0073
+IL_0036: ldloc.3
+IL_0037: ldsfld System.String[] PreBuildChemHelper::impurityTypes
+IL_003c: ldlen
+IL_003d: conv.i4
+IL_003e: ldc.i4.1
+IL_003f: sub
+IL_0040: bne.un.s IL_0052
+IL_0042: ldarg.0
+IL_0043: ldsfld System.String[] PreBuildChemHelper::impurityTypes
+IL_0048: ldloc.3
+IL_0049: ldelem.ref
+IL_004a: ldloc.2
+IL_004b: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_0050: br.s IL_006f
+IL_0052: ldc.i4.0
+IL_0053: ldloc.2
+IL_0054: call System.Int32 RNG::GetRandomInt(System.Int32,System.Int32)
+IL_0059: stloc.s V_4
+IL_005b: ldarg.0
+IL_005c: ldsfld System.String[] PreBuildChemHelper::impurityTypes
+IL_0061: ldloc.3
+IL_0062: ldelem.ref
+IL_0063: ldloc.s V_4
+IL_0065: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_006a: ldloc.2
+IL_006b: ldloc.s V_4
+IL_006d: sub
+IL_006e: stloc.2
+IL_006f: ldloc.3
+IL_0070: ldc.i4.1
+IL_0071: add
+IL_0072: stloc.3
+IL_0073: ldloc.3
+IL_0074: ldsfld System.String[] PreBuildChemHelper::impurityTypes
+IL_0079: ldlen
+IL_007a: conv.i4
+IL_007b: blt.s IL_0036
+IL_007d: ret
+GameItem PreBuildChemHelper::CreateFantaPrecusorBottle()
+IL_0000: ldstr "med_bottle_violet"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "methylol"
+IL_0011: ldc.i4 125000
+IL_0016: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_001b: dup
+IL_001c: ldstr "stabilizing_agent"
+IL_0021: ldc.i4 125000
+IL_0026: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_002b: dup
+IL_002c: ldc.i4 200
+IL_0031: ldc.i4 800
+IL_0036: call System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+IL_003b: dup
+IL_003c: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0041: ret
+GameItem PreBuildChemHelper::CreateAcidBottle()
+IL_0000: ldstr "med_bottle_red"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "acid"
+IL_0011: ldc.i4 250000
+IL_0016: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_001b: dup
+IL_001c: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0021: dup
+IL_0022: ldc.i4 200
+IL_0027: ldc.i4 800
+IL_002c: call System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+IL_0031: ret
+GameItem PreBuildChemHelper::CreateBaseBottle()
+IL_0000: ldstr "med_bottle_blue"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "base"
+IL_0011: ldc.i4 250000
+IL_0016: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_001b: dup
+IL_001c: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0021: dup
+IL_0022: ldc.i4 200
+IL_0027: ldc.i4 800
+IL_002c: call System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+IL_0031: ret
+GameItem PreBuildChemHelper::CreateReducingAgentBottle()
+IL_0000: ldstr "med_bottle_orange"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "reducing_agent"
+IL_0011: ldc.i4 250000
+IL_0016: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_001b: dup
+IL_001c: ldc.i4 200
+IL_0021: ldc.i4 800
+IL_0026: call System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+IL_002b: dup
+IL_002c: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0031: ret
+GameItem PreBuildChemHelper::CreateLipobondAgentBottle()
+IL_0000: ldstr "med_bottle_small_pink"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "lipobond_agent"
+IL_0011: ldc.i4 150000
+IL_0016: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_001b: dup
+IL_001c: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_0021: dup
+IL_0022: ldc.i4 200
+IL_0027: ldc.i4 800
+IL_002c: call System.Void PreBuildChemHelper::SetImpurity(GameItem,System.Int32,System.Int32)
+IL_0031: ret
+GameItem PreBuildChemHelper::CreateMiniAlcoholBottle()
+IL_0000: ldstr "mini_bottle"
+IL_0005: ldc.i4.1
+IL_0006: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_000b: dup
+IL_000c: ldstr "Item"
+IL_0011: ldstr "item_mini_alcohol_bottle_name"
+IL_0016: ldstr "Mini Alcohol Bottle"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedOrDefault(System.String,System.String,System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "alcohol"
+IL_0030: ldc.i4 175000
+IL_0035: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_003a: dup
+IL_003b: ldstr "water"
+IL_0040: ldc.i4 75000
+IL_0045: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_004a: ret
+System.Void PreBuildChemHelper::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret
+System.Void PreBuildChemHelper::.cctor()
+IL_0000: ldc.i4.4
+IL_0001: newarr System.String
+IL_0006: dup
+IL_0007: ldc.i4.0
+IL_0008: ldstr "chemical_contaminant"
+IL_000d: stelem.ref
+IL_000e: dup
+IL_000f: ldc.i4.1
+IL_0010: ldstr "physical_contaminant"
+IL_0015: stelem.ref
+IL_0016: dup
+IL_0017: ldc.i4.2
+IL_0018: ldstr "microbe"
+IL_001d: stelem.ref
+IL_001e: dup
+IL_001f: ldc.i4.3
+IL_0020: ldstr "heavy_metal"
+IL_0025: stelem.ref
+IL_0026: stsfld System.String[] PreBuildChemHelper::impurityTypes
+IL_002b: ret

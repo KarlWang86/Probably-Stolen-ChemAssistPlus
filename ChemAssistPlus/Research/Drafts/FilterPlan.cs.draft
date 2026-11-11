@@ -1,0 +1,105 @@
+using System;
+using System.Linq;
+using System.Text;
+using ChemAssistPlus.Core;
+
+namespace ChemAssistPlus
+{
+    public static partial class Plus
+    {
+        sealed class FilterSetup
+        {
+            public GameItem Pitcher, Material, Existing;
+            public bool Change => Material != Existing;
+        }
+        static bool MaterialMatches(GameItem f, string key) => f != null
+            && (key == "cloth" ? f.IsID("kotton_fabric") : f.IsID("water_filter") || f.IsID("water_filter_adv"))
+            && DurabilityHelper.GetRealDurability(f) > 0;
+        static GameSlotInventory FilterSlot(GameItem p) => MachineView.Find<GameSlotInventory>(p?.contentWindow?.childElement);
+        static FilterSetup PlanFilter(string key)
+        {
+            var all = Scan();
+            var pitchers = all.Where(x => x != contextPot && x.IsTag(WaterHelper.FILTER_CONTAINER_TAG)
+                && WaterHelper.IsEmpty(x) && FilterSlot(x) != null);
+            if (pins.TryGetValue(key, out var pin) && pin != null) pitchers = pitchers.Where(x => x == pin);
+            var ordered = pitchers.OrderByDescending(x => MaterialMatches(WaterHelper.GetFilterItem(x), key))
+                .ThenByDescending(x => key == "fine" && Coarse(x)).ThenByDescending(WaterHelper.GetTotalCapacity);
+            foreach (var pitcher in ordered)
+            {
+                var existing = WaterHelper.GetFilterItem(pitcher);
+                if (MaterialMatches(existing, key)) return new FilterSetup { Pitcher = pitcher, Material = existing, Existing = existing };
+                // Never strip a filter from another pitcher. Use a loose, owned spare only.
+                var spare = all.Where(x => MaterialMatches(x, key) && x.parentInventory != null
+                    && x.parentInventory.GetParentItem()?.IsTag(WaterHelper.FILTER_CONTAINER_TAG) != true)
+                    .OrderByDescending(DurabilityHelper.GetRealDurability).FirstOrDefault();
+                if (spare != null) return new FilterSetup { Pitcher = pitcher, Material = spare, Existing = existing };
+            }
+            return null;
+        }
+        static GameItem EnsureFilter(string key, StringBuilder report)
+        {
+            var plan = PlanFilter(key);
+            if (plan == null) return null;
+            if (plan.Change)
+            {
+                var slot = FilterSlot(plan.Pitcher);
+                if (plan.Existing != null)
+                {
+                    // Native swap checks both destinations and rolls back on failure.
+                    if (!GraphUtils.SwapItemsInPlace(plan.Existing, plan.Material))
+                    { report.AppendLine("[缺容器空间] 自动更换滤材失败，请给拆下的滤材留出空间；本步跳过。"); return null; }
+                    report.AppendLine("自动更换滤材：" + Name(plan.Pitcher) + "，拆下 " + Name(plan.Existing)
+                        + " 放回备用滤材原位置（" + SceneSnapshot.Where(plan.Existing) + "），装入 " + Name(plan.Material));
+                }
+                else
+                {
+                    if (!GraphUtils.CanAccept(slot, plan.Material)) return null;
+                    GraphUtils.TryAcceptAll(slot, plan.Material);
+                    report.AppendLine("自动安装滤材：" + Name(plan.Pitcher) + " ← " + Name(plan.Material));
+                }
+                if (WaterHelper.GetFilterItem(plan.Pitcher) != plan.Material)
+                    throw new InvalidOperationException("滤材位置与原生接口结果不符，停止过滤并保留原液。");
+            }
+            return plan.Pitcher;
+        }
+        static string PlannedFilterName(string key)
+        {
+            var plan = PlanFilter(key);
+            return plan == null ? FilterReason(key) : Name(plan.Pitcher) + " / " + Name(plan.Material)
+                + (plan.Change ? "（自动安装/换装，需有拆下滤材的空间）" : "（已装好）");
+        }
+        static void RefreshInventoryReport()
+        {
+            if (busy || !PlayerStore.IsInstanceExist()) return;
+            contextBlender = selectedBlender;
+            try
+            {
+                var all = Scan();
+                string inventory = "库存已刷新：" + all.Count + " 件（含机器内物品）\n"
+                    + "加热板 " + all.Count(x => x.IsID("heating_plate"))
+                    + "；过滤水罐 " + all.Count(x => x.IsTag(WaterHelper.FILTER_CONTAINER_TAG))
+                    + "；可用滤布 " + all.Count(x => MaterialMatches(x, "cloth"))
+                    + "；可用滤芯 " + all.Count(x => MaterialMatches(x, "fine")) + "\n";
+                var p = Probe();
+                if (p.Ok)
+                {
+                    PrepareRoute(p.Recipe);
+                    bool prep = p.Solid != null || NativeChem.WetTotal(p.Pot) > WaterHelper.DRY_TOLERANCE_UL;
+                    Preflight(p.Recipe, p.Solid, p.Pot, prep, true);
+                    SetReport(inventory + lastReport);
+                }
+                else
+                {
+                    contextPot = null; contextChain = null;
+                    SetReport(inventory + "步骤1 [缺原料/容器或配方] " + p.Block
+                        + "\n步骤4 加热板：" + Name(FindPlate(null))
+                        + "\n步骤6 滤布：" + PlannedFilterName("cloth")
+                        + "\n步骤6 滤芯：" + PlannedFilterName("fine")
+                        + "\n其他试剂用量需先放入本批原料和工作瓶才能计算。");
+                }
+            }
+            catch (Exception e) { SetReport("库存检查失败，未消耗物品：" + e.Message); log?.Error(e.ToString()); }
+            finally { contextBlender = null; }
+        }
+    }
+}

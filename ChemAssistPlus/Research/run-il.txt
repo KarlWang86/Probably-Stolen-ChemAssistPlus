@@ -1,0 +1,2267 @@
+METHOD System.Boolean OneClickCraft.OneShot::RunCore(System.String&,System.Boolean,System.String,System.Boolean)
+IL_0000: nop
+IL_0001: newobj System.Void System.Text.StringBuilder::.ctor()
+IL_0006: stloc.0
+IL_0007: newobj System.Void System.Collections.Generic.List`1<System.String>::.ctor()
+IL_000c: stloc.1
+IL_000d: call OneClickCraft.OneShot/ProbeResult OneClickCraft.OneShot::Probe()
+IL_0012: stloc.2
+IL_0013: ldloc.2
+IL_0014: callvirt System.Boolean OneClickCraft.OneShot/ProbeResult::get_Ok()
+IL_0019: ldc.i4.0
+IL_001a: ceq
+IL_001c: stloc.s V_7
+IL_001e: ldloc.s V_7
+IL_0020: brfalse.s IL_0033
+IL_0022: nop
+IL_0023: ldarg.0
+IL_0024: ldloc.2
+IL_0025: ldfld System.String OneClickCraft.OneShot/ProbeResult::Block
+IL_002a: stind.ref
+IL_002b: ldc.i4.0
+IL_002c: stloc.s V_8
+IL_002e: br IL_15e9
+IL_0033: ldloc.2
+IL_0034: ldfld OneClickCraft.Chain OneClickCraft.OneShot/ProbeResult::Chain
+IL_0039: stloc.3
+IL_003a: ldloc.2
+IL_003b: ldfld GameItem OneClickCraft.OneShot/ProbeResult::Pot
+IL_0040: stloc.s V_4
+IL_0042: ldloc.2
+IL_0043: ldfld GameItem OneClickCraft.OneShot/ProbeResult::Solid
+IL_0048: stloc.s V_5
+IL_004a: ldloc.2
+IL_004b: ldfld GameItem OneClickCraft.OneShot/ProbeResult::Blender
+IL_0050: stloc.s V_6
+IL_0052: ldloc.3
+IL_0053: ldarg.2
+IL_0054: ldloc.s V_4
+IL_0056: ldloc.3
+IL_0057: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_005c: ldc.i4.0
+IL_005d: ldelem.ref
+IL_005e: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0063: call System.Void OneClickCraft.OneShot::ApplyRoute(OneClickCraft.Chain,System.String,System.Int32)
+IL_0068: nop
+IL_0069: nop
+IL_006a: ldloc.3
+IL_006b: ldloc.s V_5
+IL_006d: ldloc.s V_4
+IL_006f: ldarg.1
+IL_0070: ldarg.3
+IL_0071: call System.String OneClickCraft.OneShot::Preflight(OneClickCraft.Chain,GameItem,GameItem,System.Boolean,System.Boolean)
+IL_0076: stloc.s V_9
+IL_0078: ldloc.s V_9
+IL_007a: ldnull
+IL_007b: cgt.un
+IL_007d: stloc.s V_37
+IL_007f: ldloc.s V_37
+IL_0081: brfalse.s IL_0090
+IL_0083: nop
+IL_0084: ldarg.0
+IL_0085: ldloc.s V_9
+IL_0087: stind.ref
+IL_0088: ldc.i4.0
+IL_0089: stloc.s V_8
+IL_008b: leave IL_15e9
+IL_0090: ldloc.3
+IL_0091: ldloc.0
+IL_0092: ldloc.1
+IL_0093: call System.Void OneClickCraft.OneShot::PrePurifyAuxSources(OneClickCraft.Chain,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>)
+IL_0098: nop
+IL_0099: ldloc.3
+IL_009a: ldloc.s V_4
+IL_009c: ldloc.0
+IL_009d: ldloca.s V_10
+IL_009f: call System.Void OneClickCraft.OneShot::EnsureAuxMaterials(OneClickCraft.Chain,GameItem,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>&)
+IL_00a4: nop
+IL_00a5: ldc.i4.0
+IL_00a6: stloc.s V_38
+IL_00a8: br.s IL_00e2
+IL_00aa: ldloc.1
+IL_00ab: ldstr "由于最大提纯所需的辅助材料不足，建议补充："
+IL_00b0: ldloc.s V_10
+IL_00b2: ldloc.s V_38
+IL_00b4: callvirt !0 System.Collections.Generic.List`1<System.String>::get_Item(System.Int32)
+IL_00b9: call System.String System.String::Concat(System.String,System.String)
+IL_00be: ldstr "Max-purity aux missing, top up recommended: "
+IL_00c3: ldloc.s V_10
+IL_00c5: ldloc.s V_38
+IL_00c7: callvirt !0 System.Collections.Generic.List`1<System.String>::get_Item(System.Int32)
+IL_00cc: call System.String System.String::Concat(System.String,System.String)
+IL_00d1: call System.String OneClickCraft.L::T(System.String,System.String)
+IL_00d6: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_00db: nop
+IL_00dc: ldloc.s V_38
+IL_00de: ldc.i4.1
+IL_00df: add
+IL_00e0: stloc.s V_38
+IL_00e2: ldloc.s V_38
+IL_00e4: ldloc.s V_10
+IL_00e6: callvirt System.Int32 System.Collections.Generic.List`1<System.String>::get_Count()
+IL_00eb: clt
+IL_00ed: stloc.s V_39
+IL_00ef: ldloc.s V_39
+IL_00f1: brtrue.s IL_00aa
+IL_00f3: ldc.i4.0
+IL_00f4: stloc.s V_11
+IL_00f6: nop
+IL_00f7: ldloc.s V_6
+IL_00f9: call System.Int32 MachineBlender::GetLoss(GameItem)
+IL_00fe: stloc.s V_11
+IL_0100: nop
+IL_0101: leave.s IL_0108
+IL_0103: pop
+IL_0104: nop
+IL_0105: nop
+IL_0106: leave.s IL_0108
+IL_0108: ldloc.s V_5
+IL_010a: call System.Int32 ChemicalHelper::GetTotalVolume(GameItem)
+IL_010f: stloc.s V_12
+IL_0111: ldloc.s V_4
+IL_0113: call System.Int32 WaterHelper::GetFreeCapacity(GameItem)
+IL_0118: stloc.s V_13
+IL_011a: ldloc.s V_12
+IL_011c: ldloc.s V_13
+IL_011e: cgt
+IL_0120: stloc.s V_40
+IL_0122: ldloc.s V_40
+IL_0124: brfalse.s IL_0168
+IL_0126: nop
+IL_0127: ldarg.0
+IL_0128: ldc.i4.5
+IL_0129: newarr System.String
+IL_012e: dup
+IL_012f: ldc.i4.0
+IL_0130: ldstr "容器装不下这批原料："
+IL_0135: stelem.ref
+IL_0136: dup
+IL_0137: ldc.i4.1
+IL_0138: ldloc.s V_12
+IL_013a: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_013f: stelem.ref
+IL_0140: dup
+IL_0141: ldc.i4.2
+IL_0142: ldstr " 原料 / 只剩 "
+IL_0147: stelem.ref
+IL_0148: dup
+IL_0149: ldc.i4.3
+IL_014a: ldloc.s V_13
+IL_014c: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0151: stelem.ref
+IL_0152: dup
+IL_0153: ldc.i4.4
+IL_0154: ldstr " 空间 —— 换个大瓶子（矿泉水瓶 750ml 或 2L）"
+IL_0159: stelem.ref
+IL_015a: call System.String System.String::Concat(System.String[])
+IL_015f: stind.ref
+IL_0160: ldc.i4.0
+IL_0161: stloc.s V_8
+IL_0163: leave IL_15e9
+IL_0168: ldloc.s V_5
+IL_016a: call System.String OneClickCraft.OneShot::NameOf(GameItem)
+IL_016f: stloc.s V_14
+IL_0171: ldloc.3
+IL_0172: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_0177: ldc.i4.0
+IL_0178: ldelem.ref
+IL_0179: stloc.s V_15
+IL_017b: ldloc.s V_5
+IL_017d: ldloc.s V_15
+IL_017f: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0184: stloc.s V_16
+IL_0186: ldloc.s V_16
+IL_0188: conv.r8
+IL_0189: ldc.r8 1
+IL_0192: ldloc.s V_11
+IL_0194: conv.r8
+IL_0195: ldc.r8 100
+IL_019e: div
+IL_019f: sub
+IL_01a0: mul
+IL_01a1: ldc.i4.1
+IL_01a2: call System.Double System.Math::Round(System.Double,System.MidpointRounding)
+IL_01a7: conv.i4
+IL_01a8: stloc.s V_17
+IL_01aa: ldloc.s V_17
+IL_01ac: ldc.i4.0
+IL_01ad: cgt
+IL_01af: ldc.i4.0
+IL_01b0: ceq
+IL_01b2: stloc.s V_41
+IL_01b4: ldloc.s V_41
+IL_01b6: brfalse.s IL_01f5
+IL_01b8: nop
+IL_01b9: ldarg.0
+IL_01ba: ldc.i4.5
+IL_01bb: newarr System.String
+IL_01c0: dup
+IL_01c1: ldc.i4.0
+IL_01c2: ldstr "「"
+IL_01c7: stelem.ref
+IL_01c8: dup
+IL_01c9: ldc.i4.1
+IL_01ca: ldloc.s V_14
+IL_01cc: stelem.ref
+IL_01cd: dup
+IL_01ce: ldc.i4.2
+IL_01cf: ldstr "」里没有这条链需要的「"
+IL_01d4: stelem.ref
+IL_01d5: dup
+IL_01d6: ldc.i4.3
+IL_01d7: ldloc.s V_15
+IL_01d9: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_01de: stelem.ref
+IL_01df: dup
+IL_01e0: ldc.i4.4
+IL_01e1: ldstr "」—— 没动你的原料（搅拌会销毁原料，所以先干跑判定）。
+多半是原料放错了：搅拌机里要放这条链对应的原料，成品 / 别的粉末 / 已经萃取过的渣不算。"
+IL_01e6: stelem.ref
+IL_01e7: call System.String System.String::Concat(System.String[])
+IL_01ec: stind.ref
+IL_01ed: ldc.i4.0
+IL_01ee: stloc.s V_8
+IL_01f0: leave IL_15e9
+IL_01f5: ldloc.0
+IL_01f6: ldloc.s V_4
+IL_01f8: ldstr "初始"
+IL_01fd: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_0202: nop
+IL_0203: ldloc.s V_5
+IL_0205: ldloc.s V_4
+IL_0207: ldloc.s V_11
+IL_0209: call System.Void ChemicalHelper::BlendInto(GameItem,GameItem,System.Int32)
+IL_020e: nop
+IL_020f: ldloc.0
+IL_0210: ldstr "① 搅拌："
+IL_0215: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_021a: ldloc.s V_14
+IL_021c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0221: ldstr " → 容器（搅拌机损耗 "
+IL_0226: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_022b: ldloc.s V_11
+IL_022d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0232: ldstr "%，实际进入 "
+IL_0237: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_023c: ldloc.s V_4
+IL_023e: ldloc.s V_15
+IL_0240: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0245: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_024a: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_024f: ldstr "）
+"
+IL_0254: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0259: pop
+IL_025a: ldloc.0
+IL_025b: ldloc.s V_4
+IL_025d: ldstr "搅拌后"
+IL_0262: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_0267: nop
+IL_0268: ldloc.3
+IL_0269: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_026e: ldc.i4.0
+IL_026f: ldelem.ref
+IL_0270: stloc.s V_18
+IL_0272: ldloc.s V_4
+IL_0274: ldloc.s V_18
+IL_0276: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_027b: stloc.s V_19
+IL_027d: ldloc.s V_19
+IL_027f: ldc.i4.0
+IL_0280: cgt
+IL_0282: ldc.i4.0
+IL_0283: ceq
+IL_0285: stloc.s V_42
+IL_0287: ldloc.s V_42
+IL_0289: brfalse.s IL_02ac
+IL_028b: nop
+IL_028c: ldarg.0
+IL_028d: ldstr "搅拌后容器里没有「"
+IL_0292: ldloc.s V_18
+IL_0294: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_0299: ldstr "」—— 这个原料搅不出该成分。
+注意：原料在①搅拌这步已经被真消耗掉了（原版 BlendInto 会销毁物品，不可退回）。"
+IL_029e: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_02a3: stind.ref
+IL_02a4: ldc.i4.0
+IL_02a5: stloc.s V_8
+IL_02a7: leave IL_15e9
+IL_02ac: ldloc.3
+IL_02ad: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_02b2: ldlen
+IL_02b3: conv.i4
+IL_02b4: ldc.i4.1
+IL_02b5: bgt.s IL_02ba
+IL_02b7: ldnull
+IL_02b8: br.s IL_02c2
+IL_02ba: ldloc.3
+IL_02bb: ldfld System.String[] OneClickCraft.Chain::FeedLiquids
+IL_02c0: ldc.i4.1
+IL_02c1: ldelem.ref
+IL_02c2: stloc.s V_20
+IL_02c4: ldc.i4.0
+IL_02c5: stloc.s V_21
+IL_02c7: ldc.i4.0
+IL_02c8: stloc.s V_22
+IL_02ca: ldnull
+IL_02cb: stloc.s V_23
+IL_02cd: ldloc.s V_20
+IL_02cf: call System.Boolean System.String::IsNullOrEmpty(System.String)
+IL_02d4: ldc.i4.0
+IL_02d5: ceq
+IL_02d7: stloc.s V_43
+IL_02d9: ldloc.s V_43
+IL_02db: brfalse IL_040f
+IL_02e0: nop
+IL_02e1: ldloc.3
+IL_02e2: ldloc.s V_19
+IL_02e4: ldloc.s V_20
+IL_02e6: call System.Int32 OneClickCraft.OneShot::SolventTarget(OneClickCraft.Chain,System.Int32,System.String)
+IL_02eb: stloc.s V_21
+IL_02ed: ldloc.s V_4
+IL_02ef: ldloc.s V_20
+IL_02f1: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_02f6: stloc.s V_44
+IL_02f8: ldloc.s V_21
+IL_02fa: ldloc.s V_44
+IL_02fc: sub
+IL_02fd: stloc.s V_45
+IL_02ff: ldloc.s V_45
+IL_0301: ldc.i4.0
+IL_0302: cgt
+IL_0304: stloc.s V_46
+IL_0306: ldloc.s V_46
+IL_0308: brfalse.s IL_032b
+IL_030a: nop
+IL_030b: call OneClickCraft.ChemScan OneClickCraft.ChemScan::Run()
+IL_0310: stloc.s V_47
+IL_0312: newobj System.Void OneClickCraft.OneShot/TakeLog::.ctor()
+IL_0317: stloc.s V_23
+IL_0319: ldloc.s V_47
+IL_031b: ldloc.s V_20
+IL_031d: ldloc.s V_45
+IL_031f: ldloc.s V_4
+IL_0321: ldloc.s V_23
+IL_0323: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_0328: stloc.s V_22
+IL_032a: nop
+IL_032b: ldloc.0
+IL_032c: ldstr "② 加溶剂："
+IL_0331: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0336: ldloc.s V_20
+IL_0338: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_033d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0342: ldstr " 目标 "
+IL_0347: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_034c: ldloc.s V_21
+IL_034e: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0353: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0358: ldstr "，本次取到 "
+IL_035d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0362: ldloc.s V_22
+IL_0364: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0369: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_036e: ldstr "，容器现有 "
+IL_0373: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0378: ldloc.s V_4
+IL_037a: ldloc.s V_20
+IL_037c: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0381: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0386: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_038b: ldc.i4.s 10
+IL_038d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_0392: pop
+IL_0393: ldloc.s V_23
+IL_0395: brfalse.s IL_03a0
+IL_0397: ldloc.s V_23
+IL_0399: callvirt System.Boolean OneClickCraft.OneShot/TakeLog::get_Any()
+IL_039e: br.s IL_03a1
+IL_03a0: ldc.i4.0
+IL_03a1: stloc.s V_48
+IL_03a3: ldloc.s V_48
+IL_03a5: brfalse.s IL_03c6
+IL_03a7: ldloc.0
+IL_03a8: ldstr "   取自："
+IL_03ad: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_03b2: ldloc.s V_23
+IL_03b4: callvirt System.String System.Object::ToString()
+IL_03b9: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_03be: ldc.i4.s 10
+IL_03c0: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_03c5: pop
+IL_03c6: ldloc.s V_23
+IL_03c8: brfalse.s IL_03db
+IL_03ca: ldloc.s V_23
+IL_03cc: ldfld System.Collections.Generic.List`1<System.String> OneClickCraft.OneShot/TakeLog::Emptied
+IL_03d1: callvirt System.Int32 System.Collections.Generic.List`1<System.String>::get_Count()
+IL_03d6: ldc.i4.0
+IL_03d7: cgt
+IL_03d9: br.s IL_03dc
+IL_03db: ldc.i4.0
+IL_03dc: stloc.s V_49
+IL_03de: ldloc.s V_49
+IL_03e0: brfalse.s IL_040e
+IL_03e2: ldloc.1
+IL_03e3: ldstr "本次把「"
+IL_03e8: ldstr "、"
+IL_03ed: ldloc.s V_23
+IL_03ef: ldfld System.Collections.Generic.List`1<System.String> OneClickCraft.OneShot/TakeLog::Emptied
+IL_03f4: callvirt !0[] System.Collections.Generic.List`1<System.String>::ToArray()
+IL_03f9: call System.String System.String::Join(System.String,System.String[])
+IL_03fe: ldstr "」抽空了：溶剂是从你场上这些容器里真取走的（不是凭空生成）。空容器拿去水质 / 化学检测仪扫会「什么都不显示」—— 那是原生规则（空瓶没有任何读数），不是检测仪坏了。"
+IL_0403: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_0408: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_040d: nop
+IL_040e: nop
+IL_040f: ldloc.0
+IL_0410: ldloc.s V_4
+IL_0412: ldstr "加溶剂后"
+IL_0417: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_041c: nop
+IL_041d: nop
+IL_041e: ldloc.s V_4
+IL_0420: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0425: stloc.s V_50
+IL_0427: ldloc.s V_4
+IL_0429: ldstr "alcohol"
+IL_042e: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0433: stloc.s V_51
+IL_0435: ldloc.s V_50
+IL_0437: ldc.i4.0
+IL_0438: cgt
+IL_043a: stloc.s V_52
+IL_043c: ldloc.s V_52
+IL_043e: brfalse.s IL_0484
+IL_0440: ldloc.0
+IL_0441: ldstr "③ 杀菌：酒精占比 "
+IL_0446: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_044b: ldloc.s V_51
+IL_044d: ldc.i4.s 100
+IL_044f: mul
+IL_0450: ldloc.s V_50
+IL_0452: div
+IL_0453: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0458: ldstr "%"
+IL_045d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0462: ldloc.s V_51
+IL_0464: ldc.i4.s 10
+IL_0466: mul
+IL_0467: ldloc.s V_50
+IL_0469: bge.s IL_0472
+IL_046b: ldstr "（<40%，靠酸碱/加热杀菌）"
+IL_0470: br.s IL_0477
+IL_0472: ldstr "（≥40%，微生物自动清零）"
+IL_0477: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_047c: ldc.i4.s 10
+IL_047e: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_0483: pop
+IL_0484: nop
+IL_0485: ldloc.3
+IL_0486: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_048b: ldstr "caffeine"
+IL_0490: ldc.i4.4
+IL_0491: call System.Boolean System.String::Equals(System.String,System.String,System.StringComparison)
+IL_0496: stloc.s V_53
+IL_0498: ldloc.s V_53
+IL_049a: brfalse IL_05c1
+IL_049f: nop
+IL_04a0: ldloc.s V_4
+IL_04a2: ldstr "fat"
+IL_04a7: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_04ac: stloc.s V_54
+IL_04ae: ldloc.s V_54
+IL_04b0: ldc.i4.0
+IL_04b1: cgt
+IL_04b3: stloc.s V_55
+IL_04b5: ldloc.s V_55
+IL_04b7: brfalse IL_05b0
+IL_04bc: nop
+IL_04bd: ldloc.s V_54
+IL_04bf: ldc.i4.7
+IL_04c0: add
+IL_04c1: ldc.i4.8
+IL_04c2: div
+IL_04c3: stloc.s V_56
+IL_04c5: ldloc.s V_4
+IL_04c7: ldstr "lipobond_agent"
+IL_04cc: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_04d1: stloc.s V_57
+IL_04d3: ldloc.s V_57
+IL_04d5: ldloc.s V_56
+IL_04d7: clt
+IL_04d9: stloc.s V_58
+IL_04db: ldloc.s V_58
+IL_04dd: brfalse IL_056b
+IL_04e2: nop
+IL_04e3: call OneClickCraft.ChemScan OneClickCraft.ChemScan::Run()
+IL_04e8: stloc.s V_59
+IL_04ea: newobj System.Void OneClickCraft.OneShot/TakeLog::.ctor()
+IL_04ef: stloc.s V_60
+IL_04f1: ldloc.s V_59
+IL_04f3: ldstr "lipobond_agent"
+IL_04f8: ldloc.s V_56
+IL_04fa: ldloc.s V_57
+IL_04fc: sub
+IL_04fd: ldloc.s V_4
+IL_04ff: ldloc.s V_60
+IL_0501: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_0506: stloc.s V_61
+IL_0508: ldloc.s V_61
+IL_050a: ldloc.s V_56
+IL_050c: ldloc.s V_57
+IL_050e: sub
+IL_050f: clt
+IL_0511: stloc.s V_62
+IL_0513: ldloc.s V_62
+IL_0515: brfalse.s IL_056a
+IL_0517: ldloc.1
+IL_0518: ldc.i4.7
+IL_0519: newarr System.String
+IL_051e: dup
+IL_051f: ldc.i4.0
+IL_0520: ldstr "脱脂材料不足：油脂 "
+IL_0525: stelem.ref
+IL_0526: dup
+IL_0527: ldc.i4.1
+IL_0528: ldloc.s V_54
+IL_052a: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_052f: stelem.ref
+IL_0530: dup
+IL_0531: ldc.i4.2
+IL_0532: ldstr " 约需脂合剂 "
+IL_0537: stelem.ref
+IL_0538: dup
+IL_0539: ldc.i4.3
+IL_053a: ldloc.s V_56
+IL_053c: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0541: stelem.ref
+IL_0542: dup
+IL_0543: ldc.i4.4
+IL_0544: ldstr "，场上只补到 "
+IL_0549: stelem.ref
+IL_054a: dup
+IL_054b: ldc.i4.5
+IL_054c: ldloc.s V_57
+IL_054e: ldloc.s V_61
+IL_0550: add
+IL_0551: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0556: stelem.ref
+IL_0557: dup
+IL_0558: ldc.i4.6
+IL_0559: ldstr " —— 剩余油脂会留在成品里拉低纯度。"
+IL_055e: stelem.ref
+IL_055f: call System.String System.String::Concat(System.String[])
+IL_0564: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0569: nop
+IL_056a: nop
+IL_056b: ldloc.0
+IL_056c: ldstr "④ 脱脂：油脂 "
+IL_0571: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0576: ldloc.s V_54
+IL_0578: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_057d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0582: ldstr " + 脂合剂 "
+IL_0587: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_058c: ldloc.s V_4
+IL_058e: ldstr "lipobond_agent"
+IL_0593: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0598: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_059d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_05a2: ldstr "（(油脂+7)/8，沉降成碎屑由过滤带走）
+"
+IL_05a7: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_05ac: pop
+IL_05ad: nop
+IL_05ae: br.s IL_05be
+IL_05b0: nop
+IL_05b1: ldloc.0
+IL_05b2: ldstr "④ 脱脂：瓶里没有油脂，跳过
+"
+IL_05b7: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_05bc: pop
+IL_05bd: nop
+IL_05be: nop
+IL_05bf: br.s IL_05cf
+IL_05c1: nop
+IL_05c2: ldloc.0
+IL_05c3: ldstr "④ 脱脂：本链无脱脂工序（咖啡因专属），跳过
+"
+IL_05c8: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_05cd: pop
+IL_05ce: nop
+IL_05cf: ldloc.s V_4
+IL_05d1: ldstr "protein"
+IL_05d6: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_05db: stloc.s V_24
+IL_05dd: ldloc.s V_24
+IL_05df: ldc.i4.0
+IL_05e0: cgt
+IL_05e2: stloc.s V_63
+IL_05e4: ldloc.s V_63
+IL_05e6: brfalse IL_06b0
+IL_05eb: nop
+IL_05ec: call OneClickCraft.ChemScan OneClickCraft.ChemScan::Run()
+IL_05f1: stloc.s V_64
+IL_05f3: newobj System.Void OneClickCraft.OneShot/TakeLog::.ctor()
+IL_05f8: stloc.s V_65
+IL_05fa: ldloc.s V_64
+IL_05fc: ldstr "acid"
+IL_0601: ldloc.s V_24
+IL_0603: ldloc.s V_4
+IL_0605: ldloc.s V_65
+IL_0607: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_060c: stloc.s V_66
+IL_060e: ldc.i4.0
+IL_060f: stloc.s V_67
+IL_0611: br.s IL_062b
+IL_0613: nop
+IL_0614: nop
+IL_0615: ldloc.s V_4
+IL_0617: call System.Void ChemicalHelper::HandleTemperatureReaction(GameItem)
+IL_061c: nop
+IL_061d: nop
+IL_061e: leave.s IL_0625
+IL_0620: pop
+IL_0621: nop
+IL_0622: nop
+IL_0623: leave.s IL_0625
+IL_0625: ldloc.s V_67
+IL_0627: ldc.i4.1
+IL_0628: add
+IL_0629: stloc.s V_67
+IL_062b: ldloc.s V_67
+IL_062d: ldc.i4.s 60
+IL_062f: bge.s IL_0642
+IL_0631: ldloc.s V_4
+IL_0633: ldstr "protein"
+IL_0638: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_063d: ldc.i4.0
+IL_063e: cgt
+IL_0640: br.s IL_0643
+IL_0642: ldc.i4.0
+IL_0643: stloc.s V_68
+IL_0645: ldloc.s V_68
+IL_0647: brtrue.s IL_0613
+IL_0649: ldloc.0
+IL_064a: ldstr "⑤ 中和：蛋白 "
+IL_064f: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0654: ldloc.s V_24
+IL_0656: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_065b: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0660: ldstr " 加酸 "
+IL_0665: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_066a: ldloc.s V_66
+IL_066c: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0671: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0676: ldstr "，"
+IL_067b: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0680: ldloc.s V_67
+IL_0682: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0687: ldstr " 拍后剩 "
+IL_068c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0691: ldloc.s V_4
+IL_0693: ldstr "protein"
+IL_0698: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_069d: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_06a2: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_06a7: ldc.i4.s 10
+IL_06a9: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_06ae: pop
+IL_06af: nop
+IL_06b0: nop
+IL_06b1: ldloc.s V_4
+IL_06b3: ldstr "acid"
+IL_06b8: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_06bd: stloc.s V_69
+IL_06bf: ldloc.s V_4
+IL_06c1: ldstr "base"
+IL_06c6: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_06cb: stloc.s V_70
+IL_06cd: ldloc.s V_69
+IL_06cf: ldloc.s V_70
+IL_06d1: ceq
+IL_06d3: ldc.i4.0
+IL_06d4: ceq
+IL_06d6: stloc.s V_71
+IL_06d8: ldloc.s V_71
+IL_06da: brfalse IL_0823
+IL_06df: nop
+IL_06e0: ldloc.s V_69
+IL_06e2: ldloc.s V_70
+IL_06e4: blt.s IL_06ed
+IL_06e6: ldstr "base"
+IL_06eb: br.s IL_06f2
+IL_06ed: ldstr "acid"
+IL_06f2: stloc.s V_72
+IL_06f4: ldloc.s V_69
+IL_06f6: ldloc.s V_70
+IL_06f8: sub
+IL_06f9: call System.Int32 System.Math::Abs(System.Int32)
+IL_06fe: stloc.s V_73
+IL_0700: call OneClickCraft.ChemScan OneClickCraft.ChemScan::Run()
+IL_0705: stloc.s V_74
+IL_0707: ldloc.s V_74
+IL_0709: ldloc.s V_72
+IL_070b: ldloc.s V_73
+IL_070d: ldloc.s V_4
+IL_070f: ldnull
+IL_0710: call System.Int32 OneClickCraft.OneShot::TakeLiquid(OneClickCraft.ChemScan,System.String,System.Int32,GameItem,OneClickCraft.OneShot/TakeLog)
+IL_0715: stloc.s V_75
+IL_0717: ldloc.s V_75
+IL_0719: ldloc.s V_73
+IL_071b: clt
+IL_071d: stloc.s V_77
+IL_071f: ldloc.s V_77
+IL_0721: brfalse.s IL_0764
+IL_0723: ldloc.1
+IL_0724: ldc.i4.5
+IL_0725: newarr System.String
+IL_072a: dup
+IL_072b: ldc.i4.0
+IL_072c: ldstr "净酸碱差没补平：缺 "
+IL_0731: stelem.ref
+IL_0732: dup
+IL_0733: ldc.i4.1
+IL_0734: ldloc.s V_72
+IL_0736: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_073b: stelem.ref
+IL_073c: dup
+IL_073d: ldc.i4.2
+IL_073e: ldstr " "
+IL_0743: stelem.ref
+IL_0744: dup
+IL_0745: ldc.i4.3
+IL_0746: ldloc.s V_73
+IL_0748: ldloc.s V_75
+IL_074a: sub
+IL_074b: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0750: stelem.ref
+IL_0751: dup
+IL_0752: ldc.i4.4
+IL_0753: ldstr " —— 多出来的那份会留在瓶里稀释纯度。"
+IL_0758: stelem.ref
+IL_0759: call System.String System.String::Concat(System.String[])
+IL_075e: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0763: nop
+IL_0764: ldc.i4.0
+IL_0765: stloc.s V_76
+IL_0767: br.s IL_0781
+IL_0769: nop
+IL_076a: nop
+IL_076b: ldloc.s V_4
+IL_076d: call System.Void ChemicalHelper::HandleTemperatureReaction(GameItem)
+IL_0772: nop
+IL_0773: nop
+IL_0774: leave.s IL_077b
+IL_0776: pop
+IL_0777: nop
+IL_0778: nop
+IL_0779: leave.s IL_077b
+IL_077b: ldloc.s V_76
+IL_077d: ldc.i4.1
+IL_077e: add
+IL_077f: stloc.s V_76
+IL_0781: ldloc.s V_76
+IL_0783: ldc.i4.s 60
+IL_0785: bge.s IL_07a6
+IL_0787: ldloc.s V_4
+IL_0789: ldstr "acid"
+IL_078e: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0793: ldloc.s V_4
+IL_0795: ldstr "base"
+IL_079a: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_079f: ceq
+IL_07a1: ldc.i4.0
+IL_07a2: ceq
+IL_07a4: br.s IL_07a7
+IL_07a6: ldc.i4.0
+IL_07a7: stloc.s V_78
+IL_07a9: ldloc.s V_78
+IL_07ab: brtrue.s IL_0769
+IL_07ad: ldloc.0
+IL_07ae: ldstr "   净酸碱差："
+IL_07b3: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07b8: ldloc.s V_72
+IL_07ba: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_07bf: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07c4: ldstr " 补 "
+IL_07c9: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07ce: ldloc.s V_75
+IL_07d0: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_07d5: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07da: ldstr "，互抵后酸 "
+IL_07df: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07e4: ldloc.s V_4
+IL_07e6: ldstr "acid"
+IL_07eb: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_07f0: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_07f5: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_07fa: ldstr " / 碱 "
+IL_07ff: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0804: ldloc.s V_4
+IL_0806: ldstr "base"
+IL_080b: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0810: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0815: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_081a: ldc.i4.s 10
+IL_081c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_0821: pop
+IL_0822: nop
+IL_0823: ldloc.0
+IL_0824: ldloc.s V_4
+IL_0826: ldstr "中和后"
+IL_082b: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_0830: nop
+IL_0831: nop
+IL_0832: ldc.i4.0
+IL_0833: stloc.s V_25
+IL_0835: ldloc.3
+IL_0836: ldfld System.Int32 OneClickCraft.Chain::Low
+IL_083b: ldc.i4.0
+IL_083c: cgt
+IL_083e: stloc.s V_79
+IL_0840: ldloc.s V_79
+IL_0842: brfalse IL_0b10
+IL_0847: nop
+IL_0848: ldloc.3
+IL_0849: ldfld System.Int32 OneClickCraft.Chain::High
+IL_084e: ldc.i4.0
+IL_084f: bgt.s IL_086d
+IL_0851: ldstr "≥"
+IL_0856: ldloc.3
+IL_0857: ldflda System.Int32 OneClickCraft.Chain::Low
+IL_085c: call System.String System.Int32::ToString()
+IL_0861: ldstr "°C"
+IL_0866: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_086b: br.s IL_0892
+IL_086d: ldloc.3
+IL_086e: ldflda System.Int32 OneClickCraft.Chain::Low
+IL_0873: call System.String System.Int32::ToString()
+IL_0878: ldstr "~"
+IL_087d: ldloc.3
+IL_087e: ldflda System.Int32 OneClickCraft.Chain::High
+IL_0883: call System.String System.Int32::ToString()
+IL_0888: ldstr "°C"
+IL_088d: call System.String System.String::Concat(System.String,System.String,System.String,System.String)
+IL_0892: stloc.s V_80
+IL_0894: ldloc.3
+IL_0895: call GameItem OneClickCraft.OneShot::FindPlateFor(OneClickCraft.Chain)
+IL_089a: stloc.s V_81
+IL_089c: ldloc.s V_81
+IL_089e: brtrue.s IL_08aa
+IL_08a0: call System.Boolean OneClickCraft.ModSettings::get_SkipEquipment()
+IL_08a5: ldc.i4.0
+IL_08a6: ceq
+IL_08a8: br.s IL_08ab
+IL_08aa: ldc.i4.0
+IL_08ab: stloc.s V_90
+IL_08ad: ldloc.s V_90
+IL_08af: brfalse.s IL_08cd
+IL_08b1: nop
+IL_08b2: ldarg.0
+IL_08b3: ldstr "没有能调到 "
+IL_08b8: ldloc.s V_80
+IL_08ba: ldstr " 的加热板 —— 0 个化学模块锁死 99°C、1 个锁 160°C，至少装 2 个模块才能调温"
+IL_08bf: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_08c4: stind.ref
+IL_08c5: ldc.i4.0
+IL_08c6: stloc.s V_8
+IL_08c8: leave IL_15e9
+IL_08cd: ldc.i4.0
+IL_08ce: stloc.s V_82
+IL_08d0: ldloc.s V_81
+IL_08d2: ldnull
+IL_08d3: cgt.un
+IL_08d5: stloc.s V_91
+IL_08d7: ldloc.s V_91
+IL_08d9: brfalse.s IL_08f1
+IL_08db: nop
+IL_08dc: nop
+IL_08dd: ldloc.s V_81
+IL_08df: call System.Int32 MachineBlender::GetUpgradeCount(GameItem)
+IL_08e4: stloc.s V_82
+IL_08e6: nop
+IL_08e7: leave.s IL_08ee
+IL_08e9: pop
+IL_08ea: nop
+IL_08eb: nop
+IL_08ec: leave.s IL_08ee
+IL_08ee: nop
+IL_08ef: br.s IL_0901
+IL_08f1: call System.Boolean OneClickCraft.ModSettings::get_SkipEquipment()
+IL_08f6: stloc.s V_92
+IL_08f8: ldloc.s V_92
+IL_08fa: brfalse.s IL_0901
+IL_08fc: nop
+IL_08fd: ldc.i4.4
+IL_08fe: stloc.s V_82
+IL_0900: nop
+IL_0901: ldc.r8 10
+IL_090a: stloc.s V_83
+IL_090c: ldloc.s V_82
+IL_090e: ldc.i4.3
+IL_090f: ceq
+IL_0911: stloc.s V_93
+IL_0913: ldloc.s V_93
+IL_0915: brfalse.s IL_0927
+IL_0917: ldloc.s V_83
+IL_0919: ldc.r8 4
+IL_0922: mul
+IL_0923: stloc.s V_83
+IL_0925: br.s IL_0943
+IL_0927: ldloc.s V_82
+IL_0929: ldc.i4.4
+IL_092a: clt
+IL_092c: ldc.i4.0
+IL_092d: ceq
+IL_092f: stloc.s V_94
+IL_0931: ldloc.s V_94
+IL_0933: brfalse.s IL_0943
+IL_0935: ldloc.s V_83
+IL_0937: ldc.r8 16
+IL_0940: mul
+IL_0941: stloc.s V_83
+IL_0943: ldloc.3
+IL_0944: callvirt System.Int32 OneClickCraft.Chain::get_SetPoint()
+IL_0949: conv.r8
+IL_094a: stloc.s V_84
+IL_094c: ldloc.s V_4
+IL_094e: call System.Double OneClickCraft.ChemScan::Temp(GameItem)
+IL_0953: stloc.s V_85
+IL_0955: ldc.i4.0
+IL_0956: stloc.s V_86
+IL_0958: ldloc.s V_19
+IL_095a: stloc.s V_87
+IL_095c: ldc.i4.0
+IL_095d: stloc.s V_88
+IL_095f: ldc.i4.m1
+IL_0960: stloc.s V_89
+IL_0962: br IL_0a1f
+IL_0967: nop
+IL_0968: ldloc.s V_4
+IL_096a: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_096f: stloc.s V_95
+IL_0971: ldloc.s V_85
+IL_0973: ldloc.s V_84
+IL_0975: ldloc.s V_95
+IL_0977: ldloc.s V_83
+IL_0979: call System.Double OneClickCraft.OneShot::HeatStep(System.Double,System.Double,System.Int32,System.Double)
+IL_097e: stloc.s V_85
+IL_0980: ldloc.s V_4
+IL_0982: ldloc.s V_85
+IL_0984: call System.Void OneClickCraft.OneShot::SetTemp(GameItem,System.Double)
+IL_0989: nop
+IL_098a: nop
+IL_098b: ldloc.s V_4
+IL_098d: call System.Void ChemicalHelper::HandleTemperatureReaction(GameItem)
+IL_0992: nop
+IL_0993: nop
+IL_0994: leave.s IL_099b
+IL_0996: pop
+IL_0997: nop
+IL_0998: nop
+IL_0999: leave.s IL_099b
+IL_099b: ldloc.s V_4
+IL_099d: ldloc.3
+IL_099e: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_09a3: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_09a8: stloc.s V_96
+IL_09aa: ldloc.s V_85
+IL_09ac: ldloc.s V_84
+IL_09ae: ldc.r8 0.5
+IL_09b7: sub
+IL_09b8: clt.un
+IL_09ba: ldc.i4.0
+IL_09bb: ceq
+IL_09bd: stloc.s V_97
+IL_09bf: ldloc.s V_97
+IL_09c1: brfalse.s IL_09cb
+IL_09c3: ldloc.s V_96
+IL_09c5: ldloc.s V_89
+IL_09c7: ceq
+IL_09c9: br.s IL_09cc
+IL_09cb: ldc.i4.0
+IL_09cc: stloc.s V_98
+IL_09ce: ldloc.s V_98
+IL_09d0: brfalse.s IL_09f3
+IL_09d2: nop
+IL_09d3: ldloc.s V_88
+IL_09d5: ldc.i4.1
+IL_09d6: add
+IL_09d7: dup
+IL_09d8: stloc.s V_88
+IL_09da: ldc.i4.s 12
+IL_09dc: clt
+IL_09de: ldc.i4.0
+IL_09df: ceq
+IL_09e1: stloc.s V_99
+IL_09e3: ldloc.s V_99
+IL_09e5: brfalse.s IL_09f0
+IL_09e7: nop
+IL_09e8: ldloc.s V_86
+IL_09ea: ldc.i4.1
+IL_09eb: add
+IL_09ec: stloc.s V_86
+IL_09ee: br.s IL_0a31
+IL_09f0: nop
+IL_09f1: br.s IL_09f6
+IL_09f3: ldc.i4.0
+IL_09f4: stloc.s V_88
+IL_09f6: ldloc.s V_96
+IL_09f8: stloc.s V_89
+IL_09fa: ldloc.s V_4
+IL_09fc: ldloc.s V_18
+IL_09fe: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0a03: ldc.i4.0
+IL_0a04: cgt
+IL_0a06: ldc.i4.0
+IL_0a07: ceq
+IL_0a09: stloc.s V_100
+IL_0a0b: ldloc.s V_100
+IL_0a0d: brfalse.s IL_0a18
+IL_0a0f: nop
+IL_0a10: ldloc.s V_86
+IL_0a12: ldc.i4.1
+IL_0a13: add
+IL_0a14: stloc.s V_86
+IL_0a16: br.s IL_0a31
+IL_0a18: nop
+IL_0a19: ldloc.s V_86
+IL_0a1b: ldc.i4.1
+IL_0a1c: add
+IL_0a1d: stloc.s V_86
+IL_0a1f: ldloc.s V_86
+IL_0a21: ldc.i4 900
+IL_0a26: clt
+IL_0a28: stloc.s V_101
+IL_0a2a: ldloc.s V_101
+IL_0a2c: brtrue IL_0967
+IL_0a31: ldloc.s V_4
+IL_0a33: ldloc.3
+IL_0a34: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_0a39: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0a3e: stloc.s V_25
+IL_0a40: ldloc.0
+IL_0a41: ldstr "⑥ 控温萃取："
+IL_0a46: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a4b: ldloc.s V_86
+IL_0a4d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0a52: ldstr " 拍（≈"
+IL_0a57: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a5c: ldloc.s V_86
+IL_0a5e: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0a63: ldstr " 秒），温度 "
+IL_0a68: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a6d: ldloca.s V_85
+IL_0a6f: ldstr "0"
+IL_0a74: call System.String System.Double::ToString(System.String)
+IL_0a79: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a7e: ldstr "°C，"
+IL_0a83: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a88: ldloc.s V_18
+IL_0a8a: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_0a8f: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a94: ldstr " "
+IL_0a99: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0a9e: ldloc.s V_87
+IL_0aa0: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0aa5: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0aaa: ldstr " → "
+IL_0aaf: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0ab4: ldloc.s V_4
+IL_0ab6: ldloc.s V_18
+IL_0ab8: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0abd: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0ac2: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0ac7: ldstr "，萃出 "
+IL_0acc: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0ad1: ldloc.3
+IL_0ad2: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_0ad7: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_0adc: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0ae1: ldstr " "
+IL_0ae6: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0aeb: ldloc.s V_25
+IL_0aed: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0af2: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0af7: ldc.i4.s 10
+IL_0af9: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_0afe: pop
+IL_0aff: ldloc.0
+IL_0b00: ldloc.s V_4
+IL_0b02: ldstr "控温后"
+IL_0b07: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_0b0c: nop
+IL_0b0d: nop
+IL_0b0e: br.s IL_0b2d
+IL_0b10: nop
+IL_0b11: ldloc.s V_4
+IL_0b13: ldloc.3
+IL_0b14: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_0b19: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0b1e: stloc.s V_25
+IL_0b20: ldloc.0
+IL_0b21: ldstr "⑥ 控温萃取：这条链不需要加热（成分直接可用）
+"
+IL_0b26: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0b2b: pop
+IL_0b2c: nop
+IL_0b2d: ldloc.s V_25
+IL_0b2f: ldc.i4.0
+IL_0b30: cgt
+IL_0b32: ldc.i4.0
+IL_0b33: ceq
+IL_0b35: stloc.s V_102
+IL_0b37: ldloc.s V_102
+IL_0b39: brfalse.s IL_0b9c
+IL_0b3b: nop
+IL_0b3c: ldarg.0
+IL_0b3d: ldc.i4.6
+IL_0b3e: newarr System.String
+IL_0b43: dup
+IL_0b44: ldc.i4.0
+IL_0b45: ldstr "没萃出任何「"
+IL_0b4a: stelem.ref
+IL_0b4b: dup
+IL_0b4c: ldc.i4.1
+IL_0b4d: ldloc.3
+IL_0b4e: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_0b53: call System.String OneClickCraft.ChemCodex::Name(System.String)
+IL_0b58: stelem.ref
+IL_0b59: dup
+IL_0b5a: ldc.i4.2
+IL_0b5b: ldstr "」：溶剂不足或温度没到 "
+IL_0b60: stelem.ref
+IL_0b61: dup
+IL_0b62: ldc.i4.3
+IL_0b63: ldloc.3
+IL_0b64: ldflda System.Int32 OneClickCraft.Chain::Low
+IL_0b69: call System.String System.Int32::ToString()
+IL_0b6e: stelem.ref
+IL_0b6f: dup
+IL_0b70: ldc.i4.4
+IL_0b71: ldstr "°C。容器里现有 "
+IL_0b76: stelem.ref
+IL_0b77: dup
+IL_0b78: ldc.i4.5
+IL_0b79: ldloc.s V_4
+IL_0b7b: ldloc.s V_20
+IL_0b7d: dup
+IL_0b7e: brtrue.s IL_0b83
+IL_0b80: pop
+IL_0b81: ldloc.s V_18
+IL_0b83: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0b88: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0b8d: stelem.ref
+IL_0b8e: call System.String System.String::Concat(System.String[])
+IL_0b93: stind.ref
+IL_0b94: ldc.i4.0
+IL_0b95: stloc.s V_8
+IL_0b97: leave IL_15e9
+IL_0b9c: ldloc.s V_4
+IL_0b9e: call System.Int32 OneClickCraft.OneShot::WetTotal(GameItem)
+IL_0ba3: stloc.s V_26
+IL_0ba5: call GameItem OneClickCraft.OneShot::FindPitcher()
+IL_0baa: stloc.s V_27
+IL_0bac: ldloc.s V_4
+IL_0bae: call System.Int32 OneClickCraft.OneShot::TotalGrit(GameItem)
+IL_0bb3: stloc.s V_28
+IL_0bb5: ldloc.s V_28
+IL_0bb7: ldc.i4.0
+IL_0bb8: cgt
+IL_0bba: ldc.i4.0
+IL_0bbb: ceq
+IL_0bbd: stloc.s V_103
+IL_0bbf: ldloc.s V_103
+IL_0bc1: brfalse.s IL_0bd6
+IL_0bc3: nop
+IL_0bc4: ldloc.0
+IL_0bc5: ldstr "⑦ 过滤：没有大颗粒杂质，无需过滤
+"
+IL_0bca: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0bcf: pop
+IL_0bd0: nop
+IL_0bd1: br IL_0db4
+IL_0bd6: ldloc.s V_27
+IL_0bd8: ldnull
+IL_0bd9: ceq
+IL_0bdb: stloc.s V_104
+IL_0bdd: ldloc.s V_104
+IL_0bdf: brfalse.s IL_0c11
+IL_0be1: nop
+IL_0be2: ldloc.0
+IL_0be3: ldstr "⑦ 过滤：跳过（场上没有「插了滤棉的空水壶」）
+"
+IL_0be8: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0bed: pop
+IL_0bee: ldloc.1
+IL_0bef: ldstr "未过滤：瓶里还剩 "
+IL_0bf4: ldloc.s V_28
+IL_0bf6: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0bfb: ldstr " 大颗粒杂质。给水壶插一片滤棉、清空它，下次会自动过一遍，成品纯度更高。"
+IL_0c00: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_0c05: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0c0a: nop
+IL_0c0b: nop
+IL_0c0c: br IL_0db4
+IL_0c11: nop
+IL_0c12: ldloc.s V_4
+IL_0c14: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0c19: stloc.s V_105
+IL_0c1b: ldloc.s V_27
+IL_0c1d: call System.Int32 WaterHelper::GetFreeCapacity(GameItem)
+IL_0c22: stloc.s V_106
+IL_0c24: ldloc.s V_105
+IL_0c26: ldloc.s V_106
+IL_0c28: cgt
+IL_0c2a: stloc.s V_107
+IL_0c2c: ldloc.s V_107
+IL_0c2e: brfalse.s IL_0cad
+IL_0c30: nop
+IL_0c31: ldloc.0
+IL_0c32: ldstr "⑦ 过滤：跳过（水壶装不下 "
+IL_0c37: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0c3c: ldloc.s V_105
+IL_0c3e: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0c43: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0c48: ldstr "，只剩 "
+IL_0c4d: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0c52: ldloc.s V_106
+IL_0c54: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0c59: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0c5e: ldstr "）
+"
+IL_0c63: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0c68: pop
+IL_0c69: ldloc.1
+IL_0c6a: ldc.i4.5
+IL_0c6b: newarr System.String
+IL_0c70: dup
+IL_0c71: ldc.i4.0
+IL_0c72: ldstr "未过滤：水壶装不下这一瓶（需要 "
+IL_0c77: stelem.ref
+IL_0c78: dup
+IL_0c79: ldc.i4.1
+IL_0c7a: ldloc.s V_105
+IL_0c7c: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0c81: stelem.ref
+IL_0c82: dup
+IL_0c83: ldc.i4.2
+IL_0c84: ldstr "，水壶只剩 "
+IL_0c89: stelem.ref
+IL_0c8a: dup
+IL_0c8b: ldc.i4.3
+IL_0c8c: ldloc.s V_106
+IL_0c8e: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0c93: stelem.ref
+IL_0c94: dup
+IL_0c95: ldc.i4.4
+IL_0c96: ldstr "）。把水壶清空后会自动过一遍。"
+IL_0c9b: stelem.ref
+IL_0c9c: call System.String System.String::Concat(System.String[])
+IL_0ca1: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0ca6: nop
+IL_0ca7: nop
+IL_0ca8: br IL_0db3
+IL_0cad: nop
+IL_0cae: ldloc.s V_28
+IL_0cb0: stloc.s V_108
+IL_0cb2: ldloc.s V_108
+IL_0cb4: stloc.s V_109
+IL_0cb6: ldc.i4.0
+IL_0cb7: stloc.s V_110
+IL_0cb9: br.s IL_0cfa
+IL_0cbb: nop
+IL_0cbc: ldloc.s V_4
+IL_0cbe: ldloc.s V_27
+IL_0cc0: call System.Void WaterHelper::TransferLiquid(GameItem,GameItem)
+IL_0cc5: nop
+IL_0cc6: ldloc.s V_27
+IL_0cc8: ldloc.s V_4
+IL_0cca: call System.Void WaterHelper::TransferLiquid(GameItem,GameItem)
+IL_0ccf: nop
+IL_0cd0: ldloc.s V_110
+IL_0cd2: ldc.i4.1
+IL_0cd3: add
+IL_0cd4: stloc.s V_110
+IL_0cd6: ldloc.s V_4
+IL_0cd8: call System.Int32 OneClickCraft.OneShot::TotalGrit(GameItem)
+IL_0cdd: stloc.s V_111
+IL_0cdf: ldloc.s V_111
+IL_0ce1: ldloc.s V_109
+IL_0ce3: clt
+IL_0ce5: ldc.i4.0
+IL_0ce6: ceq
+IL_0ce8: stloc.s V_112
+IL_0cea: ldloc.s V_112
+IL_0cec: brfalse.s IL_0cf5
+IL_0cee: nop
+IL_0cef: ldloc.s V_111
+IL_0cf1: stloc.s V_109
+IL_0cf3: br.s IL_0d0d
+IL_0cf5: ldloc.s V_111
+IL_0cf7: stloc.s V_109
+IL_0cf9: nop
+IL_0cfa: ldloc.s V_109
+IL_0cfc: ldc.i4.0
+IL_0cfd: ble.s IL_0d06
+IL_0cff: ldloc.s V_110
+IL_0d01: ldc.i4.5
+IL_0d02: clt
+IL_0d04: br.s IL_0d07
+IL_0d06: ldc.i4.0
+IL_0d07: stloc.s V_113
+IL_0d09: ldloc.s V_113
+IL_0d0b: brtrue.s IL_0cbb
+IL_0d0d: ldloc.0
+IL_0d0e: ldstr "⑦ 过滤：大颗粒杂质 "
+IL_0d13: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0d18: ldloc.s V_108
+IL_0d1a: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0d1f: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0d24: ldstr " → "
+IL_0d29: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0d2e: ldloc.s V_109
+IL_0d30: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0d35: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0d3a: ldloc.s V_110
+IL_0d3c: ldc.i4.1
+IL_0d3d: bgt.s IL_0d46
+IL_0d3f: ldstr ""
+IL_0d44: br.s IL_0d5c
+IL_0d46: ldstr "（滤了 "
+IL_0d4b: ldloca.s V_110
+IL_0d4d: call System.String System.Int32::ToString()
+IL_0d52: ldstr " 遍 —— 滤棉单遍留 ~0.03% 残余，滤到 0 才是 100% 纯度）"
+IL_0d57: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_0d5c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0d61: ldc.i4.s 10
+IL_0d63: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_0d68: pop
+IL_0d69: ldloc.s V_109
+IL_0d6b: ldc.i4.0
+IL_0d6c: cgt
+IL_0d6e: stloc.s V_114
+IL_0d70: ldloc.s V_114
+IL_0d72: brfalse.s IL_0db2
+IL_0d74: ldloc.1
+IL_0d75: ldc.i4.5
+IL_0d76: newarr System.String
+IL_0d7b: dup
+IL_0d7c: ldc.i4.0
+IL_0d7d: ldstr "过滤后仍有 "
+IL_0d82: stelem.ref
+IL_0d83: dup
+IL_0d84: ldc.i4.1
+IL_0d85: ldloc.s V_109
+IL_0d87: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0d8c: stelem.ref
+IL_0d8d: dup
+IL_0d8e: ldc.i4.2
+IL_0d8f: ldstr " 杂质（滤棉只挡粒径 >22 的，蛋白/淀粉/重金属挡不住；已滤 "
+IL_0d94: stelem.ref
+IL_0d95: dup
+IL_0d96: ldc.i4.3
+IL_0d97: ldloca.s V_110
+IL_0d99: call System.String System.Int32::ToString()
+IL_0d9e: stelem.ref
+IL_0d9f: dup
+IL_0da0: ldc.i4.4
+IL_0da1: ldstr " 遍仍滤不动 = 滤芯耐久或残余类型问题）。"
+IL_0da6: stelem.ref
+IL_0da7: call System.String System.String::Concat(System.String[])
+IL_0dac: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0db1: nop
+IL_0db2: nop
+IL_0db3: nop
+IL_0db4: ldloc.0
+IL_0db5: ldloc.s V_4
+IL_0db7: ldstr "过滤后"
+IL_0dbc: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_0dc1: nop
+IL_0dc2: ldarg.3
+IL_0dc3: stloc.s V_115
+IL_0dc5: ldloc.s V_115
+IL_0dc7: brfalse.s IL_0ddb
+IL_0dc9: ldloc.3
+IL_0dca: ldloc.s V_4
+IL_0dcc: ldloc.0
+IL_0dcd: ldloc.1
+IL_0dce: ldarg.0
+IL_0dcf: call System.Boolean OneClickCraft.OneShot::FinishOvernightStop(OneClickCraft.Chain,GameItem,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>,System.String&)
+IL_0dd4: stloc.s V_8
+IL_0dd6: leave IL_15e9
+IL_0ddb: ldstr "evaporator"
+IL_0de0: call GameItem OneClickCraft.OneShot::FindId(System.String)
+IL_0de5: stloc.s V_29
+IL_0de7: ldloc.s V_4
+IL_0de9: call System.Int32 OneClickCraft.OneShot::WetTotal(GameItem)
+IL_0dee: stloc.s V_30
+IL_0df0: ldloc.s V_30
+IL_0df2: ldc.i4.0
+IL_0df3: cgt
+IL_0df5: stloc.s V_116
+IL_0df7: ldloc.s V_116
+IL_0df9: brfalse IL_1283
+IL_0dfe: nop
+IL_0dff: call System.Boolean OneClickCraft.ModSettings::get_SkipEquipment()
+IL_0e04: stloc.s V_117
+IL_0e06: ldloc.s V_29
+IL_0e08: brtrue.s IL_0e11
+IL_0e0a: ldloc.s V_117
+IL_0e0c: ldc.i4.0
+IL_0e0d: ceq
+IL_0e0f: br.s IL_0e12
+IL_0e11: ldc.i4.0
+IL_0e12: stloc.s V_130
+IL_0e14: ldloc.s V_130
+IL_0e16: brfalse.s IL_0e39
+IL_0e18: nop
+IL_0e19: ldarg.0
+IL_0e1a: ldstr "场上没有蒸发器：这瓶里还有 "
+IL_0e1f: ldloc.s V_30
+IL_0e21: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0e26: ldstr " 水/酒精，成品机要求干燥，做不出。装一台蒸发器（带电池）再来。"
+IL_0e2b: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_0e30: stind.ref
+IL_0e31: ldc.i4.0
+IL_0e32: stloc.s V_8
+IL_0e34: leave IL_15e9
+IL_0e39: ldloc.s V_29
+IL_0e3b: call GameItem OneClickCraft.OneShot::FindBattery(GameItem)
+IL_0e40: stloc.s V_118
+IL_0e42: ldloc.s V_118
+IL_0e44: brtrue.s IL_0e4d
+IL_0e46: ldloc.s V_117
+IL_0e48: ldc.i4.0
+IL_0e49: ceq
+IL_0e4b: br.s IL_0e4e
+IL_0e4d: ldc.i4.0
+IL_0e4e: stloc.s V_131
+IL_0e50: ldloc.s V_131
+IL_0e52: brfalse.s IL_0e64
+IL_0e54: nop
+IL_0e55: ldarg.0
+IL_0e56: ldstr "蒸发器里没有电池 —— 蒸不干就成不了型（手动也一样）。装一节电再点。"
+IL_0e5b: stind.ref
+IL_0e5c: ldc.i4.0
+IL_0e5d: stloc.s V_8
+IL_0e5f: leave IL_15e9
+IL_0e64: ldc.i4.0
+IL_0e65: stloc.s V_119
+IL_0e67: ldc.i4.0
+IL_0e68: stloc.s V_120
+IL_0e6a: ldc.i4.0
+IL_0e6b: stloc.s V_121
+IL_0e6d: nop
+IL_0e6e: ldloc.s V_29
+IL_0e70: call System.Int32 MachineryHelper::GetMachinePowerUsage(GameItem)
+IL_0e75: stloc.s V_121
+IL_0e77: nop
+IL_0e78: leave.s IL_0e7f
+IL_0e7a: pop
+IL_0e7b: nop
+IL_0e7c: nop
+IL_0e7d: leave.s IL_0e7f
+IL_0e7f: ldloc.s V_29
+IL_0e81: call GameItem OneClickCraft.OneShot::FindDistillateBottle(GameItem)
+IL_0e86: stloc.s V_122
+IL_0e88: ldloc.s V_29
+IL_0e8a: brfalse.s IL_0e93
+IL_0e8c: ldloc.s V_122
+IL_0e8e: ldnull
+IL_0e8f: ceq
+IL_0e91: br.s IL_0e94
+IL_0e93: ldc.i4.0
+IL_0e94: stloc.s V_123
+IL_0e96: ldc.i4.0
+IL_0e97: stloc.s V_124
+IL_0e99: ldc.i4.0
+IL_0e9a: stloc.s V_125
+IL_0e9c: ldc.i4.0
+IL_0e9d: stloc.s V_126
+IL_0e9f: nop
+IL_0ea0: ldloc.s V_29
+IL_0ea2: call System.Int32 MachineryHelper::GetCurrentQualityBonus(GameItem)
+IL_0ea7: stloc.s V_126
+IL_0ea9: nop
+IL_0eaa: leave.s IL_0eb1
+IL_0eac: pop
+IL_0ead: nop
+IL_0eae: nop
+IL_0eaf: leave.s IL_0eb1
+IL_0eb1: ldc.i4.0
+IL_0eb2: ldc.i4.s 100
+IL_0eb4: ldloc.s V_126
+IL_0eb6: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0ebb: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0ec0: stloc.s V_127
+IL_0ec2: ldloc.s V_4
+IL_0ec4: ldstr "alcohol"
+IL_0ec9: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_0ece: stloc.s V_128
+IL_0ed0: ldloc.0
+IL_0ed1: ldstr "⑧ 蒸发准备：要蒸掉 "
+IL_0ed6: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0edb: ldloc.s V_4
+IL_0edd: call System.Int32 OneClickCraft.OneShot::WetTotal(GameItem)
+IL_0ee2: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0ee7: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0eec: ldstr "（其中酒精 "
+IL_0ef1: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0ef6: ldloc.s V_128
+IL_0ef8: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0efd: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f02: ldstr "）"
+IL_0f07: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f0c: ldstr "；馏出槽"
+IL_0f11: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f16: ldloc.s V_122
+IL_0f18: brtrue.s IL_0f21
+IL_0f1a: ldstr "没瓶子"
+IL_0f1f: br.s IL_0f26
+IL_0f21: ldstr "有瓶子"
+IL_0f26: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f2b: ldstr "，回收率 "
+IL_0f30: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f35: ldloc.s V_127
+IL_0f37: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_0f3c: ldstr "%（= 机器品质加成）
+"
+IL_0f41: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_0f46: pop
+IL_0f47: ldloc.s V_122
+IL_0f49: ldnull
+IL_0f4a: ceq
+IL_0f4c: stloc.s V_132
+IL_0f4e: ldloc.s V_132
+IL_0f50: brfalse.s IL_0f74
+IL_0f52: nop
+IL_0f53: nop
+IL_0f54: ldstr "[蒸发诊断·没找到馏出槽] "
+IL_0f59: ldloc.s V_29
+IL_0f5b: call System.String OneClickCraft.ChemWindows::Describe(GameItem)
+IL_0f60: call System.String System.String::Concat(System.String,System.String)
+IL_0f65: call System.Void OneClickCraft.Log::Msg(System.String)
+IL_0f6a: nop
+IL_0f6b: nop
+IL_0f6c: leave.s IL_0f73
+IL_0f6e: pop
+IL_0f6f: nop
+IL_0f70: nop
+IL_0f71: leave.s IL_0f73
+IL_0f73: nop
+IL_0f74: ldloc.s V_128
+IL_0f76: ldc.i4.0
+IL_0f77: ble.s IL_0f8a
+IL_0f79: ldloc.s V_122
+IL_0f7b: brfalse.s IL_0f87
+IL_0f7d: ldloc.s V_127
+IL_0f7f: ldc.i4.0
+IL_0f80: cgt
+IL_0f82: ldc.i4.0
+IL_0f83: ceq
+IL_0f85: br.s IL_0f88
+IL_0f87: ldc.i4.1
+IL_0f88: br.s IL_0f8b
+IL_0f8a: ldc.i4.0
+IL_0f8b: stloc.s V_133
+IL_0f8d: ldloc.s V_133
+IL_0f8f: brfalse.s IL_0fde
+IL_0f91: nop
+IL_0f92: ldloc.s V_122
+IL_0f94: brfalse.s IL_0f9d
+IL_0f96: ldstr "回收率是 0% —— 蒸发器没装「加品质」的模组（性能/效率/溶剂回收类模组不加品质）"
+IL_0f9b: br.s IL_0fa2
+IL_0f9d: ldstr "馏出槽没放瓶子（放一个空液体容器进去就能收）"
+IL_0fa2: stloc.s V_134
+IL_0fa4: ldloc.1
+IL_0fa5: ldc.i4.5
+IL_0fa6: newarr System.String
+IL_0fab: dup
+IL_0fac: ldc.i4.0
+IL_0fad: ldstr "这 "
+IL_0fb2: stelem.ref
+IL_0fb3: dup
+IL_0fb4: ldc.i4.1
+IL_0fb5: ldloc.s V_128
+IL_0fb7: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_0fbc: stelem.ref
+IL_0fbd: dup
+IL_0fbe: ldc.i4.2
+IL_0fbf: ldstr " 酒精蒸掉后收不回来："
+IL_0fc4: stelem.ref
+IL_0fc5: dup
+IL_0fc6: ldc.i4.3
+IL_0fc7: ldloc.s V_134
+IL_0fc9: stelem.ref
+IL_0fca: dup
+IL_0fcb: ldc.i4.4
+IL_0fcc: ldstr "。想一滴不丢就改用化学白老师的「只到过滤」（不蒸发，酒精留在瓶里）。"
+IL_0fd1: stelem.ref
+IL_0fd2: call System.String System.String::Concat(System.String[])
+IL_0fd7: callvirt System.Void System.Collections.Generic.List`1<System.String>::Add(!0)
+IL_0fdc: nop
+IL_0fdd: nop
+IL_0fde: br IL_10a7
+IL_0fe3: nop
+IL_0fe4: ldloc.s V_4
+IL_0fe6: call System.Int32 OneClickCraft.OneShot::WetTotal(GameItem)
+IL_0feb: stloc.s V_135
+IL_0fed: ldloc.s V_135
+IL_0fef: ldc.i4.0
+IL_0ff0: cgt
+IL_0ff2: ldc.i4.0
+IL_0ff3: ceq
+IL_0ff5: stloc.s V_137
+IL_0ff7: ldloc.s V_137
+IL_0ff9: brfalse.s IL_1000
+IL_0ffb: br IL_10b9
+IL_1000: ldloc.s V_118
+IL_1002: ldnull
+IL_1003: cgt.un
+IL_1005: stloc.s V_138
+IL_1007: ldloc.s V_138
+IL_1009: brfalse.s IL_1078
+IL_100b: nop
+IL_100c: ldc.i4.0
+IL_100d: stloc.s V_139
+IL_100f: nop
+IL_1010: ldloc.s V_118
+IL_1012: ldloc.s V_121
+IL_1014: call System.Boolean PowerHelper::DrawPowerSource(GameItem,System.Int32)
+IL_1019: stloc.s V_139
+IL_101b: nop
+IL_101c: leave.s IL_1023
+IL_101e: pop
+IL_101f: nop
+IL_1020: nop
+IL_1021: leave.s IL_1023
+IL_1023: ldloc.s V_139
+IL_1025: brtrue.s IL_102e
+IL_1027: ldloc.s V_117
+IL_1029: ldc.i4.0
+IL_102a: ceq
+IL_102c: br.s IL_102f
+IL_102e: ldc.i4.0
+IL_102f: stloc.s V_140
+IL_1031: ldloc.s V_140
+IL_1033: brfalse.s IL_1077
+IL_1035: nop
+IL_1036: ldarg.0
+IL_1037: ldc.i4.5
+IL_1038: newarr System.String
+IL_103d: dup
+IL_103e: ldc.i4.0
+IL_103f: ldstr "蒸发到一半电池没电了（已蒸掉 "
+IL_1044: stelem.ref
+IL_1045: dup
+IL_1046: ldc.i4.1
+IL_1047: ldloc.s V_119
+IL_1049: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_104e: stelem.ref
+IL_104f: dup
+IL_1050: ldc.i4.2
+IL_1051: ldstr "，还剩 "
+IL_1056: stelem.ref
+IL_1057: dup
+IL_1058: ldc.i4.3
+IL_1059: ldloc.s V_135
+IL_105b: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_1060: stelem.ref
+IL_1061: dup
+IL_1062: ldc.i4.4
+IL_1063: ldstr " 挥发性液体）。换电池或充好电再来。"
+IL_1068: stelem.ref
+IL_1069: call System.String System.String::Concat(System.String[])
+IL_106e: stind.ref
+IL_106f: ldc.i4.0
+IL_1070: stloc.s V_8
+IL_1072: leave IL_15e9
+IL_1077: nop
+IL_1078: ldloc.s V_122
+IL_107a: ldloc.s V_29
+IL_107c: ldloc.s V_4
+IL_107e: ldloca.s V_124
+IL_1080: ldloca.s V_125
+IL_1082: call System.Int32 OneClickCraft.OneShot::EvaporateCycle(GameItem,GameItem,GameItem,System.Int32&,System.Int32&)
+IL_1087: stloc.s V_136
+IL_1089: ldloc.s V_136
+IL_108b: ldc.i4.0
+IL_108c: cgt
+IL_108e: ldc.i4.0
+IL_108f: ceq
+IL_1091: stloc.s V_141
+IL_1093: ldloc.s V_141
+IL_1095: brfalse.s IL_1099
+IL_1097: br.s IL_10b9
+IL_1099: ldloc.s V_119
+IL_109b: ldloc.s V_136
+IL_109d: add
+IL_109e: stloc.s V_119
+IL_10a0: nop
+IL_10a1: ldloc.s V_120
+IL_10a3: ldc.i4.1
+IL_10a4: add
+IL_10a5: stloc.s V_120
+IL_10a7: ldloc.s V_120
+IL_10a9: ldc.i4 300
+IL_10ae: clt
+IL_10b0: stloc.s V_142
+IL_10b2: ldloc.s V_142
+IL_10b4: brtrue IL_0fe3
+IL_10b9: ldloc.s V_4
+IL_10bb: call System.Int32 OneClickCraft.OneShot::WetTotal(GameItem)
+IL_10c0: stloc.s V_129
+IL_10c2: ldloc.0
+IL_10c3: ldstr "⑧ 蒸发："
+IL_10c8: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_10cd: ldloc.s V_120
+IL_10cf: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_10d4: ldstr " 个周期蒸掉 "
+IL_10d9: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_10de: ldloc.s V_119
+IL_10e0: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_10e5: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_10ea: ldstr "（水/酒精/脂质结合剂），剩 "
+IL_10ef: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_10f4: ldloc.s V_129
+IL_10f6: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_10fb: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1100: ldc.i4.s 10
+IL_1102: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_1107: pop
+IL_1108: ldloc.0
+IL_1109: ldloc.s V_4
+IL_110b: ldstr "蒸干后"
+IL_1110: call System.Void OneClickCraft.OneShot::DumpPot(System.Text.StringBuilder,GameItem,System.String)
+IL_1115: nop
+IL_1116: ldloc.s V_124
+IL_1118: ldc.i4.0
+IL_1119: bgt.s IL_1122
+IL_111b: ldloc.s V_125
+IL_111d: ldc.i4.0
+IL_111e: cgt
+IL_1120: br.s IL_1123
+IL_1122: ldc.i4.1
+IL_1123: stloc.s V_143
+IL_1125: ldloc.s V_143
+IL_1127: brfalse.s IL_1190
+IL_1129: nop
+IL_112a: ldloc.0
+IL_112b: ldstr "   馏出回收：酒精 "
+IL_1130: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1135: ldloc.s V_124
+IL_1137: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_113c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1141: pop
+IL_1142: ldloc.s V_125
+IL_1144: ldc.i4.0
+IL_1145: cgt
+IL_1147: stloc.s V_144
+IL_1149: ldloc.s V_144
+IL_114b: brfalse.s IL_1165
+IL_114d: ldloc.0
+IL_114e: ldstr " ＋水/其他 "
+IL_1153: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1158: ldloc.s V_125
+IL_115a: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_115f: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1164: pop
+IL_1165: ldloc.0
+IL_1166: ldstr "（进了馏出槽的瓶子，酒精可重复利用）
+"
+IL_116b: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1170: pop
+IL_1171: ldloc.s V_29
+IL_1173: call System.Boolean OneClickCraft.OneShot::HasSolventRecovery(GameItem)
+IL_1178: ldc.i4.0
+IL_1179: ceq
+IL_117b: stloc.s V_145
+IL_117d: ldloc.s V_145
+IL_117f: brfalse.s IL_118d
+IL_1181: ldloc.0
+IL_1182: ldstr "   提示：装「溶剂回收」蒸发器模组后，馏出槽只收酒精、回收更纯。
+"
+IL_1187: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_118c: pop
+IL_118d: nop
+IL_118e: br.s IL_11d1
+IL_1190: ldloc.s V_29
+IL_1192: ldnull
+IL_1193: ceq
+IL_1195: stloc.s V_146
+IL_1197: ldloc.s V_146
+IL_1199: brfalse.s IL_11ab
+IL_119b: nop
+IL_119c: ldloc.0
+IL_119d: ldstr "   跳过设备检查模式：没有真实蒸发器，蒸掉的酒精/水无法回收。
+"
+IL_11a2: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_11a7: pop
+IL_11a8: nop
+IL_11a9: br.s IL_11d1
+IL_11ab: ldloc.s V_123
+IL_11ad: stloc.s V_147
+IL_11af: ldloc.s V_147
+IL_11b1: brfalse.s IL_11c3
+IL_11b3: nop
+IL_11b4: ldloc.0
+IL_11b5: ldstr "   提示：蒸发器馏出槽没放瓶子，蒸掉的酒精没有回收。放一个空瓶到馏出槽即可回收酒精（原生规则）；装「溶剂回收」模组则只收酒精。
+"
+IL_11ba: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_11bf: pop
+IL_11c0: nop
+IL_11c1: br.s IL_11d1
+IL_11c3: nop
+IL_11c4: ldloc.0
+IL_11c5: ldstr "   馏出槽有瓶子但本轮收集为 0：给蒸发器装品质类模组提高收集率（原生规则）。
+"
+IL_11ca: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_11cf: pop
+IL_11d0: nop
+IL_11d1: nop
+IL_11d2: nop
+IL_11d3: ldloc.s V_4
+IL_11d5: call System.Void WaterFeatureHelper::OnLiquidContainerPourOutOf(GameItem)
+IL_11da: nop
+IL_11db: nop
+IL_11dc: leave.s IL_11e3
+IL_11de: pop
+IL_11df: nop
+IL_11e0: nop
+IL_11e1: leave.s IL_11e3
+IL_11e3: nop
+IL_11e4: nop
+IL_11e5: ldloc.s V_4
+IL_11e7: call System.Void SpriteHelper::UpdateWaterContainerSprite(GameItem)
+IL_11ec: nop
+IL_11ed: nop
+IL_11ee: leave.s IL_11f5
+IL_11f0: pop
+IL_11f1: nop
+IL_11f2: nop
+IL_11f3: leave.s IL_11f5
+IL_11f5: nop
+IL_11f6: nop
+IL_11f7: ldloc.s V_29
+IL_11f9: call OneClickCraft.MachineParts OneClickCraft.ChemWindows::Walk(GameItem)
+IL_11fe: stloc.s V_148
+IL_1200: ldloc.s V_148
+IL_1202: brfalse.s IL_1210
+IL_1204: ldloc.s V_148
+IL_1206: ldfld GameGridInventory OneClickCraft.MachineParts::Module
+IL_120b: ldnull
+IL_120c: cgt.un
+IL_120e: br.s IL_1211
+IL_1210: ldc.i4.0
+IL_1211: stloc.s V_149
+IL_1213: ldloc.s V_149
+IL_1215: brfalse.s IL_1226
+IL_1217: ldloc.s V_29
+IL_1219: ldloc.s V_148
+IL_121b: ldfld GameGridInventory OneClickCraft.MachineParts::Module
+IL_1220: call System.Void MachineHelper::OnMachineActioned(GameItem,GameInventory)
+IL_1225: nop
+IL_1226: nop
+IL_1227: leave.s IL_122e
+IL_1229: pop
+IL_122a: nop
+IL_122b: nop
+IL_122c: leave.s IL_122e
+IL_122e: ldloc.s V_129
+IL_1230: ldc.i4.0
+IL_1231: cgt
+IL_1233: stloc.s V_150
+IL_1235: ldloc.s V_150
+IL_1237: brfalse.s IL_1282
+IL_1239: nop
+IL_123a: ldarg.0
+IL_123b: ldc.i4.5
+IL_123c: newarr System.String
+IL_1241: dup
+IL_1242: ldc.i4.0
+IL_1243: ldstr "蒸不干：还有 "
+IL_1248: stelem.ref
+IL_1249: dup
+IL_124a: ldc.i4.1
+IL_124b: ldloc.s V_129
+IL_124d: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_1252: stelem.ref
+IL_1253: dup
+IL_1254: ldc.i4.2
+IL_1255: ldstr " 挥发性液体，成品机拒收湿原料。（跑满 "
+IL_125a: stelem.ref
+IL_125b: dup
+IL_125c: ldc.i4.3
+IL_125d: ldc.i4 300
+IL_1262: stloc.s V_151
+IL_1264: ldloca.s V_151
+IL_1266: call System.String System.Int32::ToString()
+IL_126b: stelem.ref
+IL_126c: dup
+IL_126d: ldc.i4.4
+IL_126e: ldstr " 个周期还没干 —— 这瓶里的水/酒精太多了，分批做或换个更大性能的蒸发器；已经蒸掉的部分不会退给你。）"
+IL_1273: stelem.ref
+IL_1274: call System.String System.String::Concat(System.String[])
+IL_1279: stind.ref
+IL_127a: ldc.i4.0
+IL_127b: stloc.s V_8
+IL_127d: leave IL_15e9
+IL_1282: nop
+IL_1283: call System.Boolean OneClickCraft.ModSettings::get_ForceMaxPurity()
+IL_1288: stloc.s V_152
+IL_128a: ldloc.s V_152
+IL_128c: brfalse.s IL_12bc
+IL_128e: nop
+IL_128f: ldloc.s V_4
+IL_1291: ldloc.3
+IL_1292: call System.Int32 OneClickCraft.OneShot::StripToProduct(GameItem,OneClickCraft.Chain)
+IL_1297: stloc.s V_153
+IL_1299: ldloc.0
+IL_129a: ldstr "⑧.5 强制最高纯度：清除非成品成分 "
+IL_129f: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_12a4: ldloc.s V_153
+IL_12a6: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_12ab: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_12b0: ldstr "（设定生效，无视原料品质）
+"
+IL_12b5: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_12ba: pop
+IL_12bb: nop
+IL_12bc: ldarg.1
+IL_12bd: stloc.s V_154
+IL_12bf: ldloc.s V_154
+IL_12c1: brfalse.s IL_12d6
+IL_12c3: ldloc.3
+IL_12c4: ldloc.s V_4
+IL_12c6: ldloc.0
+IL_12c7: ldloc.1
+IL_12c8: ldnull
+IL_12c9: ldarg.0
+IL_12ca: call System.Boolean OneClickCraft.OneShot::FinishPrepStop(OneClickCraft.Chain,GameItem,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>,System.String,System.String&)
+IL_12cf: stloc.s V_8
+IL_12d1: leave IL_15e9
+IL_12d6: ldstr "chem_finisher"
+IL_12db: call GameItem OneClickCraft.OneShot::FindId(System.String)
+IL_12e0: stloc.s V_31
+IL_12e2: ldloc.s V_31
+IL_12e4: ldnull
+IL_12e5: ceq
+IL_12e7: stloc.s V_155
+IL_12e9: ldloc.s V_155
+IL_12eb: brfalse.s IL_1329
+IL_12ed: nop
+IL_12ee: call System.Boolean OneClickCraft.ModSettings::get_SkipEquipment()
+IL_12f3: stloc.s V_156
+IL_12f5: ldloc.s V_156
+IL_12f7: brfalse.s IL_131a
+IL_12f9: ldloc.3
+IL_12fa: ldloc.s V_4
+IL_12fc: ldloc.0
+IL_12fd: ldloc.1
+IL_12fe: ldstr "跳过设备检查：场上没有成型机，成品停在干燥备料状态 —— 想出货时搬去成型机压。"
+IL_1303: ldstr "Equipment check skipped: no finisher on site — product stopped as dried prep; move it to a finisher when you want to press."
+IL_1308: call System.String OneClickCraft.L::T(System.String,System.String)
+IL_130d: ldarg.0
+IL_130e: call System.Boolean OneClickCraft.OneShot::FinishPrepStop(OneClickCraft.Chain,GameItem,System.Text.StringBuilder,System.Collections.Generic.List`1<System.String>,System.String,System.String&)
+IL_1313: stloc.s V_8
+IL_1315: leave IL_15e9
+IL_131a: ldarg.0
+IL_131b: ldstr "场上没有化学制剂成型机"
+IL_1320: stind.ref
+IL_1321: ldc.i4.0
+IL_1322: stloc.s V_8
+IL_1324: leave IL_15e9
+IL_1329: ldloc.s V_31
+IL_132b: call OneClickCraft.MachineParts OneClickCraft.ChemWindows::Walk(GameItem)
+IL_1330: stloc.s V_32
+IL_1332: ldloc.s V_32
+IL_1334: ldfld GameSlotInventory OneClickCraft.MachineParts::Container
+IL_1339: ldnull
+IL_133a: ceq
+IL_133c: stloc.s V_157
+IL_133e: ldloc.s V_157
+IL_1340: brfalse.s IL_1352
+IL_1342: nop
+IL_1343: ldarg.0
+IL_1344: ldstr "成型机窗口结构异常（找不到容器槽）"
+IL_1349: stind.ref
+IL_134a: ldc.i4.0
+IL_134b: stloc.s V_8
+IL_134d: leave IL_15e9
+IL_1352: ldloc.s V_32
+IL_1354: ldfld GameSlotInventory OneClickCraft.MachineParts::Container
+IL_1359: callvirt GameItem GameSlotInventory::get_childItem()
+IL_135e: ldloc.s V_4
+IL_1360: ceq
+IL_1362: ldc.i4.0
+IL_1363: ceq
+IL_1365: stloc.s V_158
+IL_1367: ldloc.s V_158
+IL_1369: brfalse.s IL_13d8
+IL_136b: nop
+IL_136c: ldloc.s V_32
+IL_136e: ldfld GameSlotInventory OneClickCraft.MachineParts::Container
+IL_1373: callvirt GameItem GameSlotInventory::get_childItem()
+IL_1378: ldnull
+IL_1379: cgt.un
+IL_137b: stloc.s V_160
+IL_137d: ldloc.s V_160
+IL_137f: brfalse.s IL_13ac
+IL_1381: nop
+IL_1382: ldarg.0
+IL_1383: ldstr "成型机的容器槽已经占着「"
+IL_1388: ldloc.s V_32
+IL_138a: ldfld GameSlotInventory OneClickCraft.MachineParts::Container
+IL_138f: callvirt GameItem GameSlotInventory::get_childItem()
+IL_1394: call System.String OneClickCraft.ChemScan::Describe(GameItem)
+IL_1399: ldstr "」，先把它拿走"
+IL_139e: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_13a3: stind.ref
+IL_13a4: ldc.i4.0
+IL_13a5: stloc.s V_8
+IL_13a7: leave IL_15e9
+IL_13ac: ldloc.s V_31
+IL_13ae: ldloc.s V_4
+IL_13b0: ldloca.s V_159
+IL_13b2: call System.Boolean OneClickCraft.ChemLoader::TryInsert(GameItem,GameItem,System.String&)
+IL_13b7: ldc.i4.0
+IL_13b8: ceq
+IL_13ba: stloc.s V_161
+IL_13bc: ldloc.s V_161
+IL_13be: brfalse.s IL_13d7
+IL_13c0: nop
+IL_13c1: ldarg.0
+IL_13c2: ldstr "容器放不进成型机："
+IL_13c7: ldloc.s V_159
+IL_13c9: call System.String System.String::Concat(System.String,System.String)
+IL_13ce: stind.ref
+IL_13cf: ldc.i4.0
+IL_13d0: stloc.s V_8
+IL_13d2: leave IL_15e9
+IL_13d7: nop
+IL_13d8: ldloc.s V_31
+IL_13da: ldloc.3
+IL_13db: ldfld System.String OneClickCraft.Chain::ProductId
+IL_13e0: call System.Boolean OneClickCraft.ChemFlow::SetRecipe(GameItem,System.String)
+IL_13e5: ldc.i4.0
+IL_13e6: ceq
+IL_13e8: stloc.s V_162
+IL_13ea: ldloc.s V_162
+IL_13ec: brfalse.s IL_140e
+IL_13ee: nop
+IL_13ef: ldarg.0
+IL_13f0: ldstr "写不进配方标签（"
+IL_13f5: ldloc.3
+IL_13f6: ldfld System.String OneClickCraft.Chain::ProductId
+IL_13fb: ldstr "）"
+IL_1400: call System.String System.String::Concat(System.String,System.String,System.String)
+IL_1405: stind.ref
+IL_1406: ldc.i4.0
+IL_1407: stloc.s V_8
+IL_1409: leave IL_15e9
+IL_140e: ldloc.s V_4
+IL_1410: ldloc.3
+IL_1411: ldfld System.String OneClickCraft.Chain::ProductLiquid
+IL_1416: call System.Int32 OneClickCraft.ChemScan::Amount(GameItem,System.String)
+IL_141b: stloc.s V_33
+IL_141d: ldnull
+IL_141e: stloc.s V_34
+IL_1420: nop
+IL_1421: ldloc.3
+IL_1422: ldfld System.String OneClickCraft.Chain::ProductId
+IL_1427: call ChemFinisherRecipe ChemFinisherRecipe::GetRecipeById(System.String)
+IL_142c: stloc.s V_34
+IL_142e: nop
+IL_142f: leave.s IL_1436
+IL_1431: pop
+IL_1432: nop
+IL_1433: nop
+IL_1434: leave.s IL_1436
+IL_1436: ldloc.s V_34
+IL_1438: ldnull
+IL_1439: ceq
+IL_143b: stloc.s V_163
+IL_143d: ldloc.s V_163
+IL_143f: brfalse.s IL_145c
+IL_1441: nop
+IL_1442: ldarg.0
+IL_1443: ldstr "配方表里没有 "
+IL_1448: ldloc.3
+IL_1449: ldfld System.String OneClickCraft.Chain::ProductId
+IL_144e: call System.String System.String::Concat(System.String,System.String)
+IL_1453: stind.ref
+IL_1454: ldc.i4.0
+IL_1455: stloc.s V_8
+IL_1457: leave IL_15e9
+IL_145c: ldloc.s V_33
+IL_145e: ldloc.s V_34
+IL_1460: ldfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_1465: clt
+IL_1467: stloc.s V_164
+IL_1469: ldloc.s V_164
+IL_146b: brfalse.s IL_14b4
+IL_146d: nop
+IL_146e: ldarg.0
+IL_146f: ldc.i4.5
+IL_1470: newarr System.String
+IL_1475: dup
+IL_1476: ldc.i4.0
+IL_1477: ldstr "有效成分不够一片：现有 "
+IL_147c: stelem.ref
+IL_147d: dup
+IL_147e: ldc.i4.1
+IL_147f: ldloc.s V_33
+IL_1481: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_1486: stelem.ref
+IL_1487: dup
+IL_1488: ldc.i4.2
+IL_1489: ldstr " / 需要 "
+IL_148e: stelem.ref
+IL_148f: dup
+IL_1490: ldc.i4.3
+IL_1491: ldloc.s V_34
+IL_1493: ldfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_1498: call System.String OneClickCraft.ChemCodex::Vol(System.Int32)
+IL_149d: stelem.ref
+IL_149e: dup
+IL_149f: ldc.i4.4
+IL_14a0: ldstr "。原料太少，多放一份再试。"
+IL_14a5: stelem.ref
+IL_14a6: call System.String System.String::Concat(System.String[])
+IL_14ab: stind.ref
+IL_14ac: ldc.i4.0
+IL_14ad: stloc.s V_8
+IL_14af: leave IL_15e9
+IL_14b4: ldloc.s V_31
+IL_14b6: ldloc.s V_32
+IL_14b8: ldfld GameSlotInventory OneClickCraft.MachineParts::Container
+IL_14bd: ldloc.s V_32
+IL_14bf: ldfld GameGridInventory OneClickCraft.MachineParts::Output
+IL_14c4: ldloca.s V_35
+IL_14c6: call System.Boolean OneClickCraft.ChemFlow::Produce(GameItem,GameSlotInventory,GameGridInventory,System.String&)
+IL_14cb: ldc.i4.0
+IL_14cc: ceq
+IL_14ce: stloc.s V_165
+IL_14d0: ldloc.s V_165
+IL_14d2: brfalse.s IL_14eb
+IL_14d4: nop
+IL_14d5: ldarg.0
+IL_14d6: ldstr "成型失败："
+IL_14db: ldloc.s V_35
+IL_14dd: call System.String System.String::Concat(System.String,System.String)
+IL_14e2: stind.ref
+IL_14e3: ldc.i4.0
+IL_14e4: stloc.s V_8
+IL_14e6: leave IL_15e9
+IL_14eb: ldloc.s V_34
+IL_14ed: ldfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_14f2: ldc.i4.0
+IL_14f3: bgt.s IL_14f8
+IL_14f5: ldc.i4.0
+IL_14f6: br.s IL_1502
+IL_14f8: ldloc.s V_33
+IL_14fa: ldloc.s V_34
+IL_14fc: ldfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_1501: div
+IL_1502: stloc.s V_36
+IL_1504: ldloc.0
+IL_1505: ldstr "⑦ 成型："
+IL_150a: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_150f: ldloc.s V_35
+IL_1511: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1516: pop
+IL_1517: ldloc.s V_36
+IL_1519: ldc.i4.1
+IL_151a: cgt
+IL_151c: stloc.s V_166
+IL_151e: ldloc.s V_166
+IL_1520: brfalse.s IL_1541
+IL_1522: ldloc.0
+IL_1523: ldstr "（容器里还够再做 "
+IL_1528: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_152d: ldloc.s V_36
+IL_152f: ldc.i4.1
+IL_1530: sub
+IL_1531: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+IL_1536: ldstr " 片）"
+IL_153b: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_1540: pop
+IL_1541: ldloc.1
+IL_1542: callvirt System.Int32 System.Collections.Generic.List`1<System.String>::get_Count()
+IL_1547: ldc.i4.0
+IL_1548: cgt
+IL_154a: stloc.s V_167
+IL_154c: ldloc.s V_167
+IL_154e: brfalse.s IL_1599
+IL_1550: nop
+IL_1551: ldloc.0
+IL_1552: ldstr "
+⚠ 提醒（不影响出成品，只是品质低一点）：
+"
+IL_1557: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_155c: pop
+IL_155d: ldc.i4.0
+IL_155e: stloc.s V_168
+IL_1560: br.s IL_1588
+IL_1562: ldloc.0
+IL_1563: ldstr "· "
+IL_1568: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_156d: ldloc.1
+IL_156e: ldloc.s V_168
+IL_1570: callvirt !0 System.Collections.Generic.List`1<System.String>::get_Item(System.Int32)
+IL_1575: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+IL_157a: ldc.i4.s 10
+IL_157c: callvirt System.Text.StringBuilder System.Text.StringBuilder::Append(System.Char)
+IL_1581: pop
+IL_1582: ldloc.s V_168
+IL_1584: ldc.i4.1
+IL_1585: add
+IL_1586: stloc.s V_168
+IL_1588: ldloc.s V_168
+IL_158a: ldloc.1
+IL_158b: callvirt System.Int32 System.Collections.Generic.List`1<System.String>::get_Count()
+IL_1590: clt
+IL_1592: stloc.s V_169
+IL_1594: ldloc.s V_169
+IL_1596: brtrue.s IL_1562
+IL_1598: nop
+IL_1599: ldarg.0
+IL_159a: ldloc.0
+IL_159b: callvirt System.String System.Object::ToString()
+IL_15a0: stind.ref
+IL_15a1: ldc.i4.1
+IL_15a2: stloc.s V_8
+IL_15a4: leave.s IL_15e9
+IL_15a6: stloc.s V_170
+IL_15a8: nop
+IL_15a9: ldarg.0
+IL_15aa: ldstr "一键合成中途异常："
+IL_15af: ldloc.s V_170
+IL_15b1: callvirt System.Type System.Exception::GetType()
+IL_15b6: callvirt System.String System.Reflection.MemberInfo::get_Name()
+IL_15bb: ldstr " "
+IL_15c0: ldloc.s V_170
+IL_15c2: callvirt System.String System.Exception::get_Message()
+IL_15c7: call System.String System.String::Concat(System.String,System.String,System.String,System.String)
+IL_15cc: stind.ref
+IL_15cd: ldc.i4.0
+IL_15ce: stloc.s V_8
+IL_15d0: leave.s IL_15e9
+IL_15d2: nop
+IL_15d3: nop
+IL_15d4: ldloc.0
+IL_15d5: callvirt System.String System.Object::ToString()
+IL_15da: stsfld System.String OneClickCraft.OneShot::_lastLog
+IL_15df: nop
+IL_15e0: leave.s IL_15e7
+IL_15e2: pop
+IL_15e3: nop
+IL_15e4: nop
+IL_15e5: leave.s IL_15e7
+IL_15e7: nop
+IL_15e8: endfinally
+IL_15e9: ldloc.s V_8
+IL_15eb: ret
+

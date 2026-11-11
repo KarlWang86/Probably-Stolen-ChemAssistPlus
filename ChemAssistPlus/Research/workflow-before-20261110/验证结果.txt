@@ -1,0 +1,10 @@
+﻿Validation against the installed game, 2026-11-10
+Native ModScanner: PASS
+Methods scanned: 355
+Additional capabilities: none
+Independent manifest ID: chemical_workflow_assistant
+Prerequisite mods: none
+Packaged assemblies: ChemAssistPlus.dll only
+Subscribed original DLL SHA256: 808D473AEAFC396554877FE82602F9C75ADD72343E537192A9EBF26F39E1ABAD
+Automated tests: NOT RUN (user-requested log-driven workflow)
+Game-save end-to-end test: NOT YET RUN

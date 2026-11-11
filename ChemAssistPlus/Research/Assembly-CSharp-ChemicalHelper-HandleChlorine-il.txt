@@ -1,0 +1,150 @@
+﻿Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 ChemicalHelper::HandleChlorine(GameItem)
+  0: GameItem container None
+  local 0: ChemicalHelper/<>c__DisplayClass36_0
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Int32
+  local 4: System.Int32
+  local 5: System.Int32
+  local 6: System.Int64
+  local 7: System.Int32
+  local 8: System.Int32
+IL_0000: newobj System.Void ChemicalHelper/<>c__DisplayClass36_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.0
+IL_0007: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_000c: brfalse.s IL_0010
+IL_000e: ldc.i4.0
+IL_000f: ret
+IL_0010: ldarg.0
+IL_0011: ldstr "chlorine"
+IL_0016: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_001b: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0020: callvirt System.Int32 TagState::GetInt()
+IL_0025: stloc.1
+IL_0026: ldloc.0
+IL_0027: ldarg.0
+IL_0028: ldstr "microbe"
+IL_002d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0032: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0037: callvirt System.Int32 TagState::GetInt()
+IL_003c: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_0041: ldarg.0
+IL_0042: ldstr "chemical_contaminant"
+IL_0047: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_004c: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0051: callvirt System.Int32 TagState::GetInt()
+IL_0056: stloc.2
+IL_0057: ldarg.0
+IL_0058: ldstr "water"
+IL_005d: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0062: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0067: callvirt System.Int32 TagState::GetInt()
+IL_006c: stloc.3
+IL_006d: ldarg.0
+IL_006e: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0073: stloc.s V_4
+IL_0075: ldloc.1
+IL_0076: ldc.i4.0
+IL_0077: ble.s IL_007d
+IL_0079: ldloc.3
+IL_007a: ldc.i4.0
+IL_007b: bgt.s IL_007f
+IL_007d: ldc.i4.0
+IL_007e: ret
+IL_007f: ldloc.1
+IL_0080: ldc.i4 15000
+IL_0085: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_008a: stloc.s V_5
+IL_008c: ldloc.s V_5
+IL_008e: conv.r8
+IL_008f: ldc.r8 5.1
+IL_0098: mul
+IL_0099: conv.i8
+IL_009a: stloc.s V_6
+IL_009c: ldloc.s V_4
+IL_009e: conv.r4
+IL_009f: ldc.r4 0.007
+IL_00a4: mul
+IL_00a5: conv.i4
+IL_00a6: stloc.s V_7
+IL_00a8: ldloc.2
+IL_00a9: ldloc.s V_7
+IL_00ab: bgt.s IL_00b0
+IL_00ad: ldc.i4.0
+IL_00ae: br.s IL_00bd
+IL_00b0: ldloc.2
+IL_00b1: ldloc.s V_7
+IL_00b3: sub
+IL_00b4: conv.i8
+IL_00b5: ldloc.s V_6
+IL_00b7: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00bc: conv.i4
+IL_00bd: stloc.s V_8
+IL_00bf: ldloc.s V_6
+IL_00c1: ldloc.s V_8
+IL_00c3: conv.i8
+IL_00c4: sub
+IL_00c5: stloc.s V_6
+IL_00c7: ldloc.0
+IL_00c8: ldloc.2
+IL_00c9: ldloc.s V_8
+IL_00cb: sub
+IL_00cc: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::newChemicals
+IL_00d1: ldloc.0
+IL_00d2: ldloc.0
+IL_00d3: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbePart
+IL_00d8: conv.i8
+IL_00d9: ldloc.s V_6
+IL_00db: call System.Int64 System.Math::Min(System.Int64,System.Int64)
+IL_00e0: conv.i4
+IL_00e1: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::microbesDestroyed
+IL_00e6: ldloc.0
+IL_00e7: ldloc.1
+IL_00e8: ldloc.s V_5
+IL_00ea: sub
+IL_00eb: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f0: ldloc.0
+IL_00f1: ldloc.0
+IL_00f2: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_00f7: ldc.i4 1000
+IL_00fc: ldloc.0
+IL_00fd: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::chlorineAfterReaction
+IL_0102: conv.r8
+IL_0103: ldc.r8 0.2
+IL_010c: mul
+IL_010d: conv.i4
+IL_010e: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0113: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0118: stfld System.Int32 ChemicalHelper/<>c__DisplayClass36_0::selfDegraded
+IL_011d: ldarg.0
+IL_011e: ldstr "chlorine"
+IL_0123: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0128: ldloc.0
+IL_0129: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__0(TagState)
+IL_012f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0134: ldc.i4.1
+IL_0135: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_013a: pop
+IL_013b: ldarg.0
+IL_013c: ldstr "microbe"
+IL_0141: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0146: ldloc.0
+IL_0147: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__1(TagState)
+IL_014d: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0152: ldc.i4.1
+IL_0153: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0158: pop
+IL_0159: ldarg.0
+IL_015a: ldstr "chemical_contaminant"
+IL_015f: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0164: ldloc.0
+IL_0165: ldftn System.Void ChemicalHelper/<>c__DisplayClass36_0::<HandleChlorine>b__2(TagState)
+IL_016b: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0170: ldc.i4.1
+IL_0171: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0176: pop
+IL_0177: ldc.i4.1
+IL_0178: ret

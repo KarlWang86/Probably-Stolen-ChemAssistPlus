@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(PROBABLY_STOLEN_GAME_ROOT)</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == '' and Exists('$(MSBuildThisFileDirectory)GameRoot.local.txt')">$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)GameRoot.local.txt').Trim())</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)../..</GameRoot>
+  </PropertyGroup>
+</Project>

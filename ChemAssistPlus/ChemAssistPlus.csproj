@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>ChemAssistPlus</AssemblyName><Version>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)VERSION').Trim())</Version>
+    <Nullable>disable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <RestoreIgnoreFailedSources>true</RestoreIgnoreFailedSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Plus.cs" />
+    <Compile Include="Core.cs" />
+    <Compile Include="Workflow.cs" />
+    <Compile Include="AutoWorkflow.cs" />
+    <Compile Include="Distillation.cs" />
+    <Compile Include="BatchPlan.cs" />
+    <Compile Include="Purification.cs" />
+    <Compile Include="PowerMonitor.cs" />
+    <Compile Include="CompositionPanel.cs" />
+    <Compile Include="DoseMath.cs" />
+    <Compile Include="PanelLayout.cs" /><Compile Include="HeatingControl.cs" /><Compile Include="FilterPlan.cs" /><Compile Include="Preflight.cs" /><Compile Include="InventoryReport.cs" />
+    <Reference Include="Harmony"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/0Harmony.dll</HintPath><Private>false</Private></Reference><Reference Include="Game"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Core"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Input"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UI"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="TMP"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="TextRendering"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UIModule"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
+
+
+

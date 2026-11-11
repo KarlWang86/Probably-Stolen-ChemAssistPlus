@@ -1,0 +1,278 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void ChemicalCompositionHelper::SetPotatoComposition(GameItem,System.Single)
+  0: GameItem item None
+  1: System.Single weightGrams None
+  local 0: System.Single
+  local 1: System.Int32
+IL_0000: ldarg.1
+IL_0001: ldc.r4 100
+IL_0006: div
+IL_0007: stloc.0
+IL_0008: ldarg.1
+IL_0009: ldc.r4 1.2
+IL_000e: mul
+IL_000f: conv.i4
+IL_0010: stloc.1
+IL_0011: ldarg.0
+IL_0012: ldloc.1
+IL_0013: ldc.i4.0
+IL_0014: ldc.i4.0
+IL_0015: call System.Void FoodItemHelper::InitFoodItem(GameItem,System.Int32,System.Boolean,System.Boolean)
+IL_001a: ldarg.0
+IL_001b: ldc.i4.1
+IL_001c: ldc.i4.0
+IL_001d: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0022: ldarg.0
+IL_0023: ldstr "water"
+IL_0028: ldc.r4 78.55
+IL_002d: ldloc.0
+IL_002e: mul
+IL_002f: conv.r8
+IL_0030: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0035: ldarg.0
+IL_0036: ldstr "starch"
+IL_003b: ldc.r4 17.33
+IL_0040: ldloc.0
+IL_0041: mul
+IL_0042: conv.r8
+IL_0043: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0048: ldarg.0
+IL_0049: ldstr "protein"
+IL_004e: ldc.r4 2
+IL_0053: ldloc.0
+IL_0054: mul
+IL_0055: conv.r8
+IL_0056: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_005b: ldarg.0
+IL_005c: ldstr "sugar"
+IL_0061: ldc.r4 0.67
+IL_0066: ldloc.0
+IL_0067: mul
+IL_0068: conv.r8
+IL_0069: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_006e: ldarg.0
+IL_006f: ldstr "mineral"
+IL_0074: ldc.r4 0.67
+IL_0079: ldloc.0
+IL_007a: mul
+IL_007b: conv.r8
+IL_007c: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0081: ldarg.0
+IL_0082: ldstr "organic_waste"
+IL_0087: ldc.r4 0.33
+IL_008c: ldloc.0
+IL_008d: mul
+IL_008e: conv.r8
+IL_008f: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0094: ldarg.0
+IL_0095: ldstr "microbe"
+IL_009a: ldc.r4 0.33
+IL_009f: ldloc.0
+IL_00a0: mul
+IL_00a1: conv.r8
+IL_00a2: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_00a7: ldarg.0
+IL_00a8: ldstr "physical_contaminant"
+IL_00ad: ldc.r4 0.12
+IL_00b2: ldloc.0
+IL_00b3: mul
+IL_00b4: conv.r8
+IL_00b5: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_00ba: ret
+System.Void ChemicalCompositionHelper::SetDreamCapComposition(GameItem,System.Single,System.Boolean)
+  0: GameItem item None
+  1: System.Single weightGrams None
+  2: System.Boolean isComestible Optional, HasDefault
+  local 0: System.Single
+  local 1: System.Int32
+IL_0000: ldarg.1
+IL_0001: ldc.r4 32.5
+IL_0006: div
+IL_0007: stloc.0
+IL_0008: ldarg.0
+IL_0009: ldc.i4.1
+IL_000a: ldc.i4.0
+IL_000b: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0010: ldarg.1
+IL_0011: ldc.r4 3
+IL_0016: mul
+IL_0017: conv.i4
+IL_0018: stloc.1
+IL_0019: ldarg.2
+IL_001a: brfalse.s IL_003a
+IL_001c: ldarg.1
+IL_001d: ldc.r4 6
+IL_0022: mul
+IL_0023: conv.i4
+IL_0024: stloc.1
+IL_0025: ldarg.0
+IL_0026: ldstr "plant_matter"
+IL_002b: ldc.r4 22
+IL_0030: ldloc.0
+IL_0031: mul
+IL_0032: conv.r8
+IL_0033: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0038: br.s IL_004d
+IL_003a: ldarg.0
+IL_003b: ldstr "dream_cap_mush"
+IL_0040: ldc.r4 27.333
+IL_0045: ldloc.0
+IL_0046: mul
+IL_0047: conv.r8
+IL_0048: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_004d: ldarg.0
+IL_004e: ldloc.1
+IL_004f: ldc.i4.0
+IL_0050: ldc.i4.0
+IL_0051: call System.Void FoodItemHelper::InitFoodItem(GameItem,System.Int32,System.Boolean,System.Boolean)
+IL_0056: ldarg.0
+IL_0057: ldstr "water"
+IL_005c: ldc.r4 4
+IL_0061: ldloc.0
+IL_0062: mul
+IL_0063: conv.r8
+IL_0064: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0069: ldarg.0
+IL_006a: ldstr "protein"
+IL_006f: ldc.r4 2
+IL_0074: ldloc.0
+IL_0075: mul
+IL_0076: conv.r8
+IL_0077: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_007c: ldarg.0
+IL_007d: ldstr "mineral"
+IL_0082: ldc.r4 0.5
+IL_0087: ldloc.0
+IL_0088: mul
+IL_0089: conv.r8
+IL_008a: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_008f: ldarg.0
+IL_0090: ldstr "microbe"
+IL_0095: ldc.r4 2
+IL_009a: ldloc.0
+IL_009b: mul
+IL_009c: conv.r8
+IL_009d: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_00a2: ldarg.0
+IL_00a3: ldstr "physical_contaminant"
+IL_00a8: ldc.r4 2
+IL_00ad: ldloc.0
+IL_00ae: mul
+IL_00af: conv.r8
+IL_00b0: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_00b5: ret
+System.Void ChemicalCompositionHelper::SetNightmareCapComposition(GameItem,System.Single)
+  0: GameItem item None
+  1: System.Single weightGrams None
+  local 0: System.Single
+IL_0000: ldarg.1
+IL_0001: ldc.r4 32.5
+IL_0006: div
+IL_0007: stloc.0
+IL_0008: ldarg.0
+IL_0009: ldc.i4.1
+IL_000a: ldc.i4.0
+IL_000b: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0010: ldarg.0
+IL_0011: ldstr "nightmare_cap_mush"
+IL_0016: ldc.r4 18
+IL_001b: ldloc.0
+IL_001c: mul
+IL_001d: conv.r8
+IL_001e: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0023: ldarg.0
+IL_0024: ldstr "water"
+IL_0029: ldc.r4 8
+IL_002e: ldloc.0
+IL_002f: mul
+IL_0030: conv.r8
+IL_0031: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0036: ldarg.0
+IL_0037: ldstr "protein"
+IL_003c: ldc.r4 2
+IL_0041: ldloc.0
+IL_0042: mul
+IL_0043: conv.r8
+IL_0044: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0049: ldarg.0
+IL_004a: ldstr "mineral"
+IL_004f: ldc.r4 0.5
+IL_0054: ldloc.0
+IL_0055: mul
+IL_0056: conv.r8
+IL_0057: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_005c: ldarg.0
+IL_005d: ldstr "microbe"
+IL_0062: ldc.r4 5
+IL_0067: ldloc.0
+IL_0068: mul
+IL_0069: conv.r8
+IL_006a: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_006f: ldarg.0
+IL_0070: ldstr "physical_contaminant"
+IL_0075: ldc.r4 2
+IL_007a: ldloc.0
+IL_007b: mul
+IL_007c: conv.r8
+IL_007d: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0082: ret
+System.Void ChemicalCompositionHelper::SetCoffeeBeanComposition(GameItem,System.Single)
+  0: GameItem item None
+  1: System.Single weightGrams None
+  local 0: System.Single
+IL_0000: ldarg.1
+IL_0001: ldc.r4 50
+IL_0006: div
+IL_0007: stloc.0
+IL_0008: ldarg.0
+IL_0009: ldc.i4.1
+IL_000a: ldc.i4.0
+IL_000b: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0010: ldarg.0
+IL_0011: ldstr "water"
+IL_0016: ldc.r4 2
+IL_001b: ldloc.0
+IL_001c: mul
+IL_001d: conv.r8
+IL_001e: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0023: ldarg.0
+IL_0024: ldstr "fat"
+IL_0029: ldc.r4 5
+IL_002e: ldloc.0
+IL_002f: mul
+IL_0030: conv.r8
+IL_0031: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0036: ldarg.0
+IL_0037: ldstr "coffee_mush"
+IL_003c: ldc.r4 16.15
+IL_0041: ldloc.0
+IL_0042: mul
+IL_0043: conv.r8
+IL_0044: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0049: ldarg.0
+IL_004a: ldstr "caffeine"
+IL_004f: ldc.r4 2.75
+IL_0054: ldloc.0
+IL_0055: mul
+IL_0056: conv.r8
+IL_0057: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_005c: ldarg.0
+IL_005d: ldstr "physical_contaminant"
+IL_0062: ldc.r4 5
+IL_0067: ldloc.0
+IL_0068: mul
+IL_0069: conv.r8
+IL_006a: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_006f: ldarg.0
+IL_0070: ldstr "protein"
+IL_0075: ldc.r4 5
+IL_007a: ldloc.0
+IL_007b: mul
+IL_007c: conv.r8
+IL_007d: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0082: ret
+System.Void ChemicalCompositionHelper::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret

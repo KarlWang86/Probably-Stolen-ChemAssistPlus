@@ -1,0 +1,1333 @@
+GameItem MedsItemDirectory::BirthControlPill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "items_medical_15"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_birth_control_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_birth_control_pill_flavor"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.1
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: callvirt System.Collections.Generic.List`1<CombatAbilityEffect> GameItem::get_effects()
+IL_004c: ldstr "null"
+IL_0051: call CombatAbilityEffect DirectoryMaster::CombatAbilityEffect(System.String)
+IL_0056: callvirt System.Void System.Collections.Generic.List`1<CombatAbilityEffect>::Add(!0)
+IL_005b: dup
+IL_005c: ldc.i4.s 15
+IL_005e: conv.i8
+IL_005f: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0064: dup
+IL_0065: ldstr "MEDICAL"
+IL_006a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006f: dup
+IL_0070: ldc.i4.1
+IL_0071: ldc.i4.1
+IL_0072: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0077: dup
+IL_0078: ldstr "birth_control_pill"
+IL_007d: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_0082: dup
+IL_0083: ldstr "contraceptive"
+IL_0088: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_008d: dup
+IL_008e: ldc.i4.6
+IL_008f: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_0094: ret
+GameItem MedsItemDirectory::ZyanidePill()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_medical"
+IL_000b: ldstr "items_medical_12"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_zyanide_pill_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_zyanide_pill_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldc.i4.0
+IL_0041: call System.Void MedicalHelper::InitPillItem(GameItem,System.Boolean)
+IL_0046: dup
+IL_0047: ldc.i4.s 33
+IL_0049: conv.i8
+IL_004a: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_004f: dup
+IL_0050: ldstr "POISON"
+IL_0055: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005a: dup
+IL_005b: ldc.i4.2
+IL_005c: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_0061: dup
+IL_0062: ldc.i4.1
+IL_0063: ldc.i4.1
+IL_0064: call System.Void ChemicalHelper::InitChemItem(GameItem,System.Boolean,System.Boolean)
+IL_0069: dup
+IL_006a: ldstr "zyanide_pill"
+IL_006f: call System.Void ChemFinisherRecipe::SetCompositionStreetStandard(GameItem,System.String)
+IL_0074: dup
+IL_0075: ldstr "zyanide"
+IL_007a: call System.Void ChemicalProductHelper::InitChemicalProduct(GameItem,System.String)
+IL_007f: dup
+IL_0080: ldstr "zyanide"
+IL_0085: ldc.r8 1
+IL_008e: call System.Void ChemicalHelper::SetChemContentML(GameItem,System.String,System.Double)
+IL_0093: dup
+IL_0094: ldc.i4.5
+IL_0095: call System.Void ChemicalFeedbackHelper::InitChemicalIntentItem(GameItem,ChemicalFeedbackHelper/ChemicalIntent)
+IL_009a: ret
+System.Boolean ChemicalFeedbackHelper::IsBirthControl(GameItem)
+  0: GameItem item None
+IL_0000: ldarg.0
+IL_0001: ldstr "contraceptive"
+IL_0006: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_000b: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0010: callvirt System.Int32 TagState::GetInt()
+IL_0015: ldc.i4.s 50
+IL_0017: blt.s IL_001b
+IL_0019: ldc.i4.1
+IL_001a: ret
+IL_001b: ldc.i4.0
+IL_001c: ret
+System.Collections.Generic.List`1<ChemFinisherRecipe> ChemFinisherRecipe::InitRecipes()
+  local 0: ChemFinisherRecipe
+  local 1: ChemFinisherRecipe
+  local 2: ChemFinisherRecipe
+  local 3: ChemFinisherRecipe
+  local 4: ChemFinisherRecipe
+  local 5: ChemFinisherRecipe
+  local 6: ChemFinisherRecipe
+IL_0000: newobj System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::.ctor()
+IL_0005: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_000a: dup
+IL_000b: ldstr "dream_dust"
+IL_0010: stfld System.String ChemFinisherRecipe::identifier
+IL_0015: dup
+IL_0016: ldstr "item_dream_dust_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: stfld System.String ChemFinisherRecipe::displayName
+IL_002a: dup
+IL_002b: ldc.i4 2000
+IL_0030: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_0035: dup
+IL_0036: ldc.i4.1
+IL_0037: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_003c: dup
+IL_003d: ldstr "dream_cap_extract"
+IL_0042: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0047: stloc.0
+IL_0048: dup
+IL_0049: ldloc.0
+IL_004a: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_004f: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_0054: dup
+IL_0055: ldstr "nightmare_dust"
+IL_005a: stfld System.String ChemFinisherRecipe::identifier
+IL_005f: dup
+IL_0060: ldstr "item_nightmare_dust_name"
+IL_0065: call !!0[] System.Array::Empty<System.Object>()
+IL_006a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_006f: stfld System.String ChemFinisherRecipe::displayName
+IL_0074: dup
+IL_0075: ldc.i4 4000
+IL_007a: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_007f: dup
+IL_0080: ldc.i4.1
+IL_0081: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_0086: dup
+IL_0087: ldstr "nightmare_extract"
+IL_008c: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0091: stloc.1
+IL_0092: dup
+IL_0093: ldloc.1
+IL_0094: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_0099: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_009e: dup
+IL_009f: ldstr "caffeine_pill"
+IL_00a4: stfld System.String ChemFinisherRecipe::identifier
+IL_00a9: dup
+IL_00aa: ldstr "item_caffeine_pill_name"
+IL_00af: call !!0[] System.Array::Empty<System.Object>()
+IL_00b4: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00b9: stfld System.String ChemFinisherRecipe::displayName
+IL_00be: dup
+IL_00bf: ldc.i4 5000
+IL_00c4: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_00c9: dup
+IL_00ca: ldc.i4.1
+IL_00cb: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_00d0: dup
+IL_00d1: ldstr "caffeine"
+IL_00d6: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_00db: stloc.2
+IL_00dc: dup
+IL_00dd: ldloc.2
+IL_00de: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_00e3: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_00e8: dup
+IL_00e9: ldstr "zyanide_pill"
+IL_00ee: stfld System.String ChemFinisherRecipe::identifier
+IL_00f3: dup
+IL_00f4: ldstr "item_zyanide_pill_name"
+IL_00f9: call !!0[] System.Array::Empty<System.Object>()
+IL_00fe: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0103: stfld System.String ChemFinisherRecipe::displayName
+IL_0108: dup
+IL_0109: ldc.i4 600
+IL_010e: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_0113: dup
+IL_0114: ldc.i4.1
+IL_0115: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_011a: dup
+IL_011b: ldstr "zyanide"
+IL_0120: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0125: stloc.3
+IL_0126: dup
+IL_0127: ldloc.3
+IL_0128: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_012d: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_0132: dup
+IL_0133: ldstr "birth_control_pill"
+IL_0138: stfld System.String ChemFinisherRecipe::identifier
+IL_013d: dup
+IL_013e: ldstr "item_birth_control_pill_name"
+IL_0143: call !!0[] System.Array::Empty<System.Object>()
+IL_0148: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_014d: stfld System.String ChemFinisherRecipe::displayName
+IL_0152: dup
+IL_0153: ldc.i4.s 100
+IL_0155: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_015a: dup
+IL_015b: ldc.i4.1
+IL_015c: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_0161: dup
+IL_0162: ldstr "contraceptive"
+IL_0167: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_016c: stloc.s V_4
+IL_016e: dup
+IL_016f: ldloc.s V_4
+IL_0171: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_0176: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_017b: dup
+IL_017c: ldstr "fanta_pill"
+IL_0181: stfld System.String ChemFinisherRecipe::identifier
+IL_0186: dup
+IL_0187: ldstr "item_fanta_pill_name"
+IL_018c: call !!0[] System.Array::Empty<System.Object>()
+IL_0191: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0196: stfld System.String ChemFinisherRecipe::displayName
+IL_019b: dup
+IL_019c: ldc.i4 500
+IL_01a1: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_01a6: dup
+IL_01a7: ldc.i4.1
+IL_01a8: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_01ad: dup
+IL_01ae: ldstr "fanta"
+IL_01b3: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_01b8: stloc.s V_5
+IL_01ba: dup
+IL_01bb: ldloc.s V_5
+IL_01bd: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_01c2: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_01c7: dup
+IL_01c8: ldstr "pink_alt_injector"
+IL_01cd: stfld System.String ChemFinisherRecipe::identifier
+IL_01d2: dup
+IL_01d3: ldstr "item_pink_alt_injector_name"
+IL_01d8: call !!0[] System.Array::Empty<System.Object>()
+IL_01dd: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_01e2: stfld System.String ChemFinisherRecipe::displayName
+IL_01e7: dup
+IL_01e8: ldc.i4 4000
+IL_01ed: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_01f2: dup
+IL_01f3: ldc.i4.1
+IL_01f4: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_01f9: dup
+IL_01fa: ldstr "nomore"
+IL_01ff: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0204: stloc.s V_6
+IL_0206: dup
+IL_0207: ldloc.s V_6
+IL_0209: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_020e: ret
+System.Collections.Generic.List`1<Liquid> Liquid::InitLiquid()
+  local 0: Liquid
+  local 1: Liquid
+  local 2: Liquid
+  local 3: Liquid
+  local 4: Liquid
+  local 5: Liquid
+  local 6: Liquid
+  local 7: Liquid
+  local 8: Liquid
+  local 9: Liquid
+  local 10: Liquid
+  local 11: Liquid
+  local 12: Liquid
+  local 13: Liquid
+  local 14: Liquid
+  local 15: Liquid
+  local 16: Liquid
+  local 17: Liquid
+  local 18: Liquid
+  local 19: Liquid
+  local 20: Liquid
+  local 21: Liquid
+  local 22: Liquid
+  local 23: Liquid
+  local 24: Liquid
+  local 25: Liquid
+  local 26: Liquid
+  local 27: Liquid
+  local 28: Liquid
+  local 29: Liquid
+  local 30: Liquid
+  local 31: Liquid
+  local 32: Liquid
+  local 33: Liquid
+  local 34: Liquid
+  local 35: Liquid
+IL_0000: newobj System.Void System.Collections.Generic.List`1<Liquid>::.ctor()
+IL_0005: newobj System.Void Liquid::.ctor()
+IL_000a: stloc.0
+IL_000b: ldloc.0
+IL_000c: ldstr "liquid_water"
+IL_0011: call !!0[] System.Array::Empty<System.Object>()
+IL_0016: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_001b: stfld System.String Liquid::displayName
+IL_0020: ldloc.0
+IL_0021: ldstr "water"
+IL_0026: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_002b: ldloc.0
+IL_002c: ldc.i4.0
+IL_002d: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0032: ldloc.0
+IL_0033: ldc.i4.0
+IL_0034: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0039: ldloc.0
+IL_003a: ldc.i4.0
+IL_003b: stfld System.Boolean Liquid::canBeRemovedByPurifier
+IL_0040: ldloc.0
+IL_0041: ldc.i4.s 10
+IL_0043: stfld System.Int32 Liquid::particleSize
+IL_0048: ldloc.0
+IL_0049: ldc.r8 100
+IL_0052: callvirt System.Void Liquid::SetBoilingPoint(System.Double)
+IL_0057: dup
+IL_0058: ldloc.0
+IL_0059: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_005e: newobj System.Void Liquid::.ctor()
+IL_0063: stloc.1
+IL_0064: ldloc.1
+IL_0065: ldstr "liquid_heavy_metal"
+IL_006a: call !!0[] System.Array::Empty<System.Object>()
+IL_006f: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0074: stfld System.String Liquid::displayName
+IL_0079: ldloc.1
+IL_007a: ldstr "heavy_metal"
+IL_007f: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0084: ldloc.1
+IL_0085: ldc.i4.s 25
+IL_0087: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_008c: ldloc.1
+IL_008d: ldc.i4 2000
+IL_0092: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0097: ldloc.1
+IL_0098: ldc.i4.s 12
+IL_009a: stfld System.Int32 Liquid::particleSize
+IL_009f: ldloc.1
+IL_00a0: ldstr "44464c"
+IL_00a5: stfld System.String Liquid::color
+IL_00aa: ldloc.1
+IL_00ab: ldc.i4.4
+IL_00ac: stfld System.Int32 Liquid::colorMultiplier
+IL_00b1: dup
+IL_00b2: ldloc.1
+IL_00b3: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_00b8: newobj System.Void Liquid::.ctor()
+IL_00bd: stloc.2
+IL_00be: ldloc.2
+IL_00bf: ldstr "liquid_organic_waste"
+IL_00c4: call !!0[] System.Array::Empty<System.Object>()
+IL_00c9: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00ce: stfld System.String Liquid::displayName
+IL_00d3: ldloc.2
+IL_00d4: ldstr "organic_waste"
+IL_00d9: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_00de: ldloc.2
+IL_00df: ldc.i4.s 10
+IL_00e1: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_00e6: ldloc.2
+IL_00e7: ldc.i4 5000
+IL_00ec: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_00f1: ldloc.2
+IL_00f2: ldc.i4.s 40
+IL_00f4: stfld System.Int32 Liquid::particleSize
+IL_00f9: ldloc.2
+IL_00fa: ldc.r8 0.0016
+IL_0103: stfld System.Double Liquid::filterMinimumPurity
+IL_0108: ldloc.2
+IL_0109: ldc.i4.1
+IL_010a: stfld System.Int32 Liquid::filterDurabilityUsage
+IL_010f: ldloc.2
+IL_0110: ldstr "955c4b"
+IL_0115: stfld System.String Liquid::color
+IL_011a: ldloc.2
+IL_011b: ldc.i4.7
+IL_011c: stfld System.Int32 Liquid::colorMultiplier
+IL_0121: dup
+IL_0122: ldloc.2
+IL_0123: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0128: newobj System.Void Liquid::.ctor()
+IL_012d: stloc.3
+IL_012e: ldloc.3
+IL_012f: ldstr "liquid_microplastic"
+IL_0134: call !!0[] System.Array::Empty<System.Object>()
+IL_0139: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_013e: stfld System.String Liquid::displayName
+IL_0143: ldloc.3
+IL_0144: ldstr "microplastic"
+IL_0149: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_014e: ldloc.3
+IL_014f: ldc.i4.s 18
+IL_0151: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0156: ldloc.3
+IL_0157: ldc.i4 2500
+IL_015c: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0161: ldloc.3
+IL_0162: ldc.i4.s 25
+IL_0164: stfld System.Int32 Liquid::particleSize
+IL_0169: ldloc.3
+IL_016a: ldc.r8 0.002
+IL_0173: stfld System.Double Liquid::filterMinimumPurity
+IL_0178: ldloc.3
+IL_0179: ldc.i4 1500
+IL_017e: stfld System.Int32 Liquid::filterVolumeRemoved
+IL_0183: ldloc.3
+IL_0184: ldstr "44464c"
+IL_0189: stfld System.String Liquid::color
+IL_018e: dup
+IL_018f: ldloc.3
+IL_0190: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0195: newobj System.Void Liquid::.ctor()
+IL_019a: stloc.s V_4
+IL_019c: ldloc.s V_4
+IL_019e: ldstr "liquid_microbes"
+IL_01a3: call !!0[] System.Array::Empty<System.Object>()
+IL_01a8: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_01ad: stfld System.String Liquid::displayName
+IL_01b2: ldloc.s V_4
+IL_01b4: ldstr "microbe"
+IL_01b9: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_01be: ldloc.s V_4
+IL_01c0: ldc.i4.s 9
+IL_01c2: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_01c7: ldloc.s V_4
+IL_01c9: ldc.i4 5000
+IL_01ce: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_01d3: ldloc.s V_4
+IL_01d5: ldc.i4.s 50
+IL_01d7: stfld System.Int32 Liquid::particleSize
+IL_01dc: ldloc.s V_4
+IL_01de: ldstr "3d823f"
+IL_01e3: stfld System.String Liquid::color
+IL_01e8: ldloc.s V_4
+IL_01ea: ldc.i4.4
+IL_01eb: stfld System.Int32 Liquid::colorMultiplier
+IL_01f0: dup
+IL_01f1: ldloc.s V_4
+IL_01f3: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_01f8: newobj System.Void Liquid::.ctor()
+IL_01fd: stloc.s V_5
+IL_01ff: ldloc.s V_5
+IL_0201: ldstr "liquid_chemical_contaminant"
+IL_0206: call !!0[] System.Array::Empty<System.Object>()
+IL_020b: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0210: stfld System.String Liquid::displayName
+IL_0215: ldloc.s V_5
+IL_0217: ldstr "chemical_contaminant"
+IL_021c: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0221: ldloc.s V_5
+IL_0223: ldc.i4.s 16
+IL_0225: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_022a: ldloc.s V_5
+IL_022c: ldc.i4 3000
+IL_0231: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0236: ldloc.s V_5
+IL_0238: ldc.i4.2
+IL_0239: stfld System.Int32 Liquid::particleSize
+IL_023e: ldloc.s V_5
+IL_0240: ldstr "7ab053"
+IL_0245: stfld System.String Liquid::color
+IL_024a: ldloc.s V_5
+IL_024c: ldc.i4.6
+IL_024d: stfld System.Int32 Liquid::colorMultiplier
+IL_0252: dup
+IL_0253: ldloc.s V_5
+IL_0255: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_025a: newobj System.Void Liquid::.ctor()
+IL_025f: stloc.s V_6
+IL_0261: ldloc.s V_6
+IL_0263: ldstr "liquid_physical_contaminant"
+IL_0268: call !!0[] System.Array::Empty<System.Object>()
+IL_026d: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0272: stfld System.String Liquid::displayName
+IL_0277: ldloc.s V_6
+IL_0279: ldstr "physical_contaminant"
+IL_027e: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0283: ldloc.s V_6
+IL_0285: ldc.i4.7
+IL_0286: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_028b: ldloc.s V_6
+IL_028d: ldc.i4 5000
+IL_0292: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0297: ldloc.s V_6
+IL_0299: ldc.i4.s 100
+IL_029b: stfld System.Int32 Liquid::particleSize
+IL_02a0: ldloc.s V_6
+IL_02a2: ldc.r8 0.0016
+IL_02ab: stfld System.Double Liquid::filterMinimumPurity
+IL_02b0: ldloc.s V_6
+IL_02b2: ldc.i4 1500
+IL_02b7: stfld System.Int32 Liquid::filterVolumeRemoved
+IL_02bc: ldloc.s V_6
+IL_02be: ldstr "44464c"
+IL_02c3: stfld System.String Liquid::color
+IL_02c8: dup
+IL_02c9: ldloc.s V_6
+IL_02cb: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_02d0: newobj System.Void Liquid::.ctor()
+IL_02d5: stloc.s V_7
+IL_02d7: ldloc.s V_7
+IL_02d9: ldstr "liquid_mineral"
+IL_02de: call !!0[] System.Array::Empty<System.Object>()
+IL_02e3: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_02e8: stfld System.String Liquid::displayName
+IL_02ed: ldloc.s V_7
+IL_02ef: ldstr "mineral"
+IL_02f4: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_02f9: ldloc.s V_7
+IL_02fb: ldc.i4.7
+IL_02fc: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0301: ldloc.s V_7
+IL_0303: ldc.i4 5000
+IL_0308: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_030d: ldloc.s V_7
+IL_030f: ldc.i4.s 30
+IL_0311: stfld System.Int32 Liquid::particleSize
+IL_0316: ldloc.s V_7
+IL_0318: ldc.r8 0.0016
+IL_0321: stfld System.Double Liquid::filterMinimumPurity
+IL_0326: ldloc.s V_7
+IL_0328: ldc.i4.1
+IL_0329: stfld System.Int32 Liquid::filterDurabilityUsage
+IL_032e: ldloc.s V_7
+IL_0330: ldc.i4 2000
+IL_0335: stfld System.Int32 Liquid::filterVolumeRemoved
+IL_033a: ldloc.s V_7
+IL_033c: ldstr "44464c"
+IL_0341: stfld System.String Liquid::color
+IL_0346: dup
+IL_0347: ldloc.s V_7
+IL_0349: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_034e: newobj System.Void Liquid::.ctor()
+IL_0353: stloc.s V_8
+IL_0355: ldloc.s V_8
+IL_0357: ldstr "liquid_dream_cap_mush"
+IL_035c: call !!0[] System.Array::Empty<System.Object>()
+IL_0361: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0366: stfld System.String Liquid::displayName
+IL_036b: ldloc.s V_8
+IL_036d: ldstr "dream_cap_mush"
+IL_0372: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0377: ldloc.s V_8
+IL_0379: ldc.i4.s 12
+IL_037b: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0380: ldloc.s V_8
+IL_0382: ldc.i4 4000
+IL_0387: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_038c: ldloc.s V_8
+IL_038e: ldc.i4 200
+IL_0393: stfld System.Int32 Liquid::particleSize
+IL_0398: ldloc.s V_8
+IL_039a: ldc.r8 0.04
+IL_03a3: stfld System.Double Liquid::euphoria
+IL_03a8: ldloc.s V_8
+IL_03aa: ldstr "955c4b"
+IL_03af: stfld System.String Liquid::color
+IL_03b4: dup
+IL_03b5: ldloc.s V_8
+IL_03b7: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_03bc: newobj System.Void Liquid::.ctor()
+IL_03c1: stloc.s V_9
+IL_03c3: ldloc.s V_9
+IL_03c5: ldstr "liquid_dream_cap_extract"
+IL_03ca: call !!0[] System.Array::Empty<System.Object>()
+IL_03cf: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_03d4: stfld System.String Liquid::displayName
+IL_03d9: ldloc.s V_9
+IL_03db: ldstr "dream_cap_extract"
+IL_03e0: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_03e5: ldloc.s V_9
+IL_03e7: ldc.i4.s 12
+IL_03e9: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_03ee: ldloc.s V_9
+IL_03f0: ldc.i4 4000
+IL_03f5: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_03fa: ldloc.s V_9
+IL_03fc: ldc.i4.5
+IL_03fd: stfld System.Int32 Liquid::particleSize
+IL_0402: ldloc.s V_9
+IL_0404: ldc.r8 1
+IL_040d: stfld System.Double Liquid::euphoria
+IL_0412: ldloc.s V_9
+IL_0414: ldstr "bb8a65"
+IL_0419: stfld System.String Liquid::color
+IL_041e: dup
+IL_041f: ldloc.s V_9
+IL_0421: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0426: newobj System.Void Liquid::.ctor()
+IL_042b: stloc.s V_10
+IL_042d: ldloc.s V_10
+IL_042f: ldstr "liquid_plant_matter"
+IL_0434: call !!0[] System.Array::Empty<System.Object>()
+IL_0439: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_043e: stfld System.String Liquid::displayName
+IL_0443: ldloc.s V_10
+IL_0445: ldstr "plant_matter"
+IL_044a: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_044f: ldloc.s V_10
+IL_0451: ldc.i4.s 12
+IL_0453: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0458: ldloc.s V_10
+IL_045a: ldc.i4 4000
+IL_045f: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0464: ldloc.s V_10
+IL_0466: ldc.i4 200
+IL_046b: stfld System.Int32 Liquid::particleSize
+IL_0470: ldloc.s V_10
+IL_0472: ldstr "4d5438"
+IL_0477: stfld System.String Liquid::color
+IL_047c: dup
+IL_047d: ldloc.s V_10
+IL_047f: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0484: newobj System.Void Liquid::.ctor()
+IL_0489: stloc.s V_11
+IL_048b: ldloc.s V_11
+IL_048d: ldstr "liquid_alcohol"
+IL_0492: call !!0[] System.Array::Empty<System.Object>()
+IL_0497: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_049c: stfld System.String Liquid::displayName
+IL_04a1: ldloc.s V_11
+IL_04a3: ldstr "alcohol"
+IL_04a8: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_04ad: ldloc.s V_11
+IL_04af: ldc.i4.s 12
+IL_04b1: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_04b6: ldloc.s V_11
+IL_04b8: ldc.i4 4000
+IL_04bd: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_04c2: ldloc.s V_11
+IL_04c4: ldc.i4.s 10
+IL_04c6: stfld System.Int32 Liquid::particleSize
+IL_04cb: ldloc.s V_11
+IL_04cd: ldc.r8 78.37
+IL_04d6: callvirt System.Void Liquid::SetBoilingPoint(System.Double)
+IL_04db: ldloc.s V_11
+IL_04dd: ldstr "ffffff"
+IL_04e2: stfld System.String Liquid::color
+IL_04e7: dup
+IL_04e8: ldloc.s V_11
+IL_04ea: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_04ef: newobj System.Void Liquid::.ctor()
+IL_04f4: stloc.s V_12
+IL_04f6: ldloc.s V_12
+IL_04f8: ldstr "liquid_caffeine"
+IL_04fd: call !!0[] System.Array::Empty<System.Object>()
+IL_0502: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0507: stfld System.String Liquid::displayName
+IL_050c: ldloc.s V_12
+IL_050e: ldstr "caffeine"
+IL_0513: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0518: ldloc.s V_12
+IL_051a: ldc.i4.s 12
+IL_051c: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0521: ldloc.s V_12
+IL_0523: ldc.i4 4000
+IL_0528: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_052d: ldloc.s V_12
+IL_052f: ldc.i4.5
+IL_0530: stfld System.Int32 Liquid::particleSize
+IL_0535: ldloc.s V_12
+IL_0537: ldstr "7d4f4a"
+IL_053c: stfld System.String Liquid::color
+IL_0541: dup
+IL_0542: ldloc.s V_12
+IL_0544: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0549: newobj System.Void Liquid::.ctor()
+IL_054e: stloc.s V_13
+IL_0550: ldloc.s V_13
+IL_0552: ldstr "liquid_protein"
+IL_0557: call !!0[] System.Array::Empty<System.Object>()
+IL_055c: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0561: stfld System.String Liquid::displayName
+IL_0566: ldloc.s V_13
+IL_0568: ldstr "protein"
+IL_056d: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0572: ldloc.s V_13
+IL_0574: ldc.i4.s 12
+IL_0576: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_057b: ldloc.s V_13
+IL_057d: ldc.i4 4000
+IL_0582: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0587: ldloc.s V_13
+IL_0589: ldc.i4.5
+IL_058a: stfld System.Int32 Liquid::particleSize
+IL_058f: dup
+IL_0590: ldloc.s V_13
+IL_0592: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0597: newobj System.Void Liquid::.ctor()
+IL_059c: stloc.s V_14
+IL_059e: ldloc.s V_14
+IL_05a0: ldstr "liquid_fat_oil"
+IL_05a5: call !!0[] System.Array::Empty<System.Object>()
+IL_05aa: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_05af: stfld System.String Liquid::displayName
+IL_05b4: ldloc.s V_14
+IL_05b6: ldstr "fat"
+IL_05bb: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_05c0: ldloc.s V_14
+IL_05c2: ldc.i4.s 12
+IL_05c4: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_05c9: ldloc.s V_14
+IL_05cb: ldc.i4 4000
+IL_05d0: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_05d5: ldloc.s V_14
+IL_05d7: ldc.i4.5
+IL_05d8: stfld System.Int32 Liquid::particleSize
+IL_05dd: dup
+IL_05de: ldloc.s V_14
+IL_05e0: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_05e5: newobj System.Void Liquid::.ctor()
+IL_05ea: stloc.s V_15
+IL_05ec: ldloc.s V_15
+IL_05ee: ldstr "liquid_starch"
+IL_05f3: call !!0[] System.Array::Empty<System.Object>()
+IL_05f8: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_05fd: stfld System.String Liquid::displayName
+IL_0602: ldloc.s V_15
+IL_0604: ldstr "starch"
+IL_0609: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_060e: ldloc.s V_15
+IL_0610: ldc.i4.s 12
+IL_0612: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0617: ldloc.s V_15
+IL_0619: ldc.i4 4000
+IL_061e: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0623: ldloc.s V_15
+IL_0625: ldc.i4.5
+IL_0626: stfld System.Int32 Liquid::particleSize
+IL_062b: dup
+IL_062c: ldloc.s V_15
+IL_062e: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0633: newobj System.Void Liquid::.ctor()
+IL_0638: stloc.s V_16
+IL_063a: ldloc.s V_16
+IL_063c: ldstr "liquid_sugar"
+IL_0641: call !!0[] System.Array::Empty<System.Object>()
+IL_0646: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_064b: stfld System.String Liquid::displayName
+IL_0650: ldloc.s V_16
+IL_0652: ldstr "sugar"
+IL_0657: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_065c: ldloc.s V_16
+IL_065e: ldc.i4.s 12
+IL_0660: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0665: ldloc.s V_16
+IL_0667: ldc.i4 4000
+IL_066c: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0671: ldloc.s V_16
+IL_0673: ldc.i4.5
+IL_0674: stfld System.Int32 Liquid::particleSize
+IL_0679: dup
+IL_067a: ldloc.s V_16
+IL_067c: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0681: newobj System.Void Liquid::.ctor()
+IL_0686: stloc.s V_17
+IL_0688: ldloc.s V_17
+IL_068a: ldstr "liquid_coffee_bean_mush"
+IL_068f: call !!0[] System.Array::Empty<System.Object>()
+IL_0694: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0699: stfld System.String Liquid::displayName
+IL_069e: ldloc.s V_17
+IL_06a0: ldstr "coffee_mush"
+IL_06a5: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_06aa: ldloc.s V_17
+IL_06ac: ldc.i4.s 12
+IL_06ae: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_06b3: ldloc.s V_17
+IL_06b5: ldc.i4 4000
+IL_06ba: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_06bf: ldloc.s V_17
+IL_06c1: ldc.i4 200
+IL_06c6: stfld System.Int32 Liquid::particleSize
+IL_06cb: ldloc.s V_17
+IL_06cd: ldstr "4a2f38"
+IL_06d2: stfld System.String Liquid::color
+IL_06d7: dup
+IL_06d8: ldloc.s V_17
+IL_06da: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_06df: newobj System.Void Liquid::.ctor()
+IL_06e4: stloc.s V_18
+IL_06e6: ldloc.s V_18
+IL_06e8: ldstr "liquid_contraceptive_hormones"
+IL_06ed: call !!0[] System.Array::Empty<System.Object>()
+IL_06f2: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_06f7: stfld System.String Liquid::displayName
+IL_06fc: ldloc.s V_18
+IL_06fe: ldstr "contraceptive"
+IL_0703: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0708: ldloc.s V_18
+IL_070a: ldc.i4.s 12
+IL_070c: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0711: ldloc.s V_18
+IL_0713: ldc.i4 4000
+IL_0718: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_071d: ldloc.s V_18
+IL_071f: ldc.i4.5
+IL_0720: stfld System.Int32 Liquid::particleSize
+IL_0725: dup
+IL_0726: ldloc.s V_18
+IL_0728: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_072d: newobj System.Void Liquid::.ctor()
+IL_0732: stloc.s V_19
+IL_0734: ldloc.s V_19
+IL_0736: ldstr "liquid_zyanide"
+IL_073b: call !!0[] System.Array::Empty<System.Object>()
+IL_0740: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0745: stfld System.String Liquid::displayName
+IL_074a: ldloc.s V_19
+IL_074c: ldstr "zyanide"
+IL_0751: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0756: ldloc.s V_19
+IL_0758: ldc.i4.s 12
+IL_075a: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_075f: ldloc.s V_19
+IL_0761: ldc.i4 4000
+IL_0766: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_076b: ldloc.s V_19
+IL_076d: ldc.i4.5
+IL_076e: stfld System.Int32 Liquid::particleSize
+IL_0773: ldloc.s V_19
+IL_0775: ldc.r8 1.66
+IL_077e: stfld System.Double Liquid::lethality
+IL_0783: ldloc.s V_19
+IL_0785: ldstr "275654"
+IL_078a: stfld System.String Liquid::color
+IL_078f: dup
+IL_0790: ldloc.s V_19
+IL_0792: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0797: newobj System.Void Liquid::.ctor()
+IL_079c: stloc.s V_20
+IL_079e: ldloc.s V_20
+IL_07a0: ldstr "liquid_nightmare_extract"
+IL_07a5: call !!0[] System.Array::Empty<System.Object>()
+IL_07aa: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_07af: stfld System.String Liquid::displayName
+IL_07b4: ldloc.s V_20
+IL_07b6: ldstr "nightmare_extract"
+IL_07bb: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_07c0: ldloc.s V_20
+IL_07c2: ldc.i4.s 12
+IL_07c4: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_07c9: ldloc.s V_20
+IL_07cb: ldc.i4 4000
+IL_07d0: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_07d5: ldloc.s V_20
+IL_07d7: ldc.i4.5
+IL_07d8: stfld System.Int32 Liquid::particleSize
+IL_07dd: ldloc.s V_20
+IL_07df: ldc.r8 4
+IL_07e8: stfld System.Double Liquid::lethality
+IL_07ed: ldloc.s V_20
+IL_07ef: ldc.r8 0.25
+IL_07f8: stfld System.Double Liquid::euphoria
+IL_07fd: ldloc.s V_20
+IL_07ff: ldstr "9c3738"
+IL_0804: stfld System.String Liquid::color
+IL_0809: ldloc.s V_20
+IL_080b: ldc.i4.4
+IL_080c: stfld System.Int32 Liquid::colorMultiplier
+IL_0811: dup
+IL_0812: ldloc.s V_20
+IL_0814: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0819: newobj System.Void Liquid::.ctor()
+IL_081e: stloc.s V_21
+IL_0820: ldloc.s V_21
+IL_0822: ldstr "liquid_nightmare_cap_mush"
+IL_0827: call !!0[] System.Array::Empty<System.Object>()
+IL_082c: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0831: stfld System.String Liquid::displayName
+IL_0836: ldloc.s V_21
+IL_0838: ldstr "nightmare_cap_mush"
+IL_083d: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0842: ldloc.s V_21
+IL_0844: ldc.i4.s 12
+IL_0846: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_084b: ldloc.s V_21
+IL_084d: ldc.i4 4000
+IL_0852: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0857: ldloc.s V_21
+IL_0859: ldc.i4 200
+IL_085e: stfld System.Int32 Liquid::particleSize
+IL_0863: ldloc.s V_21
+IL_0865: ldc.r8 0.6
+IL_086e: stfld System.Double Liquid::lethality
+IL_0873: ldloc.s V_21
+IL_0875: ldc.r8 0.1
+IL_087e: stfld System.Double Liquid::euphoria
+IL_0883: ldloc.s V_21
+IL_0885: ldstr "74313b"
+IL_088a: stfld System.String Liquid::color
+IL_088f: ldloc.s V_20
+IL_0891: ldc.i4.4
+IL_0892: stfld System.Int32 Liquid::colorMultiplier
+IL_0897: dup
+IL_0898: ldloc.s V_21
+IL_089a: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_089f: newobj System.Void Liquid::.ctor()
+IL_08a4: stloc.s V_22
+IL_08a6: ldloc.s V_22
+IL_08a8: ldstr "liquid_chlorine"
+IL_08ad: call !!0[] System.Array::Empty<System.Object>()
+IL_08b2: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_08b7: stfld System.String Liquid::displayName
+IL_08bc: ldloc.s V_22
+IL_08be: ldstr "chlorine"
+IL_08c3: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_08c8: ldloc.s V_22
+IL_08ca: ldc.i4.s 12
+IL_08cc: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_08d1: ldloc.s V_22
+IL_08d3: ldc.i4 4000
+IL_08d8: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_08dd: ldloc.s V_22
+IL_08df: ldc.i4.5
+IL_08e0: stfld System.Int32 Liquid::particleSize
+IL_08e5: ldloc.s V_22
+IL_08e7: ldstr "84a251"
+IL_08ec: stfld System.String Liquid::color
+IL_08f1: dup
+IL_08f2: ldloc.s V_22
+IL_08f4: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_08f9: newobj System.Void Liquid::.ctor()
+IL_08fe: stloc.s V_23
+IL_0900: ldloc.s V_23
+IL_0902: ldstr "liquid_synaprest"
+IL_0907: call !!0[] System.Array::Empty<System.Object>()
+IL_090c: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0911: stfld System.String Liquid::displayName
+IL_0916: ldloc.s V_23
+IL_0918: ldstr "synaprest"
+IL_091d: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0922: ldloc.s V_23
+IL_0924: ldc.i4.s 12
+IL_0926: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_092b: ldloc.s V_23
+IL_092d: ldc.i4 4000
+IL_0932: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0937: ldloc.s V_23
+IL_0939: ldc.i4.5
+IL_093a: stfld System.Int32 Liquid::particleSize
+IL_093f: ldloc.s V_23
+IL_0941: ldstr "79746e"
+IL_0946: stfld System.String Liquid::color
+IL_094b: dup
+IL_094c: ldloc.s V_23
+IL_094e: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0953: newobj System.Void Liquid::.ctor()
+IL_0958: stloc.s V_24
+IL_095a: ldloc.s V_24
+IL_095c: ldstr "liquid_fanta"
+IL_0961: call !!0[] System.Array::Empty<System.Object>()
+IL_0966: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_096b: stfld System.String Liquid::displayName
+IL_0970: ldloc.s V_24
+IL_0972: ldstr "fanta"
+IL_0977: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_097c: ldloc.s V_24
+IL_097e: ldc.i4.s 12
+IL_0980: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0985: ldloc.s V_24
+IL_0987: ldc.i4 4000
+IL_098c: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0991: ldloc.s V_24
+IL_0993: ldc.i4.5
+IL_0994: stfld System.Int32 Liquid::particleSize
+IL_0999: ldloc.s V_24
+IL_099b: ldc.r8 10
+IL_09a4: stfld System.Double Liquid::euphoria
+IL_09a9: ldloc.s V_24
+IL_09ab: ldc.r8 2
+IL_09b4: stfld System.Double Liquid::lethality
+IL_09b9: ldloc.s V_24
+IL_09bb: ldstr "a272ac"
+IL_09c0: stfld System.String Liquid::color
+IL_09c5: dup
+IL_09c6: ldloc.s V_24
+IL_09c8: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_09cd: newobj System.Void Liquid::.ctor()
+IL_09d2: stloc.s V_25
+IL_09d4: ldloc.s V_25
+IL_09d6: ldstr "liquid_n_methylol_base"
+IL_09db: call !!0[] System.Array::Empty<System.Object>()
+IL_09e0: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_09e5: stfld System.String Liquid::displayName
+IL_09ea: ldloc.s V_25
+IL_09ec: ldstr "methylol"
+IL_09f1: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_09f6: ldloc.s V_25
+IL_09f8: ldc.i4.s 12
+IL_09fa: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_09ff: ldloc.s V_25
+IL_0a01: ldc.i4 4000
+IL_0a06: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0a0b: ldloc.s V_25
+IL_0a0d: ldc.i4.5
+IL_0a0e: stfld System.Int32 Liquid::particleSize
+IL_0a13: ldloc.s V_25
+IL_0a15: ldstr "355271"
+IL_0a1a: stfld System.String Liquid::color
+IL_0a1f: dup
+IL_0a20: ldloc.s V_25
+IL_0a22: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0a27: newobj System.Void Liquid::.ctor()
+IL_0a2c: stloc.s V_26
+IL_0a2e: ldloc.s V_26
+IL_0a30: ldstr "liquid_reducing_agent"
+IL_0a35: call !!0[] System.Array::Empty<System.Object>()
+IL_0a3a: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0a3f: stfld System.String Liquid::displayName
+IL_0a44: ldloc.s V_26
+IL_0a46: ldstr "reducing_agent"
+IL_0a4b: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0a50: ldloc.s V_26
+IL_0a52: ldc.i4.s 12
+IL_0a54: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0a59: ldloc.s V_26
+IL_0a5b: ldc.i4 4000
+IL_0a60: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0a65: ldloc.s V_26
+IL_0a67: ldc.i4.5
+IL_0a68: stfld System.Int32 Liquid::particleSize
+IL_0a6d: ldloc.s V_26
+IL_0a6f: ldstr "67aaa5"
+IL_0a74: stfld System.String Liquid::color
+IL_0a79: dup
+IL_0a7a: ldloc.s V_26
+IL_0a7c: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0a81: newobj System.Void Liquid::.ctor()
+IL_0a86: stloc.s V_27
+IL_0a88: ldloc.s V_27
+IL_0a8a: ldstr "liquid_acid"
+IL_0a8f: call !!0[] System.Array::Empty<System.Object>()
+IL_0a94: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0a99: stfld System.String Liquid::displayName
+IL_0a9e: ldloc.s V_27
+IL_0aa0: ldstr "acid"
+IL_0aa5: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0aaa: ldloc.s V_27
+IL_0aac: ldc.i4.s 12
+IL_0aae: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0ab3: ldloc.s V_27
+IL_0ab5: ldc.i4 4000
+IL_0aba: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0abf: ldloc.s V_27
+IL_0ac1: ldc.i4.5
+IL_0ac2: stfld System.Int32 Liquid::particleSize
+IL_0ac7: ldloc.s V_27
+IL_0ac9: ldc.r8 0.1
+IL_0ad2: stfld System.Double Liquid::lethality
+IL_0ad7: ldloc.s V_27
+IL_0ad9: ldstr "7ab053"
+IL_0ade: stfld System.String Liquid::color
+IL_0ae3: dup
+IL_0ae4: ldloc.s V_27
+IL_0ae6: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0aeb: newobj System.Void Liquid::.ctor()
+IL_0af0: stloc.s V_28
+IL_0af2: ldloc.s V_28
+IL_0af4: ldstr "liquid_base"
+IL_0af9: call !!0[] System.Array::Empty<System.Object>()
+IL_0afe: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0b03: stfld System.String Liquid::displayName
+IL_0b08: ldloc.s V_28
+IL_0b0a: ldstr "base"
+IL_0b0f: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0b14: ldloc.s V_28
+IL_0b16: ldc.i4.s 12
+IL_0b18: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0b1d: ldloc.s V_28
+IL_0b1f: ldc.i4 4000
+IL_0b24: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0b29: ldloc.s V_28
+IL_0b2b: ldc.i4.5
+IL_0b2c: stfld System.Int32 Liquid::particleSize
+IL_0b31: ldloc.s V_28
+IL_0b33: ldc.r8 0.1
+IL_0b3c: stfld System.Double Liquid::lethality
+IL_0b41: ldloc.s V_28
+IL_0b43: ldstr "67aaa5"
+IL_0b48: stfld System.String Liquid::color
+IL_0b4d: dup
+IL_0b4e: ldloc.s V_28
+IL_0b50: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0b55: newobj System.Void Liquid::.ctor()
+IL_0b5a: stloc.s V_29
+IL_0b5c: ldloc.s V_29
+IL_0b5e: ldstr "liquid_stabilizing_agent"
+IL_0b63: call !!0[] System.Array::Empty<System.Object>()
+IL_0b68: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0b6d: stfld System.String Liquid::displayName
+IL_0b72: ldloc.s V_29
+IL_0b74: ldstr "stabilizing_agent"
+IL_0b79: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0b7e: ldloc.s V_29
+IL_0b80: ldc.i4.s 12
+IL_0b82: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0b87: ldloc.s V_29
+IL_0b89: ldc.i4 4000
+IL_0b8e: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0b93: ldloc.s V_29
+IL_0b95: ldc.i4.5
+IL_0b96: stfld System.Int32 Liquid::particleSize
+IL_0b9b: ldloc.s V_29
+IL_0b9d: ldstr "8abfbb"
+IL_0ba2: stfld System.String Liquid::color
+IL_0ba7: dup
+IL_0ba8: ldloc.s V_29
+IL_0baa: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0baf: newobj System.Void Liquid::.ctor()
+IL_0bb4: stloc.s V_30
+IL_0bb6: ldloc.s V_30
+IL_0bb8: ldstr "liquid_insoluble_debris"
+IL_0bbd: call !!0[] System.Array::Empty<System.Object>()
+IL_0bc2: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0bc7: stfld System.String Liquid::displayName
+IL_0bcc: ldloc.s V_30
+IL_0bce: ldstr "debris"
+IL_0bd3: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0bd8: ldloc.s V_30
+IL_0bda: ldc.i4.0
+IL_0bdb: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0be0: ldloc.s V_30
+IL_0be2: ldc.i4 6000
+IL_0be7: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0bec: ldloc.s V_30
+IL_0bee: ldc.i4 200
+IL_0bf3: stfld System.Int32 Liquid::particleSize
+IL_0bf8: ldloc.s V_30
+IL_0bfa: ldstr "44464c"
+IL_0bff: stfld System.String Liquid::color
+IL_0c04: dup
+IL_0c05: ldloc.s V_30
+IL_0c07: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0c0c: newobj System.Void Liquid::.ctor()
+IL_0c11: stloc.s V_31
+IL_0c13: ldloc.s V_31
+IL_0c15: ldstr "liquid_lipobond_agent"
+IL_0c1a: call !!0[] System.Array::Empty<System.Object>()
+IL_0c1f: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0c24: stfld System.String Liquid::displayName
+IL_0c29: ldloc.s V_31
+IL_0c2b: ldstr "lipobond_agent"
+IL_0c30: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0c35: ldloc.s V_31
+IL_0c37: ldc.i4.s 12
+IL_0c39: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0c3e: ldloc.s V_31
+IL_0c40: ldc.i4 4000
+IL_0c45: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0c4a: ldloc.s V_31
+IL_0c4c: ldc.i4.5
+IL_0c4d: stfld System.Int32 Liquid::particleSize
+IL_0c52: ldloc.s V_31
+IL_0c54: ldc.r8 55
+IL_0c5d: callvirt System.Void Liquid::SetBoilingPoint(System.Double)
+IL_0c62: ldloc.s V_31
+IL_0c64: ldstr "cc7755"
+IL_0c69: stfld System.String Liquid::color
+IL_0c6e: dup
+IL_0c6f: ldloc.s V_31
+IL_0c71: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0c76: newobj System.Void Liquid::.ctor()
+IL_0c7b: stloc.s V_32
+IL_0c7d: ldloc.s V_32
+IL_0c7f: ldstr "liquid_livestock_steroid"
+IL_0c84: call !!0[] System.Array::Empty<System.Object>()
+IL_0c89: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0c8e: stfld System.String Liquid::displayName
+IL_0c93: ldloc.s V_32
+IL_0c95: ldstr "livestock_steroid"
+IL_0c9a: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0c9f: ldloc.s V_32
+IL_0ca1: ldc.i4.s 12
+IL_0ca3: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0ca8: ldloc.s V_32
+IL_0caa: ldc.i4 4000
+IL_0caf: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0cb4: ldloc.s V_32
+IL_0cb6: ldc.i4.5
+IL_0cb7: stfld System.Int32 Liquid::metabolismRatePerDay
+IL_0cbc: ldloc.s V_32
+IL_0cbe: ldc.i4.5
+IL_0cbf: stfld System.Int32 Liquid::particleSize
+IL_0cc4: ldloc.s V_32
+IL_0cc6: ldstr "ffcc00"
+IL_0ccb: stfld System.String Liquid::color
+IL_0cd0: dup
+IL_0cd1: ldloc.s V_32
+IL_0cd3: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0cd8: ldloc.s V_32
+IL_0cda: ldsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_0
+IL_0cdf: dup
+IL_0ce0: brtrue.s IL_0cf9
+IL_0ce2: pop
+IL_0ce3: ldsfld Liquid/<>c Liquid/<>c::<>9
+IL_0ce8: ldftn System.Void Liquid/<>c::<InitLiquid>b__61_0(GameItem)
+IL_0cee: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0cf3: dup
+IL_0cf4: stsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_0
+IL_0cf9: stfld System.Action`1<GameItem> Liquid::OnEnterSystem
+IL_0cfe: ldloc.s V_32
+IL_0d00: ldsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_1
+IL_0d05: dup
+IL_0d06: brtrue.s IL_0d1f
+IL_0d08: pop
+IL_0d09: ldsfld Liquid/<>c Liquid/<>c::<>9
+IL_0d0e: ldftn System.Void Liquid/<>c::<InitLiquid>b__61_1(GameItem)
+IL_0d14: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0d19: dup
+IL_0d1a: stsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_1
+IL_0d1f: stfld System.Action`1<GameItem> Liquid::OnLeftSystem
+IL_0d24: newobj System.Void Liquid::.ctor()
+IL_0d29: stloc.s V_33
+IL_0d2b: ldloc.s V_33
+IL_0d2d: ldstr "liquid_livestock_immunity"
+IL_0d32: call !!0[] System.Array::Empty<System.Object>()
+IL_0d37: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0d3c: stfld System.String Liquid::displayName
+IL_0d41: ldloc.s V_33
+IL_0d43: ldstr "livestock_immunity"
+IL_0d48: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0d4d: ldloc.s V_33
+IL_0d4f: ldc.i4.s 12
+IL_0d51: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0d56: ldloc.s V_33
+IL_0d58: ldc.i4 4000
+IL_0d5d: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0d62: ldloc.s V_33
+IL_0d64: ldc.i4.5
+IL_0d65: stfld System.Int32 Liquid::metabolismRatePerDay
+IL_0d6a: ldloc.s V_33
+IL_0d6c: ldc.i4.5
+IL_0d6d: stfld System.Int32 Liquid::particleSize
+IL_0d72: ldloc.s V_33
+IL_0d74: ldstr "00ccff"
+IL_0d79: stfld System.String Liquid::color
+IL_0d7e: dup
+IL_0d7f: ldloc.s V_33
+IL_0d81: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0d86: ldloc.s V_33
+IL_0d88: ldsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_2
+IL_0d8d: dup
+IL_0d8e: brtrue.s IL_0da7
+IL_0d90: pop
+IL_0d91: ldsfld Liquid/<>c Liquid/<>c::<>9
+IL_0d96: ldftn System.Void Liquid/<>c::<InitLiquid>b__61_2(GameItem)
+IL_0d9c: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0da1: dup
+IL_0da2: stsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_2
+IL_0da7: stfld System.Action`1<GameItem> Liquid::OnEnterSystem
+IL_0dac: ldloc.s V_33
+IL_0dae: ldsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_3
+IL_0db3: dup
+IL_0db4: brtrue.s IL_0dcd
+IL_0db6: pop
+IL_0db7: ldsfld Liquid/<>c Liquid/<>c::<>9
+IL_0dbc: ldftn System.Void Liquid/<>c::<InitLiquid>b__61_3(GameItem)
+IL_0dc2: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_0dc7: dup
+IL_0dc8: stsfld System.Action`1<GameItem> Liquid/<>c::<>9__61_3
+IL_0dcd: stfld System.Action`1<GameItem> Liquid::OnLeftSystem
+IL_0dd2: newobj System.Void Liquid::.ctor()
+IL_0dd7: stloc.s V_34
+IL_0dd9: ldloc.s V_34
+IL_0ddb: ldstr "liquid_wine_extract"
+IL_0de0: call !!0[] System.Array::Empty<System.Object>()
+IL_0de5: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0dea: stfld System.String Liquid::displayName
+IL_0def: ldloc.s V_34
+IL_0df1: ldstr "wine_extract"
+IL_0df6: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0dfb: ldloc.s V_34
+IL_0dfd: ldc.i4.s 12
+IL_0dff: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0e04: ldloc.s V_34
+IL_0e06: ldc.i4 4000
+IL_0e0b: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0e10: ldloc.s V_34
+IL_0e12: ldc.i4.5
+IL_0e13: stfld System.Int32 Liquid::particleSize
+IL_0e18: ldloc.s V_34
+IL_0e1a: ldstr "955699"
+IL_0e1f: stfld System.String Liquid::color
+IL_0e24: ldloc.s V_34
+IL_0e26: ldc.i4 150
+IL_0e2b: stfld System.Int32 Liquid::colorMultiplier
+IL_0e30: dup
+IL_0e31: ldloc.s V_34
+IL_0e33: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0e38: newobj System.Void Liquid::.ctor()
+IL_0e3d: stloc.s V_35
+IL_0e3f: ldloc.s V_35
+IL_0e41: ldstr "liquid_nomore"
+IL_0e46: call !!0[] System.Array::Empty<System.Object>()
+IL_0e4b: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0e50: stfld System.String Liquid::displayName
+IL_0e55: ldloc.s V_35
+IL_0e57: ldstr "nomore"
+IL_0e5c: callvirt System.Void Liquid::SetIdentifier(System.String)
+IL_0e61: ldloc.s V_35
+IL_0e63: ldc.i4.s 12
+IL_0e65: stfld System.Int32 Liquid::baseMaxPurityFromMachine
+IL_0e6a: ldloc.s V_35
+IL_0e6c: ldc.i4 4000
+IL_0e71: stfld System.Int32 Liquid::basePurifierRemoveAmount
+IL_0e76: ldloc.s V_35
+IL_0e78: ldc.i4.5
+IL_0e79: stfld System.Int32 Liquid::particleSize
+IL_0e7e: ldloc.s V_35
+IL_0e80: ldstr "d98cb3"
+IL_0e85: stfld System.String Liquid::color
+IL_0e8a: dup
+IL_0e8b: ldloc.s V_35
+IL_0e8d: callvirt System.Void System.Collections.Generic.List`1<Liquid>::Add(!0)
+IL_0e92: ret
