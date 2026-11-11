@@ -1,6 +1,9 @@
 # 当前交接
 
-## 当前开发状态 · 0.4.1（本地已构建，未发布）
+## 当前开发状态 · 0.4.1（已发布）
+
+- 2026-11-12 00:56（香港时间）按玩家要求先Git提交再发布：源码/文档提交bc262f7。现有公开工坊条目3836818025的english内容上传及schinese简介同步均返回k_EResultOK，禁用缓存逐字核验两语言标题/完整简介一致，回执WorkshopUpload/upload-result-0.4.1-languages.json状态verified。Steam日志00:56:29记录新ManifestID6703503729439725191，00:56:30/00:56:32分别Upload finished OK；公开API确认result=1、visibility=0、相同Manifest及简介一致。简介7982 UTF-8字节，保留20个历史版本及两项鸣谢；准备前备份archive/before-prepare-0.4.1-20261112-005552-858。详情Research/WorkshopUpload-0.4.1-20261112.md。
+- 用户追加约定已写AGENTS.md及DEVELOPMENT.md：以后推进新版本前，先提交旧版本遗留改动；本次明确允许合并提交、不拆分。未推送Git远端，未部署本地Mods、未改存档/订阅缓存、未启动游戏；订阅下载与实际加载待玩家核验。下方为本版开发/构建过程记录，最终发布DLL为A9934C18F114BC6A82E5229EE8B0B633F9E2F03696ADB67F3018A1C0303B2097。
 
 - 按玩家要求读取DEVELOPMENT.md并联网查询一手pH资料，现已替换下方“其余中性绿”的初版规则：咖啡浆参考Rao/Fuller咖啡水萃取液pH4.85–5.13用橙黄，咖啡因参考Wako 10g/L、25°C下pH5.5–6.5用黄绿，纯水参考25°C下pH7用绿；酸/碱只保留红橙/蓝紫分类。无水乙醇pH不适用，虚构或身份不明的其他成分统一灰色，不当中性、不填虚构数值、不计算混合液pH。源码、说明及CHANGELOG已同步；完整来源、适用条件和各未知ID原因见Research/PHColorReferences-20261112.md。
 - 本轮最终构建覆盖下方旧产物：0警告0错误，原生ModScanner PASS（417 methods，capabilities none），DLL SHA256：A9934C18F114BC6A82E5229EE8B0B633F9E2F03696ADB67F3018A1C0303B2097。未新增/运行测试、未部署/上传、未启动游戏。待游戏内验收橙黄/黄绿/灰色条与白字对比度；颜色始终表示主要成分的文献参照或分类，不是该瓶实测pH。
