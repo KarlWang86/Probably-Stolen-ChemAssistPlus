@@ -1,0 +1,410 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineEvaporator/<>c__DisplayClass0_0::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret
+System.Void MachineEvaporator/<>c__DisplayClass0_0::<Evaporator>b__2(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0006: ldstr "Items/items_tool2"
+IL_000b: ldstr "evaporator_b"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: pop
+IL_0016: ret
+System.Void MachineEvaporator/<>c__DisplayClass0_0::<Evaporator>b__3(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0006: ldstr "Items/items_tool2"
+IL_000b: ldstr "evaporator"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: pop
+IL_0016: ret
+System.Void MachineEvaporator/<>c__DisplayClass0_0::<Evaporator>b__4(GameItem,GameInventory,SlotMarker)
+  0: GameItem addedItem None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.1
+IL_0001: ldarg.0
+IL_0002: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0007: ldarg.0
+IL_0008: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_000d: callvirt System.Collections.Generic.List`1<GameItem> GameInventory::get_childItems()
+IL_0012: call System.Void ModuleEffectHelper::OnAddedModuleToGrid(GameItem,GameItem,System.Collections.Generic.List`1<GameItem>)
+IL_0017: ldarg.1
+IL_0018: ldstr "MODULE_TAG"
+IL_001d: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0022: brfalse.s IL_0048
+IL_0024: ldarg.0
+IL_0025: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_002a: ldarg.1
+IL_002b: ldarg.0
+IL_002c: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0031: call System.Void ModuleHelper::ComputeModuleEffect(GameInventory,GameItem,GameItem)
+IL_0036: ldarg.0
+IL_0037: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_003c: ldarg.1
+IL_003d: ldarg.0
+IL_003e: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0043: call System.Void ModuleHelper::ApplyBasicModuleEffect(GameInventory,GameItem,GameItem)
+IL_0048: ldarg.0
+IL_0049: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_004e: call System.Void MachineryHelper::UpdatePowerUsageProcessTypeMachine(GameItem)
+IL_0053: ret
+System.Void MachineEvaporator/<>c__DisplayClass0_0::<Evaporator>b__5(GameItem,GameInventory,SlotMarker)
+  0: GameItem addedItem None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.1
+IL_0001: ldarg.0
+IL_0002: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0007: ldarg.0
+IL_0008: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_000d: callvirt System.Collections.Generic.List`1<GameItem> GameInventory::get_childItems()
+IL_0012: call System.Void ModuleEffectHelper::OnRemovedModuleFromGrid(GameItem,GameItem,System.Collections.Generic.List`1<GameItem>)
+IL_0017: ldarg.1
+IL_0018: ldstr "MODULE_TAG"
+IL_001d: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0022: brfalse.s IL_0048
+IL_0024: ldarg.0
+IL_0025: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_002a: ldarg.1
+IL_002b: ldarg.0
+IL_002c: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0031: call System.Void ModuleHelper::ComputeModuleEffect(GameInventory,GameItem,GameItem)
+IL_0036: ldarg.0
+IL_0037: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_003c: ldarg.1
+IL_003d: ldarg.0
+IL_003e: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0043: call System.Void ModuleHelper::ApplyBasicModuleEffect(GameInventory,GameItem,GameItem)
+IL_0048: ldarg.0
+IL_0049: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_004e: call System.Void MachineryHelper::UpdatePowerUsageProcessTypeMachine(GameItem)
+IL_0053: ret
+System.Void MachineEvaporator/<>c__DisplayClass0_0::<Evaporator>b__7(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Int32
+  local 4: System.Single
+  local 5: System.Int32
+  local 6: System.Boolean
+  local 7: System.Int32
+  local 8: System.Int32
+  local 9: System.Collections.Generic.List`1/Enumerator<Liquid>
+  local 10: Liquid
+  local 11: System.Collections.Generic.List`1/Enumerator<GameItem>
+  local 12: Liquid
+  local 13: Liquid
+  local 14: MachineEvaporator/<>c__DisplayClass0_1
+  local 15: System.Int32
+  local 16: System.Int32
+  local 17: System.Int32
+IL_0000: ldarg.1
+IL_0001: call System.Int32 MachineryHelper::GetMachinePowerUsage(GameItem)
+IL_0006: stloc.0
+IL_0007: ldarg.0
+IL_0008: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryBattery
+IL_000d: callvirt System.Collections.Generic.List`1<GameItem> GameInventory::get_childItems()
+IL_0012: callvirt System.Int32 System.Collections.Generic.List`1<GameItem>::get_Count()
+IL_0017: brfalse IL_0361
+IL_001c: ldarg.0
+IL_001d: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_0022: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0027: call System.Boolean MachineEvaporator::CanEvaporateContainer(GameItem)
+IL_002c: brfalse IL_0361
+IL_0031: ldarg.0
+IL_0032: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryBattery
+IL_0037: callvirt GameItem GameSlotInventory::get_childItem()
+IL_003c: ldloc.0
+IL_003d: call System.Boolean PowerHelper::DrawPowerSource(GameItem,System.Int32)
+IL_0042: brfalse IL_0361
+IL_0047: ldc.i4 300000
+IL_004c: stloc.1
+IL_004d: ldarg.0
+IL_004e: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0053: call System.Int32 MachineryHelper::GetCurrentPerformanceBonus(GameItem)
+IL_0058: stloc.2
+IL_0059: ldarg.0
+IL_005a: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_005f: call System.Int32 MachineryHelper::GetCurrentQualityBonus(GameItem)
+IL_0064: stloc.3
+IL_0065: ldloc.3
+IL_0066: ldc.i4.0
+IL_0067: ldc.i4.s 100
+IL_0069: call System.Int32 System.Math::Clamp(System.Int32,System.Int32,System.Int32)
+IL_006e: stloc.3
+IL_006f: ldc.r4 1
+IL_0074: ldloc.2
+IL_0075: conv.r4
+IL_0076: ldc.r4 100
+IL_007b: div
+IL_007c: add
+IL_007d: stloc.s V_4
+IL_007f: ldloc.s V_4
+IL_0081: ldc.r4 0
+IL_0086: bge.un.s IL_008f
+IL_0088: ldc.r4 0
+IL_008d: stloc.s V_4
+IL_008f: ldloc.1
+IL_0090: conv.r4
+IL_0091: ldloc.s V_4
+IL_0093: mul
+IL_0094: conv.r8
+IL_0095: call System.Double System.Math::Round(System.Double)
+IL_009a: conv.i4
+IL_009b: stloc.1
+IL_009c: ldc.i4.0
+IL_009d: stloc.s V_5
+IL_009f: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_00a4: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_00a9: stloc.s V_9
+IL_00ab: br.s IL_00e5
+IL_00ad: ldloca.s V_9
+IL_00af: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_00b4: stloc.s V_10
+IL_00b6: ldloc.s V_10
+IL_00b8: ldfld System.Boolean Liquid::isEvaporative
+IL_00bd: brfalse.s IL_00e5
+IL_00bf: ldloc.s V_5
+IL_00c1: ldarg.0
+IL_00c2: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_00c7: callvirt GameItem GameSlotInventory::get_childItem()
+IL_00cc: ldloc.s V_10
+IL_00ce: ldfld System.String Liquid::identifier
+IL_00d3: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_00d8: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_00dd: callvirt System.Int32 TagState::GetInt()
+IL_00e2: add
+IL_00e3: stloc.s V_5
+IL_00e5: ldloca.s V_9
+IL_00e7: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_00ec: brtrue.s IL_00ad
+IL_00ee: leave.s IL_00fe
+IL_00f0: ldloca.s V_9
+IL_00f2: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_00f8: callvirt System.Void System.IDisposable::Dispose()
+IL_00fd: endfinally
+IL_00fe: ldloc.s V_5
+IL_0100: ldc.i4.0
+IL_0101: bgt.s IL_010e
+IL_0103: ldstr "DSERROR: CanEvaporateContainer() should not let this log happen."
+IL_0108: call System.Void Debug::Log(System.Object)
+IL_010d: ret
+IL_010e: ldloc.s V_5
+IL_0110: ldloc.1
+IL_0111: bge.s IL_0116
+IL_0113: ldloc.s V_5
+IL_0115: stloc.1
+IL_0116: ldarg.0
+IL_0117: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_011c: call System.Collections.Generic.List`1<GameItem> MachineHelper::GetModules(GameItem)
+IL_0121: ldc.i4.0
+IL_0122: stloc.s V_6
+IL_0124: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<GameItem>::GetEnumerator()
+IL_0129: stloc.s V_11
+IL_012b: br.s IL_0148
+IL_012d: ldloca.s V_11
+IL_012f: call !0 System.Collections.Generic.List`1/Enumerator<GameItem>::get_Current()
+IL_0134: callvirt System.String GameItem::get_identifier()
+IL_0139: ldstr "evaporator_module_solvent_recovery"
+IL_013e: callvirt System.Boolean System.String::Equals(System.String)
+IL_0143: brfalse.s IL_0148
+IL_0145: ldc.i4.1
+IL_0146: stloc.s V_6
+IL_0148: ldloca.s V_11
+IL_014a: call System.Boolean System.Collections.Generic.List`1/Enumerator<GameItem>::MoveNext()
+IL_014f: brtrue.s IL_012d
+IL_0151: leave.s IL_0161
+IL_0153: ldloca.s V_11
+IL_0155: constrained. System.Collections.Generic.List`1/Enumerator<GameItem>
+IL_015b: callvirt System.Void System.IDisposable::Dispose()
+IL_0160: endfinally
+IL_0161: ldc.i4.0
+IL_0162: stloc.s V_7
+IL_0164: ldc.i4.0
+IL_0165: stloc.s V_8
+IL_0167: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_016c: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_0171: stloc.s V_9
+IL_0173: br.s IL_01b1
+IL_0175: ldloca.s V_9
+IL_0177: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_017c: stloc.s V_12
+IL_017e: ldloc.s V_12
+IL_0180: ldfld System.Boolean Liquid::isEvaporative
+IL_0185: brfalse.s IL_01b1
+IL_0187: ldarg.0
+IL_0188: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_018d: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0192: ldloc.s V_12
+IL_0194: ldfld System.String Liquid::identifier
+IL_0199: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_019e: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_01a3: callvirt System.Int32 TagState::GetInt()
+IL_01a8: ldc.i4.0
+IL_01a9: ble.s IL_01b1
+IL_01ab: ldloc.s V_8
+IL_01ad: ldc.i4.1
+IL_01ae: add
+IL_01af: stloc.s V_8
+IL_01b1: ldloca.s V_9
+IL_01b3: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_01b8: brtrue.s IL_0175
+IL_01ba: leave.s IL_01ca
+IL_01bc: ldloca.s V_9
+IL_01be: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_01c4: callvirt System.Void System.IDisposable::Dispose()
+IL_01c9: endfinally
+IL_01ca: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_01cf: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_01d4: stloc.s V_9
+IL_01d6: br IL_0314
+IL_01db: ldloca.s V_9
+IL_01dd: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_01e2: stloc.s V_13
+IL_01e4: ldloc.s V_13
+IL_01e6: ldfld System.Boolean Liquid::isEvaporative
+IL_01eb: brfalse IL_0314
+IL_01f0: newobj System.Void MachineEvaporator/<>c__DisplayClass0_1::.ctor()
+IL_01f5: stloc.s V_14
+IL_01f7: ldarg.0
+IL_01f8: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_01fd: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0202: ldloc.s V_13
+IL_0204: ldfld System.String Liquid::identifier
+IL_0209: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_020e: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0213: callvirt System.Int32 TagState::GetInt()
+IL_0218: stloc.s V_15
+IL_021a: ldloc.s V_15
+IL_021c: ldc.i4.0
+IL_021d: ble IL_0314
+IL_0222: ldloc.s V_8
+IL_0224: ldc.i4.1
+IL_0225: sub
+IL_0226: stloc.s V_8
+IL_0228: ldloc.s V_8
+IL_022a: brfalse.s IL_0239
+IL_022c: ldloc.1
+IL_022d: conv.i8
+IL_022e: ldloc.s V_15
+IL_0230: conv.i8
+IL_0231: mul
+IL_0232: ldloc.s V_5
+IL_0234: conv.i8
+IL_0235: div
+IL_0236: conv.i4
+IL_0237: br.s IL_023d
+IL_0239: ldloc.1
+IL_023a: ldloc.s V_7
+IL_023c: sub
+IL_023d: stloc.s V_16
+IL_023f: ldloc.s V_16
+IL_0241: ldc.i4.0
+IL_0242: ldloc.s V_15
+IL_0244: call System.Int32 System.Math::Clamp(System.Int32,System.Int32,System.Int32)
+IL_0249: stloc.s V_16
+IL_024b: ldloc.s V_7
+IL_024d: ldloc.s V_16
+IL_024f: add
+IL_0250: stloc.s V_7
+IL_0252: ldloc.s V_14
+IL_0254: ldloc.s V_15
+IL_0256: ldloc.s V_16
+IL_0258: sub
+IL_0259: stfld System.Int32 MachineEvaporator/<>c__DisplayClass0_1::newAmount
+IL_025e: ldarg.0
+IL_025f: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_0264: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0269: ldloc.s V_13
+IL_026b: ldfld System.String Liquid::identifier
+IL_0270: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0275: ldloc.s V_14
+IL_0277: ldftn System.Void MachineEvaporator/<>c__DisplayClass0_1::<Evaporator>b__8(TagState)
+IL_027d: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0282: ldc.i4.0
+IL_0283: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0288: pop
+IL_0289: ldloc.s V_16
+IL_028b: conv.r8
+IL_028c: ldloc.3
+IL_028d: conv.r8
+IL_028e: ldc.r8 100
+IL_0297: div
+IL_0298: mul
+IL_0299: call System.Double System.Math::Round(System.Double)
+IL_029e: conv.i4
+IL_029f: stloc.s V_17
+IL_02a1: ldloc.s V_6
+IL_02a3: brfalse.s IL_02b6
+IL_02a5: ldloc.s V_13
+IL_02a7: ldstr "alcohol"
+IL_02ac: callvirt System.Boolean Liquid::IsLiquid(System.String)
+IL_02b1: brtrue.s IL_02b6
+IL_02b3: ldc.i4.0
+IL_02b4: stloc.s V_17
+IL_02b6: ldloc.s V_17
+IL_02b8: ldc.i4.0
+IL_02b9: ble.s IL_0314
+IL_02bb: ldarg.0
+IL_02bc: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::distillateSlot
+IL_02c1: callvirt GameItem GameSlotInventory::get_childItem()
+IL_02c6: brfalse.s IL_0314
+IL_02c8: ldarg.0
+IL_02c9: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::distillateSlot
+IL_02ce: callvirt GameItem GameSlotInventory::get_childItem()
+IL_02d3: ldloc.s V_13
+IL_02d5: ldfld System.String Liquid::identifier
+IL_02da: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_02df: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_02e4: callvirt System.Int32 TagState::GetInt()
+IL_02e9: pop
+IL_02ea: ldarg.0
+IL_02eb: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::distillateSlot
+IL_02f0: callvirt GameItem GameSlotInventory::get_childItem()
+IL_02f5: ldloc.s V_13
+IL_02f7: ldfld System.String Liquid::identifier
+IL_02fc: ldloc.s V_17
+IL_02fe: call System.Void WaterHelper::AddLiquid(GameItem,System.String,System.Int32)
+IL_0303: ldarg.0
+IL_0304: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::distillateSlot
+IL_0309: callvirt GameItem GameSlotInventory::get_childItem()
+IL_030e: ldc.i4.1
+IL_030f: call System.Void WaterFeatureHelper::OnLiquidChanged(GameItem,System.Boolean)
+IL_0314: ldloca.s V_9
+IL_0316: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_031b: brtrue IL_01db
+IL_0320: leave.s IL_0330
+IL_0322: ldloca.s V_9
+IL_0324: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_032a: callvirt System.Void System.IDisposable::Dispose()
+IL_032f: endfinally
+IL_0330: ldarg.0
+IL_0331: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_0336: callvirt GameItem GameSlotInventory::get_childItem()
+IL_033b: call System.Void WaterFeatureHelper::OnLiquidContainerPourOutOf(GameItem)
+IL_0340: ldarg.0
+IL_0341: ldfld GameSlotInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryContainer
+IL_0346: callvirt GameItem GameSlotInventory::get_childItem()
+IL_034b: call System.Void SpriteHelper::UpdateWaterContainerSprite(GameItem)
+IL_0350: ldarg.0
+IL_0351: ldfld GameItem MachineEvaporator/<>c__DisplayClass0_0::machine
+IL_0356: ldarg.0
+IL_0357: ldfld GameGridInventory MachineEvaporator/<>c__DisplayClass0_0::itemInventoryModule
+IL_035c: call System.Void MachineHelper::OnMachineActioned(GameItem,GameInventory)
+IL_0361: ret
+  EH Finally: try IL_00ab: br.s IL_00e5 -> IL_00f0: ldloca.s V_9; handler IL_00f0: ldloca.s V_9 -> IL_00fe: ldloc.s V_5; filter ; catch 
+  EH Finally: try IL_012b: br.s IL_0148 -> IL_0153: ldloca.s V_11; handler IL_0153: ldloca.s V_11 -> IL_0161: ldc.i4.0; filter ; catch 
+  EH Finally: try IL_0173: br.s IL_01b1 -> IL_01bc: ldloca.s V_9; handler IL_01bc: ldloca.s V_9 -> IL_01ca: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids; filter ; catch 
+  EH Finally: try IL_01d6: br IL_0314 -> IL_0322: ldloca.s V_9; handler IL_0322: ldloca.s V_9 -> IL_0330: ldarg.0; filter ; catch 

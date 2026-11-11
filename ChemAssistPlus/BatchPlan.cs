@@ -13,7 +13,8 @@ namespace ChemAssistPlus
             public int[] Full, Kept;
             public int KeepVolume, TotalCount;
             public bool Limited;
-            public long Peak;
+            public long Peak, RawPeak, SolutionPeak, TabletReserve;
+            public ConsolidationPlan Consolidation;
             public readonly List<GameItem> Selected = new List<GameItem>();
             public string Solvent;
             public long FullNeed, Stock;
@@ -154,9 +155,13 @@ namespace ChemAssistPlus
             else
             {
                 long rawPeak = WaterHelper.GetTotalVolume(p.Pot) + plan.Selected.Sum(x => (long)ChemicalHelper.GetTotalVolume(x));
-                long peak = Math.Max(rawPeak, plan.KeepVolume + addedVolume + (tablets > 0 ? 15000 : 0));
+                plan.RawPeak = rawPeak;
+                plan.SolutionPeak = plan.KeepVolume + addedVolume;
+                plan.TabletReserve = tablets > 0 ? 15000 : 0;
+                long peak = Math.Max(rawPeak, plan.SolutionPeak + plan.TabletReserve);
                 plan.Peak = peak;
-                if (peak > WaterHelper.GetTotalCapacity(p.Pot)) plan.Errors.Add("工作瓶容量不足：预计至少 " + Vol(peak) + "，请换大瓶。");
+                if (peak > WaterHelper.GetTotalCapacity(p.Pot)) plan.Errors.Add("工作瓶容量不足：" + Name(p.Pot) + " #" + p.Pot.uniqueId
+                    + "，容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot)) + "；预计至少 " + Vol(peak) + "，请换大瓶。");
             }
             if (p.Recipe.ProductId == "fanta_pill" && Part(plan.Kept, "methylol") <= Part(plan.Kept, "stabilizing_agent")
                 && Part(plan.Kept, p.Recipe.ProductLiquid) == 0) plan.Errors.Add("稳定剂不低于前体，原生反应不会启动。");
@@ -171,7 +176,11 @@ namespace ChemAssistPlus
             if (p.Pot != null)
             {
                 var receiver = FindEvaporator(p.Pot, p.Recipe, distillationVolume, true);
-                if (receiver == null) plan.Errors.Add(EvaporatorBlockReason(p.Pot, p.Recipe, distillationVolume, true));
+                if (receiver == null)
+                {
+                    plan.Consolidation = PlanConsolidation(p.Pot, distillationVolume);
+                    if (plan.Consolidation == null) plan.Errors.Add(EvaporatorBlockReason(p.Pot, p.Recipe, distillationVolume, true));
+                }
                 else if (MachineView.Walk(receiver).Container.childItem != null
                     && MachineView.Walk(receiver).Container.childItem != p.Pot)
                     plan.Lines.Add("蒸发器 #" + receiver.uniqueId + " 可接收同类原液；净化后复核浓度差≤5个百分点及实际容量，不合格则保留本瓶。");
@@ -183,11 +192,18 @@ namespace ChemAssistPlus
         {
             var text = new StringBuilder();
             text.AppendLine(ChemNames.ProductName(p.Recipe.ProductId) + (p.Solids.Count > 0 ? " · " + p.Solids.Count + " 份" + Name(p.Solid) : " · 半成品"));
+            if (p.Pot != null)
+                text.AppendLine("工作瓶：" + Name(p.Pot) + " #" + p.Pot.uniqueId + " · 容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot))
+                    + (p.AutoPot ? "（拟自动装入空容器）" : "（容器槽）"));
             if (plan.Limited)
             {
                 text.AppendLine(Warn("按酒精库存及瓶容量限量 · 本次 " + plan.Selected.Count + "/" + plan.TotalCount + " 份，其余固体留在输入格。"));
             }
             if (plan.Errors.Count > 0) text.AppendLine(Bad("暂不能开工：" + string.Join("；", plan.Errors)));
+            if (plan.Consolidation != null) text.AppendLine(Warn("开工前拟" + ConsolidationSummary(plan.Consolidation)));
+            if (p.Pot != null && plan.Peak > WaterHelper.GetTotalCapacity(p.Pot))
+                text.AppendLine("容量估算：原料瞬时 " + Vol(plan.RawPeak) + "；搅拌液及试剂 " + Vol(plan.SolutionPeak)
+                    + " + 药片预留 " + Vol(plan.TabletReserve) + "，取较大值。");
             return text.ToString();
         }
     }

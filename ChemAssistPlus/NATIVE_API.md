@@ -27,6 +27,7 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 - water_tablet 每片15mL氯；water_tablet_container 是外瓶，只计内部真实片；散片优先。
 - 过滤孔标签字面量 FILTER_SIZE_TAG，WaterHelper 无此常量；原生每组分最多10000动作，本项目每批最多4096份。
 - 机器槽位按角色找，不依赖 body 固定索引；蒸发只交原生 EndNight，不自行模拟产物。
+- 蒸发器原液槽面板键为container，酒精/水回收容器槽为distillate；两者都经SetupWaterSlot设置。按玩家要求，自动移瓶只操作container，不改动distillate回收槽。证据：Research/Assembly-CSharp-MachineEvaporator-CreateMachineInventoryWindow-il.txt（IL_0051～IL_0085）和Assembly-CSharp-MachineEvaporator-_-il.txt（IL_00fc～IL_0117），程序集哈希与上方基线一致。
 - WaterHelper.DRY_TOLERANCE_UL 用原生干燥容差，不写死。
 - 历史 OnWaterPurificationTabletAdded/Added2 不作为当前投片路径依据。
 

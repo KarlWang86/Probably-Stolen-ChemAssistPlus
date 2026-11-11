@@ -34,8 +34,8 @@ namespace ChemAssistPlus
         }
         static void Publish()
         {
-            SetReport(runPlan + (string.IsNullOrEmpty(uvResult) ? "" : "\n" + uvResult)
-                + (string.IsNullOrEmpty(tabletResult) ? "" : "\n" + tabletResult)
+            SetReport(runPlan + (!usedUV || string.IsNullOrEmpty(uvResult) ? "" : "\n" + uvResult)
+                + (usedTablets == 0 || string.IsNullOrEmpty(tabletResult) ? "" : "\n" + tabletResult)
                 + (string.IsNullOrEmpty(compactOutcome) ? "" : "\n" + compactOutcome)
                 + (string.IsNullOrEmpty(jobStatus) ? "" : "\n当前：" + jobStatus));
             SyncRunDetail(); RenderCompositionWidgets();
@@ -58,7 +58,7 @@ namespace ChemAssistPlus
                 if (blocked != null || checkOnly) { if (blocked != null) RecordFailure(blocked); SetReport(lastReport); contextBlender = null; return; }
                 if (prep) { p.Solids = lastCheckedPlan.Selected.ToList(); p.Solid = p.Solids.FirstOrDefault(); }
                 steps.Clear(); jobStatus = ""; runPlan = lastReport.Replace("条件已满足，结束当天时处理。", "本批预检通过。"); actualUsage.Clear(); runNotes.Clear(); usedTablets = 0;
-                compactOutcome = ""; tabletResult = null; uvResult = null;
+                compactOutcome = ""; tabletResult = null; uvResult = null; usedUV = false;
                 if (!prep) lastCheckedPlan = null;
                 lastFailure = null; RenderFailureBanner(); BeginRunComposition(p);
                 Trace("制作前检查\n" + lastReport + "\n——本次实际过程——");
@@ -163,6 +163,8 @@ namespace ChemAssistPlus
             var currentSolids = FirstKind(p.Parts.Input);
             if (currentSolids.Count != p.InputSolids.Count || currentSolids.Any(x => !p.InputSolids.Contains(x)))
                 throw new InvalidOperationException("搅拌机输入格原料已变化，尚未搅拌；请重新结束当天以检查整批。");
+            var consolidation = lastCheckedPlan?.Consolidation;
+            if (consolidation != null) ConsolidateEvaporators(consolidation);
             string changedConditions = Preflight(c, p.Solid, p.Pot, true, true);
             if (changedConditions != null) throw new InvalidOperationException("整批开工条件变化，尚未搅拌：" + changedConditions);
             if (!lastCheckedPlan.Selected.SequenceEqual(p.Solids))
@@ -364,13 +366,13 @@ namespace ChemAssistPlus
             var destination = DeliverToEvaporator(evaporator, p.Pot, c);
             runPotId = destination.uniqueId;
             compactOutcome = Good(ChemNames.ProductName(c.ProductId) + " → 蒸发器 #" + evaporator.uniqueId + " · 接收瓶 #" + destination.uniqueId
-                + (destination != p.Pot ? "（同类合并；源空瓶 #" + p.Pot.uniqueId + "）" : ""));
+                + (destination != p.Pot ? "（同类合并；源空瓶 " + SceneSnapshot.Where(p.Pot) + "）" : ""));
             runNotes.Add(Good("提取物合计 " + Vol(Amount(destination, c.ProductLiquid)) + " 已送入蒸发器原液槽，接收瓶 #" + destination.uniqueId + "。"));
             Trace("步骤7 · 已自动送入蒸发器：" + Name(evaporator) + " #" + evaporator.uniqueId + "；接收瓶 " + Name(destination)
                 + " #" + destination.uniqueId + "；挥发液合计 " + Vol(NativeChem.WetTotal(destination)) + "；电池可用。请保持原液和电池在设备内，结束营业后由原生过夜蒸发。需回收溶剂时自行在馏出槽放收集瓶。");
             Trace("  产物位置：提取物合计 " + Vol(Amount(destination, c.ProductLiquid)) + " 留在蒸发器原液槽的接收瓶 #" + destination.uniqueId
                 + " 中；过夜后也是取这个瓶子。馏出槽只回收蒸出的溶剂，不是药品产物槽。");
-            Trace("步骤8 · 过夜后：把干料瓶放回搅拌机容器槽，点“过夜后批量成型”。成型前再次检查干燥度、纯度、输出空间。");
+            Trace("步骤8 · 过夜后：蒸干且自动处理开启时，优先移瓶到已设对应制品的空闲制剂机；无空机则保留原瓶。制剂由玩家在设备中操作，仍需满足原生纯度、用量及输出空间条件。");
         }
         static IEnumerator ProduceBatch(NativeChem.ProbeResult p)
         {

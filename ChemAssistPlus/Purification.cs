@@ -8,6 +8,7 @@ namespace ChemAssistPlus
     {
         static string tabletResult;
         static string uvResult;
+        static bool usedUV;
         static void PurifyWithUV(GameItem pot)
         {
             int microbes = Amount(pot, "microbe");
@@ -34,6 +35,7 @@ namespace ChemAssistPlus
             }
             int water = Amount(pot, "water");
             WaterHelper.OnUVUsed(pot);
+            usedUV = true;
             pot.ValidateShapeState();
             MarkAutoWork();
             uvResult = "紫外线：微生物 " + Vol(microbes) + " → " + Vol(Amount(pot, "microbe")) + "。";

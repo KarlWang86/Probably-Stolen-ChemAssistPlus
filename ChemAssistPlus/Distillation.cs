@@ -9,6 +9,178 @@ namespace ChemAssistPlus
     {
         const double MergeConcentrationPoints = 5;
 
+        static GameItem ParkSpareRawBottle(GameItem bottle)
+        {
+            if (WaterHelper.GetTotalVolume(bottle) != 0) return null;
+            var machine = Scan().Where(x => x.IsID("evaporator") && MachineView.Walk(x).Container != null
+                    && MachineView.Walk(x).Container.childItem == null
+                    && GraphUtils.CanAccept(MachineView.Walk(x).Container, bottle))
+                .OrderByDescending(Charged).ThenBy(x => x.uniqueId).FirstOrDefault();
+            if (machine != null) MovePot(bottle, MachineView.Walk(machine).Container);
+            return machine;
+        }
+
+        static GameItem FindDryFinisher(GameItem pot, Recipe recipe)
+        {
+            return Scan().Where(x => x.IsID("chem_finisher") && MachineView.Walk(x).Container?.childItem == null
+                    && MachineView.Walk(x).Container != null && GraphUtils.CanAccept(MachineView.Walk(x).Container, pot))
+                .OrderBy(x => x.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString() == recipe.ProductId ? 0
+                    : string.IsNullOrEmpty(x.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString()) ? 1 : 2)
+                .ThenBy(x => x.uniqueId).FirstOrDefault();
+        }
+
+        static bool CanMergeDryFinisher(GameItem finisher, GameItem source, Recipe recipe)
+        {
+            var target = MachineView.Walk(finisher).Container?.childItem;
+            return finisher.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString() == recipe.ProductId
+                && target != null && target != source && Owned(target) && Owned(source)
+                && source.IsTag(WaterHelper.LIQUID_CONTAINER_TAG) && target.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)
+                && !source.IsTag(WaterHelper.FILTER_CONTAINER_TAG) && !target.IsTag(WaterHelper.FILTER_CONTAINER_TAG)
+                && ExtractedProduct(source, recipe) && ExtractedProduct(target, recipe)
+                && NativeChem.WetTotal(source) <= WaterHelper.DRY_TOLERANCE_UL
+                && NativeChem.WetTotal(target) <= WaterHelper.DRY_TOLERANCE_UL
+                && WaterHelper.GetTotalVolume(source) <= WaterHelper.GetFreeCapacity(target);
+        }
+
+        // Stage dry material only at day boundaries, never from a preview or during another job.
+        // Native dry tolerance includes all evaporative components, not just alcohol and water.
+        static string StageDryEvaporatorBottles()
+        {
+            if (!autoProcessing || busy || !PlayerStore.IsInstanceExist()) return "";
+            var messages = new List<string>();
+            foreach (var machine in Scan().Where(x => x.IsID("evaporator")).OrderBy(x => x.uniqueId))
+            {
+                var pot = MachineView.Walk(machine).Container?.childItem;
+                if (pot == null || !Owned(pot) || NativeChem.WetTotal(pot) > WaterHelper.DRY_TOLERANCE_UL) continue;
+                var recipe = Detect(pot, null);
+                if (!ExtractedProduct(pot, recipe)) continue;
+                var finisher = Scan().Where(x => x.IsID("chem_finisher") && CanMergeDryFinisher(x, pot, recipe))
+                    .OrderBy(x => x.uniqueId).FirstOrDefault() ?? FindDryFinisher(pot, recipe);
+                int reportPotId = pot.uniqueId;
+                string message;
+                if (finisher == null)
+                    message = "蒸发器 #" + machine.uniqueId + "：干料瓶 #" + pot.uniqueId + "（"
+                        + ChemNames.ProductName(recipe.ProductId) + "）保留原位，没有可整瓶合并的同类干料瓶或可接收的空闲制剂机。";
+                else
+                {
+                    try
+                    {
+                        if (!Present(machine) || !Present(finisher) || MachineView.Walk(machine).Container?.childItem != pot
+                            || !ExtractedProduct(pot, recipe) || NativeChem.WetTotal(pot) > WaterHelper.DRY_TOLERANCE_UL)
+                            throw new InvalidOperationException("设备或干燥条件已变化，取消移瓶。");
+                        bool matched = finisher.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString() == recipe.ProductId;
+                        var target = MachineView.Walk(finisher).Container?.childItem;
+                        if (target != null)
+                        {
+                            if (!CanMergeDryFinisher(finisher, pot, recipe))
+                                throw new InvalidOperationException("制剂机同类干料或容量条件已变化，取消合并。");
+                            int volume = WaterHelper.GetTotalVolume(pot);
+                            TransferWholeSolution(pot, target);
+                            nightDidWork = true;
+                            reportPotId = target.uniqueId;
+                            foreach (var batch in nightDetails.Where(x => x.PotId == pot.uniqueId)) batch.PotId = target.uniqueId;
+                            if (runPotId == pot.uniqueId) runPotId = target.uniqueId;
+                            message = "干料合并至制剂机：蒸发器 #" + machine.uniqueId + " 的瓶 #" + pot.uniqueId
+                                + " → 制剂机 #" + finisher.uniqueId + " 的瓶 #" + target.uniqueId
+                                + "；" + ChemNames.ProductName(recipe.ProductId) + "，整瓶转移 " + Vol(volume)
+                                + "，合并后有效成分 " + Vol(Amount(target, recipe.ProductLiquid))
+                                + "；源空瓶留在蒸发器原液槽备用，待玩家制剂。";
+                        }
+                        else
+                        {
+                            MovePot(pot, MachineView.Walk(finisher).Container);
+                            nightDidWork = true;
+                            // A dry bottle is parked for the player to produce through the game's controls.
+                            finisher.ModifyTag(MachineChemFinisher.SELECTED_CHEM_ID_TAG, s => s.SetString(recipe.ProductId), false);
+                            message = "干料转入制剂机：蒸发器 #" + machine.uniqueId + " → 制剂机 #" + finisher.uniqueId
+                                + "；工作瓶 #" + pot.uniqueId + "，" + ChemNames.ProductName(recipe.ProductId)
+                                + " " + Vol(Amount(pot, recipe.ProductLiquid)) + "，挥发液剩 " + Vol(NativeChem.WetTotal(pot))
+                                + (matched ? "；沿用已设置配方。" : "；已设置对应配方。") + "蒸发器原液槽已腾空，待玩家制剂。";
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        message = "干料移瓶中止：蒸发器 #" + machine.uniqueId + "，瓶 #" + pot.uniqueId
+                            + " 当前位于 " + SceneSnapshot.Where(pot) + "；" + error.Message;
+                        log?.Error(error.ToString());
+                    }
+                }
+                messages.Add(message);
+                log?.Log("[干料移瓶] " + message);
+                foreach (var batch in nightDetails.Where(x => x.PotId == reportPotId)) batch.Detail += "\n" + message;
+                nightDetails.Add(new BatchDisplay { Title = "蒸发器 #" + machine.uniqueId + " · 干料移瓶", Detail = message });
+            }
+            return string.Join("\n", messages);
+        }
+
+        sealed class ConsolidationPlan
+        {
+            public GameItem SourceMachine, TargetMachine, Source, Target, WorkPot;
+            public Recipe Recipe;
+            public long IncomingVolume;
+        }
+
+        static bool CanConsolidate(ConsolidationPlan plan)
+        {
+            if (!Present(plan.SourceMachine) || !Present(plan.TargetMachine) || !Owned(plan.Source) || !Owned(plan.Target)
+                || !Charged(plan.SourceMachine) || !Charged(plan.TargetMachine)
+                || MachineView.Walk(plan.SourceMachine).Container?.childItem != plan.Source
+                || MachineView.Walk(plan.TargetMachine).Container?.childItem != plan.Target
+                || plan.Source == plan.Target || plan.Source == plan.WorkPot || plan.Target == plan.WorkPot
+                || !plan.Source.IsTag(WaterHelper.LIQUID_CONTAINER_TAG) || !plan.Target.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)
+                || plan.Source.IsTag(WaterHelper.FILTER_CONTAINER_TAG) || plan.Target.IsTag(WaterHelper.FILTER_CONTAINER_TAG)
+                || !ExtractedProduct(plan.Source, plan.Recipe) || !ExtractedProduct(plan.Target, plan.Recipe)
+                || NativeChem.WetTotal(plan.Source) <= WaterHelper.DRY_TOLERANCE_UL
+                || NativeChem.WetTotal(plan.Target) <= WaterHelper.DRY_TOLERANCE_UL
+                || WaterHelper.GetTotalVolume(plan.Source) > WaterHelper.GetFreeCapacity(plan.Target)) return false;
+            // Keep the emptied source bottle installed as the next batch's receiver.
+            return plan.IncomingVolume > 0 && WaterHelper.GetTotalCapacity(plan.Source) >= plan.IncomingVolume;
+        }
+
+        static ConsolidationPlan PlanConsolidation(GameItem workPot, long incomingVolume)
+        {
+            var all = Scan();
+            var machines = all.Where(x => x.IsID("evaporator") && Charged(x)).OrderBy(x => x.uniqueId).ToList();
+            foreach (var sourceMachine in machines.Where(x => MachineView.Walk(x).Container?.childItem != null)
+                .OrderBy(x => WaterHelper.GetTotalVolume(MachineView.Walk(x).Container.childItem)))
+            {
+                var source = MachineView.Walk(sourceMachine).Container?.childItem;
+                if (source == null || source == workPot) continue;
+                var recipe = Detect(source, null);
+                if (!ExtractedProduct(source, recipe)) continue;
+                foreach (var targetMachine in machines.Where(x => x != sourceMachine))
+                {
+                    var plan = new ConsolidationPlan { SourceMachine = sourceMachine, TargetMachine = targetMachine,
+                        Source = source, Target = MachineView.Walk(targetMachine).Container?.childItem,
+                        WorkPot = workPot, Recipe = recipe, IncomingVolume = incomingVolume };
+                    if (CanConsolidate(plan)) return plan;
+                }
+            }
+            return null;
+        }
+
+        static string ConsolidationSummary(ConsolidationPlan plan) => "同类存量集中：蒸发器 #" + plan.SourceMachine.uniqueId
+            + " 的瓶 #" + plan.Source.uniqueId + " → 蒸发器 #" + plan.TargetMachine.uniqueId + " 的瓶 #" + plan.Target.uniqueId
+            + "（" + ChemNames.ProductName(plan.Recipe.ProductId) + "；允许浓度不同）；源空瓶留在原液槽，"
+            + "容量 " + Vol(WaterHelper.GetTotalCapacity(plan.Source)) + "，供下一批预计 " + Vol(plan.IncomingVolume) + " 原液接收。";
+
+        static void ConsolidateEvaporators(ConsolidationPlan plan)
+        {
+            if (!CanConsolidate(plan)) throw new InvalidOperationException("同类存量集中条件变化，尚未转液或搅拌，请重新预检。");
+            int volume = WaterHelper.GetTotalVolume(plan.Source);
+            TransferWholeSolution(plan.Source, plan.Target);
+            // Redirect old batch snapshots before the emptied receiver is reused for another product.
+            foreach (var batch in nightDetails.Where(x => x.PotId == plan.Source.uniqueId))
+            {
+                batch.PotId = plan.Target.uniqueId;
+                batch.Detail += "\n" + ConsolidationSummary(plan);
+            }
+            if (runPotId == plan.Source.uniqueId) runPotId = plan.Target.uniqueId;
+            if (MachineView.Walk(plan.SourceMachine).Container.childItem != plan.Source || WaterHelper.GetTotalVolume(plan.Source) != 0)
+                throw new InvalidOperationException("同类原液已集中，但原液槽空接收瓶状态异常；尚未搅拌。");
+            Trace(ConsolidationSummary(plan) + " 实际转液 " + Vol(volume) + "，接收瓶现有 " + Vol(WaterHelper.GetTotalVolume(plan.Target)) + "。");
+        }
+
         static double ProductConcentration(GameItem pot, Recipe recipe) =>
             100d * Amount(pot, recipe.ProductLiquid) / Math.Max(1, WaterHelper.GetTotalVolume(pot));
 
@@ -50,7 +222,7 @@ namespace ChemAssistPlus
             if (machines.Count == 0) return "缺蒸发器。";
             var compatible = machines.Where(x => CanReceiveBatch(x, pot, recipe, volume, planning)).ToList();
             if (compatible.Count == 0) return planning
-                ? "蒸发器没有可用空槽，也没有同类已提取湿半成品或空瓶能容纳预计整批原液。请空出原液槽或换大瓶。"
+                ? "蒸发器没有可用空槽或整批接收瓶，且无法安全集中同类湿原液腾出接收瓶。请检查集中目标的余量、腾空瓶的下一批容量及电池，或准备可接收原液的容器。"
                 : "蒸发器没有可用空槽或可整批接收的容器；合并仅限同种已提取湿半成品、有效成分浓度差≤5个百分点且空间足够，干料和不同配方不混合。";
             if (compatible.All(x => NativeChem.FindBattery(x) == null)) return "蒸发器缺电池，请装入电池。";
             if (!compatible.Any(Charged)) return "蒸发器电池没电或电量不足以启动一次，请更换/充电。";
@@ -72,6 +244,21 @@ namespace ChemAssistPlus
             }
             double sourceConcentration = ProductConcentration(source, recipe);
             double targetConcentration = ProductConcentration(target, recipe);
+            TransferWholeSolution(source, target);
+            var spareMachine = ParkSpareRawBottle(source);
+            Trace("  同类合并：蒸发器 #" + machine.uniqueId + "；源瓶 #" + source.uniqueId + " → 接收瓶 #" + target.uniqueId
+                + "；" + ChemNames.ProductName(recipe.ProductId) + "，本批 " + Vol(volume)
+                + "；有效成分浓度 " + sourceConcentration.ToString("0.###") + "% / " + targetConcentration.ToString("0.###")
+                + "% → " + ProductConcentration(target, recipe).ToString("0.###") + "%；源空瓶"
+                + (spareMachine != null ? "放入蒸发器 #" + spareMachine.uniqueId + " 原液槽，作为备用接收瓶。" : "留在搅拌机（其他原液槽均已占用）。"));
+            return target;
+        }
+
+        static void TransferWholeSolution(GameItem source, GameItem target)
+        {
+            int volume = WaterHelper.GetTotalVolume(source);
+            if (source == target || volume <= 0 || WaterHelper.GetFreeCapacity(target) < volume)
+                throw new InvalidOperationException("整瓶转液容量或来源变化，尚未转液。");
             double temperature = SceneSnapshot.Temp(source);
             int targetVolume = WaterHelper.GetTotalVolume(target);
             var before = WaterHelper.GetLiquidParts(target);
@@ -95,11 +282,6 @@ namespace ChemAssistPlus
             }
             if (WaterHelper.GetTotalVolume(source) != 0 || WaterHelper.GetTotalVolume(target) != targetVolume + volume)
                 throw new InvalidOperationException("合并转移未完整完成，已停止；请检查源瓶和蒸发器内接收瓶。");
-            Trace("  同类合并：蒸发器 #" + machine.uniqueId + "；源瓶 #" + source.uniqueId + " → 接收瓶 #" + target.uniqueId
-                + "；" + ChemNames.ProductName(recipe.ProductId) + "，本批 " + Vol(volume)
-                + "；有效成分浓度 " + sourceConcentration.ToString("0.###") + "% / " + targetConcentration.ToString("0.###")
-                + "% → " + ProductConcentration(target, recipe).ToString("0.###") + "%；源空瓶留在搅拌机。");
-            return target;
         }
     }
 }

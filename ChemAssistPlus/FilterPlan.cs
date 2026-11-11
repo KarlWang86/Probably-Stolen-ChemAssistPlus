@@ -43,7 +43,7 @@ namespace ChemAssistPlus
                     options.Add(new FilterSetup { Pitcher = pitcher, Material = spare, Existing = existing });
                 }
             }
-            return options.OrderBy(x => DurabilityHelper.GetRealDurability(x.Material)).ThenBy(x => x.Change)
+            return options.OrderBy(x => x.Change).ThenBy(x => DurabilityHelper.GetRealDurability(x.Material))
                 .ThenByDescending(x => WaterHelper.GetTotalCapacity(x.Pitcher)).ThenBy(x => x.Material.uniqueId).FirstOrDefault();
         }
         static GameItem EnsureFilter(string key, StringBuilder report)

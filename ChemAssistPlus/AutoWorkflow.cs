@@ -136,9 +136,11 @@ namespace ChemAssistPlus
                 ClearNightQueue();
                 nightDetails.Clear(); runDetail = null;
                 lastFailure = null; RenderFailureBanner();
+                string dryTransfers = StageDryEvaporatorBottles();
+                if (dryTransfers.Length > 0) nightBatchReports.Add(dryTransfers);
                 foreach (var blender in Scan().Where(x => x.IsID("blender") && HasPendingBatch(x)).OrderBy(x => x.uniqueId))
                     nightBlenders.Enqueue(blender);
-                if (nightBlenders.Count == 0) { QueueMorningReport("本晚没有待处理湿料，已正常过夜。"); return true; }
+                if (nightBlenders.Count == 0) { QueueMorningReport(dryTransfers + "\n本晚没有待处理湿料，已正常过夜。"); return true; }
                 log?.Log("[结束当天] 收到请求；逐台处理 " + nightBlenders.Count + " 台搅拌机，暂缓原生过夜。");
                 StartNextNightBatch();
                 if (busy)

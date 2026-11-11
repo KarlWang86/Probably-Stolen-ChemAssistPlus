@@ -49,8 +49,69 @@ namespace ChemAssistPlus
         static readonly System.Collections.Generic.List<BatchDisplay> previewDetails = new System.Collections.Generic.List<BatchDisplay>();
         static BatchDisplay runDetail;
         static bool displayNightDetails;
+        static RectTransform detailsRoot;
+        static TMP_Text detailsTemplate;
+        static readonly System.Collections.Generic.List<GameObject> detailRows = new System.Collections.Generic.List<GameObject>();
+        static int detailRow;
         static void AddCompositionWidgets(CustomUIBuilder ui) => ui.AddLabel("", "batch_details");
-        static void BindCompositionWidgets() => RenderCompositionWidgets();
+        static void BindCompositionWidgets()
+        {
+            detailsRoot = window.Get("batch_details").Rect;
+            detailsTemplate = detailsRoot.GetComponentInChildren<TMP_Text>(true);
+            detailsTemplate.enabled = false;
+            detailRows.Clear();
+            var group = detailsRoot.GetComponent<VerticalLayoutGroup>() ?? detailsRoot.gameObject.AddComponent<VerticalLayoutGroup>();
+            group.childControlWidth = group.childControlHeight = true;
+            group.childForceExpandWidth = true; group.childForceExpandHeight = false;
+            group.childAlignment = TextAnchor.UpperLeft; group.spacing = 3;
+            var element = Layout(detailsRoot.gameObject);
+            element.minHeight = 0; element.preferredHeight = -1; element.flexibleHeight = 0;
+            RenderCompositionWidgets();
+        }
+        // Reference-condition indicator hues, never the measured pH of the game's mixture.
+        // Sources, conditions and unknown identities: Research/PHColorReferences-20261112.md.
+        static Color ComponentIndicatorColor(string component)
+        {
+            switch (component)
+            {
+                case "acid": return new Color32(163, 66, 35, 255);
+                case "base": return new Color32(99, 65, 157, 255);
+                case "coffee_mush": return new Color32(157, 106, 25, 255); // Coffee extracts pH 4.85–5.13; approximate analogue.
+                case "caffeine": return new Color32(109, 123, 31, 255); // pH 5.5–6.5, 10 g/L aqueous solution, 25°C.
+                case "water": return new Color32(45, 111, 70, 255); // Pure water pH 7 at 25°C.
+                default: return new Color32(83, 96, 108, 255); // Unknown, unspecified mixture, or pH not applicable.
+            }
+        }
+        static void DetailRow(string text, string label = null, float fraction = 0, bool warning = false, string component = null)
+        {
+            bool bar = label != null;
+            GameObject row;
+            if (detailRow == detailRows.Count)
+            {
+                row = new GameObject("DetailRow", typeof(RectTransform));
+                row.transform.SetParent(detailsRoot, false); detailRows.Add(row);
+                var caption = new GameObject("PlainText", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
+                caption.transform.SetParent(row.transform, false);
+                caption.font = detailsTemplate.font; caption.fontSharedMaterial = detailsTemplate.fontSharedMaterial;
+                // Keep the game's font (including Chinese fallback glyphs) for both row types.
+                var view = row.AddComponent<CompositionBarView>(); view.Build();
+            }
+            row = detailRows[detailRow++]; row.SetActive(true);
+            var barView = row.GetComponent<CompositionBarView>();
+            barView.Render(bar ? warning ? Bad(label) : label : "", fraction, bar ? text : "", ComponentIndicatorColor(component));
+            barView.SetBarVisible(bar);
+            var plain = row.GetComponentInChildren<TMP_Text>(true);
+            plain.enabled = !bar; plain.text = text;
+            if (!bar)
+            {
+                Stretch(plain.rectTransform, 0, 0, 0, 0);
+                StyleText(plain, true);
+                float width = Mathf.Max(100, window.Rect.rect.width - 64);
+                var element = Layout(row);
+                element.minHeight = element.preferredHeight = Mathf.Max(22, plain.GetPreferredValues(text, width, Mathf.Infinity).y + 6);
+            }
+            else { var element = Layout(row); element.minHeight = element.preferredHeight = 28; }
+        }
         static void RestoreRunDisplay()
         {
             displayStages = runStages; displaySupplies = runSupplies;
@@ -65,41 +126,43 @@ namespace ChemAssistPlus
         }
         static void RenderCompositionWidgets()
         {
-            if (window?.IsAlive != true) return;
-            var text = new System.Text.StringBuilder();
+            if (window?.IsAlive != true || detailsRoot == null || detailsRoot != window.Get("batch_details")?.Rect) return;
+            detailRow = 0;
             foreach (var batch in displayNightDetails ? nightDetails : previewDetails)
             {
-                text.AppendLine("<color=#B9D9E8>" + batch.Title + "</color>");
-                if (!string.IsNullOrEmpty(batch.Detail)) text.AppendLine(batch.Detail.Trim());
+                DetailRow("<color=#B9D9E8>" + batch.Title + "</color>");
+                if (!string.IsNullOrEmpty(batch.Detail)) DetailRow(batch.Detail.Trim());
                 var supplies = batch.Supplies.Where(x => batch.Actual
                     ? x.Tablets ? batch.Tablets > 0 : batch.Usage.TryGetValue(x.Id, out long used) && used > 0
                     : x.Tablets || x.Required > 0 || x.Short || !x.Known).ToArray();
                 if (supplies.Length > 0)
                 {
-                    text.AppendLine("<color=#B9D9E8>试剂 · " + (batch.Actual ? "实际 / 开工库存" : "预计 / 库存") + "</color>");
+                    DetailRow("<color=#B9D9E8>试剂 · " + (batch.Actual ? "实际 / 开工库存" : "预计 / 库存") + "</color>");
                     foreach (var supply in supplies)
                     {
                         batch.Usage.TryGetValue(supply.Id, out long used);
                         double amount = batch.Actual ? supply.Tablets ? batch.Tablets : used : supply.Required;
                         string value = supply.Tablets && !batch.Actual ? "待定" : !batch.Actual && !supply.Known ? "缺货"
                             : CompactNumber(amount / (supply.Tablets ? 1 : 1000d));
-                        string line = supply.Name + "  " + value + " / " + CompactNumber(supply.Available / (supply.Tablets ? 1 : 1000d))
+                        string line = value + " / " + CompactNumber(supply.Available / (supply.Tablets ? 1 : 1000d))
                             + (supply.Tablets ? " 片" : " mL");
-                        text.AppendLine(!batch.Actual && supply.Short ? Bad(line) : line);
+                        DetailRow(line, supply.Name, supply.Available > 0 && supply.Known && (!supply.Tablets || batch.Actual)
+                            ? (float)(amount / supply.Available) : 0, !batch.Actual && supply.Short, supply.Id);
                     }
                 }
-                if (batch.Stages.Any(x => x != null)) text.AppendLine("<color=#B9D9E8>处理结果 · 剂量 / 纯度</color>");
+                if (batch.Stages.Any(x => x != null)) DetailRow("<color=#B9D9E8>处理结果 · 剂量 / 纯度</color>");
                 for (int i = 0; i < StageCount; i++)
                 {
                     var snapshot = batch.Stages[i]; if (snapshot == null) continue;
                     long total = snapshot.Parts.Sum(x => (long)x);
                     double purity = total > 0 ? 100d * Part(snapshot.Parts, snapshot.Primary) / total : 0;
-                    text.AppendLine(StageNames[i] + "  " + (snapshot.Estimated ? "约 " : "") + CompactVolume(total) + " / " + purity.ToString("0.#") + "%");
+                    DetailRow((snapshot.Estimated ? "约 " : "") + CompactVolume(total) + " / " + purity.ToString("0.#") + "%",
+                        StageNames[i], (float)(purity / 100), component: snapshot.Primary);
                 }
-                text.AppendLine();
+                DetailRow("");
             }
-            if (text.Length == 0 && displayNightDetails) text.Append("暂无本晚处理记录。");
-            window.Get("batch_details")?.SetText(text.ToString().TrimEnd());
+            if (detailRow == 0 && displayNightDetails) DetailRow("暂无本晚处理记录。");
+            for (int i = detailRow; i < detailRows.Count; i++) detailRows[i].SetActive(false);
             LayoutRebuilder.MarkLayoutForRebuild(window.ContentRoot);
         }
         static StageSnapshot Snapshot(string title, string primary, int[] parts) =>
@@ -144,12 +207,14 @@ namespace ChemAssistPlus
         }
     }
 
-    // Three aligned columns: name, short center track, right-aligned dosage/purity.
+    // A left-aligned name followed by a full-width track with its values inside.
     public sealed class CompositionBarView : MonoBehaviour
     {
         RectTransform fill;
         Image fillImage;
+        RectTransform trackRoot;
         TextMeshProUGUI nameLabel, valueLabel;
+        public bool IsBarLabel(TMP_Text text) => text == nameLabel || text == valueLabel;
         public void Build()
         {
             var original = GetComponentInChildren<TMP_Text>(true);
@@ -161,8 +226,9 @@ namespace ChemAssistPlus
             layout.minWidth = 0; layout.preferredWidth = 0; layout.flexibleWidth = 1;
             layout.minHeight = layout.preferredHeight = 28; layout.flexibleHeight = 0; layout.layoutPriority = 5;
             var background = Child("Track");
+            trackRoot = background;
             background.anchorMin = new Vector2(0, 0.5f); background.anchorMax = new Vector2(1, 0.5f);
-            background.offsetMin = new Vector2(74, -6); background.offsetMax = new Vector2(-164, 6);
+            background.offsetMin = new Vector2(72, -11); background.offsetMax = new Vector2(-2, 11);
             var track = background.gameObject.AddComponent<Image>(); track.color = new Color(0.10f, 0.13f, 0.17f, 1); track.raycastTarget = false;
             fill = Child("Fill", background); Stretch(fill, 0, 0);
             fillImage = fill.gameObject.AddComponent<Image>(); fillImage.raycastTarget = false;
@@ -171,9 +237,13 @@ namespace ChemAssistPlus
             nameLabel.rectTransform.offsetMin = new Vector2(2, 0); nameLabel.rectTransform.offsetMax = new Vector2(72, 0);
             nameLabel.alignment = TextAlignmentOptions.MidlineLeft;
             valueLabel = Label("DoseAndShare", font);
-            valueLabel.rectTransform.anchorMin = new Vector2(1, 0); valueLabel.rectTransform.anchorMax = Vector2.one;
-            valueLabel.rectTransform.offsetMin = new Vector2(-160, 0); valueLabel.rectTransform.offsetMax = new Vector2(-2, 0);
-            valueLabel.alignment = TextAlignmentOptions.MidlineRight;
+            valueLabel.rectTransform.anchorMin = Vector2.zero; valueLabel.rectTransform.anchorMax = Vector2.one;
+            valueLabel.rectTransform.offsetMin = new Vector2(78, 0); valueLabel.rectTransform.offsetMax = new Vector2(-6, 0);
+            valueLabel.alignment = TextAlignmentOptions.MidlineLeft;
+        }
+        public void SetBarVisible(bool visible)
+        {
+            trackRoot.gameObject.SetActive(visible); nameLabel.gameObject.SetActive(visible); valueLabel.gameObject.SetActive(visible);
         }
         RectTransform Child(string name, Transform parent = null)
         {

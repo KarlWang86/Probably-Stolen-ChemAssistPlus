@@ -75,6 +75,8 @@ namespace ChemAssistPlus
             {
                 if (!PlayerStore.IsInstanceExist()) return;
                 SchedulePowerReminder();
+                string dryTransfers = StageDryEvaporatorBottles();
+                if (dryTransfers.Length > 0) nightReport = (nightReport ?? "") + "\n" + dryTransfers;
                 string report = EvaporatorContents();
                 if (report.Length > 0) log?.Log("[过夜产物核对]\n" + report);
                 if (nightDidWork && nightReport != null)
@@ -89,7 +91,7 @@ namespace ChemAssistPlus
                     }
                 }
             }
-            catch (Exception error) { log?.Error("过夜产物核对失败（只读）：" + error); }
+            catch (Exception error) { log?.Error("过夜产物核对/干料移瓶失败：" + error); }
         }
     }
     [HarmonyPatch(typeof(PlayerStore), "BeginDay")]

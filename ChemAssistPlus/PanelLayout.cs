@@ -66,7 +66,8 @@ namespace ChemAssistPlus
         }
         static void StyleText(TMP_Text text, bool wrap)
         {
-            bool barText = text.GetComponentInParent<CompositionBarView>(true) != null;
+            var bar = text.GetComponentInParent<CompositionBarView>(true);
+            bool barText = bar != null && bar.IsBarLabel(text);
             if (barText) wrap = false;
             text.transform.localScale = Vector3.one;
             text.fontSize = barText ? 12.5f : 13;
@@ -253,6 +254,7 @@ namespace ChemAssistPlus
                     fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 }
             }
+            RenderCompositionWidgets();
             RefreshPanelText();
             Canvas.ForceUpdateCanvases();
             LayoutRebuilder.ForceRebuildLayoutImmediate(content);
@@ -299,6 +301,7 @@ namespace ChemAssistPlus
             float width = Mathf.Max(40, window.Rect.rect.width - 64);
             foreach (var text in window.ContentRoot.GetComponentsInChildren<TMP_Text>(true))
             {
+                if (!text.enabled) continue;
                 if (text.GetComponentInParent<CompositionBarView>(true) != null) continue;
                 if (text.GetComponentInParent<Selectable>() != null) continue;
                 StyleText(text, true);
