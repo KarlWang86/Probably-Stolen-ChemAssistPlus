@@ -1,7 +1,9 @@
 # 当前交接
 
 
-## 当前开发状态 · 0.4.2（已构建，未发布）
+## 当前开发状态 · 0.4.2（已发布）
+
+- 0.4.2已先提交并push b8c7c55，再完成english/schinese发布，两次Steam提交均成功，两张原图随english提交为附加截图。后续玩家调整简介约定：只保留用法、功能、当前版本改动和末尾鸣谢；模板及prepare已切换为只提取当前VERSION精简条目，完整历史保留在仓库及工坊更新记录。此次为后续发布流程调整，不自动重新上传。
 
 - 玩家已授权先Git提交/push再发布0.4.2，并追加两张原图。Screenshots/panel-0.3.7.png与panel-0.4.1.png保留画面版本标识；发布工具新增显式AdditionalPreview参数，通过english提交AddItemPreviewFile追加，中文不重复上传，回执记录图片SHA256。工具编译0警告0错误。根README改为模组功能/订阅/用法/截图，原仓库构建说明移至docs/REPOSITORY.md。简介精简重复用语后7992 UTF-8字节，保留21个历史版本及鸣谢；prepare已完成，备份archive/before-prepare-0.4.2-20261112-193555-156。信任层完整IL仅保留本地并加入忽略，不再推进信任问题。
 

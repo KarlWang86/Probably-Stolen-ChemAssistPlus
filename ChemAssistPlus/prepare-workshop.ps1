@@ -17,9 +17,6 @@ foreach ($file in $runtimeFiles) {
 
 $changelog = [IO.File]::ReadAllText((Join-Path $taskProject 'CHANGELOG.md'))
 $workshopChanges = [IO.File]::ReadAllText((Join-Path $taskProject 'WorkshopChangelog.md'))
-$fullVersions = @([regex]::Matches($changelog, '(?m)^## (\d+\.\d+\.\d+)') | ForEach-Object { $_.Groups[1].Value })
-$briefVersions = @([regex]::Matches($workshopChanges, '(?m)^## (\d+\.\d+\.\d+)') | ForEach-Object { $_.Groups[1].Value })
-if (($fullVersions -join ',') -cne ($briefVersions -join ',')) { throw 'WorkshopChangelog.md must include exactly the same recorded versions as CHANGELOG.md.' }
 function Convert-ChangesToBBCode([string]$Markdown) {
     $lines = New-Object 'System.Collections.Generic.List[string]'
     $inList = $false
@@ -36,12 +33,16 @@ function Convert-ChangesToBBCode([string]$Markdown) {
     if ($inList) { $lines.Add('[/list]') }
     return ($lines -join "`r`n").Trim()
 }
-$history = Convert-ChangesToBBCode $workshopChanges
-$current = [regex]::Match($changelog, '(?ms)^## ' + [regex]::Escape($version) + '(?:[^\r\n]*)\r?\n(.*?)(?=^## |\z)')
-if (!$current.Success) { throw 'CHANGELOG.md lacks the current version.' }
+$versionPattern = '(?ms)^## ' + [regex]::Escape($version) + '(?:[ \t]+[^\r\n]*)?\r?\n(.*?)(?=^## |\z)'
+$currentMatches = [regex]::Matches($changelog, $versionPattern)
+$briefMatches = [regex]::Matches($workshopChanges, $versionPattern)
+if ($currentMatches.Count -ne 1 -or $briefMatches.Count -ne 1) { throw 'CHANGELOG.md and WorkshopChangelog.md must each contain exactly one current version section.' }
+$current = $currentMatches[0]
+$currentBrief = Convert-ChangesToBBCode $briefMatches[0].Value
+if ($currentBrief -notmatch '\[\*\]') { throw 'Current workshop changes must contain at least one bullet.' }
 $note = Convert-ChangesToBBCode ("## $version`r`n" + $current.Groups[1].Value)
 $template = [IO.File]::ReadAllText((Join-Path $taskProject 'WorkshopDescription.template.txt'))
-$description = $template.Replace('{{VERSION}}', $version).Replace('{{CHANGELOG}}', $history).Trim()
+$description = $template.Replace('{{VERSION}}', $version).Replace('{{CURRENT_CHANGES}}', $currentBrief).Trim()
 $description = [regex]::Replace($description, '\r?\n', "`r`n")
 if ($description.Contains('{{')) { throw 'Unresolved workshop description placeholder.' }
 $descriptionBytes = [Text.Encoding]::UTF8.GetByteCount($description)
@@ -76,7 +77,7 @@ $hashLines = foreach ($file in $runtimeFiles) {
     "$actual  $file"
 }
 Write-TaskFile (Join-Path $workspace 'content-sha256.txt') (($hashLines -join "`r`n") + "`r`n")
-Write-Output "Prepared version $version; history has $([regex]::Matches($changelog, '(?m)^## ').Count) recorded versions."
+Write-Output "Prepared version $version; description includes current changes only; full history archived separately."
 Write-Output "Backup: $archive"
 & (Join-Path $workspace 'upload.ps1') -CheckOnly
 if ($LASTEXITCODE -ne 0) { throw 'Workshop configuration preflight failed.' }

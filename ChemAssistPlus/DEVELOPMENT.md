@@ -1,4 +1,4 @@
-# 常用操作
+﻿# 常用操作
 
 开发主目录现为 D:\work\Probably-Stolen-ChemAssistPlus\ChemAssistPlus。独立目录需在 GameRoot.local.txt 中填写游戏根目录（单行、无引号），或设置优先级更高的 PROBABLY_STOLEN_GAME_ROOT 环境变量；本地路径文件不提交。项目引用和脚本共用该配置，详见仓库 README。
 
@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | 日常构建 | .\build.ps1 | build/ 中 DLL、清单、说明、原生扫描结果；不部署/打包 |
 | 重扫已有构建 | .\validate.ps1 | build/验证结果.txt 与 validation.json（记录文件/游戏哈希） |
-| 准备工坊内容与排版 | .\prepare-workshop.ps1 | 核对已扫描构建、备份旧上传工作区、同步3个运行文件/多行BBCode简介/逐版本记录/鸣谢与VDF；配置预检，不登录/上传 |
+| 准备工坊内容与排版 | .\prepare-workshop.ps1 | 核对已扫描构建、备份旧上传工作区、同步3个运行文件/用法与功能/当前版本改动/鸣谢与VDF；配置预检，不登录/上传 |
 | 可选人工核查 | .\publish-workshop.ps1 -CheckOnly | 需要时只读查询english/schinese与本地是否一致；不提交，日常发布无需另跑 |
 | 发布并同步简介 | .\publish-workshop.ps1 | english上传内容/封面/标题/简介，schinese同步标题/简介；两次Steam提交均成功即完成，自动保存简短结果 |
 | 单独重试简中简介 | .\publish-workshop.ps1 -SchineseOnly | 仅在默认语言已提交当前构建时使用，更新schinese标题/简介，不上传运行文件 |
@@ -33,7 +33,7 @@ VERSION 为版本唯一来源，build 自动同步程序集、清单、UI/日志
 AGENTS.md 固定约定；HANDOFF.md 当前状态；ARCHITECTURE.md 按模块定位；
 NATIVE_API.md 原生接口缓存；MOD_REFERENCE.md 参考实现缓存；CHANGELOG.md 历史变更；
 Research/ 完整IL、旧调查与整理前备份。历史 Tests/ 保留但不运行，不纳入发布源码包。
-CHANGELOG.md按每个有据可查的版本记录完整变化，已从归档补回早期版本，缺失版本不补写。WorkshopChangelog.md为工坊逐版本精简稿，必须与完整记录保持相同版本集合及顺序；Steam简介上限为8000 UTF-8字节，生成与上传预检均要求小于8000，不能只查字符数。WorkshopDescription.template.txt按用法/功能→逐版本记录→末尾鸣谢排版，prepare-workshop.ps1嵌入WorkshopChangelog并另存完整CHANGELOG-source.md。
+CHANGELOG.md按每个有据可查的版本记录完整变化，已从归档补回早期版本，缺失版本不补写。WorkshopChangelog.md保留各版精简稿，生成简介只要求当前VERSION条目唯一且有内容，不再要求历史版本集合一致；Steam简介上限为8000 UTF-8字节，生成与上传预检均要求小于8000，不能只查字符数。WorkshopDescription.template.txt按用法/功能→当前版本改动→末尾鸣谢排版，prepare-workshop.ps1只嵌入WorkshopChangelog的当前版本，另存完整CHANGELOG-source.md。旧版本内容由工坊更新记录和仓库保留，不再全部重复到简介。
 
 旧 bin/obj 是构建缓存，staging/ 是历史安装备份，既有 zip 未改动。日常输出统一到 build/。
 源码发布包按白名单收录源码/文档/脚本，不包含原生与参考 DLL、Research 原始材料或测试。
