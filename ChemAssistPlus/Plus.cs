@@ -45,6 +45,7 @@ namespace ChemAssistPlus
         {
             mixingGuardEnabled = false;
             ClearMixConfirmation();
+            ClearMaterialIcons();
             CancelJob("模组已禁用。", true);
             ModHook.OnGameLoadedNormal -= ResetSession;
             ModHelper.RemoveGameOptions(Id);
@@ -57,6 +58,7 @@ namespace ChemAssistPlus
         static void ResetSession()
         {
             ClearMixConfirmation();
+            ClearMaterialIcons();
             CancelJob("存档已切换。", true);
             headers.Clear(); selectedBlender = contextBlender = contextPot = null;
             contextChain = null; busy = false;
@@ -78,6 +80,7 @@ namespace ChemAssistPlus
         public static void Poll()
         {
             if (!PlayerStore.IsInstanceExist()) return;
+            RememberOccupiedEvaporators();
             UpdatePowerWarning();
             foreach (var item in Scan().Where(x => x.IsID("blender")))
             {
@@ -374,6 +377,7 @@ namespace ChemAssistPlus
                 Plus.TickJob();
                 Plus.TickMorningReport();
                 Plus.TickPanelLayout();
+                Plus.TickMaterialIcons();
                 if (Time.unscaledTime >= nextPoll) { nextPoll = Time.unscaledTime + 2f; Plus.Poll(); }
             }
             catch (Exception e) { Debug.LogWarning("[ChemAssistPlus] " + e.Message); nextPoll = Time.unscaledTime + 10f; }

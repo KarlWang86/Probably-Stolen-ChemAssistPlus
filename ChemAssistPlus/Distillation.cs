@@ -9,13 +9,14 @@ namespace ChemAssistPlus
     {
         const double MergeConcentrationPoints = 5;
 
-        static GameItem ParkSpareRawBottle(GameItem bottle)
+        static GameItem ParkSpareRawBottle(GameItem bottle, Recipe recipe)
         {
             if (WaterHelper.GetTotalVolume(bottle) != 0) return null;
             var machine = Scan().Where(x => x.IsID("evaporator") && MachineView.Walk(x).Container != null
+                    && AcceptsEvaporatorRoute(x, recipe)
                     && MachineView.Walk(x).Container.childItem == null
                     && GraphUtils.CanAccept(MachineView.Walk(x).Container, bottle))
-                .OrderByDescending(Charged).ThenBy(x => x.uniqueId).FirstOrDefault();
+                .OrderBy(x => EvaporatorRoutePriority(x, recipe)).ThenByDescending(Charged).ThenBy(x => x.uniqueId).FirstOrDefault();
             if (machine != null) MovePot(bottle, MachineView.Walk(machine).Container);
             return machine;
         }
@@ -54,6 +55,7 @@ namespace ChemAssistPlus
                 if (pot == null || !Owned(pot) || NativeChem.WetTotal(pot) > WaterHelper.DRY_TOLERANCE_UL) continue;
                 var recipe = Detect(pot, null);
                 if (!ExtractedProduct(pot, recipe)) continue;
+                RememberEvaporatorRoute(machine, recipe);
                 var finisher = Scan().Where(x => x.IsID("chem_finisher") && CanMergeDryFinisher(x, pot, recipe))
                     .OrderBy(x => x.uniqueId).FirstOrDefault() ?? FindDryFinisher(pot, recipe);
                 int reportPotId = pot.uniqueId;
@@ -117,6 +119,7 @@ namespace ChemAssistPlus
         {
             public GameItem SourceMachine, TargetMachine, Source, Target, WorkPot;
             public Recipe Recipe;
+            public Recipe IncomingRecipe;
             public long IncomingVolume;
         }
 
@@ -130,6 +133,8 @@ namespace ChemAssistPlus
                 || !plan.Source.IsTag(WaterHelper.LIQUID_CONTAINER_TAG) || !plan.Target.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)
                 || plan.Source.IsTag(WaterHelper.FILTER_CONTAINER_TAG) || plan.Target.IsTag(WaterHelper.FILTER_CONTAINER_TAG)
                 || !ExtractedProduct(plan.Source, plan.Recipe) || !ExtractedProduct(plan.Target, plan.Recipe)
+                || !AcceptsEvaporatorRoute(plan.SourceMachine, plan.IncomingRecipe)
+                || !AcceptsEvaporatorRoute(plan.TargetMachine, plan.Recipe)
                 || NativeChem.WetTotal(plan.Source) <= WaterHelper.DRY_TOLERANCE_UL
                 || NativeChem.WetTotal(plan.Target) <= WaterHelper.DRY_TOLERANCE_UL
                 || WaterHelper.GetTotalVolume(plan.Source) > WaterHelper.GetFreeCapacity(plan.Target)) return false;
@@ -137,7 +142,7 @@ namespace ChemAssistPlus
             return plan.IncomingVolume > 0 && WaterHelper.GetTotalCapacity(plan.Source) >= plan.IncomingVolume;
         }
 
-        static ConsolidationPlan PlanConsolidation(GameItem workPot, long incomingVolume)
+        static ConsolidationPlan PlanConsolidation(GameItem workPot, long incomingVolume, Recipe incomingRecipe)
         {
             var all = Scan();
             var machines = all.Where(x => x.IsID("evaporator") && Charged(x)).OrderBy(x => x.uniqueId).ToList();
@@ -152,7 +157,7 @@ namespace ChemAssistPlus
                 {
                     var plan = new ConsolidationPlan { SourceMachine = sourceMachine, TargetMachine = targetMachine,
                         Source = source, Target = MachineView.Walk(targetMachine).Container?.childItem,
-                        WorkPot = workPot, Recipe = recipe, IncomingVolume = incomingVolume };
+                        WorkPot = workPot, Recipe = recipe, IncomingRecipe = incomingRecipe, IncomingVolume = incomingVolume };
                     if (CanConsolidate(plan)) return plan;
                 }
             }
@@ -169,6 +174,8 @@ namespace ChemAssistPlus
             if (!CanConsolidate(plan)) throw new InvalidOperationException("同类存量集中条件变化，尚未转液或搅拌，请重新预检。");
             int volume = WaterHelper.GetTotalVolume(plan.Source);
             TransferWholeSolution(plan.Source, plan.Target);
+            RememberEvaporatorRoute(plan.SourceMachine, plan.Recipe);
+            RememberEvaporatorRoute(plan.TargetMachine, plan.Recipe);
             // Redirect old batch snapshots before the emptied receiver is reused for another product.
             foreach (var batch in nightDetails.Where(x => x.PotId == plan.Source.uniqueId))
             {
@@ -189,6 +196,7 @@ namespace ChemAssistPlus
 
         static bool CanReceiveBatch(GameItem machine, GameItem pot, Recipe recipe, long volume, bool planning)
         {
+            if (!AcceptsEvaporatorRoute(machine, recipe)) return false;
             var slot = MachineView.Walk(machine).Container;
             if (pot == null || slot == null) return false;
             var target = slot.childItem;
@@ -210,7 +218,8 @@ namespace ChemAssistPlus
             recipe = recipe ?? Detect(pot, null);
             if (volume < 0) volume = pot == null ? 0 : WaterHelper.GetTotalVolume(pot);
             return Scan().Where(x => x.IsID("evaporator") && Charged(x) && CanReceiveBatch(x, pot, recipe, volume, planning))
-                .OrderByDescending(x => MachineView.Walk(x).Container.childItem != null)
+                .OrderBy(x => EvaporatorRoutePriority(x, recipe))
+                .ThenByDescending(x => MachineView.Walk(x).Container.childItem != null)
                 .ThenBy(x => x.uniqueId).FirstOrDefault();
         }
 
@@ -220,10 +229,12 @@ namespace ChemAssistPlus
             if (volume < 0) volume = pot == null ? 0 : WaterHelper.GetTotalVolume(pot);
             var machines = Scan().Where(x => x.IsID("evaporator")).ToList();
             if (machines.Count == 0) return "缺蒸发器。";
+            var routed = machines.Where(x => AcceptsEvaporatorRoute(x, recipe)).ToList();
+            if (routed.Count == 0) return "没有对应配方或尚未分配的蒸发器；其他设备保留原料记忆，不自动改作其他原液。请准备新设备，或手动放入对应单一原液调整用途。";
             var compatible = machines.Where(x => CanReceiveBatch(x, pot, recipe, volume, planning)).ToList();
             if (compatible.Count == 0) return planning
-                ? "蒸发器没有可用空槽或整批接收瓶，且无法安全集中同类湿原液腾出接收瓶。请检查集中目标的余量、腾空瓶的下一批容量及电池，或准备可接收原液的容器。"
-                : "蒸发器没有可用空槽或可整批接收的容器；合并仅限同种已提取湿半成品、有效成分浓度差≤5个百分点且空间足够，干料和不同配方不混合。";
+                ? "对应蒸发器没有可用空槽或整批接收瓶；保留其他设备的原料记忆。请等待原批次完成，或检查本配方接收瓶容量、电池及同类存量集中条件。"
+                : "对应蒸发器没有可用空槽或可整批接收的容器；不借用其他原料设备。合并须同种已提取湿原液、浓度差≤5个百分点且空间足够。";
             if (compatible.All(x => NativeChem.FindBattery(x) == null)) return "蒸发器缺电池，请装入电池。";
             if (!compatible.Any(Charged)) return "蒸发器电池没电或电量不足以启动一次，请更换/充电。";
             return "蒸发器状态已变化，暂时不能接收原液。";
@@ -239,13 +250,15 @@ namespace ChemAssistPlus
             if (target == null || target == source)
             {
                 MovePot(source, slot);
+                RememberEvaporatorRoute(machine, recipe);
                 MarkAutoWork();
                 return source;
             }
             double sourceConcentration = ProductConcentration(source, recipe);
             double targetConcentration = ProductConcentration(target, recipe);
             TransferWholeSolution(source, target);
-            var spareMachine = ParkSpareRawBottle(source);
+            RememberEvaporatorRoute(machine, recipe);
+            var spareMachine = ParkSpareRawBottle(source, recipe);
             Trace("  同类合并：蒸发器 #" + machine.uniqueId + "；源瓶 #" + source.uniqueId + " → 接收瓶 #" + target.uniqueId
                 + "；" + ChemNames.ProductName(recipe.ProductId) + "，本批 " + Vol(volume)
                 + "；有效成分浓度 " + sourceConcentration.ToString("0.###") + "% / " + targetConcentration.ToString("0.###")

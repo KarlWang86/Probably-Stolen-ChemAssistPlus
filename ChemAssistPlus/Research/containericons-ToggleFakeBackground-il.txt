@@ -1,0 +1,162 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void GameItemElement::ToggleFakeBackground(System.Boolean,UnityEngine.Vector4)
+  0: System.Boolean enabled None
+  1: UnityEngine.Vector4 color None
+  local 0: System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_0000: ldarg.1
+IL_0001: brfalse.s IL_001c
+IL_0003: ldarg.0
+IL_0004: call TreeNodeRender GameItemElement::get_fakeMiddle()
+IL_0009: ldsfld RenderHandler RenderHandler::current
+IL_000e: ldfld TreeNodeRender RenderHandler::overlayRoot
+IL_0013: ldc.i4.1
+IL_0014: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender,System.Boolean)
+IL_0019: pop
+IL_001a: br.s IL_002f
+IL_001c: ldarg.0
+IL_001d: call TreeNodeRender GameItemElement::get_fakeMiddle()
+IL_0022: ldarg.0
+IL_0023: call TreeNodeRender GameItemElement::get_handler()
+IL_0028: ldc.i4.1
+IL_0029: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender,System.Boolean)
+IL_002e: pop
+IL_002f: ldarg.0
+IL_0030: ldarg.1
+IL_0031: stfld System.Boolean GameItemElement::fakePinOverlayVisible
+IL_0036: ldarg.0
+IL_0037: call System.Void GameItemElement::UpdatePinOverlay()
+IL_003c: ldarg.0
+IL_003d: call System.Void GameItemElement::UpdateMarkOverlay()
+IL_0042: ldarg.0
+IL_0043: call System.Void GameItemElement::UpdatePlayingFrameOverlay()
+IL_0048: ldarg.0
+IL_0049: call TreeNodeRender GameItemElement::get_fakeInner()
+IL_004e: callvirt UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0053: ldsfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innerNodeBuffer
+IL_0058: callvirt System.Void UnityEngine.GameObject::GetComponentsInChildren<TreeNodeRender>(System.Collections.Generic.List`1<!!0>)
+IL_005d: ldarg.1
+IL_005e: brfalse IL_00f4
+IL_0063: ldarg.0
+IL_0064: call TreeNodeRender GameItemElement::get_fakeBackground()
+IL_0069: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_006e: ldarg.2
+IL_006f: call UnityEngine.Color UnityEngine.Color::op_Implicit(UnityEngine.Vector4)
+IL_0074: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_0079: ldarg.0
+IL_007a: ldfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::fakeSpriteMods
+IL_007f: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<TreeNodeRender>::GetEnumerator()
+IL_0084: stloc.0
+IL_0085: br.s IL_009e
+IL_0087: ldloca.s V_0
+IL_0089: call !0 System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::get_Current()
+IL_008e: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0093: ldarg.2
+IL_0094: call UnityEngine.Color UnityEngine.Color::op_Implicit(UnityEngine.Vector4)
+IL_0099: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_009e: ldloca.s V_0
+IL_00a0: call System.Boolean System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::MoveNext()
+IL_00a5: brtrue.s IL_0087
+IL_00a7: leave.s IL_00b7
+IL_00a9: ldloca.s V_0
+IL_00ab: constrained. System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_00b1: callvirt System.Void System.IDisposable::Dispose()
+IL_00b6: endfinally
+IL_00b7: ldsfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innerNodeBuffer
+IL_00bc: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<TreeNodeRender>::GetEnumerator()
+IL_00c1: stloc.0
+IL_00c2: br.s IL_00db
+IL_00c4: ldloca.s V_0
+IL_00c6: call !0 System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::get_Current()
+IL_00cb: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_00d0: ldarg.2
+IL_00d1: call UnityEngine.Color UnityEngine.Color::op_Implicit(UnityEngine.Vector4)
+IL_00d6: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_00db: ldloca.s V_0
+IL_00dd: call System.Boolean System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::MoveNext()
+IL_00e2: brtrue.s IL_00c4
+IL_00e4: leave.s IL_00f4
+IL_00e6: ldloca.s V_0
+IL_00e8: constrained. System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_00ee: callvirt System.Void System.IDisposable::Dispose()
+IL_00f3: endfinally
+IL_00f4: ldarg.0
+IL_00f5: call TreeNodeRender GameItemElement::get_fakeBackground()
+IL_00fa: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_00ff: ldarg.1
+IL_0100: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0105: ldarg.0
+IL_0106: ldfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::fakeSpriteMods
+IL_010b: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<TreeNodeRender>::GetEnumerator()
+IL_0110: stloc.0
+IL_0111: br.s IL_0125
+IL_0113: ldloca.s V_0
+IL_0115: call !0 System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::get_Current()
+IL_011a: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_011f: ldarg.1
+IL_0120: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0125: ldloca.s V_0
+IL_0127: call System.Boolean System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::MoveNext()
+IL_012c: brtrue.s IL_0113
+IL_012e: leave.s IL_013e
+IL_0130: ldloca.s V_0
+IL_0132: constrained. System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_0138: callvirt System.Void System.IDisposable::Dispose()
+IL_013d: endfinally
+IL_013e: ldarg.0
+IL_013f: ldfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innateFakeSpriteMods
+IL_0144: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<TreeNodeRender>::GetEnumerator()
+IL_0149: stloc.0
+IL_014a: br.s IL_015e
+IL_014c: ldloca.s V_0
+IL_014e: call !0 System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::get_Current()
+IL_0153: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0158: ldarg.1
+IL_0159: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_015e: ldloca.s V_0
+IL_0160: call System.Boolean System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::MoveNext()
+IL_0165: brtrue.s IL_014c
+IL_0167: leave.s IL_0177
+IL_0169: ldloca.s V_0
+IL_016b: constrained. System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_0171: callvirt System.Void System.IDisposable::Dispose()
+IL_0176: endfinally
+IL_0177: ldsfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innerNodeBuffer
+IL_017c: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<TreeNodeRender>::GetEnumerator()
+IL_0181: stloc.0
+IL_0182: br.s IL_0196
+IL_0184: ldloca.s V_0
+IL_0186: call !0 System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::get_Current()
+IL_018b: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0190: ldarg.1
+IL_0191: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0196: ldloca.s V_0
+IL_0198: call System.Boolean System.Collections.Generic.List`1/Enumerator<TreeNodeRender>::MoveNext()
+IL_019d: brtrue.s IL_0184
+IL_019f: leave.s IL_01af
+IL_01a1: ldloca.s V_0
+IL_01a3: constrained. System.Collections.Generic.List`1/Enumerator<TreeNodeRender>
+IL_01a9: callvirt System.Void System.IDisposable::Dispose()
+IL_01ae: endfinally
+IL_01af: ret
+  EH Finally: try IL_0085: br.s IL_009e -> IL_00a9: ldloca.s V_0; handler IL_00a9: ldloca.s V_0 -> IL_00b7: ldsfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innerNodeBuffer; filter ; catch 
+  EH Finally: try IL_00c2: br.s IL_00db -> IL_00e6: ldloca.s V_0; handler IL_00e6: ldloca.s V_0 -> IL_00f4: ldarg.0; filter ; catch 
+  EH Finally: try IL_0111: br.s IL_0125 -> IL_0130: ldloca.s V_0; handler IL_0130: ldloca.s V_0 -> IL_013e: ldarg.0; filter ; catch 
+  EH Finally: try IL_014a: br.s IL_015e -> IL_0169: ldloca.s V_0; handler IL_0169: ldloca.s V_0 -> IL_0177: ldsfld System.Collections.Generic.List`1<TreeNodeRender> GameItemElement::innerNodeBuffer; filter ; catch 
+  EH Finally: try IL_0182: br.s IL_0196 -> IL_01a1: ldloca.s V_0; handler IL_01a1: ldloca.s V_0 -> IL_01af: ret; filter ; catch 
+System.Void GameItemElement::ToggleFakeBackground(System.Boolean,System.Single,System.Single)
+  0: System.Boolean enabled None
+  1: System.Single opacity Optional, HasDefault
+  2: System.Single lightness Optional, HasDefault
+  local 0: UnityEngine.Vector4
+IL_0000: ldloca.s V_0
+IL_0002: ldarg.3
+IL_0003: ldarg.3
+IL_0004: ldarg.3
+IL_0005: ldarg.2
+IL_0006: call System.Void UnityEngine.Vector4::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_000b: ldarg.0
+IL_000c: ldarg.1
+IL_000d: ldloc.0
+IL_000e: call System.Void GameItemElement::ToggleFakeBackground(System.Boolean,UnityEngine.Vector4)
+IL_0013: ret

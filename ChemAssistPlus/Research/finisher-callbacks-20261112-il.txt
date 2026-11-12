@@ -1,0 +1,192 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__0(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0006: ldstr "Items/items_tool2"
+IL_000b: ldstr "chem_finisher_b"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: pop
+IL_0016: ret
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__1(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory parentInventory None
+  2: SlotMarker slot None
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0006: ldstr "Items/items_tool2"
+IL_000b: ldstr "chem_finisher"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: pop
+IL_0016: ret
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__2()
+IL_0000: call ChemFinisherUIManager ChemFinisherUIManager::get_Instance()
+IL_0005: ldarg.0
+IL_0006: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_000b: callvirt System.Void ChemFinisherUIManager::OpenUI(GameItem)
+IL_0010: ret
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__3(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory inventory None
+  2: SlotMarker slot None
+  local 0: ChemFinisherRecipe
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0006: ldstr "SELECTED_CHEM_ID_TAG"
+IL_000b: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0010: brtrue.s IL_005c
+IL_0012: ldarg.0
+IL_0013: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::targetLabel
+IL_0018: ldstr "mech_chem_finisher_no_target"
+IL_001d: call !!0[] System.Array::Empty<System.Object>()
+IL_0022: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0027: callvirt MachineryText MachineryText::SetText(System.String)
+IL_002c: pop
+IL_002d: ldarg.0
+IL_002e: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::statusLabel
+IL_0033: ldstr "mech_turbo_booster_status"
+IL_0038: ldc.i4.1
+IL_0039: newarr System.Object
+IL_003e: dup
+IL_003f: ldc.i4.0
+IL_0040: ldstr "mech_chem_finisher_status_no_target"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_004f: stelem.ref
+IL_0050: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0055: callvirt MachineryText MachineryText::SetText(System.String)
+IL_005a: pop
+IL_005b: ret
+IL_005c: ldarg.0
+IL_005d: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0062: ldstr "SELECTED_CHEM_ID_TAG"
+IL_0067: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_006c: callvirt System.String TagState::GetString()
+IL_0071: call ChemFinisherRecipe ChemFinisherRecipe::GetRecipeById(System.String)
+IL_0076: stloc.0
+IL_0077: ldarg.0
+IL_0078: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::targetLabel
+IL_007d: ldloc.0
+IL_007e: ldfld System.String ChemFinisherRecipe::displayName
+IL_0083: callvirt MachineryText MachineryText::SetText(System.String)
+IL_0088: pop
+IL_0089: ldarg.0
+IL_008a: ldfld MachineryStack MachineChemFinisher/<>c__DisplayClass1_0::controlGrid
+IL_008f: callvirt System.Void MachineryStack::Validate()
+IL_0094: ldarg.0
+IL_0095: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_009a: ldarg.0
+IL_009b: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00a0: call System.Boolean MachineChemFinisher::CanOutput(GameItem,GameSlotInventory)
+IL_00a5: brfalse.s IL_00d6
+IL_00a7: ldarg.0
+IL_00a8: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::statusLabel
+IL_00ad: ldstr "mech_turbo_booster_status"
+IL_00b2: ldc.i4.1
+IL_00b3: newarr System.Object
+IL_00b8: dup
+IL_00b9: ldc.i4.0
+IL_00ba: ldstr "mech_turbo_booster_status_ready"
+IL_00bf: call !!0[] System.Array::Empty<System.Object>()
+IL_00c4: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00c9: stelem.ref
+IL_00ca: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00cf: callvirt MachineryText MachineryText::SetText(System.String)
+IL_00d4: pop
+IL_00d5: ret
+IL_00d6: ldarg.0
+IL_00d7: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00dc: callvirt GameItem GameSlotInventory::get_childItem()
+IL_00e1: brfalse.s IL_012c
+IL_00e3: ldloc.0
+IL_00e4: ldfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_00e9: brfalse.s IL_012c
+IL_00eb: ldarg.0
+IL_00ec: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00f1: callvirt GameItem GameSlotInventory::get_childItem()
+IL_00f6: call System.Boolean WaterHelper::IsWet(GameItem)
+IL_00fb: brfalse.s IL_012c
+IL_00fd: ldarg.0
+IL_00fe: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::statusLabel
+IL_0103: ldstr "mech_turbo_booster_status"
+IL_0108: ldc.i4.1
+IL_0109: newarr System.Object
+IL_010e: dup
+IL_010f: ldc.i4.0
+IL_0110: ldstr "mech_chem_finisher_status_wet_ingredient"
+IL_0115: call !!0[] System.Array::Empty<System.Object>()
+IL_011a: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_011f: stelem.ref
+IL_0120: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0125: callvirt MachineryText MachineryText::SetText(System.String)
+IL_012a: pop
+IL_012b: ret
+IL_012c: ldarg.0
+IL_012d: ldfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::statusLabel
+IL_0132: ldstr "mech_turbo_booster_status"
+IL_0137: ldc.i4.1
+IL_0138: newarr System.Object
+IL_013d: dup
+IL_013e: ldc.i4.0
+IL_013f: ldstr "mech_chem_finisher_status_not_enough_reagent"
+IL_0144: call !!0[] System.Array::Empty<System.Object>()
+IL_0149: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_014e: stelem.ref
+IL_014f: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0154: callvirt MachineryText MachineryText::SetText(System.String)
+IL_0159: pop
+IL_015a: ret
+System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__4()
+  local 0: ChemFinisherRecipe
+  local 1: GameItem
+IL_0000: ldarg.0
+IL_0001: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0006: ldarg.0
+IL_0007: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_000c: call System.Boolean MachineChemFinisher::CanOutput(GameItem,GameSlotInventory)
+IL_0011: brtrue.s IL_0014
+IL_0013: ret
+IL_0014: ldarg.0
+IL_0015: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_001a: ldstr "SELECTED_CHEM_ID_TAG"
+IL_001f: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0024: callvirt System.String TagState::GetString()
+IL_0029: dup
+IL_002a: call ChemFinisherRecipe ChemFinisherRecipe::GetRecipeById(System.String)
+IL_002f: stloc.0
+IL_0030: ldc.i4.1
+IL_0031: call GameItem DirectoryMaster::Item(System.String,System.Boolean)
+IL_0036: stloc.1
+IL_0037: ldloc.1
+IL_0038: call System.Void ChemicalHelper::RemoveAllLiquid(GameItem)
+IL_003d: ldarg.0
+IL_003e: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_0043: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0048: ldloc.1
+IL_0049: ldloc.0
+IL_004a: ldfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_004f: call System.Void ChemicalHelper::TransferLiquidToChem(GameItem,GameItem,System.Int32)
+IL_0054: ldloc.1
+IL_0055: ldarg.0
+IL_0056: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_005b: call System.Int32 MachineChemFinisher::GetLoss(GameItem)
+IL_0060: call System.Void MachineChemFinisher::IntroduceImpurity(GameItem,System.Int32)
+IL_0065: ldarg.0
+IL_0066: ldfld GameGridInventory MachineChemFinisher/<>c__DisplayClass1_0::outputGrid
+IL_006b: ldloc.1
+IL_006c: ldc.i4.m1
+IL_006d: call System.Int32 GraphUtils::TryAcceptAll(GraphNodeStorage,GameItem,System.Int32)
+IL_0072: pop
+IL_0073: ldloc.1
+IL_0074: call System.Void ChemicalProductHelper::GradeProduct(GameItem)
+IL_0079: call AchievementTracker AchievementTracker::get_Instance()
+IL_007e: ldloc.1
+IL_007f: callvirt System.Void AchievementTracker::CheckLabPure(GameItem)
+IL_0084: ret

@@ -32,6 +32,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 数据与边界
 
+- 原生制剂规则已于2026-11-12定向复核：ChemFinisherRecipe.CanOutput仅检查总体积≥requiredVolume，以及isRequireDry时WaterHelper.IsWet为false；咖啡因配方requiredVolume=5000μL、isRequireDry=true。IsWet把全部isEvaporative成分求和，>100μL为湿，与DRY_TOLERANCE_UL=100一致；不是“纯度达到98%即可”。截图酒精14.14mL+水2.30mL仍明显超标，须回蒸发器原液槽继续原生过夜；不修改制剂条件。证据Research/finisher-{rules,callbacks}-20261112-il.txt、finisher-recipe-canoutput-il.txt、finisher-recipes-il.txt。
+- 原材料图标0.4.5：HydroponicDirectory.CoffeeBean/DreamCap/NightmareCap的原生sprite分别为Items/items_hydroponic_plant下coffee_bean/dream_cap/nightmare_cap；RenderHandler.TryLoadFromAtlas只读加载。HandleNomoreReaction消耗dream_cap_extract，故nomore也映射梦帽菇。TreeNodeRender.Instantiate().SetParent可建立独立显示节点；GameItemElement.middle/fakeMiddle为占格原点，rotator/fakeRotator才施加物品旋转；background/fakeBackground的image.enabled及alpha表示原生实物/拖影显隐。PixelWindow.AddHeaderButton经MachineryValidate在右上由右到左布置并为标题留宽，RemoveHeaderButton只ResetParent、不销毁，故需另外Destroy自建按钮节点。证据Research/containericons-*-il.txt；纯显示，无新增Harmony补丁。
 - water_tablet 每片15mL氯；water_tablet_container 是外瓶，只计内部真实片；散片优先。
 - 过滤孔标签字面量 FILTER_SIZE_TAG，WaterHelper 无此常量；原生每组分最多10000动作，本项目每批最多4096份。
 - 机器槽位按角色找，不依赖 body 固定索引；蒸发只交原生 EndNight，不自行模拟产物。

@@ -1,0 +1,102 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void GameItemElement::UpdateFakeReal(System.Int32)
+  0: System.Int32 numPickedUp None
+  local 0: System.Int32
+IL_0000: ldarg.0
+IL_0001: call System.Int32 GameItem::get_unitCount()
+IL_0006: ldarg.1
+IL_0007: sub
+IL_0008: stloc.0
+IL_0009: ldarg.0
+IL_000a: ldloc.0
+IL_000b: ldc.i4.0
+IL_000c: cgt
+IL_000e: ldc.r4 1
+IL_0013: ldc.r4 1
+IL_0018: call System.Void GameItemElement::ToggleBackground(System.Boolean,System.Single,System.Single)
+IL_001d: ldarg.0
+IL_001e: ldfld TreeNodeRender GameItemElement::stackCountText
+IL_0023: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0028: ldloca.s V_0
+IL_002a: call System.String System.Int32::ToString()
+IL_002f: dup
+IL_0030: brtrue.s IL_0038
+IL_0032: pop
+IL_0033: ldstr ""
+IL_0038: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_003d: ldarg.0
+IL_003e: ldfld TreeNodeRender GameItemElement::stackCountText
+IL_0043: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0048: ldloc.0
+IL_0049: ldc.i4.1
+IL_004a: ble.s IL_0057
+IL_004c: ldarg.0
+IL_004d: call System.Boolean GameItem::get_isDebugMenu()
+IL_0052: ldc.i4.0
+IL_0053: ceq
+IL_0055: br.s IL_0058
+IL_0057: ldc.i4.0
+IL_0058: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_005d: ldarg.0
+IL_005e: ldfld TreeNodeRender GameItemElement::stackCountTextBackground
+IL_0063: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0068: ldarg.0
+IL_0069: ldfld TreeNodeRender GameItemElement::stackCountText
+IL_006e: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0073: callvirt System.String TMPro.TMP_Text::get_text()
+IL_0078: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_007d: ldarg.0
+IL_007e: ldfld TreeNodeRender GameItemElement::stackCountTextBackground
+IL_0083: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0088: ldloc.0
+IL_0089: ldc.i4.1
+IL_008a: ble.s IL_0097
+IL_008c: ldarg.0
+IL_008d: call System.Boolean GameItem::get_isDebugMenu()
+IL_0092: ldc.i4.0
+IL_0093: ceq
+IL_0095: br.s IL_0098
+IL_0097: ldc.i4.0
+IL_0098: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_009d: ldarg.0
+IL_009e: ldarg.1
+IL_009f: ldc.i4.0
+IL_00a0: cgt
+IL_00a2: ldsfld UISettings UISettings::current
+IL_00a7: ldfld System.Single UISettings::dragOpacity
+IL_00ac: ldc.r4 1
+IL_00b1: call System.Void GameItemElement::ToggleFakeBackground(System.Boolean,System.Single,System.Single)
+IL_00b6: ldarg.0
+IL_00b7: ldfld TreeNodeRender GameItemElement::fakeStackCountText
+IL_00bc: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_00c1: ldarga.s numPickedUp
+IL_00c3: call System.String System.Int32::ToString()
+IL_00c8: dup
+IL_00c9: brtrue.s IL_00d1
+IL_00cb: pop
+IL_00cc: ldstr ""
+IL_00d1: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_00d6: ldarg.0
+IL_00d7: ldfld TreeNodeRender GameItemElement::fakeStackCountText
+IL_00dc: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_00e1: ldarg.1
+IL_00e2: ldc.i4.1
+IL_00e3: cgt
+IL_00e5: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_00ea: ldarg.0
+IL_00eb: ldfld TreeNodeRender GameItemElement::fakeStackCountTextBackground
+IL_00f0: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_00f5: ldarg.0
+IL_00f6: ldfld TreeNodeRender GameItemElement::fakeStackCountText
+IL_00fb: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0100: callvirt System.String TMPro.TMP_Text::get_text()
+IL_0105: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_010a: ldarg.0
+IL_010b: ldfld TreeNodeRender GameItemElement::fakeStackCountTextBackground
+IL_0110: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0115: ldarg.1
+IL_0116: ldc.i4.1
+IL_0117: cgt
+IL_0119: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_011e: ret

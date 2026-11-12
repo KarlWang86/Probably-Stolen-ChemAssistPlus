@@ -1,0 +1,7 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void GameItemElement::Validate()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.1
+IL_0002: call System.Void GameItemElement::ValidateSelect(System.Boolean)
+IL_0007: ret

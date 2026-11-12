@@ -1,0 +1,484 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem MachineChemFinisher::ChemFinisher()
+  local 0: MachineChemFinisher/<>c__DisplayClass1_0
+  local 1: PixelWindow
+  local 2: MachineryButton
+  local 3: MachineryButton
+  local 4: System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>
+IL_0000: newobj System.Void MachineChemFinisher/<>c__DisplayClass1_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldc.i4.8
+IL_0007: ldc.i4.8
+IL_0008: ldc.i4.1
+IL_0009: ldc.i4.1
+IL_000a: ldc.i4.5
+IL_000b: call System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>> MachineChemFinisher::CreateMachineInventoryWindow(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)
+IL_0010: stloc.s V_4
+IL_0012: ldloc.s V_4
+IL_0014: ldfld !0 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item1
+IL_0019: stloc.1
+IL_001a: ldloc.s V_4
+IL_001c: ldfld !1 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item2
+IL_0021: ldloc.0
+IL_0022: ldloc.s V_4
+IL_0024: ldfld !2 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item3
+IL_0029: stfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_002e: ldloc.0
+IL_002f: ldloc.s V_4
+IL_0031: ldfld !3 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item4
+IL_0036: stfld GameGridInventory MachineChemFinisher/<>c__DisplayClass1_0::outputGrid
+IL_003b: ldloc.s V_4
+IL_003d: ldfld !4 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item5
+IL_0042: stloc.2
+IL_0043: ldloc.s V_4
+IL_0045: ldfld !5 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item6
+IL_004a: stloc.3
+IL_004b: ldloc.0
+IL_004c: ldloc.s V_4
+IL_004e: ldfld !6 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Item7
+IL_0053: stfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::targetLabel
+IL_0058: ldloc.0
+IL_0059: ldloc.s V_4
+IL_005b: ldfld !7 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Rest
+IL_0060: ldfld !0 System.ValueTuple`2<MachineryText,MachineryStack>::Item1
+IL_0065: stfld MachineryText MachineChemFinisher/<>c__DisplayClass1_0::statusLabel
+IL_006a: ldloc.0
+IL_006b: ldloc.s V_4
+IL_006d: ldfld !7 System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::Rest
+IL_0072: ldfld !1 System.ValueTuple`2<MachineryText,MachineryStack>::Item2
+IL_0077: stfld MachineryStack MachineChemFinisher/<>c__DisplayClass1_0::controlGrid
+IL_007c: ldloc.0
+IL_007d: ldnull
+IL_007e: call GameItem ItemDirectory::CreateEmptyItem(System.String)
+IL_0083: ldloc.1
+IL_0084: callvirt GameItem GameItem::SetContentWindow(PixelWindow)
+IL_0089: ldstr "Items/items_tool2"
+IL_008e: ldstr "chem_finisher"
+IL_0093: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0098: stfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_009d: ldloc.0
+IL_009e: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00a3: ldloc.0
+IL_00a4: ldftn System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__0(GameItem,GameInventory,SlotMarker)
+IL_00aa: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00af: callvirt System.Void GameInventoryFunc::set_onSlotAddItemEndFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00b4: ldloc.0
+IL_00b5: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00ba: ldloc.0
+IL_00bb: ldftn System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__1(GameItem,GameInventory,SlotMarker)
+IL_00c1: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00c6: callvirt System.Void GameInventoryFunc::set_onSlotRemoveItemEndFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00cb: ldloc.0
+IL_00cc: ldfld GameSlotInventory MachineChemFinisher/<>c__DisplayClass1_0::containerSlot
+IL_00d1: call System.Void MachineChemFinisher::SetupWaterSlot(GameSlotInventory)
+IL_00d6: ldloc.0
+IL_00d7: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_00dc: call System.Void MachineBlender::SetupChemModuleGrid(GameGridInventory,GameItem)
+IL_00e1: ldloc.0
+IL_00e2: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_00e7: ldstr "item_chem_finisher_name"
+IL_00ec: call !!0[] System.Array::Empty<System.Object>()
+IL_00f1: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00f6: callvirt System.Void GameItem::set_name(System.String)
+IL_00fb: ldloc.0
+IL_00fc: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_0101: ldstr "item_chem_finisher_desc"
+IL_0106: call !!0[] System.Array::Empty<System.Object>()
+IL_010b: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0110: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0115: ldloc.0
+IL_0116: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_011b: ldc.i4 300
+IL_0120: conv.i8
+IL_0121: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0126: ldloc.0
+IL_0127: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_012c: ldstr "MACHINE"
+IL_0131: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0136: ldloc.0
+IL_0137: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_013c: ldstr "CONTAINER_TAG"
+IL_0141: ldc.i4.0
+IL_0142: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0147: pop
+IL_0148: ldloc.0
+IL_0149: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_014e: call System.Void AudioHelper::InitMetalMachine(GameItem)
+IL_0153: ldloc.2
+IL_0154: ldloc.0
+IL_0155: ldftn System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__2()
+IL_015b: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_0160: callvirt MachineryButton MachineryButton::SetCallback(System.Action)
+IL_0165: pop
+IL_0166: ldloc.0
+IL_0167: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_016c: ldloc.0
+IL_016d: ldftn System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__3(GameItem,GameInventory,SlotMarker)
+IL_0173: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_0178: callvirt System.Void GameItemFunc::set_onOneSecondItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_017d: ldloc.3
+IL_017e: ldloc.0
+IL_017f: ldftn System.Void MachineChemFinisher/<>c__DisplayClass1_0::<ChemFinisher>b__4()
+IL_0185: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+IL_018a: callvirt MachineryButton MachineryButton::SetCallback(System.Action)
+IL_018f: pop
+IL_0190: ldloc.0
+IL_0191: ldfld GameGridInventory MachineChemFinisher/<>c__DisplayClass1_0::outputGrid
+IL_0196: ldsfld System.Func`3<GameItem,GameInventory,System.Boolean> MachineChemFinisher/<>c::<>9__1_5
+IL_019b: dup
+IL_019c: brtrue.s IL_01b5
+IL_019e: pop
+IL_019f: ldsfld MachineChemFinisher/<>c MachineChemFinisher/<>c::<>9
+IL_01a4: ldftn System.Boolean MachineChemFinisher/<>c::<ChemFinisher>b__1_5(GameItem,GameInventory)
+IL_01aa: newobj System.Void System.Func`3<GameItem,GameInventory,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_01af: dup
+IL_01b0: stsfld System.Func`3<GameItem,GameInventory,System.Boolean> MachineChemFinisher/<>c::<>9__1_5
+IL_01b5: callvirt System.Void GameInventoryFunc::set_mayInventoryAddItemFunc(System.Func`3<GameItem,GameInventory,System.Boolean>)
+IL_01ba: ldloc.0
+IL_01bb: ldfld GameItem MachineChemFinisher/<>c__DisplayClass1_0::machine
+IL_01c0: ret
+System.Void MachineChemFinisher::IntroduceImpurity(GameItem,System.Int32)
+  0: GameItem chem None
+  1: System.Int32 percentAmount None
+  local 0: System.Int32
+IL_0000: ldarg.0
+IL_0001: call System.Int32 ChemicalHelper::GetTotalVolume(GameItem)
+IL_0006: ldarg.0
+IL_0007: ldarg.1
+IL_0008: call System.Int32 ChemicalHelper::RemoveVolume(GameItem,System.Int32)
+IL_000d: pop
+IL_000e: conv.i8
+IL_000f: ldarg.1
+IL_0010: conv.i8
+IL_0011: mul
+IL_0012: ldc.i4.s 100
+IL_0014: conv.i8
+IL_0015: div
+IL_0016: conv.i4
+IL_0017: stloc.0
+IL_0018: ldarg.0
+IL_0019: ldstr "physical_contaminant"
+IL_001e: ldloc.0
+IL_001f: call System.Void ChemicalHelper::AddChemContentUL(GameItem,System.String,System.Int32)
+IL_0024: ret
+System.Void MachineChemFinisher::CreateTooltip(RichTextBuilder,GameItem)
+  0: RichTextBuilder builder None
+  1: GameItem item None
+  local 0: System.Int32
+IL_0000: ldarg.1
+IL_0001: callvirt System.String GameItem::get_identifier()
+IL_0006: ldstr "chem_finisher"
+IL_000b: callvirt System.Boolean System.String::Equals(System.String)
+IL_0010: brfalse.s IL_0078
+IL_0012: ldarg.1
+IL_0013: call System.Int32 MachineChemFinisher::GetLoss(GameItem)
+IL_0018: stloc.0
+IL_0019: ldloc.0
+IL_001a: ldc.i4.0
+IL_001b: ble.s IL_004b
+IL_001d: ldarg.0
+IL_001e: ldstr "mech_chem_finisher_contaminant"
+IL_0023: ldc.i4.1
+IL_0024: newarr System.Object
+IL_0029: dup
+IL_002a: ldc.i4.0
+IL_002b: ldloc.0
+IL_002c: box System.Int32
+IL_0031: stelem.ref
+IL_0032: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0037: ldc.i4.1
+IL_0038: ldc.i4 12615037
+IL_003d: ldc.i4.0
+IL_003e: ldc.i4.0
+IL_003f: ldc.i4.0
+IL_0040: ldc.i4.0
+IL_0041: ldc.i4.m1
+IL_0042: ldc.i4.m1
+IL_0043: ldc.i4.m1
+IL_0044: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_0049: pop
+IL_004a: ret
+IL_004b: ldarg.0
+IL_004c: ldstr "mech_chem_finisher_contaminant"
+IL_0051: ldc.i4.1
+IL_0052: newarr System.Object
+IL_0057: dup
+IL_0058: ldc.i4.0
+IL_0059: ldc.i4.0
+IL_005a: box System.Int32
+IL_005f: stelem.ref
+IL_0060: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0065: ldc.i4.1
+IL_0066: ldc.i4 8035658
+IL_006b: ldc.i4.0
+IL_006c: ldc.i4.0
+IL_006d: ldc.i4.0
+IL_006e: ldc.i4.0
+IL_006f: ldc.i4.m1
+IL_0070: ldc.i4.m1
+IL_0071: ldc.i4.m1
+IL_0072: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_0077: pop
+IL_0078: ret
+System.Int32 MachineChemFinisher::GetLoss(GameItem)
+  0: GameItem item None
+  local 0: System.Int32
+IL_0000: ldarg.0
+IL_0001: call System.Int32 MachineBlender::GetUpgradeCount(GameItem)
+IL_0006: stloc.0
+IL_0007: ldloc.0
+IL_0008: brtrue.s IL_000d
+IL_000a: ldc.i4.s 12
+IL_000c: ret
+IL_000d: ldloc.0
+IL_000e: ldc.i4.1
+IL_000f: bne.un.s IL_0013
+IL_0011: ldc.i4.6
+IL_0012: ret
+IL_0013: ldloc.0
+IL_0014: ldc.i4.2
+IL_0015: bne.un.s IL_0019
+IL_0017: ldc.i4.3
+IL_0018: ret
+IL_0019: ldloc.0
+IL_001a: ldc.i4.3
+IL_001b: bne.un.s IL_001f
+IL_001d: ldc.i4.1
+IL_001e: ret
+IL_001f: ldc.i4.0
+IL_0020: ret
+System.Boolean MachineChemFinisher::CanOutput(GameItem,GameSlotInventory)
+  0: GameItem machine None
+  1: GameSlotInventory containerSlot None
+  local 0: System.String
+  local 1: System.Collections.Generic.List`1/Enumerator<ChemFinisherRecipe>
+  local 2: ChemFinisherRecipe
+  local 3: System.Boolean
+IL_0000: ldarg.1
+IL_0001: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: ldarg.0
+IL_000b: ldstr "SELECTED_CHEM_ID_TAG"
+IL_0010: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0015: brtrue.s IL_0019
+IL_0017: ldc.i4.0
+IL_0018: ret
+IL_0019: ldarg.1
+IL_001a: callvirt GameItem GameSlotInventory::get_childItem()
+IL_001f: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_0024: brfalse.s IL_0028
+IL_0026: ldc.i4.0
+IL_0027: ret
+IL_0028: ldarg.0
+IL_0029: ldstr "SELECTED_CHEM_ID_TAG"
+IL_002e: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0033: callvirt System.String TagState::GetString()
+IL_0038: stloc.0
+IL_0039: ldsfld System.Collections.Generic.List`1<ChemFinisherRecipe> ChemFinisherRecipe::chemFinisherRecipes
+IL_003e: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<ChemFinisherRecipe>::GetEnumerator()
+IL_0043: stloc.1
+IL_0044: br.s IL_006e
+IL_0046: ldloca.s V_1
+IL_0048: call !0 System.Collections.Generic.List`1/Enumerator<ChemFinisherRecipe>::get_Current()
+IL_004d: stloc.2
+IL_004e: ldloc.0
+IL_004f: ldloc.2
+IL_0050: ldfld System.String ChemFinisherRecipe::identifier
+IL_0055: call System.Boolean System.String::op_Equality(System.String,System.String)
+IL_005a: brfalse.s IL_006e
+IL_005c: ldloc.2
+IL_005d: ldarg.1
+IL_005e: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0063: callvirt System.Boolean ChemFinisherRecipe::CanOutput(GameItem)
+IL_0068: brfalse.s IL_006e
+IL_006a: ldc.i4.1
+IL_006b: stloc.3
+IL_006c: leave.s IL_0089
+IL_006e: ldloca.s V_1
+IL_0070: call System.Boolean System.Collections.Generic.List`1/Enumerator<ChemFinisherRecipe>::MoveNext()
+IL_0075: brtrue.s IL_0046
+IL_0077: leave.s IL_0087
+IL_0079: ldloca.s V_1
+IL_007b: constrained. System.Collections.Generic.List`1/Enumerator<ChemFinisherRecipe>
+IL_0081: callvirt System.Void System.IDisposable::Dispose()
+IL_0086: endfinally
+IL_0087: ldc.i4.0
+IL_0088: ret
+IL_0089: ldloc.3
+IL_008a: ret
+  EH Finally: try IL_0044: br.s IL_006e -> IL_0079: ldloca.s V_1; handler IL_0079: ldloca.s V_1 -> IL_0087: ldc.i4.0; filter ; catch 
+System.Void MachineChemFinisher::SetupWaterSlot(GameSlotInventory)
+  0: GameSlotInventory waterSlot None
+IL_0000: ldarg.0
+IL_0001: ldsfld System.Func`3<GameItem,GameInventory,System.Boolean> MachineChemFinisher/<>c::<>9__6_0
+IL_0006: dup
+IL_0007: brtrue.s IL_0020
+IL_0009: pop
+IL_000a: ldsfld MachineChemFinisher/<>c MachineChemFinisher/<>c::<>9
+IL_000f: ldftn System.Boolean MachineChemFinisher/<>c::<SetupWaterSlot>b__6_0(GameItem,GameInventory)
+IL_0015: newobj System.Void System.Func`3<GameItem,GameInventory,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_001a: dup
+IL_001b: stsfld System.Func`3<GameItem,GameInventory,System.Boolean> MachineChemFinisher/<>c::<>9__6_0
+IL_0020: callvirt System.Void GameInventoryFunc::set_mayInventoryAddItemFunc(System.Func`3<GameItem,GameInventory,System.Boolean>)
+IL_0025: ldarg.0
+IL_0026: ldstr "Items/water_container4"
+IL_002b: ldstr "xl"
+IL_0030: ldc.r4 0.5
+IL_0035: ldc.r4 0.5
+IL_003a: callvirt GameSlotInventory GameSlotInventory::SetBackgroundFadeSprite(System.String,System.String,System.Single,System.Single)
+IL_003f: pop
+IL_0040: ldarg.0
+IL_0041: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> MachineChemFinisher/<>c::<>9__6_1
+IL_0046: dup
+IL_0047: brtrue.s IL_0060
+IL_0049: pop
+IL_004a: ldsfld MachineChemFinisher/<>c MachineChemFinisher/<>c::<>9
+IL_004f: ldftn System.Int32 MachineChemFinisher/<>c::<SetupWaterSlot>b__6_1(GameItem,GameInventory,SlotMarker)
+IL_0055: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_005a: dup
+IL_005b: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> MachineChemFinisher/<>c::<>9__6_1
+IL_0060: callvirt System.Void GameInventoryFunc::set_slotPriorityFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32>)
+IL_0065: ret
+System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>> MachineChemFinisher::CreateMachineInventoryWindow(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)
+  0: System.Int32 width None
+  1: System.Int32 height None
+  2: System.Boolean isDraggable Optional, HasDefault
+  3: System.Boolean isCentered Optional, HasDefault
+  4: System.Int32 minWidth Optional, HasDefault
+  local 0: GameGridInventory
+  local 1: GameSlotInventory
+  local 2: GameGridInventory
+  local 3: MachineryButton
+  local 4: MachineryText
+  local 5: MachineryText
+  local 6: MachineryButton
+  local 7: MachineryStack
+IL_0000: ldc.i4.4
+IL_0001: ldc.i4.4
+IL_0002: newobj System.Void GameGridInventory::.ctor(System.Int32,System.Int32)
+IL_0007: stloc.0
+IL_0008: newobj System.Void GameSlotInventory::.ctor()
+IL_000d: stloc.1
+IL_000e: ldc.i4.6
+IL_000f: ldc.i4.4
+IL_0010: newobj System.Void GameGridInventory::.ctor(System.Int32,System.Int32)
+IL_0015: stloc.2
+IL_0016: ldstr "mech_chem_finisher_btn_configure"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0025: ldnull
+IL_0026: ldc.i4.m1
+IL_0027: ldc.i4.m1
+IL_0028: newobj System.Void MachineryButton::.ctor(System.String,System.Action,System.Int32,System.Int32)
+IL_002d: stloc.3
+IL_002e: ldstr "mech_chem_finisher_no_target"
+IL_0033: call !!0[] System.Array::Empty<System.Object>()
+IL_0038: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_003d: ldc.i4.6
+IL_003e: ldc.i4.2
+IL_003f: ldc.i4.0
+IL_0040: newobj System.Void MachineryText::.ctor(System.String,System.Int32,TMPro.HorizontalAlignmentOptions,System.Boolean)
+IL_0045: stloc.s V_4
+IL_0047: ldstr "mech_chem_finisher_status_not_enough_reagent"
+IL_004c: call !!0[] System.Array::Empty<System.Object>()
+IL_0051: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0056: ldc.i4.6
+IL_0057: ldc.i4.2
+IL_0058: ldc.i4.0
+IL_0059: newobj System.Void MachineryText::.ctor(System.String,System.Int32,TMPro.HorizontalAlignmentOptions,System.Boolean)
+IL_005e: stloc.s V_5
+IL_0060: ldstr "mech_chem_finisher_btn_output"
+IL_0065: call !!0[] System.Array::Empty<System.Object>()
+IL_006a: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_006f: ldnull
+IL_0070: ldc.i4.m1
+IL_0071: ldc.i4.m1
+IL_0072: newobj System.Void MachineryButton::.ctor(System.String,System.Action,System.Int32,System.Int32)
+IL_0077: stloc.s V_6
+IL_0079: ldc.i4.4
+IL_007a: newarr PixelElement
+IL_007f: dup
+IL_0080: ldc.i4.0
+IL_0081: ldloc.3
+IL_0082: stelem.ref
+IL_0083: dup
+IL_0084: ldc.i4.1
+IL_0085: ldloc.s V_4
+IL_0087: stelem.ref
+IL_0088: dup
+IL_0089: ldc.i4.2
+IL_008a: ldloc.s V_5
+IL_008c: stelem.ref
+IL_008d: dup
+IL_008e: ldc.i4.3
+IL_008f: ldloc.s V_6
+IL_0091: stelem.ref
+IL_0092: call MachineryStack MachineryStack::Vertical(PixelElement[])
+IL_0097: stloc.s V_7
+IL_0099: ldloc.3
+IL_009a: ldc.i4.s 75
+IL_009c: ldc.i4.m1
+IL_009d: callvirt MachineryButton MachineryButton::SetSize(System.Int32,System.Int32)
+IL_00a2: pop
+IL_00a3: ldarg.2
+IL_00a4: ldc.i4.4
+IL_00a5: newarr MachineryPanel
+IL_00aa: dup
+IL_00ab: ldc.i4.0
+IL_00ac: ldstr "mech_chem_finisher_label_module"
+IL_00b1: call !!0[] System.Array::Empty<System.Object>()
+IL_00b6: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00bb: ldloc.0
+IL_00bc: ldstr "module"
+IL_00c1: ldc.i4.1
+IL_00c2: call MachineryPanel MachineHelper::Panel(System.String,PixelElement,System.String,System.Boolean)
+IL_00c7: stelem.ref
+IL_00c8: dup
+IL_00c9: ldc.i4.1
+IL_00ca: ldstr "mech_chem_finisher_label_container"
+IL_00cf: call !!0[] System.Array::Empty<System.Object>()
+IL_00d4: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00d9: ldloc.1
+IL_00da: ldstr "container"
+IL_00df: ldc.i4.1
+IL_00e0: call MachineryPanel MachineHelper::Panel(System.String,PixelElement,System.String,System.Boolean)
+IL_00e5: stelem.ref
+IL_00e6: dup
+IL_00e7: ldc.i4.2
+IL_00e8: ldstr "mech_chem_finisher_label_output"
+IL_00ed: call !!0[] System.Array::Empty<System.Object>()
+IL_00f2: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_00f7: ldloc.2
+IL_00f8: ldstr "output"
+IL_00fd: ldc.i4.1
+IL_00fe: call MachineryPanel MachineHelper::Panel(System.String,PixelElement,System.String,System.Boolean)
+IL_0103: stelem.ref
+IL_0104: dup
+IL_0105: ldc.i4.3
+IL_0106: ldstr "mech_chem_finisher_label_control"
+IL_010b: call !!0[] System.Array::Empty<System.Object>()
+IL_0110: call System.String LocHelper::GetLocalizedMechanic(System.String,System.Object[])
+IL_0115: ldloc.s V_7
+IL_0117: ldstr "control"
+IL_011c: ldc.i4.1
+IL_011d: call MachineryPanel MachineHelper::Panel(System.String,PixelElement,System.String,System.Boolean)
+IL_0122: stelem.ref
+IL_0123: call PixelWindow MachineHelper::CreateMachineryWindow(System.Boolean,MachineryPanel[])
+IL_0128: ldloc.0
+IL_0129: ldloc.1
+IL_012a: ldloc.2
+IL_012b: ldloc.3
+IL_012c: ldloc.s V_6
+IL_012e: ldloc.s V_4
+IL_0130: ldloc.s V_5
+IL_0132: ldloc.s V_7
+IL_0134: newobj System.Void System.ValueTuple`2<MachineryText,MachineryStack>::.ctor(!0,!1)
+IL_0139: newobj System.Void System.ValueTuple`8<PixelWindow,GameGridInventory,GameSlotInventory,GameGridInventory,MachineryButton,MachineryButton,MachineryText,System.ValueTuple`2<MachineryText,MachineryStack>>::.ctor(!0,!1,!2,!3,!4,!5,!6,!7)
+IL_013e: ret
+System.Void MachineChemFinisher::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret

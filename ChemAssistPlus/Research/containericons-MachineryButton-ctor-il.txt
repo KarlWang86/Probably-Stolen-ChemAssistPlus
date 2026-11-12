@@ -1,0 +1,142 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineryButton::.ctor(System.String,System.Action,System.Int32,System.Int32)
+  0: System.String text Optional, HasDefault
+  1: System.Action callback Optional, HasDefault
+  2: System.Int32 width Optional, HasDefault
+  3: System.Int32 height Optional, HasDefault
+IL_0000: ldarg.0
+IL_0001: ldc.i4.m1
+IL_0002: stfld System.Int32 MachineryButton::forceWidth
+IL_0007: ldarg.0
+IL_0008: ldc.i4.m1
+IL_0009: stfld System.Int32 MachineryButton::forceHeight
+IL_000e: ldarg.0
+IL_000f: ldstr "interface_click"
+IL_0014: stfld System.String MachineryButton::onClickAudio
+IL_0019: ldarg.0
+IL_001a: ldstr "MachineryButton"
+IL_001f: call System.Void SelectableElement::.ctor(System.String)
+IL_0024: ldarg.0
+IL_0025: ldarg.1
+IL_0026: call System.Void MachineryButton::set_text(System.String)
+IL_002b: ldarg.0
+IL_002c: ldarg.2
+IL_002d: stfld System.Action MachineryButton::callback
+IL_0032: ldarg.0
+IL_0033: ldarg.3
+IL_0034: stfld System.Int32 MachineryButton::forceWidth
+IL_0039: ldarg.0
+IL_003a: ldarg.s height
+IL_003c: stfld System.Int32 MachineryButton::forceHeight
+IL_0041: ldarg.0
+IL_0042: ldarg.1
+IL_0043: ldnull
+IL_0044: cgt.un
+IL_0046: call System.Void MachineryButton::set_fillWidth(System.Boolean)
+IL_004b: ldarg.0
+IL_004c: call TreeNodeRender TreeNodeRender::Instantiate()
+IL_0051: ldarg.0
+IL_0052: call TreeNodeRender SelectableElement::get_handler()
+IL_0057: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender)
+IL_005c: stfld TreeNodeRender MachineryButton::plate
+IL_0061: ldarg.0
+IL_0062: call TreeNodeRender TreeNodeRender::Instantiate()
+IL_0067: ldarg.0
+IL_0068: call TreeNodeRender SelectableElement::get_handler()
+IL_006d: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender)
+IL_0072: stfld TreeNodeRender MachineryButton::iconNode
+IL_0077: ldarg.0
+IL_0078: call TreeNodeRender TreeNodeRender::InstantiateText()
+IL_007d: ldarg.0
+IL_007e: call TreeNodeRender SelectableElement::get_handler()
+IL_0083: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender)
+IL_0088: stfld TreeNodeRender MachineryButton::textNode
+IL_008d: ldarg.0
+IL_008e: ldfld TreeNodeRender MachineryButton::plate
+IL_0093: callvirt TreeNodeRender TreeNodeRender::InitEventHandler()
+IL_0098: pop
+IL_0099: ldarg.0
+IL_009a: ldfld TreeNodeRender MachineryButton::plate
+IL_009f: ldstr "Node (MachineryButton)"
+IL_00a4: callvirt System.Void UnityEngine.Object::set_name(System.String)
+IL_00a9: ldarg.0
+IL_00aa: ldfld TreeNodeRender MachineryButton::plate
+IL_00af: call UnityEngine.Sprite MachineryStyle::get_ButtonNormal()
+IL_00b4: call System.Void MachineryStyle::SetSliced(TreeNodeRender,UnityEngine.Sprite)
+IL_00b9: ldarg.0
+IL_00ba: ldfld TreeNodeRender MachineryButton::iconNode
+IL_00bf: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_00c4: ldc.i4.0
+IL_00c5: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_00ca: ldarg.0
+IL_00cb: ldfld TreeNodeRender MachineryButton::iconNode
+IL_00d0: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_00d5: ldc.i4.0
+IL_00d6: callvirt System.Void UnityEngine.UI.Graphic::set_raycastTarget(System.Boolean)
+IL_00db: ldarg.0
+IL_00dc: ldfld TreeNodeRender MachineryButton::textNode
+IL_00e1: ldc.i4.7
+IL_00e2: ldsfld UnityEngine.Color MachineryStyle::BUTTON_TEXT
+IL_00e7: ldc.i4.2
+IL_00e8: ldc.i4.0
+IL_00e9: call System.Void MachineryStyle::InitText(TreeNodeRender,System.Int32,UnityEngine.Color,TMPro.HorizontalAlignmentOptions,System.Boolean)
+IL_00ee: ldarg.0
+IL_00ef: ldfld TreeNodeRender MachineryButton::textNode
+IL_00f4: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_00f9: ldarg.1
+IL_00fa: dup
+IL_00fb: brtrue.s IL_0103
+IL_00fd: pop
+IL_00fe: ldstr ""
+IL_0103: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0108: ldarg.0
+IL_0109: ldfld TreeNodeRender MachineryButton::textNode
+IL_010e: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0113: ldarg.0
+IL_0114: call System.Boolean MachineryButton::get_hasText()
+IL_0119: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_011e: ldarg.0
+IL_011f: callvirt System.Void SelectableElement::Validate()
+IL_0124: ret
+System.Void MachineryButton::.ctor(UnityEngine.Sprite,System.Action,System.Int32)
+  0: UnityEngine.Sprite icon None
+  1: System.Action callback Optional, HasDefault
+  2: System.Int32 size Optional, HasDefault
+IL_0000: ldarg.0
+IL_0001: ldnull
+IL_0002: ldarg.2
+IL_0003: ldarg.3
+IL_0004: ldarg.3
+IL_0005: call System.Void MachineryButton::.ctor(System.String,System.Action,System.Int32,System.Int32)
+IL_000a: ldarg.0
+IL_000b: ldarg.1
+IL_000c: call MachineryButton MachineryButton::SetIcon(UnityEngine.Sprite)
+IL_0011: pop
+IL_0012: ldarg.0
+IL_0013: ldc.i4.0
+IL_0014: call System.Void MachineryButton::set_fillWidth(System.Boolean)
+IL_0019: ret
+System.Void MachineryButton::.ctor(UnityEngine.Sprite,UnityEngine.Sprite,UnityEngine.Sprite,UnityEngine.Sprite,System.Action)
+  0: UnityEngine.Sprite normal None
+  1: UnityEngine.Sprite hover None
+  2: UnityEngine.Sprite pressed None
+  3: UnityEngine.Sprite disabled None
+  4: System.Action callback Optional, HasDefault
+IL_0000: ldarg.0
+IL_0001: ldnull
+IL_0002: ldarg.s callback
+IL_0004: ldc.i4.m1
+IL_0005: ldc.i4.m1
+IL_0006: call System.Void MachineryButton::.ctor(System.String,System.Action,System.Int32,System.Int32)
+IL_000b: ldarg.0
+IL_000c: ldc.i4.0
+IL_000d: call System.Void MachineryButton::set_fillWidth(System.Boolean)
+IL_0012: ldarg.0
+IL_0013: ldarg.1
+IL_0014: ldarg.2
+IL_0015: ldarg.3
+IL_0016: ldarg.s disabled
+IL_0018: call MachineryButton MachineryButton::SetFaceSprites(UnityEngine.Sprite,UnityEngine.Sprite,UnityEngine.Sprite,UnityEngine.Sprite)
+IL_001d: pop
+IL_001e: ret

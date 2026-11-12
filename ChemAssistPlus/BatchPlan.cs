@@ -178,12 +178,16 @@ namespace ChemAssistPlus
                 var receiver = FindEvaporator(p.Pot, p.Recipe, distillationVolume, true);
                 if (receiver == null)
                 {
-                    plan.Consolidation = PlanConsolidation(p.Pot, distillationVolume);
+                    plan.Consolidation = PlanConsolidation(p.Pot, distillationVolume, p.Recipe);
                     if (plan.Consolidation == null) plan.Errors.Add(EvaporatorBlockReason(p.Pot, p.Recipe, distillationVolume, true));
                 }
-                else if (MachineView.Walk(receiver).Container.childItem != null
-                    && MachineView.Walk(receiver).Container.childItem != p.Pot)
-                    plan.Lines.Add("蒸发器 #" + receiver.uniqueId + " 可接收同类原液；净化后复核浓度差≤5个百分点及实际容量，不合格则保留本瓶。");
+                else
+                {
+                    plan.Lines.Add(EvaporatorRouteSummary(receiver, p.Recipe));
+                    if (MachineView.Walk(receiver).Container.childItem != null
+                        && MachineView.Walk(receiver).Container.childItem != p.Pot)
+                        plan.Lines.Add("蒸发器 #" + receiver.uniqueId + " 可接收同类原液；净化后复核浓度差≤5个百分点及实际容量，不合格则保留本瓶。");
+                }
             }
             foreach (string key in new[] { "cloth", "fine" }) if (PlanFilter(key) == null) plan.Errors.Add(FilterReason(key));
             return plan;

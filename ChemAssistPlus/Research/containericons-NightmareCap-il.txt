@@ -1,0 +1,49 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem HydroponicDirectory::NightmareCap()
+  local 0: GameItem
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_hydroponic_plant"
+IL_000b: ldstr "nightmare_cap"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: stloc.0
+IL_0016: ldloc.0
+IL_0017: ldstr "item_nightmare_cap_name"
+IL_001c: call !!0[] System.Array::Empty<System.Object>()
+IL_0021: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0026: callvirt System.Void GameItem::set_name(System.String)
+IL_002b: ldloc.0
+IL_002c: ldstr "item_nightmare_cap_desc"
+IL_0031: call !!0[] System.Array::Empty<System.Object>()
+IL_0036: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003b: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_0040: ldloc.0
+IL_0041: ldc.i4.s 26
+IL_0043: conv.i8
+IL_0044: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_0049: ldloc.0
+IL_004a: ldstr "CHEMICAL_SUPPLIES"
+IL_004f: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0054: ldloc.0
+IL_0055: ldstr "POISON"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: ldloc.0
+IL_0060: ldc.i4.3
+IL_0061: call System.Void ContrabandHelper::InitContrabandItem(GameItem,System.Int32)
+IL_0066: ldloc.0
+IL_0067: ldc.r4 32.5
+IL_006c: call System.Void ChemicalCompositionHelper::SetNightmareCapComposition(GameItem,System.Single)
+IL_0071: ldloc.0
+IL_0072: call System.Void AudioHelper::InitProduce(GameItem)
+IL_0077: ldloc.0
+IL_0078: ldstr "dream_cap_seed"
+IL_007d: ldc.i4.1
+IL_007e: newarr System.String
+IL_0083: dup
+IL_0084: ldc.i4.0
+IL_0085: ldstr "farm_module_nightmare_cap"
+IL_008a: stelem.ref
+IL_008b: call System.Void PlantGeneticsHelper::ApplyFactoryGenetics(GameItem,System.String,System.String[])
+IL_0090: ldloc.0
+IL_0091: ret

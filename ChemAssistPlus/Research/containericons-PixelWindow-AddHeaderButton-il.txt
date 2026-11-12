@@ -1,0 +1,27 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+PixelWindow PixelWindow::AddHeaderButton(MachineryButton)
+  0: MachineryButton button None
+IL_0000: ldarg.1
+IL_0001: brfalse.s IL_0011
+IL_0003: ldarg.0
+IL_0004: ldfld System.Collections.Generic.List`1<MachineryButton> PixelWindow::headerButtons
+IL_0009: ldarg.1
+IL_000a: callvirt System.Boolean System.Collections.Generic.List`1<MachineryButton>::Contains(!0)
+IL_000f: brfalse.s IL_0013
+IL_0011: ldarg.0
+IL_0012: ret
+IL_0013: ldarg.0
+IL_0014: ldfld System.Collections.Generic.List`1<MachineryButton> PixelWindow::headerButtons
+IL_0019: ldarg.1
+IL_001a: callvirt System.Void System.Collections.Generic.List`1<MachineryButton>::Add(!0)
+IL_001f: ldarg.1
+IL_0020: callvirt TreeNodeRender SelectableElement::get_handler()
+IL_0025: ldarg.0
+IL_0026: call TreeNodeRender PixelWindow::get_handler()
+IL_002b: callvirt TreeNodeRender TreeNodeRender::SetParent(TreeNodeRender)
+IL_0030: pop
+IL_0031: ldarg.0
+IL_0032: call System.Void PixelWindow::Validate()
+IL_0037: ldarg.0
+IL_0038: ret

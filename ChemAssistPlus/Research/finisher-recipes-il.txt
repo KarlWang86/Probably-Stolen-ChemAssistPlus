@@ -1,0 +1,166 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Collections.Generic.List`1<ChemFinisherRecipe> ChemFinisherRecipe::InitRecipes()
+  local 0: ChemFinisherRecipe
+  local 1: ChemFinisherRecipe
+  local 2: ChemFinisherRecipe
+  local 3: ChemFinisherRecipe
+  local 4: ChemFinisherRecipe
+  local 5: ChemFinisherRecipe
+  local 6: ChemFinisherRecipe
+IL_0000: newobj System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::.ctor()
+IL_0005: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_000a: dup
+IL_000b: ldstr "dream_dust"
+IL_0010: stfld System.String ChemFinisherRecipe::identifier
+IL_0015: dup
+IL_0016: ldstr "item_dream_dust_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: stfld System.String ChemFinisherRecipe::displayName
+IL_002a: dup
+IL_002b: ldc.i4 2000
+IL_0030: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_0035: dup
+IL_0036: ldc.i4.1
+IL_0037: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_003c: dup
+IL_003d: ldstr "dream_cap_extract"
+IL_0042: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0047: stloc.0
+IL_0048: dup
+IL_0049: ldloc.0
+IL_004a: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_004f: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_0054: dup
+IL_0055: ldstr "nightmare_dust"
+IL_005a: stfld System.String ChemFinisherRecipe::identifier
+IL_005f: dup
+IL_0060: ldstr "item_nightmare_dust_name"
+IL_0065: call !!0[] System.Array::Empty<System.Object>()
+IL_006a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_006f: stfld System.String ChemFinisherRecipe::displayName
+IL_0074: dup
+IL_0075: ldc.i4 4000
+IL_007a: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_007f: dup
+IL_0080: ldc.i4.1
+IL_0081: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_0086: dup
+IL_0087: ldstr "nightmare_extract"
+IL_008c: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0091: stloc.1
+IL_0092: dup
+IL_0093: ldloc.1
+IL_0094: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_0099: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_009e: dup
+IL_009f: ldstr "caffeine_pill"
+IL_00a4: stfld System.String ChemFinisherRecipe::identifier
+IL_00a9: dup
+IL_00aa: ldstr "item_caffeine_pill_name"
+IL_00af: call !!0[] System.Array::Empty<System.Object>()
+IL_00b4: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_00b9: stfld System.String ChemFinisherRecipe::displayName
+IL_00be: dup
+IL_00bf: ldc.i4 5000
+IL_00c4: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_00c9: dup
+IL_00ca: ldc.i4.1
+IL_00cb: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_00d0: dup
+IL_00d1: ldstr "caffeine"
+IL_00d6: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_00db: stloc.2
+IL_00dc: dup
+IL_00dd: ldloc.2
+IL_00de: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_00e3: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_00e8: dup
+IL_00e9: ldstr "zyanide_pill"
+IL_00ee: stfld System.String ChemFinisherRecipe::identifier
+IL_00f3: dup
+IL_00f4: ldstr "item_zyanide_pill_name"
+IL_00f9: call !!0[] System.Array::Empty<System.Object>()
+IL_00fe: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0103: stfld System.String ChemFinisherRecipe::displayName
+IL_0108: dup
+IL_0109: ldc.i4 600
+IL_010e: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_0113: dup
+IL_0114: ldc.i4.1
+IL_0115: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_011a: dup
+IL_011b: ldstr "zyanide"
+IL_0120: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0125: stloc.3
+IL_0126: dup
+IL_0127: ldloc.3
+IL_0128: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_012d: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_0132: dup
+IL_0133: ldstr "birth_control_pill"
+IL_0138: stfld System.String ChemFinisherRecipe::identifier
+IL_013d: dup
+IL_013e: ldstr "item_birth_control_pill_name"
+IL_0143: call !!0[] System.Array::Empty<System.Object>()
+IL_0148: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_014d: stfld System.String ChemFinisherRecipe::displayName
+IL_0152: dup
+IL_0153: ldc.i4.s 100
+IL_0155: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_015a: dup
+IL_015b: ldc.i4.1
+IL_015c: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_0161: dup
+IL_0162: ldstr "contraceptive"
+IL_0167: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_016c: stloc.s V_4
+IL_016e: dup
+IL_016f: ldloc.s V_4
+IL_0171: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_0176: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_017b: dup
+IL_017c: ldstr "fanta_pill"
+IL_0181: stfld System.String ChemFinisherRecipe::identifier
+IL_0186: dup
+IL_0187: ldstr "item_fanta_pill_name"
+IL_018c: call !!0[] System.Array::Empty<System.Object>()
+IL_0191: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0196: stfld System.String ChemFinisherRecipe::displayName
+IL_019b: dup
+IL_019c: ldc.i4 500
+IL_01a1: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_01a6: dup
+IL_01a7: ldc.i4.1
+IL_01a8: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_01ad: dup
+IL_01ae: ldstr "fanta"
+IL_01b3: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_01b8: stloc.s V_5
+IL_01ba: dup
+IL_01bb: ldloc.s V_5
+IL_01bd: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_01c2: newobj System.Void ChemFinisherRecipe::.ctor()
+IL_01c7: dup
+IL_01c8: ldstr "pink_alt_injector"
+IL_01cd: stfld System.String ChemFinisherRecipe::identifier
+IL_01d2: dup
+IL_01d3: ldstr "item_pink_alt_injector_name"
+IL_01d8: call !!0[] System.Array::Empty<System.Object>()
+IL_01dd: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_01e2: stfld System.String ChemFinisherRecipe::displayName
+IL_01e7: dup
+IL_01e8: ldc.i4 4000
+IL_01ed: stfld System.Int32 ChemFinisherRecipe::requiredVolume
+IL_01f2: dup
+IL_01f3: ldc.i4.1
+IL_01f4: stfld System.Boolean ChemFinisherRecipe::isRequireDry
+IL_01f9: dup
+IL_01fa: ldstr "nomore"
+IL_01ff: stfld System.String ChemFinisherRecipe::activeIngredientId
+IL_0204: stloc.s V_6
+IL_0206: dup
+IL_0207: ldloc.s V_6
+IL_0209: callvirt System.Void System.Collections.Generic.List`1<ChemFinisherRecipe>::Add(!0)
+IL_020e: ret

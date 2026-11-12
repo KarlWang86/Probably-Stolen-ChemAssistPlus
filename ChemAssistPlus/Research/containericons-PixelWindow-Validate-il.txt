@@ -1,0 +1,539 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PixelWindow::Validate()
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Boolean
+  local 4: System.Int32
+  local 5: System.Nullable`1<System.Int32>
+  local 6: System.Nullable`1<System.Int32>
+  local 7: System.Single
+IL_0000: ldarg.0
+IL_0001: ldfld WindowStyle PixelWindow::style
+IL_0006: ldc.i4.1
+IL_0007: bne.un.s IL_0010
+IL_0009: ldarg.0
+IL_000a: call System.Void PixelWindow::MachineryValidate()
+IL_000f: ret
+IL_0010: ldarg.0
+IL_0011: call System.Int32 PixelWindow::get_xPadding()
+IL_0016: ldarg.0
+IL_0017: call System.Int32 PixelWindow::get_yPadding()
+IL_001c: ldarg.0
+IL_001d: ldfld System.Boolean PixelWindow::canMove
+IL_0022: brtrue.s IL_002f
+IL_0024: ldarg.0
+IL_0025: call System.Boolean PixelWindow::get_hasTitle()
+IL_002a: brtrue.s IL_002f
+IL_002c: ldc.i4.0
+IL_002d: br.s IL_003c
+IL_002f: ldarg.0
+IL_0030: call System.Int32 PixelWindow::get_titleHeight()
+IL_0035: ldarg.0
+IL_0036: call System.Int32 PixelWindow::get_yPadding()
+IL_003b: add
+IL_003c: add
+IL_003d: stloc.0
+IL_003e: ldarg.0
+IL_003f: call System.Int32 PixelWindow::get_xPadding()
+IL_0044: add
+IL_0045: stloc.1
+IL_0046: ldloc.0
+IL_0047: ldarg.0
+IL_0048: call System.Int32 PixelWindow::get_yPadding()
+IL_004d: add
+IL_004e: stloc.2
+IL_004f: ldarg.0
+IL_0050: call PixelElement PixelWindow::get_childElement()
+IL_0055: dup
+IL_0056: brtrue.s IL_005b
+IL_0058: pop
+IL_0059: br.s IL_0070
+IL_005b: ldarg.0
+IL_005c: call System.Int32 PixelWindow::get_widthPixels()
+IL_0061: ldloc.1
+IL_0062: sub
+IL_0063: ldarg.0
+IL_0064: call System.Int32 PixelWindow::get_heightPixels()
+IL_0069: ldloc.2
+IL_006a: sub
+IL_006b: callvirt System.Void PixelElement::ResizePixels(System.Int32,System.Int32)
+IL_0070: ldarg.0
+IL_0071: call PixelElement PixelWindow::get_childElement()
+IL_0076: dup
+IL_0077: brtrue.s IL_007c
+IL_0079: pop
+IL_007a: br.s IL_0081
+IL_007c: callvirt System.Void PixelElement::Validate()
+IL_0081: ldarg.0
+IL_0082: ldloc.1
+IL_0083: stloc.s V_4
+IL_0085: ldarg.0
+IL_0086: call PixelElement PixelWindow::get_childElement()
+IL_008b: dup
+IL_008c: brtrue.s IL_009b
+IL_008e: pop
+IL_008f: ldloca.s V_6
+IL_0091: initobj System.Nullable`1<System.Int32>
+IL_0097: ldloc.s V_6
+IL_0099: br.s IL_00a5
+IL_009b: callvirt System.Int32 PixelElement::get_widthPixels()
+IL_00a0: newobj System.Void System.Nullable`1<System.Int32>::.ctor(!0)
+IL_00a5: stloc.s V_5
+IL_00a7: ldloca.s V_5
+IL_00a9: call System.Boolean System.Nullable`1<System.Int32>::get_HasValue()
+IL_00ae: brtrue.s IL_00bc
+IL_00b0: ldloca.s V_6
+IL_00b2: initobj System.Nullable`1<System.Int32>
+IL_00b8: ldloc.s V_6
+IL_00ba: br.s IL_00cb
+IL_00bc: ldloc.s V_4
+IL_00be: ldloca.s V_5
+IL_00c0: call !0 System.Nullable`1<System.Int32>::GetValueOrDefault()
+IL_00c5: add
+IL_00c6: newobj System.Void System.Nullable`1<System.Int32>::.ctor(!0)
+IL_00cb: stloc.s V_6
+IL_00cd: ldloca.s V_6
+IL_00cf: call !0 System.Nullable`1<System.Int32>::GetValueOrDefault()
+IL_00d4: call System.Void PixelWindow::set_widthPixels(System.Int32)
+IL_00d9: ldarg.0
+IL_00da: ldloc.2
+IL_00db: stloc.s V_4
+IL_00dd: ldarg.0
+IL_00de: call PixelElement PixelWindow::get_childElement()
+IL_00e3: dup
+IL_00e4: brtrue.s IL_00f3
+IL_00e6: pop
+IL_00e7: ldloca.s V_6
+IL_00e9: initobj System.Nullable`1<System.Int32>
+IL_00ef: ldloc.s V_6
+IL_00f1: br.s IL_00fd
+IL_00f3: callvirt System.Int32 PixelElement::get_heightPixels()
+IL_00f8: newobj System.Void System.Nullable`1<System.Int32>::.ctor(!0)
+IL_00fd: stloc.s V_5
+IL_00ff: ldloca.s V_5
+IL_0101: call System.Boolean System.Nullable`1<System.Int32>::get_HasValue()
+IL_0106: brtrue.s IL_0114
+IL_0108: ldloca.s V_6
+IL_010a: initobj System.Nullable`1<System.Int32>
+IL_0110: ldloc.s V_6
+IL_0112: br.s IL_0123
+IL_0114: ldloc.s V_4
+IL_0116: ldloca.s V_5
+IL_0118: call !0 System.Nullable`1<System.Int32>::GetValueOrDefault()
+IL_011d: add
+IL_011e: newobj System.Void System.Nullable`1<System.Int32>::.ctor(!0)
+IL_0123: stloc.s V_6
+IL_0125: ldloca.s V_6
+IL_0127: call !0 System.Nullable`1<System.Int32>::GetValueOrDefault()
+IL_012c: call System.Void PixelWindow::set_heightPixels(System.Int32)
+IL_0131: ldarg.0
+IL_0132: call System.Action PixelWindow::get_closeCallback()
+IL_0137: ldnull
+IL_0138: ceq
+IL_013a: ldc.i4.0
+IL_013b: ceq
+IL_013d: stloc.3
+IL_013e: ldarg.0
+IL_013f: ldfld TreeNodeRender PixelWindow::topCloseButton
+IL_0144: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0149: ldarg.0
+IL_014a: ldfld System.Boolean PixelWindow::canMove
+IL_014f: ldloc.3
+IL_0150: or
+IL_0151: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0156: ldarg.0
+IL_0157: ldfld TreeNodeRender PixelWindow::background
+IL_015c: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0161: ldarg.0
+IL_0162: ldfld System.Boolean PixelWindow::canMove
+IL_0167: brtrue.s IL_0171
+IL_0169: ldarg.0
+IL_016a: ldfld System.Boolean PixelWindow::forceRaycast
+IL_016f: br.s IL_0172
+IL_0171: ldc.i4.1
+IL_0172: callvirt System.Void UnityEngine.UI.Graphic::set_raycastTarget(System.Boolean)
+IL_0177: ldarg.0
+IL_0178: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_017d: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0182: ldarg.0
+IL_0183: ldfld System.Boolean PixelWindow::canMove
+IL_0188: brtrue.s IL_0192
+IL_018a: ldarg.0
+IL_018b: call System.Boolean PixelWindow::get_hasTitle()
+IL_0190: br.s IL_0193
+IL_0192: ldc.i4.1
+IL_0193: ldloc.3
+IL_0194: or
+IL_0195: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_019a: ldarg.0
+IL_019b: ldfld TreeNodeRender PixelWindow::bottomResizeButton
+IL_01a0: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_01a5: ldarg.0
+IL_01a6: call System.Boolean PixelWindow::get_canResize()
+IL_01ab: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_01b0: ldarg.0
+IL_01b1: call System.Single PixelWindow::get_transparency()
+IL_01b6: ldc.r4 1
+IL_01bb: bne.un.s IL_01f5
+IL_01bd: ldarg.0
+IL_01be: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_01c3: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_01c8: ldc.i4.0
+IL_01c9: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_01ce: ldarg.0
+IL_01cf: ldfld TreeNodeRender PixelWindow::background
+IL_01d4: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_01d9: ldc.i4.0
+IL_01da: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_01df: ldarg.0
+IL_01e0: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_01e5: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_01ea: ldc.i4.0
+IL_01eb: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_01f0: br IL_02a7
+IL_01f5: ldarg.0
+IL_01f6: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_01fb: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0200: ldc.i4.1
+IL_0201: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0206: ldarg.0
+IL_0207: ldfld TreeNodeRender PixelWindow::background
+IL_020c: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0211: ldc.i4.1
+IL_0212: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_0217: ldarg.0
+IL_0218: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_021d: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0222: ldc.r4 1
+IL_0227: ldc.r4 1
+IL_022c: ldc.r4 1
+IL_0231: ldc.r4 1
+IL_0236: ldarg.0
+IL_0237: call System.Single PixelWindow::get_transparency()
+IL_023c: sub
+IL_023d: newobj System.Void UnityEngine.Color::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_0242: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_0247: ldarg.0
+IL_0248: ldfld TreeNodeRender PixelWindow::background
+IL_024d: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0252: ldc.r4 1
+IL_0257: ldc.r4 1
+IL_025c: ldc.r4 1
+IL_0261: ldc.r4 1
+IL_0266: ldarg.0
+IL_0267: call System.Single PixelWindow::get_transparency()
+IL_026c: sub
+IL_026d: newobj System.Void UnityEngine.Color::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_0272: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_0277: ldarg.0
+IL_0278: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_027d: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0282: ldc.r4 1
+IL_0287: ldc.r4 1
+IL_028c: ldc.r4 1
+IL_0291: ldc.r4 1
+IL_0296: ldarg.0
+IL_0297: call System.Single PixelWindow::get_transparency()
+IL_029c: sub
+IL_029d: newobj System.Void UnityEngine.Color::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_02a2: callvirt System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color)
+IL_02a7: ldarg.0
+IL_02a8: ldfld TreeNodeRender PixelWindow::topTitleBackground
+IL_02ad: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_02b2: ldarg.0
+IL_02b3: call System.Boolean PixelWindow::get_hasTitle()
+IL_02b8: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_02bd: ldarg.0
+IL_02be: ldfld TreeNodeRender PixelWindow::titleText
+IL_02c3: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_02c8: ldarg.0
+IL_02c9: call System.Boolean PixelWindow::get_hasTitle()
+IL_02ce: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_02d3: ldarg.0
+IL_02d4: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_02d9: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_02de: callvirt System.Boolean UnityEngine.Behaviour::get_enabled()
+IL_02e3: brfalse IL_048c
+IL_02e8: ldarg.0
+IL_02e9: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_02ee: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_02f3: ldarg.0
+IL_02f4: call System.Int32 PixelWindow::get_widthPixels()
+IL_02f9: conv.r4
+IL_02fa: ldarg.0
+IL_02fb: call System.Int32 PixelWindow::get_heightPixels()
+IL_0300: ldc.i4.2
+IL_0301: sub
+IL_0302: conv.r4
+IL_0303: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_0308: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_030d: ldarg.0
+IL_030e: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_0313: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0318: ldc.r4 0
+IL_031d: ldc.r4 -2
+IL_0322: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_0327: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_032c: ldarg.0
+IL_032d: ldfld TreeNodeRender PixelWindow::background
+IL_0332: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0337: ldarg.0
+IL_0338: call System.Int32 PixelWindow::get_widthPixels()
+IL_033d: conv.r4
+IL_033e: ldarg.0
+IL_033f: call System.Int32 PixelWindow::get_heightPixels()
+IL_0344: ldc.i4.2
+IL_0345: sub
+IL_0346: conv.r4
+IL_0347: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_034c: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_0351: ldarg.0
+IL_0352: ldfld TreeNodeRender PixelWindow::background
+IL_0357: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_035c: ldc.r4 0
+IL_0361: ldc.r4 -2
+IL_0366: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_036b: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0370: ldarg.0
+IL_0371: ldfld TreeNodeRender PixelWindow::background
+IL_0376: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_037b: ldc.r4 0
+IL_0380: ldc.r4 0
+IL_0385: ldc.r4 0
+IL_038a: ldc.r4 -2
+IL_038f: newobj System.Void UnityEngine.Vector4::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_0394: callvirt System.Void UnityEngine.UI.Graphic::set_raycastPadding(UnityEngine.Vector4)
+IL_0399: ldarg.0
+IL_039a: ldfld TreeNodeRender PixelWindow::titleText
+IL_039f: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_03a4: ldarg.0
+IL_03a5: call System.String PixelWindow::get_titleString()
+IL_03aa: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_03af: ldsfld RenderHandler RenderHandler::current
+IL_03b4: ldfld UnityEngine.Canvas RenderHandler::windowUICanvas
+IL_03b9: callvirt System.Single UnityEngine.Canvas::get_scaleFactor()
+IL_03be: ldc.r4 1
+IL_03c3: bne.un.s IL_03d8
+IL_03c5: ldarg.0
+IL_03c6: ldfld TreeNodeRender PixelWindow::titleText
+IL_03cb: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_03d0: ldc.i4.0
+IL_03d1: callvirt System.Void TMPro.TMP_Text::set_fontStyle(TMPro.FontStyles)
+IL_03d6: br.s IL_03e9
+IL_03d8: ldarg.0
+IL_03d9: ldfld TreeNodeRender PixelWindow::titleText
+IL_03de: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_03e3: ldc.i4.1
+IL_03e4: callvirt System.Void TMPro.TMP_Text::set_fontStyle(TMPro.FontStyles)
+IL_03e9: ldarg.0
+IL_03ea: ldfld TreeNodeRender PixelWindow::titleText
+IL_03ef: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_03f4: ldc.i4 512
+IL_03f9: callvirt System.Void TMPro.TMP_Text::set_verticalAlignment(TMPro.VerticalAlignmentOptions)
+IL_03fe: ldarg.0
+IL_03ff: ldfld TreeNodeRender PixelWindow::titleText
+IL_0404: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_0409: ldc.i4.0
+IL_040a: callvirt System.Void TMPro.TMP_Text::set_enableWordWrapping(System.Boolean)
+IL_040f: ldarg.0
+IL_0410: ldfld TreeNodeRender PixelWindow::titleText
+IL_0415: callvirt TMPro.TextMeshProUGUI TreeNodeRender::get_text()
+IL_041a: callvirt UnityEngine.RectTransform TMPro.TMP_Text::get_rectTransform()
+IL_041f: call System.Single UnityEngine.UI.LayoutUtility::GetPreferredWidth(UnityEngine.RectTransform)
+IL_0424: stloc.s V_7
+IL_0426: ldloc.s V_7
+IL_0428: ldc.r4 1
+IL_042d: bgt.un.s IL_0446
+IL_042f: ldarg.0
+IL_0430: ldfld TreeNodeRender PixelWindow::titleText
+IL_0435: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_043a: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_043f: ldfld System.Single UnityEngine.Vector2::x
+IL_0444: stloc.s V_7
+IL_0446: ldarg.0
+IL_0447: ldfld TreeNodeRender PixelWindow::titleText
+IL_044c: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0451: ldloc.s V_7
+IL_0453: ldc.r4 20
+IL_0458: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_045d: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_0462: ldarg.0
+IL_0463: ldfld TreeNodeRender PixelWindow::titleText
+IL_0468: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_046d: ldarg.0
+IL_046e: call System.Int32 PixelWindow::get_xPadding()
+IL_0473: ldc.i4.2
+IL_0474: add
+IL_0475: ldc.i4.2
+IL_0476: add
+IL_0477: conv.r4
+IL_0478: ldc.r4 0
+IL_047d: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_0482: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0487: br IL_0539
+IL_048c: ldarg.0
+IL_048d: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_0492: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0497: ldarg.0
+IL_0498: call System.Int32 PixelWindow::get_widthPixels()
+IL_049d: conv.r4
+IL_049e: ldarg.0
+IL_049f: call System.Int32 PixelWindow::get_heightPixels()
+IL_04a4: conv.r4
+IL_04a5: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_04aa: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_04af: ldarg.0
+IL_04b0: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_04b5: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_04ba: ldc.r4 0
+IL_04bf: ldc.r4 0
+IL_04c4: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_04c9: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_04ce: ldarg.0
+IL_04cf: ldfld TreeNodeRender PixelWindow::background
+IL_04d4: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_04d9: ldarg.0
+IL_04da: call System.Int32 PixelWindow::get_widthPixels()
+IL_04df: conv.r4
+IL_04e0: ldarg.0
+IL_04e1: call System.Int32 PixelWindow::get_heightPixels()
+IL_04e6: conv.r4
+IL_04e7: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_04ec: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_04f1: ldarg.0
+IL_04f2: ldfld TreeNodeRender PixelWindow::background
+IL_04f7: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_04fc: ldc.r4 0
+IL_0501: ldc.r4 0
+IL_0506: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_050b: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0510: ldarg.0
+IL_0511: ldfld TreeNodeRender PixelWindow::background
+IL_0516: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_051b: ldc.r4 0
+IL_0520: ldc.r4 0
+IL_0525: ldc.r4 0
+IL_052a: ldc.r4 0
+IL_052f: newobj System.Void UnityEngine.Vector4::.ctor(System.Single,System.Single,System.Single,System.Single)
+IL_0534: callvirt System.Void UnityEngine.UI.Graphic::set_raycastPadding(UnityEngine.Vector4)
+IL_0539: ldarg.0
+IL_053a: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_053f: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0544: ldarg.0
+IL_0545: call System.Int32 PixelWindow::get_widthPixels()
+IL_054a: conv.r4
+IL_054b: ldarg.0
+IL_054c: ldfld TreeNodeRender PixelWindow::topDragBorder
+IL_0551: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0556: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_055b: ldfld System.Single UnityEngine.Vector2::y
+IL_0560: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_0565: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_056a: ldarg.0
+IL_056b: ldfld TreeNodeRender PixelWindow::topCloseButton
+IL_0570: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0575: ldarg.0
+IL_0576: call System.Int32 PixelWindow::get_widthPixels()
+IL_057b: conv.r4
+IL_057c: ldarg.0
+IL_057d: ldfld TreeNodeRender PixelWindow::topCloseButton
+IL_0582: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0587: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_058c: ldfld System.Single UnityEngine.Vector2::x
+IL_0591: sub
+IL_0592: ldarg.0
+IL_0593: call System.Int32 PixelWindow::get_xPadding()
+IL_0598: conv.r4
+IL_0599: sub
+IL_059a: ldarg.0
+IL_059b: call System.Int32 PixelWindow::get_yPadding()
+IL_05a0: neg
+IL_05a1: conv.r4
+IL_05a2: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_05a7: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_05ac: ldarg.0
+IL_05ad: ldfld TreeNodeRender PixelWindow::topTitleBackground
+IL_05b2: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_05b7: ldarg.0
+IL_05b8: call System.Int32 PixelWindow::get_xPadding()
+IL_05bd: ldc.i4.1
+IL_05be: sub
+IL_05bf: conv.r4
+IL_05c0: ldarg.0
+IL_05c1: call System.Int32 PixelWindow::get_yPadding()
+IL_05c6: neg
+IL_05c7: ldc.i4.1
+IL_05c8: add
+IL_05c9: conv.r4
+IL_05ca: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_05cf: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_05d4: ldarg.0
+IL_05d5: ldfld TreeNodeRender PixelWindow::topTitleBackground
+IL_05da: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_05df: ldarg.0
+IL_05e0: ldfld TreeNodeRender PixelWindow::titleText
+IL_05e5: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_05ea: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_05ef: ldfld System.Single UnityEngine.Vector2::x
+IL_05f4: ldc.r4 7
+IL_05f9: add
+IL_05fa: ldc.r4 4
+IL_05ff: add
+IL_0600: ldarg.0
+IL_0601: call System.Int32 PixelWindow::get_titleHeight()
+IL_0606: ldc.i4.2
+IL_0607: add
+IL_0608: conv.r4
+IL_0609: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_060e: callvirt System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+IL_0613: ldarg.0
+IL_0614: ldfld TreeNodeRender PixelWindow::bottomResizeButton
+IL_0619: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_061e: ldarg.0
+IL_061f: call System.Int32 PixelWindow::get_widthPixels()
+IL_0624: conv.r4
+IL_0625: ldarg.0
+IL_0626: ldfld TreeNodeRender PixelWindow::bottomResizeButton
+IL_062b: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0630: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_0635: ldfld System.Single UnityEngine.Vector2::x
+IL_063a: sub
+IL_063b: ldarg.0
+IL_063c: call System.Int32 PixelWindow::get_heightPixels()
+IL_0641: neg
+IL_0642: conv.r4
+IL_0643: ldarg.0
+IL_0644: ldfld TreeNodeRender PixelWindow::bottomResizeButton
+IL_0649: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_064e: callvirt UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+IL_0653: ldfld System.Single UnityEngine.Vector2::y
+IL_0658: add
+IL_0659: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_065e: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0663: ldarg.0
+IL_0664: call TreeNodeRender PixelWindow::get_inner()
+IL_0669: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_066e: ldarg.0
+IL_066f: call System.Int32 PixelWindow::get_xPadding()
+IL_0674: conv.r4
+IL_0675: ldloc.0
+IL_0676: neg
+IL_0677: conv.r4
+IL_0678: newobj System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
+IL_067d: callvirt System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+IL_0682: ldarg.0
+IL_0683: ldfld System.Boolean PixelWindow::hideBorder
+IL_0688: brfalse.s IL_06ac
+IL_068a: ldarg.0
+IL_068b: ldfld TreeNodeRender PixelWindow::outsideBorder
+IL_0690: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_0695: ldc.i4.0
+IL_0696: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_069b: ldarg.0
+IL_069c: ldfld TreeNodeRender PixelWindow::background
+IL_06a1: callvirt UnityEngine.UI.Image TreeNodeRender::get_image()
+IL_06a6: ldc.i4.0
+IL_06a7: callvirt System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+IL_06ac: ret

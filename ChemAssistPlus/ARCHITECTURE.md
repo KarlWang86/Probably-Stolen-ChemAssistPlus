@@ -20,6 +20,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 过夜拦截、防重入、无新料等待 | AutoWorkflow.cs；WaitingForDistillation、EndDayProcessingHook |
 | 蒸发器接收、同类相近浓度合并、存量集中腾槽、干料移入制剂机、转液回收 | Distillation.cs；CanReceiveBatch、DeliverToEvaporator、PlanConsolidation、ConsolidateEvaporators、StageDryEvaporatorBottles、TransferWholeSolution |
 | 原生手动倒液的配方／浓度／干湿混合确认 | MixingGuard.cs；BeforeLiquidTransfer、MixReason、ConfirmMix；PlusPump.TickMixConfirmation |
+| 容器纵排及机器标题栏横排原材料图标 | MaterialIcons.cs；MaterialMask、DrawBottleMaterials、RefreshMachineMaterials、TickMaterialIcons |
+| 蒸发器配方记忆与固定分配 | EvaporatorRouting.cs；EvaporatorRoute、RememberOccupiedEvaporators、AcceptsEvaporatorRoute；Distillation.cs各接收/集中/空瓶路径 |
 | 湿料缺电持续监测与小通知 | PowerMonitor.cs；Charged；InventoryReport.cs |
 | 面板布局与预计/实际报告 | CompositionPanel.cs、PanelLayout.cs；450×720、按设备纵向行池、左侧名称及条内用量/库存或剂量/纯度、当前用量/本晚结果切换、固定底栏；缩放时重算文字高度 |
 | 构建、扫描、查询、部署与打包 | DEVELOPMENT.md；Tools/NativeScan、Tools/AssemblyQuery |
@@ -27,6 +29,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 ## 状态与物料边界
 
 - Plus 的 partial 文件共享当前存档会话状态；切档清任务、来源偏好、报告和挂起过夜。
+- 蒸发器路线记忆由机器原生自定义字符串标签CHEMASSISTPLUS_EVAPORATOR_RECIPE_V1保存ProductId，随游戏原生序列化保存，不使用跨存档静态映射、不直接改磁盘存档。EvaporatorRoute读取当前可唯一识别的瓶内配方，若为空/不可识别则读标签；Poll每2秒只在实际单配方内容改变时写记忆，Deliver成功及StageDry移出前也保存。手动放置不同单配方原液视为重新分工，混液/空瓶不覆盖。CanReceiveBatch同时核对路线，FindEvaporator先同配方再未分配，仍核对电量/容量/浓度/干湿；PlanConsolidation新存IncomingRecipe，腾空源机须能接本配方，不再为不同配方腾槽；ParkSpareRawBottle也按路线过滤。预检与图标刷新仅读，空置已分配蒸发器横排显示记忆原料标识。
+- MaterialIcons只读映射已证实的原材料来源，直接加载原生种植物图集，不实例化原料物品：咖啡浆/咖啡因→咖啡豆，梦帽菇浆/提取物/nomore→梦帽菇，梦魇帽菇浆/提取物→梦魇帽菇。每0.25秒只读扫描当前拥有物品更新成分掩码与机器container槽；容器图标挂在middle/fakeMiddle，逐帧同步原生background/fakeBackground显隐和透明度，按旋转后占格尺寸纵排。机器用原生AddHeaderButton保留右上横排位置，反向插入使左右顺序与容器上下顺序一致，图标无回调且不接收射线；窗口重建/换瓶改变成分时清理原生header引用并销毁自建节点。切档/禁用统一ClearMaterialIcons，不写液体/形状/存档标签。
 - MixingGuard在WaterHelper.TransferLiquid真正扣液前拦截，按预计倒入份额和目标存量识别Recipe的FeedLiquids[0]/ProductLiquid，不把FeedLiquids[1]等溶剂作为配方。两侧均有加工成分时，不同配方、同配方原浆/提取物合计浓度差>5个百分点或原生WetTotal干湿状态不同才弹GenericConfirmationUIManager；确认前不取液/耗滤材，取消不调用原方法。授权只绑定本次两瓶、当前PlayerStore、父库存、全部液体快照和目标容量，确认时重新核对，成功仅放行一次原生TransferLiquid并刷新瓶音。窗口被替换/关闭、禁用、切档清除待确认引用；自动加工仍走原有严格同类规则。
 - 开工前复核完整输入快照与 Selected；未选固体留输入格。预检不取片、不耗料。
 - 只操作Container原液槽，回收槽保持原样。存量集中后源空瓶留原液槽；PlanConsolidation须检查其容量≥当前批次保守预计体积，下一批按已有空瓶路径接收。新批次合并后尝试将源空瓶放入其他空闲蒸发器原液槽备用，没有空槽则留原位。
