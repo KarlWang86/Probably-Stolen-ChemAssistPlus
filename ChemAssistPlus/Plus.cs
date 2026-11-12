@@ -33,6 +33,7 @@ namespace ChemAssistPlus
         public static void Init(ModManifest manifest) { log = new ModLog(manifest); log.Log("化学流程助手 " + DisplayVersion + " 初始化；运行日志记录关键步骤，不记录每帧状态。"); }
         public static void Enable()
         {
+            mixingGuardEnabled = true;
             if (pump != null) return;
             log?.Log("模组已启用；低配板控温、自动换滤材、F10库存预检已接入。");
             pump = new GameObject("ChemAssistPlus.Pump");
@@ -42,6 +43,8 @@ namespace ChemAssistPlus
         }
         public static void Disable()
         {
+            mixingGuardEnabled = false;
+            ClearMixConfirmation();
             CancelJob("模组已禁用。", true);
             ModHook.OnGameLoadedNormal -= ResetSession;
             ModHelper.RemoveGameOptions(Id);
@@ -53,6 +56,7 @@ namespace ChemAssistPlus
         }
         static void ResetSession()
         {
+            ClearMixConfirmation();
             CancelJob("存档已切换。", true);
             headers.Clear(); selectedBlender = contextBlender = contextPot = null;
             contextChain = null; busy = false;
@@ -366,6 +370,7 @@ namespace ChemAssistPlus
             {
                 if (!optionsReady && Plus.ReadyForUi()) { Plus.RegisterOptions(); optionsReady = true; }
                 Plus.CheckKey();
+                Plus.TickMixConfirmation();
                 Plus.TickJob();
                 Plus.TickMorningReport();
                 Plus.TickPanelLayout();

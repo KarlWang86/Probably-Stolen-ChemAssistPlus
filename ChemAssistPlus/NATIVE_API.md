@@ -7,7 +7,7 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 ## 2026-11-12 官方API核对
 
 - 官方变更：[APIChanges.zh-CN.md](https://github.com/dragonpan2/probably-stolen-modding/blob/main/APIChanges.zh-CN.md)；[版本与信任规则](https://github.com/dragonpan2/probably-stolen-modding/blob/main/ModdingGuide.zh-CN.md)。注意Rev14测试分支才支持GameVersions的1.0.0前缀匹配，并中性处理旧0.46/0.46D；Rev13仍将条目及Application.version归一化后比较，1.0.0在Rev13会标红。定向核对ModUIManager.VersionMatchesGame、NormalizeVersion及FormatGameVersions对应lambda，0.46匹配内部0.46D。版本声明不阻止加载，也不触发信任批准。
-- HeatingControl对MachineHeatingPlate.HandleHeating的字面AccessTools查找、NativeControls对MachineryButton.callback的字面反射均为游戏成员，无需reflection-external。三个Harmony补丁只针对游戏方法；不调用信任写入、QFSW控制台执行、路径文件辅助方法或外部库补丁。
+- HeatingControl对MachineHeatingPlate.HandleHeating的字面AccessTools查找、NativeControls对MachineryButton.callback的字面反射均为游戏成员，无需reflection-external。四个Harmony补丁只针对游戏方法（0.4.4新增WaterHelper.TransferLiquid混液确认）；不调用信任写入、QFSW控制台执行、路径文件辅助方法或外部库补丁。
 - PlusPump.Update在主线程推进工作流，不使用线程/Task或其他组件的协程。未读取Application.version、未处理右键绑定、未在销毁容器后读取其窗口；本轮无相关迁移。Capabilities保持为空。
 
 ## 常用接口
@@ -15,6 +15,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 | 签名（省略 System 前缀） | 参数、语义与副作用 | 用法 / 证据 |
 | --- | --- | --- |
 | List<KeyValuePair<string,int>> WaterHelper.RemoveAndReturn(GameItem,int) | 源瓶、取出体积 μL；真实扣除，各成分同比返回 | TakeLiquid → AddSolution；Research/transfer-il.txt、game-api.txt |
+| void WaterHelper.TransferLiquid(GameItem,GameItem) | 源瓶、目标瓶；按余量同比转移，经过目标滤材并结算温度/液体特征。普通瓶/滴管/酒瓶原生手动倒液均进入此处；成型机TransferLiquidToChem用于制剂而非两瓶手动倒液 | MixingGuard Prefix在扣液前挂起；Research/mixguard-transfer-il.txt、mixguard-pour-callback-il.txt |
+| GenericConfirmationUIManager.Instance.OpenPanel(string,string,string,Action,Action) | 正文、确认按钮、取消按钮、确认回调、取消回调；回调执行后原生ClosePanel。panel/bodyTMP公开，可检查是否被其他弹窗替换 | MixingGuard复用原生阻挡层/双按钮；Research/mixguard-confirmation-il.txt；只在原生对话框空闲时打开 |
 | void WaterHelper.AddLiquid(GameItem,string,int) | 目标瓶、成分ID、μL；累加成分 | AddSolution 逐项加入；Research/game-api.txt |
 | void ChemicalHelper.TransferLiquidToChem(GameItem,GameItem,int) | 覆盖式 SET，不用于向已有原液累加 | Research/transfer-il.txt、probe-transfer-il.txt |
 | int[] WaterHelper.GetLiquidParts(GameItem) / SplitProportionally(int[],int) | 返回新数组；比例分割用于预估，不替代真实耗料 | BatchPlan.cs；Research/game-api.txt |

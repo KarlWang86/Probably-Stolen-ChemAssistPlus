@@ -1,0 +1,133 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GenericConfirmationUIManager GenericConfirmationUIManager::get_Instance()
+IL_0000: ldsfld GenericConfirmationUIManager GenericConfirmationUIManager::<Instance>k__BackingField
+IL_0005: ret
+System.Void GenericConfirmationUIManager::set_Instance(GenericConfirmationUIManager)
+  0: GenericConfirmationUIManager value None
+IL_0000: ldarg.0
+IL_0001: stsfld GenericConfirmationUIManager GenericConfirmationUIManager::<Instance>k__BackingField
+IL_0006: ret
+System.Void GenericConfirmationUIManager::Awake()
+IL_0000: call GenericConfirmationUIManager GenericConfirmationUIManager::get_Instance()
+IL_0005: ldnull
+IL_0006: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_000b: brfalse.s IL_0021
+IL_000d: call GenericConfirmationUIManager GenericConfirmationUIManager::get_Instance()
+IL_0012: ldarg.0
+IL_0013: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_0018: brfalse.s IL_0021
+IL_001a: ldarg.0
+IL_001b: call System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
+IL_0020: ret
+IL_0021: ldarg.0
+IL_0022: call System.Void GenericConfirmationUIManager::set_Instance(GenericConfirmationUIManager)
+IL_0027: ret
+System.Void GenericConfirmationUIManager::Start()
+IL_0000: ret
+System.Void GenericConfirmationUIManager::Update()
+IL_0000: ret
+System.Void GenericConfirmationUIManager::OpenPanel(System.String,System.String,System.String,System.Action,System.Action)
+  0: System.String bodyText None
+  1: System.String confirmText None
+  2: System.String cancelText None
+  3: System.Action onConfirm Optional, HasDefault
+  4: System.Action onCancel Optional, HasDefault
+IL_0000: ldarg.0
+IL_0001: ldfld TMPro.TextMeshProUGUI GenericConfirmationUIManager::bodyTMP
+IL_0006: ldarg.1
+IL_0007: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_000c: ldarg.0
+IL_000d: ldfld TMPro.TextMeshProUGUI GenericConfirmationUIManager::confirmButtonTMP
+IL_0012: ldarg.2
+IL_0013: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0018: ldarg.0
+IL_0019: ldfld TMPro.TextMeshProUGUI GenericConfirmationUIManager::cancelButtonTMP
+IL_001e: ldarg.3
+IL_001f: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0024: ldarg.0
+IL_0025: ldfld UnityEngine.GameObject GenericConfirmationUIManager::cancelButton
+IL_002a: ldc.i4.1
+IL_002b: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_0030: ldarg.0
+IL_0031: ldarg.s onConfirm
+IL_0033: stfld System.Action GenericConfirmationUIManager::onConfirm
+IL_0038: ldarg.0
+IL_0039: ldarg.s onCancel
+IL_003b: stfld System.Action GenericConfirmationUIManager::onCancel
+IL_0040: ldarg.0
+IL_0041: ldfld UnityEngine.GameObject GenericConfirmationUIManager::panel
+IL_0046: ldc.i4.1
+IL_0047: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_004c: ldarg.0
+IL_004d: ldfld UnityEngine.GameObject GenericConfirmationUIManager::confirmationDarkness
+IL_0052: ldc.i4.1
+IL_0053: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_0058: ret
+System.Void GenericConfirmationUIManager::OpenPanelSingleButton(System.String,System.String,System.Action)
+  0: System.String bodyText None
+  1: System.String confirmText None
+  2: System.Action onConfirm Optional, HasDefault
+IL_0000: ldarg.0
+IL_0001: ldfld TMPro.TextMeshProUGUI GenericConfirmationUIManager::bodyTMP
+IL_0006: ldarg.1
+IL_0007: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_000c: ldarg.0
+IL_000d: ldfld TMPro.TextMeshProUGUI GenericConfirmationUIManager::confirmButtonTMP
+IL_0012: ldarg.2
+IL_0013: callvirt System.Void TMPro.TMP_Text::set_text(System.String)
+IL_0018: ldarg.0
+IL_0019: ldfld UnityEngine.GameObject GenericConfirmationUIManager::cancelButton
+IL_001e: ldc.i4.0
+IL_001f: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_0024: ldarg.0
+IL_0025: ldarg.3
+IL_0026: stfld System.Action GenericConfirmationUIManager::onConfirm
+IL_002b: ldarg.0
+IL_002c: ldnull
+IL_002d: stfld System.Action GenericConfirmationUIManager::onCancel
+IL_0032: ldarg.0
+IL_0033: ldfld UnityEngine.GameObject GenericConfirmationUIManager::panel
+IL_0038: ldc.i4.1
+IL_0039: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_003e: ldarg.0
+IL_003f: ldfld UnityEngine.GameObject GenericConfirmationUIManager::confirmationDarkness
+IL_0044: ldc.i4.1
+IL_0045: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_004a: ret
+System.Void GenericConfirmationUIManager::ClosePanel()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.GameObject GenericConfirmationUIManager::panel
+IL_0006: ldc.i4.0
+IL_0007: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_000c: ldarg.0
+IL_000d: ldfld UnityEngine.GameObject GenericConfirmationUIManager::confirmationDarkness
+IL_0012: ldc.i4.0
+IL_0013: callvirt System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+IL_0018: ret
+System.Void GenericConfirmationUIManager::ConfirmButtonPressed()
+IL_0000: ldarg.0
+IL_0001: ldfld System.Action GenericConfirmationUIManager::onConfirm
+IL_0006: dup
+IL_0007: brtrue.s IL_000c
+IL_0009: pop
+IL_000a: br.s IL_0011
+IL_000c: callvirt System.Void System.Action::Invoke()
+IL_0011: ldarg.0
+IL_0012: call System.Void GenericConfirmationUIManager::ClosePanel()
+IL_0017: ret
+System.Void GenericConfirmationUIManager::CancelButtonPressed()
+IL_0000: ldarg.0
+IL_0001: ldfld System.Action GenericConfirmationUIManager::onCancel
+IL_0006: dup
+IL_0007: brtrue.s IL_000c
+IL_0009: pop
+IL_000a: br.s IL_0011
+IL_000c: callvirt System.Void System.Action::Invoke()
+IL_0011: ldarg.0
+IL_0012: call System.Void GenericConfirmationUIManager::ClosePanel()
+IL_0017: ret
+System.Void GenericConfirmationUIManager::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+IL_0006: ret

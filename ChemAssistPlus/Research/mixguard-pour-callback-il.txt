@@ -1,0 +1,112 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void WaterHelper/<>c__DisplayClass10_0::<InitLiquidContainerItem>b__9(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+  local 0: System.Int32
+IL_0000: ldarg.2
+IL_0001: ldstr "LIQUID_CONTAINER_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brfalse IL_00ab
+IL_0010: ldarg.0
+IL_0011: ldfld System.Boolean WaterHelper/<>c__DisplayClass10_0::isDropper
+IL_0016: brtrue.s IL_0052
+IL_0018: ldarg.1
+IL_0019: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_001e: brtrue.s IL_003e
+IL_0020: ldarg.1
+IL_0021: callvirt System.String GameItem::get_identifier()
+IL_0026: ldstr "water_pitcher"
+IL_002b: callvirt System.Boolean System.String::Equals(System.String)
+IL_0030: brfalse.s IL_0039
+IL_0032: call System.Void AudioHelper::UseWaterFilter()
+IL_0037: br.s IL_003e
+IL_0039: call System.Void AudioHelper::PourWater()
+IL_003e: ldarg.1
+IL_003f: ldarg.2
+IL_0040: call System.Void WaterHelper::TransferLiquid(GameItem,GameItem)
+IL_0045: ldarg.1
+IL_0046: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_004b: ldarg.2
+IL_004c: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_0051: ret
+IL_0052: ldarg.1
+IL_0053: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_0058: stloc.0
+IL_0059: ldarg.1
+IL_005a: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_005f: brfalse.s IL_0086
+IL_0061: ldarg.2
+IL_0062: ldarg.1
+IL_0063: call System.Void WaterHelper::TransferLiquid(GameItem,GameItem)
+IL_0068: ldarg.2
+IL_0069: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_006e: ldarg.1
+IL_006f: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_0074: ldarg.1
+IL_0075: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_007a: ldloc.0
+IL_007b: ble IL_014a
+IL_0080: call System.Void AudioHelper::DropperDraw()
+IL_0085: ret
+IL_0086: ldarg.1
+IL_0087: ldarg.2
+IL_0088: call System.Void WaterHelper::TransferLiquid(GameItem,GameItem)
+IL_008d: ldarg.1
+IL_008e: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_0093: ldarg.2
+IL_0094: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_0099: ldarg.1
+IL_009a: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_009f: ldloc.0
+IL_00a0: bge IL_014a
+IL_00a5: call System.Void AudioHelper::DropperDrop()
+IL_00aa: ret
+IL_00ab: ldarg.2
+IL_00ac: call System.Boolean WaterHelper::IsDrain(GameItem)
+IL_00b1: brfalse.s IL_00c5
+IL_00b3: ldarg.1
+IL_00b4: call System.Void WaterHelper::EmptyContainer(GameItem)
+IL_00b9: call System.Void AudioHelper::DumpWater()
+IL_00be: ldarg.1
+IL_00bf: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_00c4: ret
+IL_00c5: ldarg.2
+IL_00c6: call System.Boolean WaterHelper::IsFaucet(GameItem)
+IL_00cb: brfalse.s IL_014a
+IL_00cd: ldstr "RUSTWATER_TAP"
+IL_00d2: call NetworkUpgrade NetworkUpgrade::GetUpgradeById(System.String)
+IL_00d7: callvirt System.Boolean NetworkUpgrade::IsUnlocked()
+IL_00dc: brfalse.s IL_010c
+IL_00de: call System.Void AudioHelper::UseFaucet()
+IL_00e3: ldarg.1
+IL_00e4: ldc.i4.1
+IL_00e5: ldc.i4 9999999
+IL_00ea: ldc.i4.1
+IL_00eb: call StoreStation StoreStation::get_Instance()
+IL_00f0: ldfld System.Int32 StoreStation::todayRustwaterPurity
+IL_00f5: call StoreStation StoreStation::get_Instance()
+IL_00fa: ldfld System.Int32 StoreStation::todayRustwaterPurity
+IL_00ff: ldc.i4.1
+IL_0100: call System.Void WaterHelper::AddWater(GameItem,System.Int32,System.Int32,System.Boolean,System.Int32,System.Int32,System.Boolean)
+IL_0105: ldarg.1
+IL_0106: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_010b: ret
+IL_010c: ldstr "GUTTERFLOW_TAP"
+IL_0111: call NetworkUpgrade NetworkUpgrade::GetUpgradeById(System.String)
+IL_0116: callvirt System.Boolean NetworkUpgrade::IsUnlocked()
+IL_011b: brfalse.s IL_014a
+IL_011d: call System.Void AudioHelper::UseFaucet()
+IL_0122: ldarg.1
+IL_0123: ldc.i4.1
+IL_0124: ldc.i4 9999999
+IL_0129: ldc.i4.1
+IL_012a: call StoreStation StoreStation::get_Instance()
+IL_012f: ldfld System.Int32 StoreStation::todayGutterflowPurity
+IL_0134: call StoreStation StoreStation::get_Instance()
+IL_0139: ldfld System.Int32 StoreStation::todayGutterflowPurity
+IL_013e: ldc.i4.1
+IL_013f: call System.Void WaterHelper::AddWater(GameItem,System.Int32,System.Int32,System.Boolean,System.Int32,System.Int32,System.Boolean)
+IL_0144: ldarg.1
+IL_0145: call System.Void WaterHelper::UpdateWaterBottleSound(GameItem)
+IL_014a: ret

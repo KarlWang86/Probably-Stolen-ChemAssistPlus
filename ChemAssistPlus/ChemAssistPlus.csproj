@@ -13,6 +13,7 @@
     <Compile Include="Workflow.cs" />
     <Compile Include="AutoWorkflow.cs" />
     <Compile Include="Distillation.cs" />
+    <Compile Include="MixingGuard.cs" />
     <Compile Include="BatchPlan.cs" />
     <Compile Include="Purification.cs" />
     <Compile Include="PowerMonitor.cs" />
