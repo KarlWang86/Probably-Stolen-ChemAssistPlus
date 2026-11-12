@@ -1,0 +1,63 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem AmenitiesItemDirectory::WaterFilter()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "water_filter"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_water_filter_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_water_filter_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_water_filter_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "HOUSEHOLD_GOOD"
+IL_005a: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_005f: dup
+IL_0060: ldstr "FILTER"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "WATER_PURIFICATION_SUPPLY"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldstr "FILTER_SIZE_TAG"
+IL_007b: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__25_0
+IL_0080: dup
+IL_0081: brtrue.s IL_009a
+IL_0083: pop
+IL_0084: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0089: ldftn System.Void AmenitiesItemDirectory/<>c::<WaterFilter>b__25_0(TagState)
+IL_008f: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0094: dup
+IL_0095: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__25_0
+IL_009a: ldc.i4.0
+IL_009b: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00a0: pop
+IL_00a1: dup
+IL_00a2: ldc.i4.s 25
+IL_00a4: conv.i8
+IL_00a5: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_00aa: pop
+IL_00ab: dup
+IL_00ac: ldstr "WATER_FILTER"
+IL_00b1: ldc.i4.0
+IL_00b2: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b7: pop
+IL_00b8: dup
+IL_00b9: ldc.i4 400
+IL_00be: ldc.i4.1
+IL_00bf: call System.Void DurabilityHelper::InitItemWithDurabilityPricingMode2(GameItem,System.Int32,System.Int32)
+IL_00c4: dup
+IL_00c5: call System.Void AudioHelper::InitPlasticContainer(GameItem)
+IL_00ca: ret

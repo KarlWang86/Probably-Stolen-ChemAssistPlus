@@ -37,6 +37,9 @@ VERSION 为版本唯一来源，build 自动同步程序集、清单、UI/日志
 AGENTS.md 固定约定；HANDOFF.md 当前状态；ARCHITECTURE.md 按模块定位；
 NATIVE_API.md 原生接口缓存；MOD_REFERENCE.md 参考实现缓存；CHANGELOG.md 历史变更；
 Research/ 完整IL、旧调查与整理前备份。历史 Tests/ 保留但不运行，不纳入发布源码包。
+
+游戏机制资料按主题存放于 Research/，保留来源、整理日期与验证状态；已核实的原生接口短结论再写入 NATIVE_API.md。超科技物品的获取、六类货品用途、供电与升级限制见 [Research/HypertechMechanics.md](Research/HypertechMechanics.md)（社区资料整理，尚未逐项核对本机原生实现）。
+
 CHANGELOG.md按每个有据可查的版本记录完整变化，已从归档补回早期版本，缺失版本不补写。WorkshopChangelog.md保留各版精简稿，生成简介只要求当前VERSION条目唯一且有内容，不再要求历史版本集合一致；Steam简介上限为8000 UTF-8字节，生成与上传预检均要求小于8000，不能只查字符数。WorkshopDescription.template.txt按用法/功能→当前版本改动→末尾鸣谢排版，prepare-workshop.ps1只嵌入WorkshopChangelog的当前版本，另存完整CHANGELOG-source.md。旧版本内容由工坊更新记录和仓库保留，不再全部重复到简介。
 
 旧 bin/obj 是构建缓存，staging/ 是历史安装备份，既有 zip 未改动。日常输出统一到 build/。

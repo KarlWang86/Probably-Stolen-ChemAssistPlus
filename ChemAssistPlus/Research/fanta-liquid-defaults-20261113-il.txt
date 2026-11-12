@@ -1,0 +1,24 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void Liquid::.ctor()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.1
+IL_0002: stfld System.Boolean Liquid::canBeRemovedByPurifier
+IL_0007: ldarg.0
+IL_0008: ldc.i4.s 10
+IL_000a: stfld System.Int32 Liquid::particleSize
+IL_000f: ldarg.0
+IL_0010: ldc.i4.2
+IL_0011: stfld System.Int32 Liquid::filterDurabilityUsage
+IL_0016: ldarg.0
+IL_0017: ldc.i4 1000
+IL_001c: stfld System.Int32 Liquid::filterVolumeRemoved
+IL_0021: ldarg.0
+IL_0022: ldstr "67aaa5"
+IL_0027: stfld System.String Liquid::color
+IL_002c: ldarg.0
+IL_002d: ldc.i4.1
+IL_002e: stfld System.Int32 Liquid::colorMultiplier
+IL_0033: ldarg.0
+IL_0034: call System.Void System.Object::.ctor()
+IL_0039: ret

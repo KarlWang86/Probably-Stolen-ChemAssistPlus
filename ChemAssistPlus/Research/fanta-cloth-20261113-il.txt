@@ -1,0 +1,61 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem AmenitiesItemDirectory::KottonFabric()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_armor"
+IL_000b: ldstr "kotton_fabric"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_kotton_fabric_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_kotton_fabric_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "item_kotton_fabric_flavor"
+IL_0045: call !!0[] System.Array::Empty<System.Object>()
+IL_004a: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_004f: callvirt System.Void GameItem::set_flavorText(System.String)
+IL_0054: dup
+IL_0055: ldstr "pastel"
+IL_005a: callvirt System.Void GameItem::EnableManufacturer(System.String)
+IL_005f: dup
+IL_0060: ldstr "MATERIAL"
+IL_0065: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_006a: dup
+IL_006b: ldstr "FILTER"
+IL_0070: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_0075: dup
+IL_0076: ldc.i4.s 65
+IL_0078: conv.i8
+IL_0079: callvirt System.Void GameItem::set_unitValue(System.Int64)
+IL_007e: dup
+IL_007f: call System.Void AudioHelper::InitTextile(GameItem)
+IL_0084: dup
+IL_0085: ldstr "FILTER_SIZE_TAG"
+IL_008a: ldsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__24_0
+IL_008f: dup
+IL_0090: brtrue.s IL_00a9
+IL_0092: pop
+IL_0093: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0098: ldftn System.Void AmenitiesItemDirectory/<>c::<KottonFabric>b__24_0(TagState)
+IL_009e: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_00a3: dup
+IL_00a4: stsfld System.Action`1<TagState> AmenitiesItemDirectory/<>c::<>9__24_0
+IL_00a9: ldc.i4.0
+IL_00aa: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00af: pop
+IL_00b0: dup
+IL_00b1: ldc.i4 1000
+IL_00b6: call System.Void DurabilityHelper::InitItemWithDurability(GameItem,System.Int32)
+IL_00bb: dup
+IL_00bc: ldstr "WATER_FILTER"
+IL_00c1: ldc.i4.0
+IL_00c2: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00c7: pop
+IL_00c8: ret

@@ -1,0 +1,58 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void ChemicalHelper/<>c__DisplayClass40_0::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret
+System.Void ChemicalHelper/<>c__DisplayClass40_0::<HandleStabilizingAgentSedimentation>b__0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldarg.0
+IL_0007: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::stabilizingAgentPart
+IL_000c: ldarg.0
+IL_000d: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::amountToNeutralize
+IL_0012: sub
+IL_0013: callvirt TagState TagState::SetInt(System.Int32)
+IL_0018: pop
+IL_0019: ret
+System.Void ChemicalHelper/<>c__DisplayClass40_0::<HandleStabilizingAgentSedimentation>b__1(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldarg.0
+IL_0007: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::debrisPart
+IL_000c: ldarg.0
+IL_000d: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::amountToNeutralize
+IL_0012: add
+IL_0013: callvirt TagState TagState::SetInt(System.Int32)
+IL_0018: pop
+IL_0019: ret
+System.Void ChemicalHelper/<>c__DisplayClass40_0::<HandleStabilizingAgentSedimentation>b__2(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::acidPart
+IL_000d: ldarg.0
+IL_000e: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::acidToRemove
+IL_0013: sub
+IL_0014: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0019: callvirt TagState TagState::SetInt(System.Int32)
+IL_001e: pop
+IL_001f: ret
+System.Void ChemicalHelper/<>c__DisplayClass40_0::<HandleStabilizingAgentSedimentation>b__3(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::basePart
+IL_000d: ldarg.0
+IL_000e: ldfld System.Int32 ChemicalHelper/<>c__DisplayClass40_0::baseToRemove
+IL_0013: sub
+IL_0014: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0019: callvirt TagState TagState::SetInt(System.Int32)
+IL_001e: pop
+IL_001f: ret

@@ -32,6 +32,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 数据与边界
 
+- 2026-11-13芬太路线只读调查：程序集哈希仍与基线一致。管制用品拆包为2瓶前体+1瓶还原剂；稳定剂经原生酸碱沉淀转debris。合成每拍先按min(前体−稳定剂,还原剂)限量，实际耗还原剂为Round(反应量×0.75)、产物为Round(反应量×0.1)，须考虑尾量。前体/稳定剂/还原剂/酸碱/产物粒径均5且不挥发，现有孔径150→22过滤及蒸发不能分离残余试剂。配方每件需总干料500μL。完整流程、IL索引及入队/完成判定缺口见Research/FantaWorkflow-20261113.md；未改功能、未游戏内验收。
+
 - 0.4.7定向核对：GameItem.GetTagReadonly从modifiedState取TagState并Clone；ModifyTag(...,true)修改state且跳过ValidateShapeState，原生TransferLiquid批量走此路径。TagSystem.GetTag会InitTagString，不能用它做无副作用的原始状态读取；图标改用state.dict.TryGetValue读取现有CURRENT_PART，蒸发器路线观察也共用该实际液体读取。证据Research/icon-refresh-{GetTagReadonly,ModifyTag,TagSystem-GetTag}-il.txt。不通过UI刷新去改材料或强制原生化学缓存。
 - 0.4.6按玩家截图与已确认预览修正图标定位：GameItemElement.middle不等于槽位实际瓶图边界，库存gridSize×modifiedShape不能用于推算所有机器槽位图片坐标。改从background/fakeBackground的RectTransform.GetWorldCorners读取世界边界，转到middle/fakeMiddle局部空间并与有效祖先RectMask2D/Mask相交；节点用中心锚点/localPosition居中纵排。机器同样叠加本体左上横排，停止使用PixelWindow.AddHeaderButton。Unity几何运算只读，不修改原生物品形状或窗口布局；实际裁切/位置仍需游戏内验收。
 - 原生制剂规则已于2026-11-12定向复核：ChemFinisherRecipe.CanOutput仅检查总体积≥requiredVolume，以及isRequireDry时WaterHelper.IsWet为false；咖啡因配方requiredVolume=5000μL、isRequireDry=true。IsWet把全部isEvaporative成分求和，>100μL为湿，与DRY_TOLERANCE_UL=100一致；不是“纯度达到98%即可”。截图酒精14.14mL+水2.30mL仍明显超标，须回蒸发器原液槽继续原生过夜；不修改制剂条件。证据Research/finisher-{rules,callbacks}-20261112-il.txt、finisher-recipe-canoutput-il.txt、finisher-recipes-il.txt。

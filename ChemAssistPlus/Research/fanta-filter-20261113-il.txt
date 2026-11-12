@@ -1,0 +1,143 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 WaterHelper::HandleFilter(System.String,System.Int32,GameItem,GameItem)
+  0: System.String identifier None
+  1: System.Int32 amount None
+  2: GameItem sourceContainer None
+  3: GameItem filter None
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Collections.Generic.List`1/Enumerator<Liquid>
+  local 3: Liquid
+  local 4: System.Int32
+  local 5: System.Int32
+  local 6: System.Int32
+IL_0000: ldarg.1
+IL_0001: ldc.i4.0
+IL_0002: bgt.s IL_0006
+IL_0004: ldc.i4.0
+IL_0005: ret
+IL_0006: ldarg.3
+IL_0007: brtrue.s IL_000b
+IL_0009: ldarg.1
+IL_000a: ret
+IL_000b: ldarg.3
+IL_000c: callvirt System.String GameItem::get_identifier()
+IL_0011: ldstr "uv_filter"
+IL_0016: callvirt System.Boolean System.String::Equals(System.String)
+IL_001b: brfalse.s IL_002e
+IL_001d: ldarg.0
+IL_001e: ldstr "microbe"
+IL_0023: callvirt System.Boolean System.String::Equals(System.String)
+IL_0028: brfalse.s IL_002c
+IL_002a: ldc.i4.0
+IL_002b: ret
+IL_002c: ldarg.1
+IL_002d: ret
+IL_002e: ldarg.3
+IL_002f: ldstr "WATER_FILTER"
+IL_0034: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0039: brfalse IL_013b
+IL_003e: ldarg.1
+IL_003f: stloc.0
+IL_0040: ldarg.3
+IL_0041: call System.Int32 DurabilityHelper::GetRealDurability(GameItem)
+IL_0046: stloc.1
+IL_0047: ldloc.1
+IL_0048: brtrue.s IL_004c
+IL_004a: ldarg.1
+IL_004b: ret
+IL_004c: ldarg.0
+IL_004d: ldstr "microbe"
+IL_0052: callvirt System.Boolean System.String::Equals(System.String)
+IL_0057: brfalse.s IL_005b
+IL_0059: ldarg.1
+IL_005a: ret
+IL_005b: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_0060: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_0065: stloc.2
+IL_0066: br IL_0117
+IL_006b: ldloca.s V_2
+IL_006d: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_0072: stloc.3
+IL_0073: ldarg.0
+IL_0074: ldloc.3
+IL_0075: ldfld System.String Liquid::identifier
+IL_007a: callvirt System.Boolean System.String::Equals(System.String)
+IL_007f: brfalse IL_0117
+IL_0084: ldarg.3
+IL_0085: ldstr "FILTER_SIZE_TAG"
+IL_008a: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_008f: callvirt System.Int32 TagState::GetInt()
+IL_0094: ldloc.3
+IL_0095: ldfld System.Int32 Liquid::particleSize
+IL_009a: stloc.s V_4
+IL_009c: ldloc.s V_4
+IL_009e: bgt IL_0123
+IL_00a3: ldloc.0
+IL_00a4: conv.r8
+IL_00a5: ldloc.3
+IL_00a6: ldfld System.Double Liquid::filterMinimumPurity
+IL_00ab: mul
+IL_00ac: conv.i4
+IL_00ad: stloc.s V_5
+IL_00af: ldc.i4.0
+IL_00b0: stloc.s V_6
+IL_00b2: br.s IL_00f8
+IL_00b4: ldloc.3
+IL_00b5: ldfld System.Int32 Liquid::filterVolumeRemoved
+IL_00ba: ldc.i4.0
+IL_00bb: bgt.s IL_00d4
+IL_00bd: ldstr "Invalid filterVolumeRemoved for "
+IL_00c2: ldloc.3
+IL_00c3: ldfld System.String Liquid::identifier
+IL_00c8: call System.String System.String::Concat(System.String,System.String)
+IL_00cd: call System.Void Debug::LogError(System.Object)
+IL_00d2: br.s IL_010a
+IL_00d4: ldarg.3
+IL_00d5: ldloc.3
+IL_00d6: ldfld System.Int32 Liquid::filterDurabilityUsage
+IL_00db: neg
+IL_00dc: call System.Void DurabilityHelper::ChangeDurability(GameItem,System.Int32)
+IL_00e1: ldarg.3
+IL_00e2: call System.Int32 DurabilityHelper::GetRealDurability(GameItem)
+IL_00e7: stloc.1
+IL_00e8: ldarg.1
+IL_00e9: ldloc.3
+IL_00ea: ldfld System.Int32 Liquid::filterVolumeRemoved
+IL_00ef: sub
+IL_00f0: starg.s amount
+IL_00f2: ldloc.s V_6
+IL_00f4: ldc.i4.1
+IL_00f5: add
+IL_00f6: stloc.s V_6
+IL_00f8: ldloc.1
+IL_00f9: ldc.i4.0
+IL_00fa: ble.s IL_010a
+IL_00fc: ldarg.1
+IL_00fd: ldloc.s V_5
+IL_00ff: ble.s IL_010a
+IL_0101: ldloc.s V_6
+IL_0103: ldc.i4 10000
+IL_0108: blt.s IL_00b4
+IL_010a: ldarg.1
+IL_010b: ldloc.s V_5
+IL_010d: ldloc.0
+IL_010e: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+IL_0113: starg.s amount
+IL_0115: leave.s IL_0133
+IL_0117: ldloca.s V_2
+IL_0119: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_011e: brtrue IL_006b
+IL_0123: leave.s IL_0133
+IL_0125: ldloca.s V_2
+IL_0127: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_012d: callvirt System.Void System.IDisposable::Dispose()
+IL_0132: endfinally
+IL_0133: ldc.i4.0
+IL_0134: ldarg.1
+IL_0135: call System.Int32 UnityEngine.Mathf::Max(System.Int32,System.Int32)
+IL_013a: ret
+IL_013b: ldarg.1
+IL_013c: ret
+  EH Finally: try IL_0066: br IL_0117 -> IL_0125: ldloca.s V_2; handler IL_0125: ldloca.s V_2 -> IL_0133: ldc.i4.0; filter ; catch

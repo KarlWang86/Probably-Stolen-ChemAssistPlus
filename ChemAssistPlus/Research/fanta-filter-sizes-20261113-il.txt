@@ -1,0 +1,30 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void AmenitiesItemDirectory/<>c::<KottonFabric>b__24_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4 150
+IL_000b: callvirt TagState TagState::SetInt(System.Int32)
+IL_0010: pop
+IL_0011: ret
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void AmenitiesItemDirectory/<>c::<WaterFilter>b__25_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.s 22
+IL_0008: callvirt TagState TagState::SetInt(System.Int32)
+IL_000d: pop
+IL_000e: ret
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void AmenitiesItemDirectory/<>c::<WaterFilterAdvanced>b__26_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.s 22
+IL_0008: callvirt TagState TagState::SetInt(System.Int32)
+IL_000d: pop
+IL_000e: ret
