@@ -23,8 +23,9 @@ namespace ChemAssistPlus
 
         static GameItem FindDryFinisher(GameItem pot, Recipe recipe)
         {
-            return Scan().Where(x => x.IsID("chem_finisher") && MachineView.Walk(x).Container?.childItem == null
-                    && MachineView.Walk(x).Container != null && GraphUtils.CanAccept(MachineView.Walk(x).Container, pot))
+            return Scan().Where(x => x.IsID("chem_finisher") && MachineView.Walk(x).Container != null
+                    && ((MachineView.Walk(x).Container.childItem == null && GraphUtils.CanAccept(MachineView.Walk(x).Container, pot))
+                        || CanReceiveEmptyFinisher(x, pot)))
                 .OrderBy(x => x.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString() == recipe.ProductId ? 0
                     : string.IsNullOrEmpty(x.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString()) ? 1 : 2)
                 .ThenBy(x => x.uniqueId).FirstOrDefault();
@@ -74,15 +75,17 @@ namespace ChemAssistPlus
                         var target = MachineView.Walk(finisher).Container?.childItem;
                         if (target != null)
                         {
-                            if (!CanMergeDryFinisher(finisher, pot, recipe))
+                            bool emptyReceiver = CanReceiveEmptyFinisher(finisher, pot);
+                            if (!emptyReceiver && !CanMergeDryFinisher(finisher, pot, recipe))
                                 throw new InvalidOperationException("制剂机同类干料或容量条件已变化，取消合并。");
                             int volume = WaterHelper.GetTotalVolume(pot);
                             TransferWholeSolution(pot, target);
+                            if (emptyReceiver) finisher.ModifyTag(MachineChemFinisher.SELECTED_CHEM_ID_TAG, s => s.SetString(recipe.ProductId), false);
                             nightDidWork = true;
                             reportPotId = target.uniqueId;
                             foreach (var batch in nightDetails.Where(x => x.PotId == pot.uniqueId)) batch.PotId = target.uniqueId;
                             if (runPotId == pot.uniqueId) runPotId = target.uniqueId;
-                            message = "干料合并至制剂机：蒸发器 #" + machine.uniqueId + " 的瓶 #" + pot.uniqueId
+                            message = (emptyReceiver ? "干料转入制剂机空接收瓶：蒸发器 #" : "干料合并至制剂机：蒸发器 #") + machine.uniqueId + " 的瓶 #" + pot.uniqueId
                                 + " → 制剂机 #" + finisher.uniqueId + " 的瓶 #" + target.uniqueId
                                 + "；" + ChemNames.ProductName(recipe.ProductId) + "，整瓶转移 " + Vol(volume)
                                 + "，合并后有效成分 " + Vol(Amount(target, recipe.ProductLiquid))

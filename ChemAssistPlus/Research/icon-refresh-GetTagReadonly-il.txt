@@ -1,0 +1,18 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+TagState GameItem::GetTagReadonly(System.String)
+  0: System.String tagName None
+IL_0000: ldarg.0
+IL_0001: call TagSystem GameItem::get_modifiedState()
+IL_0006: ldarg.1
+IL_0007: callvirt TagState TagSystem::GetTag(System.String)
+IL_000c: callvirt TagState TagState::Clone()
+IL_0011: ret
+TagState GameItem::GetTagReadonly(T)
+  0: T tagName None
+IL_0000: ldarg.0
+IL_0001: call TagSystem GameItem::get_modifiedState()
+IL_0006: ldarg.1
+IL_0007: callvirt TagState TagSystem::GetTag<T>(T)
+IL_000c: callvirt TagState TagState::Clone()
+IL_0011: ret

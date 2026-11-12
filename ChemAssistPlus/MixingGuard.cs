@@ -35,25 +35,22 @@ namespace ChemAssistPlus
             var from = RecipeCatalog.Recipes.Where(x => HasRecipe(incoming, x)).ToList();
             var into = RecipeCatalog.Recipes.Where(x => HasRecipe(targetParts, x)).ToList();
             if (from.Count == 0 || into.Count == 0) return null;
-            if (from.Any(a => into.Any(b => a != b))) return "两瓶含不同配方的原浆、中间液或提取物。";
+            if (from.Any(a => into.Any(b => a != b))) return "两瓶含不同配方，混合后会混装在同一瓶。";
             if ((NativeChem.WetTotal(source) <= WaterHelper.DRY_TOLERANCE_UL)
                 != (NativeChem.WetTotal(target) <= WaterHelper.DRY_TOLERANCE_UL))
-                return "一瓶已蒸干，另一瓶仍含挥发液；混合会把干料重新混湿。";
+                return "一瓶已蒸干，另一瓶仍有挥发液；混合会重新弄湿干料。";
             double difference = Math.Abs(MaterialPercentage(incoming, from[0]) - MaterialPercentage(targetParts, from[0]));
             return difference > MergeConcentrationPoints + 1e-9
-                ? "同配方原浆／提取物占比相差 " + difference.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)
-                    + " 个百分点，超过 " + MergeConcentrationPoints + " 个百分点。" : null;
+                ? "同配方浓度相差 " + difference.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture)
+                    + " 个百分点（超过 " + MergeConcentrationPoints + "）。" : null;
         }
 
-        static string BatchLiquids(int[] parts) => string.Join("；", RecipeCatalog.Recipes
-            .SelectMany(x => new[] { x.FeedLiquids[0], x.ProductLiquid }).Distinct()
-            .Where(x => Part(parts, x) > 0).Select(x => LiquidName(x) + " " + Vol(Part(parts, x))));
-
-        static string BatchState(GameItem item, int[] parts) => string.Join("；", RecipeCatalog.Recipes
-            .Where(x => HasRecipe(parts, x)).Select(x => ChemNames.ProductName(x.ProductId) + "对应原浆／提取物 "
+        static string BatchState(GameItem item, int[] parts) => string.Join("\n", RecipeCatalog.Recipes
+            .Where(x => HasRecipe(parts, x)).Select(x => LiquidName(x.ProductLiquid)
+                + (x.FeedLiquids[0] != x.ProductLiquid && Part(parts, x.FeedLiquids[0]) > 0 ? "（含原浆）" : "") + " "
                 + MaterialPercentage(parts, x).ToString("0.###", System.Globalization.CultureInfo.InvariantCulture) + "%"))
-            + "；挥发液 " + Vol(NativeChem.WetTotal(item))
-            + (NativeChem.WetTotal(item) <= WaterHelper.DRY_TOLERANCE_UL ? "（已蒸干）" : "（未蒸干）");
+            + "\n挥发液 " + Vol(NativeChem.WetTotal(item))
+            + (NativeChem.WetTotal(item) <= WaterHelper.DRY_TOLERANCE_UL ? " · 已蒸干" : " · 未蒸干");
 
         static void MixingNotice(string message)
         {
@@ -68,6 +65,7 @@ namespace ChemAssistPlus
             // Do not close a native dialog which has since replaced ours.
             if (request?.Dialog != null && request.Dialog.bodyTMP != null && request.Dialog.bodyTMP.text == request.Body)
                 request.Dialog.ClosePanel();
+            RestoreMixDialogView();
         }
 
         public static void TickMixConfirmation()
@@ -77,6 +75,7 @@ namespace ChemAssistPlus
                 || request.Dialog == null || request.Dialog.panel == null || !request.Dialog.panel.activeInHierarchy
                 || request.Dialog.bodyTMP == null || request.Dialog.bodyTMP.text != request.Body))
                 pendingMix = null;
+            if (mixDialogView != null && mixDialogView.Request != pendingMix) RestoreMixDialogView();
         }
 
         static void ConfirmMix(MixRequest request)
@@ -151,11 +150,10 @@ namespace ChemAssistPlus
                     SourceParent = source.parentInventory, TargetParent = target.parentInventory,
                     SourceParts = sourceParts, TargetParts = targetParts,
                     TargetCapacity = WaterHelper.GetTotalCapacity(target), Dialog = dialog };
-                request.Body = "原液混合确认\n" + reason + "\n\n来源：" + Name(source) + " #" + source.uniqueId
-                    + "\n" + BatchLiquids(sourceParts) + "\n" + BatchState(source, sourceParts)
-                    + "\n\n接收：" + Name(target) + " #" + target.uniqueId
-                    + "\n" + BatchLiquids(targetParts) + "\n" + BatchState(target, targetParts)
-                    + "\n\n将按容器余量倒入最多 " + Vol(amount) + "。确定要混合吗？";
+                request.Body = "<size=117%>原液混合确认</size>\n" + reason + "\n\n来源瓶 #" + source.uniqueId
+                    + "\n" + BatchState(source, sourceParts)
+                    + "\n\n接收瓶 #" + target.uniqueId + "\n" + BatchState(target, targetParts)
+                    + "\n\n最多转入 " + Vol(amount) + "，仍要混合吗？";
                 pendingMix = request;
                 dialog.OpenPanel(request.Body, "确定混合", "取消", () => ConfirmMix(request), () =>
                 {
@@ -163,11 +161,13 @@ namespace ChemAssistPlus
                     pendingMix = null;
                     log?.Log("[混液确认] 玩家取消：瓶 #" + source.uniqueId + " → 瓶 #" + target.uniqueId + "；未倒液。");
                 });
+                ShowReadableMixDialog(request);
                 log?.Log("[混液确认] 等待玩家选择：瓶 #" + source.uniqueId + " → 瓶 #" + target.uniqueId);
                 return false;
             }
             catch (Exception error)
             {
+                if (pendingMix?.Source == source && pendingMix.Target == target) ClearMixConfirmation();
                 log?.Error(error.ToString());
                 MixingNotice("混液检查未完成，本次未倒液；请检查容器后重试。");
                 return false;
@@ -180,5 +180,6 @@ namespace ChemAssistPlus
     {
         static bool Prefix(GameItem sourceContainer, GameItem targetContainer) =>
             Plus.BeforeLiquidTransfer(sourceContainer, targetContainer);
+        static void Postfix() => Plus.InvalidateMaterialIcons();
     }
 }

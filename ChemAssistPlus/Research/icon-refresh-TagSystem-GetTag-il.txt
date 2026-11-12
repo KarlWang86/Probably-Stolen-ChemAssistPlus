@@ -1,0 +1,45 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+TagState TagSystem::GetTag(System.String)
+  0: System.String tag None
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: call System.Boolean TagSystem::InitTagString(System.String)
+IL_0007: pop
+IL_0008: ldarg.0
+IL_0009: call System.Collections.Generic.Dictionary`2<System.String,TagState> TagSystem::get_dict()
+IL_000e: ldarg.1
+IL_000f: callvirt !1 System.Collections.Generic.Dictionary`2<System.String,TagState>::get_Item(!0)
+IL_0014: ret
+TagState TagSystem::GetTag(System.Int64)
+  0: System.Int64 targetTag None
+  local 0: System.String
+IL_0000: ldarg.1
+IL_0001: call System.String TagSystem::LongToString(System.Int64)
+IL_0006: stloc.0
+IL_0007: ldarg.0
+IL_0008: ldloc.0
+IL_0009: call System.Boolean TagSystem::InitTagLong(System.String)
+IL_000e: pop
+IL_000f: ldarg.0
+IL_0010: call System.Collections.Generic.Dictionary`2<System.String,TagState> TagSystem::get_dict()
+IL_0015: ldloc.0
+IL_0016: callvirt !1 System.Collections.Generic.Dictionary`2<System.String,TagState>::get_Item(!0)
+IL_001b: ret
+TagState TagSystem::GetTag(T)
+  0: T targetTag None
+  local 0: System.String
+IL_0000: ldarg.1
+IL_0001: call System.String TagSystem::EnumToString<T>(T)
+IL_0006: stloc.0
+IL_0007: ldarg.0
+IL_0008: ldloc.0
+IL_0009: ldarg.1
+IL_000a: call System.String TagSystem::EnumToDisplayString<T>(T)
+IL_000f: call System.Boolean TagSystem::InitTagEnum(System.String,System.String)
+IL_0014: pop
+IL_0015: ldarg.0
+IL_0016: call System.Collections.Generic.Dictionary`2<System.String,TagState> TagSystem::get_dict()
+IL_001b: ldloc.0
+IL_001c: callvirt !1 System.Collections.Generic.Dictionary`2<System.String,TagState>::get_Item(!0)
+IL_0021: ret

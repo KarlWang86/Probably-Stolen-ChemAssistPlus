@@ -11,7 +11,7 @@ namespace ChemAssistPlus
         static Recipe EvaporatorRoute(GameItem machine)
         {
             var bottle = MachineView.Walk(machine).Container?.childItem;
-            var actual = bottle == null ? null : Detect(bottle, null);
+            var actual = LiveLiquidRecipe(bottle);
             if (actual != null) return actual;
             string remembered = machine.GetTagReadonly(EvaporatorRecipeMemoryTag).GetString();
             return RecipeCatalog.Recipes.FirstOrDefault(x => x.ProductId == remembered);
@@ -43,7 +43,7 @@ namespace ChemAssistPlus
             foreach (var machine in Scan().Where(x => x.IsID("evaporator")))
             {
                 var bottle = MachineView.Walk(machine).Container?.childItem;
-                if (bottle != null) RememberEvaporatorRoute(machine, Detect(bottle, null));
+                if (bottle != null) RememberEvaporatorRoute(machine, LiveLiquidRecipe(bottle));
             }
         }
 

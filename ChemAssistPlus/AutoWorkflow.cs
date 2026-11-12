@@ -136,7 +136,10 @@ namespace ChemAssistPlus
                 ClearNightQueue();
                 nightDetails.Clear(); runDetail = null;
                 lastFailure = null; RenderFailureBanner();
+                RememberMachineBottles();
                 string dryTransfers = StageDryEvaporatorBottles();
+                string refilled = RefillMachineBottles();
+                if (refilled.Length > 0) dryTransfers = (dryTransfers + "\n" + refilled).Trim();
                 if (dryTransfers.Length > 0) nightBatchReports.Add(dryTransfers);
                 foreach (var blender in Scan().Where(x => x.IsID("blender") && HasPendingBatch(x)).OrderBy(x => x.uniqueId))
                     nightBlenders.Enqueue(blender);

@@ -1,5 +1,12 @@
 # 当前交接
 
+## 当前开发状态 · 0.4.7（已构建，未部署／发布）
+
+- 玩家确认大字混液预览后实现MixingDialog：正文固定大字号（至少24原生单位，参照原生按钮字号缩放），标题117%，精简重复体积/容器名称，保留原因、两瓶编号、成分占比和干湿状态；按内容/画布展开，长正文滚动、按钮置底。快照恢复原生panel/body/两按钮父级、序号、RectTransform和正文样式，取消/确认/窗口替换后Tick恢复，切档/禁用立即清理。原混液检查和一次授权规则保持。
+- 玩家反馈倒液/机器换槽后图标不变：定向IL确认GetTagReadonly读modifiedState，而原生TransferLiquid通过skipValidate写state；MaterialIcons改用state.dict.TryGetValue只读真实CURRENT_PART，不创建标签/改材料。倒液Postfix和MovePot完成后失效；已有瓶子每帧比较成分、机器比较槽内瓶子与成分，0.25秒扫描新项。蒸发器路线观察共用LiveLiquidRecipe，实际新料优先于记忆；空蒸发器按既定规则继续显示分工记忆图标。证据Research/icon-refresh-*-il.txt。
+- 玩家补充9台机器过夜补瓶，并已确认“优先原来的空瓶，找不到再选最大空瓶”。MachineBottles在最终结束当天自动工作前记录搅拌机/蒸发器原液槽/制剂机当前瓶号到机器自定义标签；StageDry后及BeginDay的StageDry后补空槽。两遍先按原瓶号找可取用空瓶，再容量降序选散放空瓶；已有瓶子不替换，原生与实际体积均须0，不取别台机器的瓶子、不动回收槽，不够则空槽保留并写日志。制剂机已有空瓶时也能接收整瓶干料，源空瓶留蒸发器；沿用TransferWholeSolution及配方/容量检查。不自动制剂、不创建瓶子、不清空材料。
+- 开发前已提交0.4.6发布状态97b80cd；本轮先不提交/部署/上传。最终构建0警告0错误、原生ModScanner PASS（507 methods、capabilities none），DLL SHA256：D81E0CEB911671F4E0CC3E2CC656F0933811E193F0B1BA0F54FB64217CE44181。未新增/运行测试、未启动游戏、未修改磁盘存档。待玩家游戏内验证大字/滚动/其他对话框恢复、实际倒液/换槽图标更新，以及9台过夜原空瓶优先/大空瓶回退/缺瓶保留/干料入制剂机流程。
+
 ## 当前开发状态 · 0.4.6（已发布）
 
 - 已按玩家要求提交53afbae并发布0.4.6，english运行文件/简介与schinese简介Steam回调均成功；简介2890 UTF-8字节，prepare备份archive/before-prepare-0.4.6-20261112-224311-752，自动结果upload-result-0.4.6-languages.json。未做发布后远端复核。玩家随后反馈混液正文太小，已确认大字精简版预览；另反馈倒液/机器换槽后原料图标不更新，下一轮一并修复。

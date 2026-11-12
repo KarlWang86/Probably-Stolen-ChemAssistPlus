@@ -28,6 +28,7 @@ namespace ChemAssistPlus
         sealed class BottleMaterialIcons
         {
             public GameItemElement Item;
+            public GameItem WorkPot;
             public int Mask;
             public readonly List<TreeNodeRender> Main = new List<TreeNodeRender>(), Drag = new List<TreeNodeRender>();
         }
@@ -36,12 +37,29 @@ namespace ChemAssistPlus
         static readonly Vector3[] materialIconCorners = new Vector3[4];
         static float nextMaterialIconScan;
 
+        // Native batch transfers write state with skipValidate=true. GetTagReadonly reads
+        // modifiedState, which can still describe the previous contents. Never mutate either here.
+        static int LiveLiquidAmount(GameItem item, string id)
+        {
+            if (item?.state?.dict == null) return 0;
+            return item.state.dict.TryGetValue(Liquid.GetCurrentPartFromId(id), out var tag) ? Math.Max(0, tag.GetInt()) : 0;
+        }
+        static long LiveLiquidVolume(GameItem item) => Liquid.Liquids.Sum(x => (long)LiveLiquidAmount(item, x.identifier));
+        static Core.Recipe LiveLiquidRecipe(GameItem item)
+        {
+            if (item == null) return null;
+            var matches = Core.RecipeCatalog.Recipes.Where(x => LiveLiquidAmount(item, x.FeedLiquids[0]) > 0
+                || LiveLiquidAmount(item, x.ProductLiquid) > 0).ToList();
+            return matches.Count == 1 ? matches[0] : null;
+        }
+        internal static void InvalidateMaterialIcons() { nextMaterialIconScan = 0; }
+
         static int MaterialMask(GameItem item)
         {
             if (item == null || !item.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)) return 0;
             int mask = 0;
             for (int i = 0; i < materialIconKinds.Length; i++)
-                if (materialIconKinds[i].Liquids.Any(id => Amount(item, id) > 0)) mask |= 1 << i;
+                if (materialIconKinds[i].Liquids.Any(id => LiveLiquidAmount(item, id) > 0)) mask |= 1 << i;
             return mask;
         }
 
@@ -155,12 +173,11 @@ namespace ChemAssistPlus
             bottleMaterialIcons.Clear(); machineMaterialIcons.Clear(); nextMaterialIconScan = 0;
         }
 
-        static void RefreshMachineMaterials(GameItemElement machine, HashSet<GameItemElement> live)
+        static int MachineMaterialMask(GameItemElement machine, GameItem pot)
         {
-            var pot = Core.MachineView.Walk(machine).Container?.childItem;
             int mask = MaterialMask(pot);
             // An empty remembered evaporator keeps its material marker so its assigned line is visible.
-            if (mask == 0 && machine.IsID("evaporator") && (pot == null || WaterHelper.GetTotalVolume(pot) == 0))
+            if (mask == 0 && machine.IsID("evaporator") && (pot == null || LiveLiquidVolume(pot) == 0))
             {
                 var route = EvaporatorRoute(machine);
                 if (route != null)
@@ -168,11 +185,19 @@ namespace ChemAssistPlus
                         if (materialIconKinds[i].Liquids.Contains(route.FeedLiquids[0])
                             || materialIconKinds[i].Liquids.Contains(route.ProductLiquid)) mask |= 1 << i;
             }
+            return mask;
+        }
+
+        static void RefreshMachineMaterials(GameItemElement machine, HashSet<GameItemElement> live)
+        {
+            var pot = Core.MachineView.Walk(machine).Container?.childItem;
+            int mask = MachineMaterialMask(machine, pot);
             machineMaterialIcons.TryGetValue(machine, out var icons);
             if (mask == 0 || machine.middle == null || machine.IsDestroyed() || machine.isDebugMenu) return;
             live.Add(machine);
             if (icons == null) machineMaterialIcons.Add(machine, icons = new BottleMaterialIcons { Item = machine });
             icons.Mask = mask;
+            icons.WorkPot = pot;
         }
 
         public static void TickMaterialIcons()
@@ -181,6 +206,16 @@ namespace ChemAssistPlus
             {
                 if (bottleMaterialIcons.Count > 0 || machineMaterialIcons.Count > 0) ClearMaterialIcons();
                 return;
+            }
+            // Watch existing displays every frame, so swaps/composition changes do not wait
+            // for periodic discovery. The scan also discovers previously empty/hidden bottles.
+            foreach (var pair in bottleMaterialIcons)
+                if (pair.Key.IsDestroyed() || MaterialMask(pair.Key) != pair.Value.Mask) nextMaterialIconScan = 0;
+            foreach (var pair in machineMaterialIcons)
+            {
+                var pot = Core.MachineView.Walk(pair.Key).Container?.childItem;
+                if (pair.Key.IsDestroyed() || pot != pair.Value.WorkPot || MachineMaterialMask(pair.Key, pot) != pair.Value.Mask)
+                    nextMaterialIconScan = 0;
             }
             if (Time.unscaledTime >= nextMaterialIconScan)
             {

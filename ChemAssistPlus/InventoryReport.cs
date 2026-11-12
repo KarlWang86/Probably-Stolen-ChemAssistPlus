@@ -77,6 +77,8 @@ namespace ChemAssistPlus
                 SchedulePowerReminder();
                 string dryTransfers = StageDryEvaporatorBottles();
                 if (dryTransfers.Length > 0) nightReport = (nightReport ?? "") + "\n" + dryTransfers;
+                string refilled = RefillMachineBottles();
+                if (refilled.Length > 0) nightReport = (nightReport ?? "") + "\n" + refilled;
                 string report = EvaporatorContents();
                 if (report.Length > 0) log?.Log("[过夜产物核对]\n" + report);
                 if (nightDidWork && nightReport != null)

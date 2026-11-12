@@ -14,7 +14,9 @@
     <Compile Include="AutoWorkflow.cs" />
     <Compile Include="Distillation.cs" />
     <Compile Include="EvaporatorRouting.cs" />
+    <Compile Include="MachineBottles.cs" />
     <Compile Include="MixingGuard.cs" />
+    <Compile Include="MixingDialog.cs" />
     <Compile Include="MaterialIcons.cs" />
     <Compile Include="BatchPlan.cs" />
     <Compile Include="Purification.cs" />

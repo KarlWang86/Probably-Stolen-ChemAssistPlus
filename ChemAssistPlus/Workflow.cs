@@ -136,6 +136,7 @@ namespace ChemAssistPlus
             if (!GraphUtils.CanAccept(slot, pot)) throw new InvalidOperationException("原生规则不允许把工作瓶移入此槽位。");
             GraphUtils.TryAcceptAll(slot, pot);
             if (slot.childItem != pot) throw new InvalidOperationException("移动工作瓶没有完成；已停止。");
+            InvalidateMaterialIcons();
         }
         static string Composition(GameItem pot)
         {
