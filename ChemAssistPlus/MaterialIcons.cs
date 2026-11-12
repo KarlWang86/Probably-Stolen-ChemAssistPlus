@@ -31,15 +31,9 @@ namespace ChemAssistPlus
             public int Mask;
             public readonly List<TreeNodeRender> Main = new List<TreeNodeRender>(), Drag = new List<TreeNodeRender>();
         }
-        sealed class MachineMaterialIcons
-        {
-            public PixelWindow Window;
-            public int Mask;
-            public readonly List<MachineryButton> Buttons = new List<MachineryButton>();
-        }
-
         static readonly Dictionary<GameItemElement, BottleMaterialIcons> bottleMaterialIcons = new Dictionary<GameItemElement, BottleMaterialIcons>();
-        static readonly Dictionary<GameItem, MachineMaterialIcons> machineMaterialIcons = new Dictionary<GameItem, MachineMaterialIcons>();
+        static readonly Dictionary<GameItemElement, BottleMaterialIcons> machineMaterialIcons = new Dictionary<GameItemElement, BottleMaterialIcons>();
+        static readonly Vector3[] materialIconCorners = new Vector3[4];
         static float nextMaterialIconScan;
 
         static int MaterialMask(GameItem item)
@@ -67,16 +61,33 @@ namespace ChemAssistPlus
                 node = TreeNodeRender.Instantiate().SetParent(parent);
                 node.gameObject.name = "ChemAssistPlus.MaterialIcon";
                 node.image.raycastTarget = false;
+                node.image.type = Image.Type.Simple;
                 node.image.preserveAspect = true;
                 var rect = node.rectTransform;
-                rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
+                rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
                 nodes[index] = node;
             }
             else if (node.parent != parent) node.SetParent(parent);
             return node;
         }
 
-        static void DrawBottleMaterials(BottleMaterialIcons icons, bool dragging)
+        static void MaterialBounds(RectTransform rect, Transform parent, out Vector2 min, out Vector2 max)
+        {
+            rect.GetWorldCorners(materialIconCorners);
+            min = max = parent.InverseTransformPoint(materialIconCorners[0]);
+            for (int i = 1; i < materialIconCorners.Length; i++)
+            {
+                Vector2 point = parent.InverseTransformPoint(materialIconCorners[i]);
+                min = Vector2.Min(min, point); max = Vector2.Max(max, point);
+            }
+        }
+
+        static void HideMaterialNodes(List<TreeNodeRender> nodes)
+        {
+            foreach (var node in nodes) if (node != null) node.image.enabled = false;
+        }
+
+        static void DrawMaterialIcons(BottleMaterialIcons icons, bool dragging, bool machine)
         {
             var item = icons.Item;
             var parent = dragging ? item.fakeMiddle : item.middle;
@@ -84,16 +95,35 @@ namespace ChemAssistPlus
             var nodes = dragging ? icons.Drag : icons.Main;
             if (parent == null || background == null || background.image == null)
             {
-                foreach (var node in nodes) if (node != null) node.image.enabled = false;
+                HideMaterialNodes(nodes);
                 return;
             }
             int count = 0;
             for (int i = 0; i < materialIconKinds.Length; i++) if ((icons.Mask & (1 << i)) != 0) count++;
             if (count == 0) return;
+            // Slots scale/center the native image independently of the inventory grid.
+            // Use its actual rendered bounds, including rotation/flip, in the unrotated overlay parent.
+            MaterialBounds(background.rectTransform, parent.rectTransform, out var min, out var max);
+            for (Transform ancestor = background.rectTransform.parent; ancestor != null; ancestor = ancestor.parent)
+            {
+                var rectMask = ancestor.GetComponent<RectMask2D>();
+                var mask = ancestor.GetComponent<Mask>();
+                if ((rectMask != null && rectMask.isActiveAndEnabled) || (mask != null && mask.isActiveAndEnabled))
+                {
+                    MaterialBounds((RectTransform)ancestor, parent.rectTransform, out var clipMin, out var clipMax);
+                    min = Vector2.Max(min, clipMin); max = Vector2.Min(max, clipMax);
+                }
+            }
+            float width = max.x - min.x, height = max.y - min.y;
+            if (width <= 4 || height <= 4) { HideMaterialNodes(nodes); return; }
             float grid = UISettings.current.gridSize;
-            float width = item.modifiedShape.width * grid, height = item.modifiedShape.height * grid;
-            // Stay upright at the top-right of the current rotated footprint; fit all icons vertically.
-            float size = Mathf.Max(1, Mathf.Min(grid, width - 4, (height - 4 - (count - 1)) / count));
+            // Leave one cell (at most half the width) at the machine's top-right for status mods.
+            float statusSpace = machine ? Mathf.Min(grid, width * 0.5f) : 0;
+            float size = Mathf.Max(1, machine
+                ? Mathf.Min(grid, height - 4, (width - 4 - statusSpace - (count - 1)) / count)
+                : Mathf.Min(grid, width - 4, (height - 4 - (count - 1)) / count));
+            float stackHeight = count * size + count - 1;
+            var center = (min + max) * 0.5f;
             int row = 0;
             for (int i = 0; i < materialIconKinds.Length; i++)
             {
@@ -103,7 +133,9 @@ namespace ChemAssistPlus
                 node.image.color = new Color(1, 1, 1, background.image.color.a);
                 node.image.enabled = background.image.enabled && node.image.sprite != null;
                 node.rectTransform.sizeDelta = new Vector2(size, size);
-                node.rectTransform.anchoredPosition = new Vector2(width - size - 2, -2 - row * (size + 1));
+                node.rectTransform.localPosition = machine
+                    ? new Vector3(min.x + 2 + size * 0.5f + row * (size + 1), max.y - 2 - size * 0.5f, 0)
+                    : new Vector3(center.x, center.y + stackHeight * 0.5f - size * 0.5f - row * (size + 1), 0);
                 node.rectTransform.SetAsLastSibling();
                 row++;
             }
@@ -116,27 +148,15 @@ namespace ChemAssistPlus
                 if (node != null) { node.image.enabled = false; UnityEngine.Object.Destroy(node.gameObject); }
         }
 
-        static void RemoveMachineMaterials(MachineMaterialIcons icons)
-        {
-            foreach (var button in icons.Buttons)
-            {
-                // RemoveHeaderButton detaches but does not destroy its render tree.
-                if (button.handler == null) continue;
-                if (icons.Window?.handler != null) icons.Window.RemoveHeaderButton(button);
-                UnityEngine.Object.Destroy(button.handler.gameObject);
-            }
-        }
-
         static void ClearMaterialIcons()
         {
             foreach (var icons in bottleMaterialIcons.Values) RemoveBottleMaterials(icons);
-            foreach (var icons in machineMaterialIcons.Values) RemoveMachineMaterials(icons);
+            foreach (var icons in machineMaterialIcons.Values) RemoveBottleMaterials(icons);
             bottleMaterialIcons.Clear(); machineMaterialIcons.Clear(); nextMaterialIconScan = 0;
         }
 
-        static void RefreshMachineMaterials(GameItem machine, HashSet<GameItem> live)
+        static void RefreshMachineMaterials(GameItemElement machine, HashSet<GameItemElement> live)
         {
-            var nativeWindow = machine.contentWindow;
             var pot = Core.MachineView.Walk(machine).Container?.childItem;
             int mask = MaterialMask(pot);
             // An empty remembered evaporator keeps its material marker so its assigned line is visible.
@@ -149,33 +169,10 @@ namespace ChemAssistPlus
                             || materialIconKinds[i].Liquids.Contains(route.ProductLiquid)) mask |= 1 << i;
             }
             machineMaterialIcons.TryGetValue(machine, out var icons);
-            if (icons != null && (icons.Window != nativeWindow || icons.Mask != mask))
-            {
-                RemoveMachineMaterials(icons); machineMaterialIcons.Remove(machine); icons = null;
-            }
-            if (mask == 0 || nativeWindow?.handler == null) return;
+            if (mask == 0 || machine.middle == null || machine.IsDestroyed() || machine.isDebugMenu) return;
             live.Add(machine);
-            if (icons != null) return;
-            icons = new MachineMaterialIcons { Window = nativeWindow, Mask = mask };
-            machineMaterialIcons.Add(machine, icons);
-            // Native header layout places controls right-to-left; reverse insertion preserves
-            // the same coffee / dream cap / nightmare cap order as the bottle's vertical list.
-            for (int i = materialIconKinds.Length - 1; i >= 0; i--)
-            {
-                if ((mask & (1 << i)) == 0) continue;
-                var sprite = MaterialSprite(i);
-                if (sprite == null) continue;
-                var button = new MachineryButton(sprite, sprite, sprite, sprite, null).SetSize(16, 16);
-                button.SetDescription(LocHelper.GetLocalizedItem(materialIconKinds[i].NameKey));
-                icons.Buttons.Add(button);
-                nativeWindow.AddHeaderButton(button);
-                // Display only; do not intercept the machine's dragging or click targets.
-                foreach (var graphic in button.handler.GetComponentsInChildren<Graphic>(true))
-                {
-                    graphic.raycastTarget = false;
-                    if (graphic is Image image) { image.type = Image.Type.Simple; image.preserveAspect = true; }
-                }
-            }
+            if (icons == null) machineMaterialIcons.Add(machine, icons = new BottleMaterialIcons { Item = machine });
+            icons.Mask = mask;
         }
 
         public static void TickMaterialIcons()
@@ -190,7 +187,7 @@ namespace ChemAssistPlus
                 nextMaterialIconScan = Time.unscaledTime + 0.25f;
                 var all = Scan();
                 var liveBottles = new HashSet<GameItemElement>();
-                var liveMachines = new HashSet<GameItem>();
+                var liveMachines = new HashSet<GameItemElement>();
                 foreach (var item in all)
                 {
                     if (item is GameItemElement element && !element.IsDestroyed() && !item.isDebugMenu)
@@ -204,18 +201,23 @@ namespace ChemAssistPlus
                             icons.Mask = mask;
                         }
                     }
-                    if (item.IsTag("MACHINE") && item.contentWindow != null) RefreshMachineMaterials(item, liveMachines);
+                    if (item is GameItemElement machine && item.IsTag("MACHINE")) RefreshMachineMaterials(machine, liveMachines);
                 }
                 foreach (var item in bottleMaterialIcons.Keys.Where(x => !liveBottles.Contains(x)).ToArray())
                 { RemoveBottleMaterials(bottleMaterialIcons[item]); bottleMaterialIcons.Remove(item); }
                 foreach (var item in machineMaterialIcons.Keys.Where(x => !liveMachines.Contains(x)).ToArray())
-                { RemoveMachineMaterials(machineMaterialIcons[item]); machineMaterialIcons.Remove(item); }
+                { RemoveBottleMaterials(machineMaterialIcons[item]); machineMaterialIcons.Remove(item); }
             }
             // Mirror native real/drag visibility each frame, so moving a bottle leaves no ghost badge.
             foreach (var icons in bottleMaterialIcons.Values)
             {
                 if (icons.Item.IsDestroyed()) continue;
-                DrawBottleMaterials(icons, false); DrawBottleMaterials(icons, true);
+                DrawMaterialIcons(icons, false, false); DrawMaterialIcons(icons, true, false);
+            }
+            foreach (var icons in machineMaterialIcons.Values)
+            {
+                if (icons.Item.IsDestroyed()) continue;
+                DrawMaterialIcons(icons, false, true); DrawMaterialIcons(icons, true, true);
             }
         }
     }

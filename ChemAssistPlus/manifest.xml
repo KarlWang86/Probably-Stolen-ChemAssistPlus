@@ -3,8 +3,8 @@
   <ID>chemical_workflow_assistant</ID>
   <Name>化学流程助手 / Chemical Workflow Assistant</Name>
   <Author>wangkan</Author>
-  <ModVersion>0.4.5</ModVersion>
-  <Description>化学流程助手0.4.5。结束当天静默处理，酒精不足按完整原料份数限量。优先高纯度蒸馏酒精，按各瓶真实浓度计算剂量；无新料时正常等待已有批次蒸发，不报槽位占用。两级过滤后，有紫外线灯且有微生物时先消毒，再按需使用净水药片；报告消毒结果或跳过原因。药片统计散片和瓶内真实单片，散片优先，报告原生净化下限及未投片原因。滤材低耐久优先并接续，湿料蒸发器缺电持续提醒。450x600竖版用量与剂量/纯度面板。</Description>
+  <ModVersion>0.4.6</ModVersion>
+  <Description>化学流程助手0.4.6。结束当天静默处理，酒精不足按完整原料份数限量。优先高纯度蒸馏酒精，按各瓶真实浓度计算剂量；无新料时正常等待已有批次蒸发，不报槽位占用。两级过滤后，有紫外线灯且有微生物时先消毒，再按需使用净水药片；报告消毒结果或跳过原因。药片统计散片和瓶内真实单片，散片优先，报告原生净化下限及未投片原因。滤材低耐久优先并接续，湿料蒸发器缺电持续提醒。450x600竖版用量与剂量/纯度面板。</Description>
   <GameVersions><Version>0.46</Version></GameVersions>
   <Prerequisites />
   <Assemblies><Assembly>ChemAssistPlus.dll</Assembly></Assemblies>

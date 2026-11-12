@@ -32,6 +32,7 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 数据与边界
 
+- 0.4.6按玩家截图与已确认预览修正图标定位：GameItemElement.middle不等于槽位实际瓶图边界，库存gridSize×modifiedShape不能用于推算所有机器槽位图片坐标。改从background/fakeBackground的RectTransform.GetWorldCorners读取世界边界，转到middle/fakeMiddle局部空间并与有效祖先RectMask2D/Mask相交；节点用中心锚点/localPosition居中纵排。机器同样叠加本体左上横排，停止使用PixelWindow.AddHeaderButton。Unity几何运算只读，不修改原生物品形状或窗口布局；实际裁切/位置仍需游戏内验收。
 - 原生制剂规则已于2026-11-12定向复核：ChemFinisherRecipe.CanOutput仅检查总体积≥requiredVolume，以及isRequireDry时WaterHelper.IsWet为false；咖啡因配方requiredVolume=5000μL、isRequireDry=true。IsWet把全部isEvaporative成分求和，>100μL为湿，与DRY_TOLERANCE_UL=100一致；不是“纯度达到98%即可”。截图酒精14.14mL+水2.30mL仍明显超标，须回蒸发器原液槽继续原生过夜；不修改制剂条件。证据Research/finisher-{rules,callbacks}-20261112-il.txt、finisher-recipe-canoutput-il.txt、finisher-recipes-il.txt。
 - 原材料图标0.4.5：HydroponicDirectory.CoffeeBean/DreamCap/NightmareCap的原生sprite分别为Items/items_hydroponic_plant下coffee_bean/dream_cap/nightmare_cap；RenderHandler.TryLoadFromAtlas只读加载。HandleNomoreReaction消耗dream_cap_extract，故nomore也映射梦帽菇。TreeNodeRender.Instantiate().SetParent可建立独立显示节点；GameItemElement.middle/fakeMiddle为占格原点，rotator/fakeRotator才施加物品旋转；background/fakeBackground的image.enabled及alpha表示原生实物/拖影显隐。PixelWindow.AddHeaderButton经MachineryValidate在右上由右到左布置并为标题留宽，RemoveHeaderButton只ResetParent、不销毁，故需另外Destroy自建按钮节点。证据Research/containericons-*-il.txt；纯显示，无新增Harmony补丁。
 - water_tablet 每片15mL氯；water_tablet_container 是外瓶，只计内部真实片；散片优先。
