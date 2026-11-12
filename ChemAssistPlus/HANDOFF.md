@@ -1,5 +1,7 @@
 # 当前交接
 
+- 2026-11-12发布流程约定更新：以Steam目标语言提交回调均OK为完成标准。DEVELOPMENT.md/AGENTS.md及WorkshopPublisher已同步：默认仅一次归属检查，取消提交后Read/逐字比较，结果状态submitted，保留简短自动JSON；不再默认另跑语言预检、公开API/日志复核或撰写详细回执。人工按需验证，-CheckOnly仍可用。发布工具单独编译0警告0错误，未运行发布、未修改已发布0.4.1运行文件。
+
 ## 当前开发状态 · 0.4.1（已发布）
 
 - 2026-11-12 00:56（香港时间）按玩家要求先Git提交再发布：源码/文档提交bc262f7。现有公开工坊条目3836818025的english内容上传及schinese简介同步均返回k_EResultOK，禁用缓存逐字核验两语言标题/完整简介一致，回执WorkshopUpload/upload-result-0.4.1-languages.json状态verified。Steam日志00:56:29记录新ManifestID6703503729439725191，00:56:30/00:56:32分别Upload finished OK；公开API确认result=1、visibility=0、相同Manifest及简介一致。简介7982 UTF-8字节，保留20个历史版本及两项鸣谢；准备前备份archive/before-prepare-0.4.1-20261112-005552-858。详情Research/WorkshopUpload-0.4.1-20261112.md。

@@ -80,13 +80,13 @@ try
         }
         finally { SteamUGC.ReleaseQueryUGCRequest(query); }
     }
-    foreach (var language in new[] { "english", "schinese" })
+    // Publishing needs only one ownership/identity check. Reading both languages is opt-in.
+    foreach (var language in args[1] == "--check" ? new[] { "english", "schinese" } : new[] { "english" })
     {
         var before = Read(language, true);
         if (args[1] == "--schinese-only" && language == "english" && (before.m_rgchTitle != fields["title"] || before.m_rgchDescription != description))
             throw new Exception("Default-language text differs from this prepared release. Verify the content release before retrying Chinese alone.");
         Console.WriteLine($"{language}: current title={before.m_rgchTitle}; matches prepared={before.m_rgchDescription == description}");
-        stages.Add(new { language, phase = "before", title = before.m_rgchTitle, description = before.m_rgchDescription });
     }
     if (args[1] == "--check") { Console.WriteLine("Read-only preflight passed; nothing submitted."); return 0; }
     Save("in-progress");
@@ -104,14 +104,9 @@ try
         Save("in-progress");
         if (result.m_eResult != EResult.k_EResultOK || result.m_bUserNeedsToAcceptWorkshopLegalAgreement)
             throw new Exception("Submission failed or legal agreement required: " + language + " / " + result.m_eResult);
-        var after = Read(language, true);
-        bool matches = after.m_rgchTitle == fields["title"] && after.m_rgchDescription == description;
-        stages.Add(new { language, phase = "verify", matches, title = after.m_rgchTitle, description = after.m_rgchDescription });
-        Save(matches ? "in-progress" : "verification-failed");
-        if (!matches) throw new Exception("Submitted text not yet verified: " + language);
-        Console.WriteLine(language + ": OK, remote title and full description match prepared source.");
+        Console.WriteLine(language + ": Steam submission succeeded.");
     }
-    Save("verified");
+    Save("submitted");
     Console.WriteLine("Receipt: " + receiptPath);
     return 0;
 }

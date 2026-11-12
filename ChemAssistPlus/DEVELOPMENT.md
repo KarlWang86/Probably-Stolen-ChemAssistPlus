@@ -11,8 +11,8 @@
 | 日常构建 | .\build.ps1 | build/ 中 DLL、清单、说明、原生扫描结果；不部署/打包 |
 | 重扫已有构建 | .\validate.ps1 | build/验证结果.txt 与 validation.json（记录文件/游戏哈希） |
 | 准备工坊内容与排版 | .\prepare-workshop.ps1 | 核对已扫描构建、备份旧上传工作区、同步3个运行文件/多行BBCode简介/逐版本记录/鸣谢与VDF；配置预检，不登录/上传 |
-| 工坊语言预检 | .\publish-workshop.ps1 -CheckOnly | 核对构建/待传文件哈希、在线Steam账号及条目归属，分别只读查询english/schinese；不提交 |
-| 发布并同步简介 | .\publish-workshop.ps1 | 显式发布到现有公开条目；english上传内容/封面/标题/简介，schinese只同步同一份标题/简介；分别核验并保存回执 |
+| 可选人工核查 | .\publish-workshop.ps1 -CheckOnly | 需要时只读查询english/schinese与本地是否一致；不提交，日常发布无需另跑 |
+| 发布并同步简介 | .\publish-workshop.ps1 | english上传内容/封面/标题/简介，schinese同步标题/简介；两次Steam提交均成功即完成，自动保存简短结果 |
 | 单独重试简中简介 | .\publish-workshop.ps1 -SchineseOnly | 仅在默认语言已提交当前构建时使用，更新schinese标题/简介，不上传运行文件 |
 | 查签名与参数 | .\query-api.ps1 -Type WaterHelper -Method RemoveAndReturn | 终端短结果，完整结果保存在 Research/ |
 | 查指定方法 IL | .\query-api.ps1 -Type ChemicalHelper -Method HandleChlorine -IL | 仅显示保存路径；类型/方法支持单独 * 匹配全部 |
@@ -66,9 +66,10 @@ upload.ps1 已支持VDF的多行引号值和转义字符；简介/更新说明�
 1. 执行 build.ps1，得到通过原生扫描的 build/。上传无需先部署到 Mods，也无需先生成zip。
 2. 更新完整CHANGELOG.md、工坊精简稿WorkshopChangelog.md与WorkshopDescription.template.txt；保留所有已记录版本，不把历史行为误写成当前功能，鸣谢放末尾并保留链接，生成简介须小于8000 UTF-8字节。
 3. 执行prepare-workshop.ps1：核对VERSION与build/validation.json及三个运行文件哈希，备份旧WorkshopUpload/content、VDF、简介/更新说明/版本记录与哈希记录至archive/，再同步新的运行文件、简介、完整CHANGELOG-source.md和当次更新说明；保留条目ID、封面与可见性。release.ps1仍只打包。
-4. prepare-workshop.ps1末尾自动执行upload.ps1 -CheckOnly，也可单独运行：`powershell -NoProfile -ExecutionPolicy Bypass -File <游戏根目录>\WorkshopUpload\upload.ps1 -CheckOnly`。不登录或上传；验证配置、必要文件、多行文本一致性及成品哈希。工坊实际渲染需上传后再核实。
-5. 从0.4.0起，优先运行 publish-workshop.ps1 -CheckOnly，再显式运行 publish-workshop.ps1 发布。工具复用已在线Steam客户端会话，无需输入密码，不启动游戏。固定AppID4348910、条目3836818025，核对在线账号是条目所有者且条目公开。先提交english（含运行文件、封面和更新说明），再提交schinese（仅标题/简介，无重复更新说明）；两个语言都来自同一份本地简介。工具不修改可见性。
-6. 工具在每次提交后保存 WorkshopUpload/upload-result-<版本>-languages.json，包含提交前两种语言文本、每次SubmitItemUpdate结果及禁用查询缓存后的逐字核验结果。状态verified代表本次目标语言均核验通过；incomplete须检查分阶段结果，不直接重复全量发布。仅中文失败可用 -SchineseOnly 重试。内容ManifestID另由公开API/上传日志核实，不将语言更新成功当作内容下载或游戏加载成功。
+4. prepare-workshop.ps1末尾自动执行本地upload.ps1 -CheckOnly，检查配置、必要文件、多行文本及成品哈希，不登录或上传。
+5. 直接显式运行 publish-workshop.ps1 发布，无需先另跑语言-CheckOnly。工具复用已在线Steam客户端会话，核对一次条目归属及公开状态；固定AppID4348910、条目3836818025，不修改可见性、不启动游戏。先提交english（运行文件、封面、标题/简介、更新说明），再提交schinese（同份标题/简介，不重复上传内容）。
+6. 两次SubmitItemUpdate均返回k_EResultOK且无需接受新协议即视为发布完成，立即向玩家报告。工具自动保存简短的WorkshopUpload/upload-result-<版本>-languages.json（文件哈希及提交结果），成功状态为submitted；历史verified回执保留。失败状态incomplete，按分阶段结果处理；仅中文失败可用-SchineseOnly重试。
+7. 发布后不再自动查询远端简介逐字比对、调用公开API、翻查上传日志或另写详细回执报告/专门记录提交。再次验证、页面显示、订阅下载及游戏实际加载由玩家人工处理；玩家明确要求时再查。-CheckOnly保留为可选只读核查入口，不是默认发布步骤。
 
 旧SteamCMD入口upload.cmd/upload.ps1保留备用，只更新默认语言，不能替代上述双语言发布。它会询问登录用户名，密码/Steam Guard由玩家直接输入；SteamCMD登录可能替换Steam客户端会话，之后需恢复客户端在线再调用SteamUGC工具。
 
@@ -83,11 +84,11 @@ SteamCMD 等价命令（在其目录运行；含空格的路径加引号）：
 
 官方依据：[SetItemUpdateLanguage](https://partner.steamgames.com/doc/api/ISteamUGC#SetItemUpdateLanguage)、[语言代码](https://partner.steamgames.com/doc/store/localization/languages)、[SteamCMD工坊说明](https://partner.steamgames.com/doc/features/workshop/implementation#SteamCmd_Integration)。API代码为english、schinese、tchinese；本项目目前只同步前两种。
 
-### 上传、下载、运行分别核验
+### 人工按需核验（非发布必做步骤）
 
 | 阶段 | 足够的证据 / 排查入口 |
 | --- | --- |
-| 上传已提交 | 本次 console_log.txt 有 Committing update...Success / Success；workshop_log.txt 有 Upload finished for workshop item 3836818025 : OK，核对时间、ID和新内容 ManifestID |
+| 发布完成 | 当前发布工具目标语言的SubmitItemUpdate均k_EResultOK，无需接受新协议；旧SteamCMD入口以本次提交Success为准 |
 | 订阅文件已更新 | steamapps/workshop/content/4348910/3836818025/manifest.xml 版本正确，DLL SHA256 与上传回执一致 |
 | 游戏已加载 | 本次启动的 Player.log 出现 audit: chemical_workflow_assistant，版本正确、source=Workshop、workshop=3836818025、running=True |
 
