@@ -10,10 +10,22 @@ const uint App = 4348910;
 const ulong Item = 3836818025;
 if (args.Length < 2 || args[1] is not ("--check" or "--publish" or "--schinese-only"))
 {
-    Console.Error.WriteLine("WorkshopPublisher <WorkshopUpload directory> --check|--publish|--schinese-only");
+    Console.Error.WriteLine("WorkshopPublisher <WorkshopUpload directory> --check|--publish|--schinese-only [additional image paths...]");
     return 2;
 }
 var workspace = Path.GetFullPath(args[0]);
+var previews = args.Skip(2).Select(Path.GetFullPath).ToArray();
+if (previews.Length > 0 && args[1] != "--publish")
+    throw new Exception("Additional previews require a full publish; do not add them again on a Chinese-only retry.");
+var previewHashes = new Dictionary<string, string>();
+foreach (var path in previews)
+{
+    var info = new FileInfo(path);
+    if (!info.Exists || info.Length == 0 || info.Length >= 1_000_000
+        || !new[] { ".png", ".jpg", ".jpeg", ".gif" }.Contains(info.Extension.ToLowerInvariant()))
+        throw new Exception("Additional preview must be an existing PNG/JPG/GIF under 1 MB: " + path);
+    previewHashes.Add(path, Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))));
+}
 var fields = Regex.Matches(File.ReadAllText(Path.Combine(workspace, "upload.vdf")), "\"([^\"\\r\\n]+)\"\\s+\"((?:[^\"\\\\]|\\\\.)*)\"")
     .ToDictionary(m => m.Groups[1].Value, m => Regex.Replace(m.Groups[2].Value, @"\\([""\\nrt])", e => e.Groups[1].Value switch { "n" => "\n", "r" => "\r", "t" => "\t", var s => s }));
 if (fields["appid"] != App.ToString() || fields["publishedfileid"] != Item.ToString() || fields["visibility"] != "0")
@@ -41,7 +53,8 @@ var receiptPath = Path.Combine(workspace, $"upload-result-{version}-languages.js
 var stages = new List<object>();
 void Save(string status) => File.WriteAllText(receiptPath, JsonSerializer.Serialize(new {
     version, appid = App.ToString(), publishedfileid = Item.ToString(), status,
-    updatedAt = DateTimeOffset.Now, files = hashes, descriptionUtf8Bytes = Encoding.UTF8.GetByteCount(description), stages
+    updatedAt = DateTimeOffset.Now, files = hashes, additionalPreviews = previewHashes,
+    descriptionUtf8Bytes = Encoding.UTF8.GetByteCount(description), stages
 }, new JsonSerializerOptions { WriteIndented = true }), new UTF8Encoding(true));
 Environment.SetEnvironmentVariable("SteamAppId", App.ToString());
 Environment.SetEnvironmentVariable("SteamGameId", App.ToString());
@@ -98,6 +111,15 @@ try
         // Upload runtime files/cover only once. Chinese pass only changes localized text.
         if (language == "english" && (!SteamUGC.SetItemContent(handle, fields["contentfolder"]) || !SteamUGC.SetItemPreview(handle, fields["previewfile"])))
             throw new Exception("SetItemContent/Preview failed.");
+        if (language == "english")
+            foreach (var path in previews)
+            {
+                if (Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))) != previewHashes[path])
+                    throw new Exception("Additional preview changed during publication: " + path);
+                if (!SteamUGC.AddItemPreviewFile(handle, path, EItemPreviewType.k_EItemPreviewType_Image))
+                    throw new Exception("AddItemPreviewFile failed: " + path);
+                Console.WriteLine("Attached screenshot: " + Path.GetFileName(path));
+            }
         Console.WriteLine($"Submitting {language}, content={language == "english"} ...");
         var result = Wait<SubmitItemUpdateResult_t>(SteamUGC.SubmitItemUpdate(handle, language == "english" ? fields["changenote"] : null));
         stages.Add(new { language, phase = "submit", result = result.m_eResult.ToString(), legalAgreementRequired = result.m_bUserNeedsToAcceptWorkshopLegalAgreement });

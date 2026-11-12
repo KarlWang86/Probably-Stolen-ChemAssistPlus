@@ -1,42 +1,47 @@
-# Probably-Stolen-ChemAssistPlus
+# Probably Stolen 化学流程助手
 
-Probably Stolen 化学流程助手（ChemAssistPlus），当前版本见 [VERSION](ChemAssistPlus/VERSION)。
+在《Probably Stolen》中安排化学加工：放好原料和设备，点击“结束当天”，助手自动逐批处理，并在次日汇总结果。使用游戏原生化学与耗料接口，蒸发仍由原生过夜流程完成。
 
-## 独立工程
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025) · [当前版本](ChemAssistPlus/VERSION) · [更新记录](ChemAssistPlus/CHANGELOG.md) · [完整使用说明](ChemAssistPlus/使用说明.txt)
 
-开发主目录：`D:\work\Probably-Stolen-ChemAssistPlus\ChemAssistPlus`。
-本仓库由游戏目录中的 Modding 完整复制而来，源码独立于 Steam 游戏安装目录；卸载游戏不会删除本仓库。
-原游戏目录中的 Modding 保留为迁移时备份，后续开发请使用本仓库，避免两份源码分叉。
+## 主要功能
 
-源码、历史测试、开发脚本、使用说明、研究记录及交接文档纳入 Git。
-bin/、obj/、build/、staging/、releases/、ZIP、游戏/工具二进制与提取的 BIN 资源仅保留在本地，不上传。
-游戏 DLL 仍需从自己的游戏安装中引用。
+- **结束当天自动加工**：遍历搅拌机，按顺序执行搅拌、补料、提取、去蛋白/脂肪、两级过滤和按需净化，再送入蒸发器。每台每晚处理一批，共用加热器及过滤设备。
+- **开工前检查**：核对工作瓶容量、原料、酒精、试剂、滤材和设备供电。酒精不足时按完整原料份数限量，优先使用高纯度酒精；条件不足保留原料并说明原因。
+- **自动整理原液**：容量和供电允许时集中同配方湿存量，为新批次腾出蒸发器；蒸干后可并入制剂机中的同类干料，或移入空闲制剂机。空瓶留原液槽备用，制剂由玩家操作。
+- **按需净化**：两级过滤后，拥有紫外线灯且有微生物时先消毒，再按需使用净水药片；统计散片和瓶内真实单片，优先使用散片。
+- **用量与结果面板**：分设备显示预计/实际用量、库存、剂量和纯度，记录设备与瓶号；次日可弹出汇总，湿料蒸发器缺电时提醒。
 
-## 配置与构建
+成分条颜色采用有来源的 pH 参考色或酸碱分类；未知成分用灰色。颜色不是游戏中该瓶混合液的实测 pH。
 
-需要 .NET SDK（主 Mod 为 netstandard2.1，工具为 net8.0）及已安装的游戏。
-在 `ChemAssistPlus/GameRoot.local.txt` 中写入游戏根目录的绝对路径（单行，无引号）；此文件已忽略。
-本机已配置为 `E:\SteamLibrary\steamapps\common\Probably Stolen`。
-也可设置环境变量 `PROBABLY_STOLEN_GAME_ROOT`，优先级高于本地文件。
-未配置时兼容原有 Modding/ChemAssistPlus 相对目录。
+## 安装与启用
 
-在 `ChemAssistPlus` 目录执行：
+1. 在 [Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025)订阅“化学助手”。
+2. 在游戏的模组菜单中审阅并启用，随后重启游戏加载。
+3. 进入存档后按 **F10** 打开面板，也可点击搅拌机窗口中的“化学助手”按钮。热键可在游戏选项中修改。
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-```
+模组声明适用于游戏 **1.0.0 的全部修订版**。版本声明只影响兼容提示；更新后的实际加载情况以游戏内信息为准。
 
-只构建并运行原生 ModScanner，输出到 build/；部署、打包与工坊上传需按开发文档单独执行。
-开发约定见 [AGENTS.md](ChemAssistPlus/AGENTS.md)，当前状态见 [HANDOFF.md](ChemAssistPlus/HANDOFF.md)，操作见 [DEVELOPMENT.md](ChemAssistPlus/DEVELOPMENT.md)。
+## 游戏内用法
 
-## 备份到 GitHub
+1. 把原料放入搅拌机输入格，准备工作瓶、酒精及相应试剂。
+2. 准备关闭且空闲的加热器、两级过滤设备，以及有电、可接收原液的蒸发器。
+3. 按 **F10** 查看各批预估、瓶子和缺料原因；确认“自动处理”开启后，点击游戏的**结束当天**。
+4. 次日查看“本晚结果”及汇总。提取物在蒸发器的**原液槽**接收瓶中，回收槽用于溶剂回收。
+5. 蒸干的同类原液可自动整理到制剂机；最终制剂仍需玩家在制剂机中操作。
 
-在仓库根目录执行：
+放料只会待命，不会立即加工。没有合格接收位置时保留原瓶；运行中条件改变或发生异常时停止后续操作，并记录原因。面板可分别关闭自动处理和次日弹窗。
 
-```powershell
-git add .
-git commit -m "Describe changes"
-git push
-```
+## 界面截图
 
-只有提交并推送的内容才会保存在 GitHub。MIT License 见 LICENSE；游戏及第三方材料不因本仓库许可而改变权利归属。
+以下为玩家提供的原图，画面保留各自的版本标识；部分界面随版本更新有所变化。
+
+| 0.4.1 用量与结果面板 | 0.3.7 面板 |
+| --- | --- |
+| <img src="ChemAssistPlus/Screenshots/panel-0.4.1.png" alt="0.4.1 分批用量与处理结果面板" width="300"> | <img src="ChemAssistPlus/Screenshots/panel-0.3.7.png" alt="0.3.7 化学流程助手面板" width="300"> |
+
+## 开发与反馈
+
+遇到问题时，请提供模组版本、相关设备与瓶号、面板提示及游戏日志，便于核对实际加工过程。
+
+源码构建、仓库备份和目录说明见 [仓库说明](docs/REPOSITORY.md)；开发操作见 [DEVELOPMENT.md](ChemAssistPlus/DEVELOPMENT.md)。代码使用 [MIT License](LICENSE)，游戏与第三方材料的权利归原作者。

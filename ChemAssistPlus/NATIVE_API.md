@@ -1,8 +1,14 @@
-﻿# 已核实原生接口索引
+# 已核实原生接口索引
 
-核对基线：2026-11-10，游戏清单支持 0.46/0.46D；实际以程序集哈希为准。
+核对基线：2026-11-12，本机程序集哈希与2026-11-10一致，启动日志仍报告旧占位版本0.46D；尚未以100-Rev14测试分支验证。模组清单按官方规则声明1.0.0，覆盖该版本全部修订；这不是本机已完成Rev14运行验收的声明。
 Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05。
 下列结论迁自既有核查材料；参数名可用 query-api.ps1 定向查询。历史摘录未记录生成时哈希，不能反推全部历史 IL 均来自此基线。
+
+## 2026-11-12 官方API核对
+
+- 官方变更：[APIChanges.zh-CN.md](https://github.com/dragonpan2/probably-stolen-modding/blob/main/APIChanges.zh-CN.md)；[版本与信任规则](https://github.com/dragonpan2/probably-stolen-modding/blob/main/ModdingGuide.zh-CN.md)。GameVersions的1.0.0为前缀匹配；旧0.46/0.46D条目不触发警告。版本声明不阻止加载，也不触发信任批准。
+- HeatingControl对MachineHeatingPlate.HandleHeating的字面AccessTools查找、NativeControls对MachineryButton.callback的字面反射均为游戏成员，无需reflection-external。三个Harmony补丁只针对游戏方法；不调用信任写入、QFSW控制台执行、路径文件辅助方法或外部库补丁。
+- PlusPump.Update在主线程推进工作流，不使用线程/Task或其他组件的协程。未读取Application.version、未处理右键绑定、未在销毁容器后读取其窗口；本轮无相关迁移。Capabilities保持为空。
 
 ## 常用接口
 

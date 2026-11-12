@@ -1,5 +1,14 @@
 # 当前交接
 
+
+## 当前开发状态 · 0.4.2（已构建，未发布）
+
+- 玩家已授权先Git提交/push再发布0.4.2，并追加两张原图。Screenshots/panel-0.3.7.png与panel-0.4.1.png保留画面版本标识；发布工具新增显式AdditionalPreview参数，通过english提交AddItemPreviewFile追加，中文不重复上传，回执记录图片SHA256。工具编译0警告0错误。根README改为模组功能/订阅/用法/截图，原仓库构建说明移至docs/REPOSITORY.md。简介精简重复用语后7992 UTF-8字节，保留21个历史版本及鸣谢；prepare已完成，备份archive/before-prepare-0.4.2-20261112-193555-156。信任层完整IL仅保留本地并加入忽略，不再推进信任问题。
+
+- 按玩家提供的官方APIChanges.zh-CN.md及ModdingGuide.zh-CN.md完成核对：manifest的GameVersions由0.46/0.46D改为1.0.0，覆盖全部1.0.0修订版；VERSION、程序集、清单、使用说明同步0.4.2，CHANGELOG/工坊精简稿及NATIVE_API更新。现有字面游戏反射和三个游戏方法补丁符合新规则，无线程、原生代码、动态代码或外部反射能力，无需更换运行API，Capabilities继续为空。
+- 推进版本前已按约定提交旧版遗留发布流程改动：b6a96e2。0.4.2构建0警告0错误，原生ModScanner PASS（417 methods，capabilities none），DLL SHA256：E83010020F68C6483B922B22FB6934E322103FC5F2E74066431AD95C94E3A70F。沙箱首次构建因NuGet.Config访问权限失败，标准构建提权重试成功。
+- 本机游戏程序集仍为725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05，日志版本0.46D；扫描结果仅代表已安装游戏，尚未使用100-Rev14测试分支或12月规则实际扫描。依约未新增/运行测试、未启动游戏、未部署/上传、未改存档或订阅缓存。
+
 - 2026-11-12发布流程约定更新：以Steam目标语言提交回调均OK为完成标准。DEVELOPMENT.md/AGENTS.md及WorkshopPublisher已同步：默认仅一次归属检查，取消提交后Read/逐字比较，结果状态submitted，保留简短自动JSON；不再默认另跑语言预检、公开API/日志复核或撰写详细回执。人工按需验证，-CheckOnly仍可用。发布工具单独编译0警告0错误，未运行发布、未修改已发布0.4.1运行文件。
 
 ## 当前开发状态 · 0.4.1（已发布）

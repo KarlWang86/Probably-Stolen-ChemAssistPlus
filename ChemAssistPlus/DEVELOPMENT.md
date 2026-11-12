@@ -86,6 +86,8 @@ SteamCMD 等价命令（在其目录运行；含空格的路径加引号）：
 
 ### 人工按需核验（非发布必做步骤）
 
+发布时可用 `-AdditionalPreview @('截图1.png','截图2.png')` 显式追加工坊截图。只在完整发布的english提交中调用AddItemPreviewFile，schinese提交不重复追加，主封面仍保持原配置。图片应为小于1 MB的PNG/JPG/GIF，存放在content外；回执记录图片路径与SHA256。该参数会追加图片，完整发布成功后不要为重试中文再次传图。PowerShell 5通过命令行传多个图片时使用 `-Command` 中的数组调用。
+
 | 阶段 | 足够的证据 / 排查入口 |
 | --- | --- |
 | 发布完成 | 当前发布工具目标语言的SubmitItemUpdate均k_EResultOK，无需接受新协议；旧SteamCMD入口以本次提交Success为准 |
