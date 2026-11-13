@@ -2,7 +2,7 @@
 
 本文的运行时文件名均相对ChemAssistPlus/；操作脚本、辅助工具、研究资料与截图分别位于仓库根目录的scripts/、Tools/、Research/、Screenshots/。完整目录与构建入口见[仓库说明](REPOSITORY.md)。
 
-## 架构总览（0.4.9）
+## 架构总览（0.4.10）
 
 下图按职责分组；箭头表示主要调用或数据依赖，并非独立服务。大多数业务文件都是同一个静态分部类Plus，共享当前存档的会话状态，由Unity主线程驱动。
 
@@ -25,14 +25,12 @@ flowchart TB
         Report["InventoryReport.cs + CompositionPanel.cs<br/>库存预估 / 逐批快照 / 次日报告"]
         UI["Plus.OpenPanel + PanelLayout.cs<br/>F10原生窗口 / 适配与样式"]
         Mix["MixingGuard.cs + MixingDialog.cs<br/>手动倒液检查 / 一次确认 / 对话框恢复"]
-        Icons["MaterialIcons.cs<br/>实际成分映射 / 瓶身与机器图标"]
         Power["PowerMonitor.cs<br/>湿料缺电监测与通知"]
     end
 
     Pump --> Work
     Pump --> UI
     Pump --> Mix
-    Pump --> Icons
     Pump --> Power
     Pump --> Report
     Hook["Harmony：结束当天按钮"] --> Auto
@@ -97,7 +95,7 @@ flowchart TD
 
 图中为正常完成路径。重复结束当天请求由pendingEndDay/resumingEndDay防重入；执行异常或取消会停止任务、关火并保留物料，是否继续过夜由对应停止路径决定，不能按成功流程推断。预检失败只跳过该批，执行异常会停止队列。
 
-状态分三类：任务、队列、来源偏好、逐批报告及待确认混液请求保存在当前会话，切档/禁用时清理；蒸发器配方与机器首选瓶号写入机器原生自定义标签，随游戏正常存档；液体、设备和库存始终使用游戏原生对象与操作。图标与面板负责展示，不生成材料。干料可转入制剂机，当前自动流程不按制剂按钮，成型由玩家操作。
+状态分三类：任务、队列、来源偏好、逐批报告及待确认混液请求保存在当前会话，切档/禁用时清理；蒸发器配方与机器首选瓶号写入机器原生自定义标签，随游戏正常存档；液体、设备和库存始终使用游戏原生对象与操作。面板负责展示，不生成材料。干料可转入制剂机，当前自动流程不按制剂按钮，成型由玩家操作。
 
 ## 执行路径
 
@@ -127,7 +125,7 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 蒸发器接收、同类相近浓度合并、存量集中腾槽、干料移入制剂机、转液回收 | Distillation.cs；CanReceiveBatch、DeliverToEvaporator、PlanConsolidation、ConsolidateEvaporators、StageDryEvaporatorBottles、TransferWholeSolution |
 | 原生手动倒液的配方／浓度／干湿混合确认 | MixingGuard.cs；BeforeLiquidTransfer、MixReason、ConfirmMix；PlusPump.TickMixConfirmation |
 | 混液确认大字布局／滚动及原生样式恢复 | MixingDialog.cs；MixDialogView、MixRectState、RestoreMixDialogView |
-| 容器居中纵排及机器本体左上横排原材料图标 | MaterialIcons.cs；MaterialMask、MaterialBounds、DrawMaterialIcons、RefreshMachineMaterials、TickMaterialIcons |
+| 实际液体成分、体积与单配方只读识别 | LiquidState.cs；LiveLiquidAmount、LiveLiquidVolume、LiveLiquidRecipe |
 | 蒸发器配方记忆与固定分配 | EvaporatorRouting.cs；EvaporatorRoute、RememberOccupiedEvaporators、AcceptsEvaporatorRoute；Distillation.cs各接收/集中/空瓶路径 |
 | 过夜恢复机器空容器／制剂机空瓶接料 | MachineBottles.cs；RememberMachineBottles、RefillMachineBottles、CanReceiveEmptyFinisher |
 | 湿料缺电持续监测与小通知 | PowerMonitor.cs；Charged；InventoryReport.cs |
@@ -142,10 +140,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 
 - Plus 的 partial 文件共享当前存档会话状态；切档清任务、来源偏好、报告和挂起过夜。
 - 0.4.7 MixingDialog仅在本模组已挂起的混液请求上临时设置共享GenericConfirmationUIManager：保存panel/body/两按钮的父级、同级序号和RectTransform、正文全部受影响文本样式；参照原生按钮字号固定正文（至少24号）和略大标题，并禁用自动缩字，按preferredHeight与画布尺寸布局。自建带遮罩的ScrollRect容纳长正文，按钮置底；pending请求关闭/替换/确认/取消后Tick恢复原生层级及样式，再销毁自建视口，切档/禁用立即清理。确认依旧只放行原有一次转液。
-- 0.4.7 MaterialIcons.LiveLiquidAmount通过item.state.dict.TryGetValue只读CURRENT_PART值，避免GetTagReadonly读取滞后的modifiedState；不调用GetTag以免为缺失项创建标签。图标原生倒液Postfix及MovePot成功后失效，每帧比较现有成分掩码／机器工作瓶引用，0.25秒扫描补充新项；蒸发器实际配方学习共用LiveLiquidRecipe。几何位置仍沿用0.4.6已确认布局。
 - 0.4.7 MachineBottles在BeforeEndDay完成预检任务队列前，记录三种目标机器当前瓶号到机器原生CHEMASSISTPLUS_PREFERRED_BOTTLE_V1标签；StageDry后及BeginDay的StageDry后补空槽。两遍分配：先原瓶号（仍须Owned/LooseBottle/原生与实际体积均为0/槽位允许），再容量降序、编号升序选散放空瓶。已有瓶子不换、不从别台机器拆瓶、回收槽不动；每次移动前重检，MovePot原生完成后记录日志和nightDetails。空接收制剂机纳入FindDryFinisher候选，源干料仍通过TransferWholeSolution转入；源空瓶留蒸发器，必要时设对应制剂配方。补瓶只在自动处理开启且不忙的日界执行，预检不补瓶。
-- 蒸发器路线记忆由机器原生自定义字符串标签CHEMASSISTPLUS_EVAPORATOR_RECIPE_V1保存ProductId，随游戏原生序列化保存，不使用跨存档静态映射、不直接改磁盘存档。EvaporatorRoute读取当前可唯一识别的瓶内配方，若为空/不可识别则读标签；Poll每2秒只在实际单配方内容改变时写记忆，Deliver成功及StageDry移出前也保存。手动放置不同单配方原液视为重新分工，混液/空瓶不覆盖。CanReceiveBatch同时核对路线，FindEvaporator先同配方再未分配，仍核对电量/容量/浓度/干湿；PlanConsolidation新存IncomingRecipe，腾空源机须能接本配方，不再为不同配方腾槽；ParkSpareRawBottle也按路线过滤。预检与图标刷新仅读，空置已分配蒸发器横排显示记忆原料标识。
-- MaterialIcons只读映射已证实的原材料来源，直接加载原生种植物图集，不实例化原料物品：咖啡浆/咖啡因→咖啡豆，梦帽菇浆/提取物/nomore→梦帽菇，梦魇帽菇浆/提取物→梦魇帽菇。每0.25秒只读扫描当前拥有物品更新成分掩码与机器container槽；容器和机器图标均挂在本体middle/fakeMiddle，逐帧同步background/fakeBackground显隐和透明度。MaterialBounds把background实际GetWorldCorners转成middle局部边界，并与祖先有效RectMask2D/Mask边界相交；容器在可见瓶图中心纵排，机器在可见机图左上横排，右上保留一个格大小（至多半宽）给状态模组。图标大小由可见宽高和数量约束，中心锚点配合localPosition避免槽位布局与全局gridSize不一致导致裁切。操作窗口中的容器同样覆盖；不再添加任何原料标题栏按钮。切档/禁用统一ClearMaterialIcons，不写液体/形状/存档标签。
+- 蒸发器路线记忆由机器原生自定义字符串标签CHEMASSISTPLUS_EVAPORATOR_RECIPE_V1保存ProductId，随游戏原生序列化保存，不使用跨存档静态映射、不直接改磁盘存档。EvaporatorRoute读取当前可唯一识别的瓶内配方，若为空/不可识别则读标签；Poll每2秒只在实际单配方内容改变时写记忆，Deliver成功及StageDry移出前也保存。手动放置不同单配方原液视为重新分工，混液/空瓶不覆盖。CanReceiveBatch同时核对路线，FindEvaporator先同配方再未分配，仍核对电量/容量/浓度/干湿；PlanConsolidation新存IncomingRecipe，腾空源机须能接本配方，不再为不同配方腾槽；ParkSpareRawBottle也按路线过滤。预检仅读取设备分工。
 - MixingGuard在WaterHelper.TransferLiquid真正扣液前拦截，按预计倒入份额和目标存量识别Recipe的FeedLiquids[0]/ProductLiquid，不把FeedLiquids[1]等溶剂作为配方。两侧均有加工成分时，不同配方、同配方原浆/提取物合计浓度差>5个百分点或原生WetTotal干湿状态不同才弹GenericConfirmationUIManager；确认前不取液/耗滤材，取消不调用原方法。授权只绑定本次两瓶、当前PlayerStore、父库存、全部液体快照和目标容量，确认时重新核对，成功仅放行一次原生TransferLiquid并刷新瓶音。窗口被替换/关闭、禁用、切档清除待确认引用；自动加工仍走原有严格同类规则。
 - 开工前复核完整输入快照与 Selected；未选固体留输入格。预检不取片、不耗料。
 - 只操作Container原液槽，回收槽保持原样。存量集中后源空瓶留原液槽；PlanConsolidation须检查其容量≥当前批次保守预计体积，下一批按已有空瓶路径接收。新批次合并后尝试将源空瓶放入其他空闲蒸发器原液槽备用，没有空槽则留原位。

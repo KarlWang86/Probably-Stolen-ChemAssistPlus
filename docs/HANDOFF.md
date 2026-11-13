@@ -1,4 +1,11 @@
-﻿# 当前交接
+# 当前交接
+
+## 图标功能拆出 · 2026-11-13（0.4.10，已构建，玩家已要求提交/推送/发布）
+
+- 玩家已建立独立Git仓库，要求移除本Mod的容器和机器图标以精简职责。删除MaterialIcons.cs及其帧更新、清理、转液/移瓶/补瓶刷新挂钩；不再创建图标节点或扫描图标。共用的LiveLiquidAmount / LiveLiquidVolume / LiveLiquidRecipe原样迁至LiquidState.cs，保留芬太流程、补瓶、蒸发器分工及混液确认。说明、工坊模板、架构和当前版本记录已同步，历史记录与研究证据保留。
+- 开工Git无已跟踪未提交改动；原有未跟踪ChemAssistPlus/Research资料未改。VERSION推进0.4.10。标准build.ps1编译0警告0错误，原生ModScanner PASS（603 methods，capabilities none）；DLL SHA256：4C50831B68FEBED76E5C60A093B8B344F799F520B9DB6DC8E841BA599E066D44。使用临时PROBABLY_STOLEN_GAME_ROOT定位Steam库；首次构建受用户NuGet.Config权限限制，同一脚本提权重试成功。
+- 未新增/运行测试，未部署、发布、启动游戏或修改存档/耗料。待玩家确认不再显示容器/机器原料图标，并回归蒸发器记忆、补瓶、混液确认和芬太流程；离线PASS不代表游戏内验收。
+
 
 ## 芬太片加热器流程 · 2026-11-13（0.4.9，已构建，未部署/发布）
 

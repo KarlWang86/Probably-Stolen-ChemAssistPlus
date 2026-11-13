@@ -63,7 +63,6 @@ namespace ChemAssistPlus
                 string message = Name(machine) + " #" + machine.uniqueId + "：没有可用散放空瓶，保留空槽。";
                 messages.Add(message); log?.Log("[过夜补瓶] " + message);
             }
-            if (messages.Count > 0) InvalidateMaterialIcons();
             return string.Join("\n", messages);
         }
 

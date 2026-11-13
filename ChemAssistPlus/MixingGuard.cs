@@ -180,6 +180,5 @@ namespace ChemAssistPlus
     {
         static bool Prefix(GameItem sourceContainer, GameItem targetContainer) =>
             Plus.BeforeLiquidTransfer(sourceContainer, targetContainer);
-        static void Postfix() => Plus.InvalidateMaterialIcons();
     }
 }

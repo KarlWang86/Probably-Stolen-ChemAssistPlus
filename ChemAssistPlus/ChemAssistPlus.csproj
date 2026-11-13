@@ -22,7 +22,7 @@
     <Compile Include="MachineBottles.cs" />
     <Compile Include="MixingGuard.cs" />
     <Compile Include="MixingDialog.cs" />
-    <Compile Include="MaterialIcons.cs" />
+    <Compile Include="LiquidState.cs" />
     <Compile Include="BatchPlan.cs" />
     <Compile Include="Purification.cs" />
     <Compile Include="PowerMonitor.cs" />
