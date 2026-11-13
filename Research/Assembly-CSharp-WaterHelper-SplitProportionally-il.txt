@@ -1,0 +1,213 @@
+﻿Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32[] WaterHelper::SplitProportionally(System.Int32[],System.Int32)
+  0: System.Int32[] parts None
+  1: System.Int32 amount None
+  local 0: WaterHelper/<>c__DisplayClass11_0
+  local 1: System.Int32[]
+  local 2: System.Int64
+  local 3: System.Int64
+  local 4: System.Int64
+  local 5: System.Int32[]
+  local 6: System.Int32[]
+  local 7: System.Int32
+  local 8: System.Int32
+  local 9: System.Int32
+  local 10: System.Int32
+  local 11: System.Int64
+  local 12: System.Int32
+IL_0000: newobj System.Void WaterHelper/<>c__DisplayClass11_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: stfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_000d: ldloc.0
+IL_000e: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_0013: ldlen
+IL_0014: conv.i4
+IL_0015: newarr System.Int32
+IL_001a: stloc.1
+IL_001b: ldc.i4.0
+IL_001c: conv.i8
+IL_001d: stloc.2
+IL_001e: ldloc.0
+IL_001f: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_0024: stloc.s V_6
+IL_0026: ldc.i4.0
+IL_0027: stloc.s V_7
+IL_0029: br.s IL_0043
+IL_002b: ldloc.s V_6
+IL_002d: ldloc.s V_7
+IL_002f: ldelem.i4
+IL_0030: stloc.s V_8
+IL_0032: ldloc.s V_8
+IL_0034: ldc.i4.0
+IL_0035: ble.s IL_003d
+IL_0037: ldloc.2
+IL_0038: ldloc.s V_8
+IL_003a: conv.i8
+IL_003b: add
+IL_003c: stloc.2
+IL_003d: ldloc.s V_7
+IL_003f: ldc.i4.1
+IL_0040: add
+IL_0041: stloc.s V_7
+IL_0043: ldloc.s V_7
+IL_0045: ldloc.s V_6
+IL_0047: ldlen
+IL_0048: conv.i4
+IL_0049: blt.s IL_002b
+IL_004b: ldloc.2
+IL_004c: ldc.i4.0
+IL_004d: conv.i8
+IL_004e: ble.s IL_0054
+IL_0050: ldarg.1
+IL_0051: ldc.i4.0
+IL_0052: bgt.s IL_0056
+IL_0054: ldloc.1
+IL_0055: ret
+IL_0056: ldarg.1
+IL_0057: conv.i8
+IL_0058: ldloc.2
+IL_0059: blt.s IL_0087
+IL_005b: ldc.i4.0
+IL_005c: stloc.s V_9
+IL_005e: br.s IL_0079
+IL_0060: ldloc.1
+IL_0061: ldloc.s V_9
+IL_0063: ldc.i4.0
+IL_0064: ldloc.0
+IL_0065: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_006a: ldloc.s V_9
+IL_006c: ldelem.i4
+IL_006d: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_0072: stelem.i4
+IL_0073: ldloc.s V_9
+IL_0075: ldc.i4.1
+IL_0076: add
+IL_0077: stloc.s V_9
+IL_0079: ldloc.s V_9
+IL_007b: ldloc.0
+IL_007c: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_0081: ldlen
+IL_0082: conv.i4
+IL_0083: blt.s IL_0060
+IL_0085: ldloc.1
+IL_0086: ret
+IL_0087: ldloc.0
+IL_0088: ldloc.0
+IL_0089: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_008e: ldlen
+IL_008f: conv.i4
+IL_0090: newarr System.Int64
+IL_0095: stfld System.Int64[] WaterHelper/<>c__DisplayClass11_0::remainders
+IL_009a: ldc.i4.0
+IL_009b: conv.i8
+IL_009c: stloc.3
+IL_009d: ldc.i4.0
+IL_009e: stloc.s V_10
+IL_00a0: br.s IL_00e1
+IL_00a2: ldloc.0
+IL_00a3: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_00a8: ldloc.s V_10
+IL_00aa: ldelem.i4
+IL_00ab: ldc.i4.0
+IL_00ac: ble.s IL_00db
+IL_00ae: ldloc.0
+IL_00af: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_00b4: ldloc.s V_10
+IL_00b6: ldelem.i4
+IL_00b7: conv.i8
+IL_00b8: ldarg.1
+IL_00b9: conv.i8
+IL_00ba: mul
+IL_00bb: stloc.s V_11
+IL_00bd: ldloc.1
+IL_00be: ldloc.s V_10
+IL_00c0: ldloc.s V_11
+IL_00c2: ldloc.2
+IL_00c3: div
+IL_00c4: conv.i4
+IL_00c5: stelem.i4
+IL_00c6: ldloc.0
+IL_00c7: ldfld System.Int64[] WaterHelper/<>c__DisplayClass11_0::remainders
+IL_00cc: ldloc.s V_10
+IL_00ce: ldloc.s V_11
+IL_00d0: ldloc.2
+IL_00d1: rem
+IL_00d2: stelem.i8
+IL_00d3: ldloc.3
+IL_00d4: ldloc.1
+IL_00d5: ldloc.s V_10
+IL_00d7: ldelem.i4
+IL_00d8: conv.i8
+IL_00d9: add
+IL_00da: stloc.3
+IL_00db: ldloc.s V_10
+IL_00dd: ldc.i4.1
+IL_00de: add
+IL_00df: stloc.s V_10
+IL_00e1: ldloc.s V_10
+IL_00e3: ldloc.0
+IL_00e4: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_00e9: ldlen
+IL_00ea: conv.i4
+IL_00eb: blt.s IL_00a2
+IL_00ed: ldarg.1
+IL_00ee: conv.i8
+IL_00ef: ldloc.3
+IL_00f0: sub
+IL_00f1: stloc.s V_4
+IL_00f3: ldc.i4.0
+IL_00f4: ldloc.0
+IL_00f5: ldfld System.Int32[] WaterHelper/<>c__DisplayClass11_0::parts
+IL_00fa: ldlen
+IL_00fb: conv.i4
+IL_00fc: call System.Collections.Generic.IEnumerable`1<System.Int32> System.Linq.Enumerable::Range(System.Int32,System.Int32)
+IL_0101: ldloc.0
+IL_0102: ldftn System.Boolean WaterHelper/<>c__DisplayClass11_0::<SplitProportionally>b__0(System.Int32)
+IL_0108: newobj System.Void System.Func`2<System.Int32,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_010d: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Where<System.Int32>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_0112: ldloc.0
+IL_0113: ldftn System.Int64 WaterHelper/<>c__DisplayClass11_0::<SplitProportionally>b__1(System.Int32)
+IL_0119: newobj System.Void System.Func`2<System.Int32,System.Int64>::.ctor(System.Object,System.IntPtr)
+IL_011e: call System.Linq.IOrderedEnumerable`1<!!0> System.Linq.Enumerable::OrderByDescending<System.Int32,System.Int64>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,!!1>)
+IL_0123: ldloc.0
+IL_0124: ldftn System.Int32 WaterHelper/<>c__DisplayClass11_0::<SplitProportionally>b__2(System.Int32)
+IL_012a: newobj System.Void System.Func`2<System.Int32,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_012f: call System.Linq.IOrderedEnumerable`1<!!0> System.Linq.Enumerable::ThenByDescending<System.Int32,System.Int32>(System.Linq.IOrderedEnumerable`1<!!0>,System.Func`2<!!0,!!1>)
+IL_0134: call !!0[] System.Linq.Enumerable::ToArray<System.Int32>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_0139: stloc.s V_5
+IL_013b: ldc.i4.0
+IL_013c: stloc.s V_12
+IL_013e: br.s IL_015d
+IL_0140: ldloc.1
+IL_0141: ldloc.s V_5
+IL_0143: ldloc.s V_12
+IL_0145: ldelem.i4
+IL_0146: ldelema System.Int32
+IL_014b: dup
+IL_014c: ldind.i4
+IL_014d: ldc.i4.1
+IL_014e: add
+IL_014f: stind.i4
+IL_0150: ldloc.s V_12
+IL_0152: ldc.i4.1
+IL_0153: add
+IL_0154: stloc.s V_12
+IL_0156: ldloc.s V_4
+IL_0158: ldc.i4.1
+IL_0159: conv.i8
+IL_015a: sub
+IL_015b: stloc.s V_4
+IL_015d: ldloc.s V_12
+IL_015f: ldloc.s V_5
+IL_0161: ldlen
+IL_0162: conv.i4
+IL_0163: bge.s IL_016b
+IL_0165: ldloc.s V_4
+IL_0167: ldc.i4.0
+IL_0168: conv.i8
+IL_0169: bgt.s IL_0140
+IL_016b: ldloc.1
+IL_016c: ret

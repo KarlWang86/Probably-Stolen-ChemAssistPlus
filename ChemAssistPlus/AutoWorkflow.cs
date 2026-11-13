@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +18,8 @@ namespace ChemAssistPlus
         static float morningReportAt;
         static string nightReport;
         static bool nightDidWork;
-        // Each blender gets one turn per night; batches share the heater sequentially.
-        static readonly Queue<GameItem> nightBlenders = new Queue<GameItem>();
+        // Each source machine gets one turn per night; fanta plates keep their own bottle.
+        static readonly Queue<GameItem> nightMachines = new Queue<GameItem>();
         static readonly List<string> nightBatchReports = new List<string>();
         static string nightBatchLabel;
 
@@ -27,6 +27,7 @@ namespace ChemAssistPlus
         {
             var parts = MachineView.Walk(blender);
             var pot = parts.Container?.childItem;
+            if (blender.IsID("heating_plate")) return HasFantaMaterial(pot);
             return NativeChem.FirstBlendable(parts.Input) != null
                 || (pot != null && NativeChem.WetTotal(pot) > WaterHelper.DRY_TOLERANCE_UL
                     && RecipeCatalog.Recipes.Any(c => Amount(pot, c.FeedLiquids[0]) > 0 || Amount(pot, c.ProductLiquid) > 0));
@@ -34,18 +35,22 @@ namespace ChemAssistPlus
 
         static void ClearNightQueue()
         {
-            nightBlenders.Clear(); nightBatchReports.Clear(); nightBatchLabel = null;
+            nightMachines.Clear(); nightBatchReports.Clear(); nightBatchLabel = null;
         }
+
+        static IEnumerable<GameItem> PendingMachines() => Scan()
+            .Where(x => (x.IsID("blender") || x.IsID("heating_plate")) && HasPendingBatch(x))
+            .OrderBy(x => x.IsID("heating_plate") ? 0 : 1).ThenBy(x => x.uniqueId);
 
         static string NightSummary() => "本晚多机处理（共 " + nightBatchReports.Count + " 批）\n"
             + string.Join("\n\n", nightBatchReports);
 
         static bool StartNextNightBatch()
         {
-            while (nightBlenders.Count > 0)
+            while (nightMachines.Count > 0)
             {
-                var blender = nightBlenders.Dequeue();
-                contextBlender = contextPot = null; contextChain = null;
+                var blender = nightMachines.Dequeue();
+                contextMachine = contextPot = null; contextChain = null;
                 string label = Name(blender) + " #" + blender.uniqueId;
                 if (!Present(blender)) { nightBatchReports.Add(label + "：设备已离开库存，跳过。"); continue; }
                 if (!HasPendingBatch(blender)) continue;
@@ -55,13 +60,13 @@ namespace ChemAssistPlus
                     nightDetails.Add(new BatchDisplay { Title = label, Detail = "已有批次待蒸发，继续原生过夜。" });
                     continue;
                 }
-                selectedBlender = blender;
+                selectedMachine = blender;
                 runDetail = null; lastCheckedPlan = null;
                 Run(true, true, false);
                 if (busy)
                 {
                     nightBatchLabel = label;
-                    log?.Log("[多机队列] 开始 " + label + "；剩余 " + nightBlenders.Count + " 台；逐批共用加热板，不同配方不混合。");
+                    log?.Log("[多机队列] 开始 " + label + "；剩余 " + nightMachines.Count + " 台；芬太原位处理，其他配方借用空闲加热板，不同配方不混合。");
                     return true;
                 }
                 nightDetails.Add(new BatchDisplay { Title = label, Detail = lastReport,
@@ -96,7 +101,7 @@ namespace ChemAssistPlus
             if (!showMorningPopup || !morningReportReady || Time.unscaledTime < morningReportAt || !ReadyForUi()) return;
             morningReportReady = awaitingMorningReport = false;
             RestoreRunDisplay();
-            SetReport("本晚处理结果（按搅拌机排列）");
+            SetReport("本晚处理结果（按设备排列）");
             OpenPanel(false); // Keep the nightly result instead of replacing it with a new preflight.
         }
 
@@ -141,10 +146,10 @@ namespace ChemAssistPlus
                 string refilled = RefillMachineBottles();
                 if (refilled.Length > 0) dryTransfers = (dryTransfers + "\n" + refilled).Trim();
                 if (dryTransfers.Length > 0) nightBatchReports.Add(dryTransfers);
-                foreach (var blender in Scan().Where(x => x.IsID("blender") && HasPendingBatch(x)).OrderBy(x => x.uniqueId))
-                    nightBlenders.Enqueue(blender);
-                if (nightBlenders.Count == 0) { QueueMorningReport(dryTransfers + "\n本晚没有待处理湿料，已正常过夜。"); return true; }
-                log?.Log("[结束当天] 收到请求；逐台处理 " + nightBlenders.Count + " 台搅拌机，暂缓原生过夜。");
+                foreach (var blender in PendingMachines())
+                    nightMachines.Enqueue(blender);
+                if (nightMachines.Count == 0) { QueueMorningReport(dryTransfers + "\n本晚没有待处理批次，已正常过夜。"); return true; }
+                log?.Log("[结束当天] 收到请求；逐台处理 " + nightMachines.Count + " 台设备（含芬太前体加热器），暂缓原生过夜。");
                 StartNextNightBatch();
                 if (busy)
                 {
@@ -202,9 +207,11 @@ namespace ChemAssistPlus
         // when evaporators are in use, without reporting an occupied-slot failure.
         static bool WaitingForDistillation(GameItem blender)
         {
+            if (blender.IsID("heating_plate")) return false;
             var parts = MachineView.Walk(blender);
             if (FirstKind(parts.Input).Count > 0) return false;
             var pot = parts.Container?.childItem;
+            if (HasFantaMaterial(pot)) return false;
             if (pot != null && RecipeCatalog.Recipes.Any(c => c.FeedLiquids[0] != c.ProductLiquid && ReactableFeed(pot, c) > 0)) return false;
             var machines = Scan().Where(x => x.IsID("evaporator")).ToList();
             return machines.Count > 0 && machines.All(x => MachineView.Walk(x).Container?.childItem != null)

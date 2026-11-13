@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,7 @@ namespace ChemAssistPlus
             public bool Limited;
             public long Peak, RawPeak, SolutionPeak, TabletReserve;
             public ConsolidationPlan Consolidation;
+            public FantaBudget Fanta;
             public readonly List<GameItem> Selected = new List<GameItem>();
             public string Solvent;
             public long FullNeed, Stock;
@@ -26,11 +27,13 @@ namespace ChemAssistPlus
         static string Bad(string text) => "<color=#FF8585>" + text + "</color>";
         static string SupplyName(string id) => id == "alcohol" ? "酒精" : id == "acid" ? "酸液" : id == "base" ? "碱液"
             : id == "lipobond_agent" ? "脂合剂" : id == "reducing_agent" ? "还原剂" : LiquidName(id);
-        static void SelectWorkingBlender()
+        static void SelectWorkingMachine()
         {
-            if (busy || contextBlender != null) return;
+            if (busy || contextMachine != null) return;
+            var pendingPlate = PendingMachines().FirstOrDefault(x => x.IsID("heating_plate"));
+            if (pendingPlate != null) { selectedMachine = pendingPlate; return; }
             var candidates = Scan().Where(x => x.IsID("blender")).ToList();
-            selectedBlender = candidates.FirstOrDefault(x => FirstKind(MachineView.Walk(x).Input).Count > 0)
+            selectedMachine = candidates.FirstOrDefault(x => FirstKind(MachineView.Walk(x).Input).Count > 0)
                 ?? candidates.FirstOrDefault(x => MachineView.Walk(x).Container?.childItem != null)
                 ?? candidates.FirstOrDefault();
         }
@@ -56,7 +59,7 @@ namespace ChemAssistPlus
         }
         static int[] BatchAmounts(NativeChem.ProbeResult p, IEnumerable<GameItem> selected = null)
         {
-            double retained = 1 - MachineBlender.GetLoss(p.Blender) / 100d;
+            double retained = 1 - MachineBlender.GetLoss(p.Machine) / 100d;
             return Liquid.Liquids.Select(l => checked(Amount(p.Pot, l.identifier) + (selected ?? p.Solids).Sum(x =>
                 checked((int)Math.Round(Amount(x, l.identifier) * retained, MidpointRounding.AwayFromZero))))).ToArray();
         }
@@ -96,6 +99,7 @@ namespace ChemAssistPlus
         }
         static BatchPlan BuildBatchPlan(NativeChem.ProbeResult p)
         {
+            if (IsFanta(p.Recipe)) return BuildFantaPlan(p);
             var plan = BuildBatchPlanForCount(p, p.Solids.Count);
             // Recompute real-concentration pours and reagent space for each whole-item prefix.
             while (p.Pot != null && plan.Peak > WaterHelper.GetTotalCapacity(p.Pot) && plan.Selected.Count > 1)
@@ -173,8 +177,6 @@ namespace ChemAssistPlus
                 if (peak > WaterHelper.GetTotalCapacity(p.Pot)) plan.Errors.Add("工作瓶容量不足：" + Name(p.Pot) + " #" + p.Pot.uniqueId
                     + "，容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot)) + "；预计至少 " + Vol(peak) + "，请换大瓶。");
             }
-            if (p.Recipe.ProductId == "fanta_pill" && Part(plan.Kept, "methylol") <= Part(plan.Kept, "stabilizing_agent")
-                && Part(plan.Kept, p.Recipe.ProductLiquid) == 0) plan.Errors.Add("稳定剂不低于前体，原生反应不会启动。");
             if (p.Recipe.High > 0 && (p.Solids.Count > 0 || ReactableFeed(p.Pot, p.Recipe) > 0))
             {
                 var plate = FindPlate(p.Recipe);
@@ -207,7 +209,8 @@ namespace ChemAssistPlus
         static string PlanSummary(NativeChem.ProbeResult p, BatchPlan plan)
         {
             var text = new StringBuilder();
-            text.AppendLine(ChemNames.ProductName(p.Recipe.ProductId) + (p.Solids.Count > 0 ? " · " + p.Solids.Count + " 份" + Name(p.Solid) : " · 半成品"));
+            text.AppendLine(ChemNames.ProductName(p.Recipe.ProductId) + (IsFanta(p.Recipe) ? " · 加热器前体液/半成品"
+                : p.Solids.Count > 0 ? " · " + p.Solids.Count + " 份" + Name(p.Solid) : " · 半成品"));
             if (p.Pot != null)
                 text.AppendLine("工作瓶：" + Name(p.Pot) + " #" + p.Pot.uniqueId + " · 容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot))
                     + (p.AutoPot ? "（拟自动装入空容器）" : "（容器槽）"));
@@ -216,6 +219,7 @@ namespace ChemAssistPlus
                 text.AppendLine(Warn("按酒精库存及瓶容量限量 · 本次 " + plan.Selected.Count + "/" + plan.TotalCount + " 份，其余固体留在输入格。"));
             }
             if (plan.Errors.Count > 0) text.AppendLine(Bad("暂不能开工：" + string.Join("；", plan.Errors)));
+            if (plan.Fanta != null) foreach (var line in plan.Lines) text.AppendLine(line);
             if (plan.Consolidation != null) text.AppendLine(Warn("开工前拟" + ConsolidationSummary(plan.Consolidation)));
             if (p.Pot != null && plan.Peak > WaterHelper.GetTotalCapacity(p.Pot))
                 text.AppendLine("容量估算：原料瞬时 " + Vol(plan.RawPeak) + "；搅拌液及试剂 " + Vol(plan.SolutionPeak)

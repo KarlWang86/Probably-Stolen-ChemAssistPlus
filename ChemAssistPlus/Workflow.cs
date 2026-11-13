@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,18 +43,18 @@ namespace ChemAssistPlus
         static void Run(bool prep, bool overnight, bool checkOnly)
         {
             if (busy) { Status("已有自动操作正在进行，可点击停止。" ); return; }
-            contextBlender = selectedBlender;
+            contextMachine = selectedMachine;
             try
             {
                 var p = Probe();
-                if (!p.Ok) { log?.Log("[开工受阻] " + p.Block); RecordFailure(p.Block); SetReport(Bad(p.Block)); contextBlender = null; return; }
+                if (!p.Ok) { log?.Log("[开工受阻] " + p.Block); RecordFailure(p.Block); SetReport(Bad(p.Block)); contextMachine = null; return; }
                 PrepareRoute(p.Recipe);
                 if (!prep && (p.Solid != null || Amount(p.Pot, p.Recipe.ProductLiquid) <= 0))
-                { SetReport("步骤7 · 成型前检查\n当前还不是提取完成的干料。请先开启自动处理并送入蒸发器，再由原生蒸发器过夜。"); contextBlender = null; return; }
+                { SetReport("步骤7 · 成型前检查\n当前还不是提取完成的干料。请先开启自动处理并送入蒸发器，再由原生蒸发器过夜。"); contextMachine = null; return; }
                 if (!prep && NativeChem.WetTotal(p.Pot) > WaterHelper.DRY_TOLERANCE_UL)
-                { SetReport("步骤7 · 原液未干燥\n挥发液合计 " + Vol(NativeChem.WetTotal(p.Pot)) + "，需≤" + Vol(WaterHelper.DRY_TOLERANCE_UL) + "。请继续原生过夜蒸发。" ); contextBlender = null; return; }
+                { SetReport("步骤7 · 原液未干燥\n挥发液合计 " + Vol(NativeChem.WetTotal(p.Pot)) + "，需≤" + Vol(WaterHelper.DRY_TOLERANCE_UL) + "。请继续原生过夜蒸发。" ); contextMachine = null; return; }
                 string blocked = Preflight(p.Recipe, p.Solid, p.Pot, prep, true);
-                if (blocked != null || checkOnly) { if (blocked != null) RecordFailure(blocked); SetReport(lastReport); contextBlender = null; return; }
+                if (blocked != null || checkOnly) { if (blocked != null) RecordFailure(blocked); SetReport(lastReport); contextMachine = null; return; }
                 if (prep) { p.Solids = lastCheckedPlan.Selected.ToList(); p.Solid = p.Solids.FirstOrDefault(); }
                 steps.Clear(); jobStatus = ""; runPlan = lastReport.Replace("条件已满足，结束当天时处理。", "本批预检通过。"); actualUsage.Clear(); runNotes.Clear(); usedTablets = 0;
                 compactOutcome = ""; tabletResult = null; uvResult = null; usedUV = false;
@@ -67,7 +67,7 @@ namespace ChemAssistPlus
             }
             catch (Exception e)
             {
-                contextBlender = null;
+                contextMachine = null;
                 RecordFailure("开工检查异常：" + e.Message);
                 // No iterator or material operation has started; keep the nightly queue intact.
                 SetReport("检查失败，本次尚未开始制作：" + e.Message); log?.Error(e.ToString());
@@ -83,7 +83,7 @@ namespace ChemAssistPlus
                 if (!job.MoveNext())
                 {
                     (job as IDisposable)?.Dispose(); job = null; busy = false;
-                    contextBlender = null; jobStatus = ""; Publish();
+                    contextMachine = null; jobStatus = ""; Publish();
                     if (pendingEndDay != null)
                     {
                         SyncRunDetail();
@@ -113,7 +113,7 @@ namespace ChemAssistPlus
             {
                 try { StopPlate(); }
                 catch (Exception e) { reason += "\n关闭加热异常，请检查加热板：" + e.Message; log?.Error(e.ToString()); }
-                finally { busy = false; contextBlender = null; }
+                finally { busy = false; contextMachine = null; }
             }
             if (running != null) { jobStatus = ""; compactOutcome = Bad("本次已停止，剩余原液保留。"); runNotes.Add(Bad(reason)); Trace(reason); }
             if (continueEndDay && deferredManager != null)
@@ -157,6 +157,13 @@ namespace ChemAssistPlus
         }
         static IEnumerator PrepareBatch(NativeChem.ProbeResult p)
         {
+            if (IsFanta(p.Recipe))
+            {
+                var fanta = PrepareFantaBatch(p);
+                using (fanta as IDisposable)
+                    while (fanta.MoveNext()) yield return fanta.Current;
+                yield break;
+            }
             PrepareMaterials(p);
             yield return null;
 

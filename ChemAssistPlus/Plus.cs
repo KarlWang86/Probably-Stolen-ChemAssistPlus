@@ -23,7 +23,7 @@ namespace ChemAssistPlus
         static KeyCode hotkey = KeyCode.F10;
         // 设备自动选择；会话切换时清空引用，避免操作上一存档的对象。
         static readonly Dictionary<GameItem, MachineryButton> headers = new Dictionary<GameItem, MachineryButton>();
-        static GameItem selectedBlender, contextBlender, contextPot;
+        static GameItem selectedMachine, contextMachine, contextPot;
         static Recipe contextChain;
         static bool busy;
         static readonly bool strict = true;
@@ -60,7 +60,7 @@ namespace ChemAssistPlus
             ClearMixConfirmation();
             ClearMaterialIcons();
             CancelJob("存档已切换。", true);
-            headers.Clear(); selectedBlender = contextBlender = contextPot = null;
+            headers.Clear(); selectedMachine = contextMachine = contextPot = null;
             contextChain = null; busy = false;
             preferredSources.Clear(); powerWarning = lastPowerNotice = null; powerNoticeAt = 0;
             autoProcessing = true; pendingEndDay = null; pendingEndDayStore = null; resumingEndDay = false; autoWaitReason = lastPreflightLog = null;
@@ -82,11 +82,11 @@ namespace ChemAssistPlus
             if (!PlayerStore.IsInstanceExist()) return;
             RememberOccupiedEvaporators();
             UpdatePowerWarning();
-            foreach (var item in Scan().Where(x => x.IsID("blender")))
+            foreach (var item in Scan().Where(x => x.IsID("blender") || x.IsID("heating_plate")))
             {
                 if (item.contentWindow == null || headers.ContainsKey(item)) continue;
                 var captured = item;
-                var button = new MachineryButton("化学助手", () => { selectedBlender = captured; Open(); });
+                var button = new MachineryButton("化学助手", () => { selectedMachine = captured; Open(); });
                 item.contentWindow.AddHeaderButton(button);
                 headers[item] = button;
             }
@@ -141,18 +141,19 @@ namespace ChemAssistPlus
         static Recipe Detect(GameItem pot, GameItem solid)
         {
             if (solid != null) return NativeChem.ChainOfSolid(solid);
+            if (HasFantaMaterial(pot)) return LiveLiquidRecipe(pot);
             var matches = RecipeCatalog.Recipes.Where(c => Amount(pot, c.FeedLiquids[0]) > 0 || Amount(pot, c.ProductLiquid) > 0).ToList();
             return matches.Count == 1 ? matches[0] : null;
         }
         public static NativeChem.ProbeResult Probe()
         {
-            // 只处理所选搅拌机输入格的全部原料，不从仓库另取固体。
+            // 搅拌机取输入格原料；芬太配方直接识别加热器槽中的液体瓶。
             var result = new NativeChem.ProbeResult();
-            var blender = contextBlender ?? selectedBlender;
-            if (blender == null) blender = Scan().FirstOrDefault(x => x.IsID("blender") &&
-                (MachineView.Walk(x)?.Container?.childItem != null || NativeChem.FirstBlendable(MachineView.Walk(x)?.Input) != null));
-            if (!Present(blender)) { result.Block = "没有可用搅拌机；放入原料后显示用量。"; return result; }
-            result.Blender = blender; result.Parts = MachineView.Walk(blender);
+            var blender = contextMachine ?? selectedMachine;
+            if (blender == null) blender = PendingMachines().FirstOrDefault();
+            if (!Present(blender)) { result.Block = "没有待处理设备；请放入搅拌原料，或在关闭的加热器内放入芬太前体液容器。"; return result; }
+            result.Machine = blender; result.Parts = MachineView.Walk(blender);
+            if (blender.IsID("heating_plate")) return ProbeFantaPlate(result);
             result.Solids = FirstKind(result.Parts.Input);
             result.InputSolids = result.Solids.ToList();
             result.Solid = result.Solids.FirstOrDefault();
@@ -163,6 +164,7 @@ namespace ChemAssistPlus
             { result.Block = "没有待处理原料或半成品；不会自动放入容器。"; return result; }
             result.Recipe = Detect(result.Pot, result.Solid);
             if (result.Recipe == null) { result.Block = "首种原料暂不支持，或半成品含多种配方；请分开存放。"; return result; }
+            if (IsFanta(result.Recipe)) { result.Block = "芬太前体无需搅拌，请将前体液容器直接放入关闭的加热器槽。"; return result; }
             if (result.Solids.Any(x => Amount(x, result.Recipe.FeedLiquids[0]) <= 0))
             { result.Block = "第一种原料无法匹配配方，本次不处理。"; return result; }
             if (result.Pot != null && RecipeCatalog.Recipes.Any(c => c != result.Recipe
@@ -184,7 +186,8 @@ namespace ChemAssistPlus
         }
         static int ReactableFeed(GameItem pot, Recipe chain) => chain.ProductId == "fanta_pill"
             ? Math.Max(0, Amount(pot, "methylol") - Amount(pot, "stabilizing_agent")) : Amount(pot, chain.FeedLiquids[0]);
-        public static bool AlreadyExtracted(GameItem pot, Recipe chain) => (chain.FeedLiquids[0] == chain.ProductLiquid || ReactableFeed(pot, chain) == 0) && Amount(pot, chain.ProductLiquid) > 0;
+        public static bool AlreadyExtracted(GameItem pot, Recipe chain) => IsFanta(chain) ? FantaReady(pot)
+            : (chain.FeedLiquids[0] == chain.ProductLiquid || ReactableFeed(pot, chain) == 0) && Amount(pot, chain.ProductLiquid) > 0;
         public static int SolventTarget(Recipe chain, int feed, string solvent)
         {
             return SolventTargetForParts(chain, feed, solvent, Amount(contextPot, "stabilizing_agent"));
@@ -271,7 +274,7 @@ namespace ChemAssistPlus
         static void OpenPanel(bool refresh)
         {
             if (!ReadyForUi()) return;
-            if (!busy) SelectWorkingBlender();
+            if (!busy) SelectWorkingMachine();
             showingNightResult = !refresh;
             if (!refresh) RestoreRunDisplay();
             window?.Close();
@@ -280,7 +283,7 @@ namespace ChemAssistPlus
                 .SetSize(450, 720).SetDraggable(true).SetCloseOnEscape(true);
             ui.AddLabel(autoProcessing ? "结束当天自动处理" : "自动处理已关闭", "auto_status");
             ui.BeginRow().AddButton("当前用量", RefreshInventoryReport)
-                .AddButton("本晚结果", () => { showingNightResult = true; RestoreRunDisplay(); SetReport("本晚处理结果（按搅拌机排列）"); }).End();
+                .AddButton("本晚结果", () => { showingNightResult = true; RestoreRunDisplay(); SetReport("本晚处理结果（按设备排列）"); }).End();
             ui.BeginScroll(554).AddLabel("", "failure").AddLabel(lastReport, "report");
             AddCompositionWidgets(ui);
             ui.End();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -128,7 +128,7 @@ namespace ChemAssistPlus.Core
     {
         public sealed class ProbeResult
         {
-            public GameItem Blender, Solid, Pot;
+            public GameItem Machine, Solid, Pot;
             public List<GameItem> Solids = new List<GameItem>();
             public List<GameItem> InputSolids = new List<GameItem>();
             public bool AutoPot;

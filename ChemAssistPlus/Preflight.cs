@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using ChemAssistPlus.Core;
 
@@ -30,17 +30,19 @@ namespace ChemAssistPlus
                 lastReport = problem == null ? Good("原液已干燥，无需添加溶剂。") : Bad(problem);
                 return problem;
             }
-            var blender = contextBlender ?? selectedBlender;
+            var blender = contextMachine ?? selectedMachine;
             var solids = solid == null ? new System.Collections.Generic.List<GameItem>() : FirstKind(MachineView.Walk(blender).Input);
-            var p = new NativeChem.ProbeResult { Blender = blender, Pot = pot, Recipe = chain, Solid = solids.FirstOrDefault(), Solids = solids,
-                AutoPot = pot != null && MachineView.Walk(blender).Container?.childItem != pot };
+            var p = new NativeChem.ProbeResult { Machine = blender, Pot = pot, Recipe = chain, Solid = solids.FirstOrDefault(), Solids = solids,
+                Parts = MachineView.Walk(blender), AutoPot = pot != null && MachineView.Walk(blender).Container?.childItem != pot };
             var plan = BuildBatchPlan(p);
             lastCheckedPlan = plan;
             lastReport = PlanSummary(p, plan);
-            string message = "[预检] " + ChemNames.ProductName(chain.ProductId) + "；本次原料 " + plan.Selected.Count + "/" + solids.Count + " 份（余料保留固体）"
+            string message = "[预检] " + ChemNames.ProductName(chain.ProductId)
+                + (IsFanta(chain) ? "；加热器 #" + blender.uniqueId + " 直接处理前体液，不搅拌"
+                    : "；本次原料 " + plan.Selected.Count + "/" + solids.Count + " 份（余料保留固体）")
                 + (pot == null ? "" : "；工作瓶 " + Name(pot) + " #" + pot.uniqueId + "，容量 " + Vol(WaterHelper.GetTotalCapacity(pot))
                     + (p.AutoPot ? "（拟自动装入）" : "（容器槽）") + "；原料瞬时 " + Vol(plan.RawPeak)
-                    + "，搅拌液及试剂 " + Vol(plan.SolutionPeak) + "，药片预留 " + Vol(plan.TabletReserve))
+                    + "，本瓶及试剂 " + Vol(plan.SolutionPeak) + "，药片预留 " + Vol(plan.TabletReserve))
                 + (plan.Consolidation == null ? "" : "；开工前拟" + ConsolidationSummary(plan.Consolidation))
                 + "；" + (plan.Errors.Count == 0 ? "通过" : string.Join("；", plan.Errors));
             if (message != lastPreflightLog) { log?.Log(message); lastPreflightLog = message; }

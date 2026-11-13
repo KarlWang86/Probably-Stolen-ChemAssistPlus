@@ -32,6 +32,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 数据与边界
 
+- 0.4.9接入芬太加热器流程；本机程序集SHA256仍为725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05。补查RemoveAndReturn：全取返回全部成分，部分取直接调用GetLiquidParts→SplitProportionally，再按返回数组扣除。SplitProportionally采用整数比例向下取整后按余数/原分量顺序补余数，不保证每次净有效量恰等于比例目标；DoseFanta先规划整份投料并约束不超目标，再真实扣液。证据Research/Assembly-CSharp-WaterHelper-{RemoveAndReturn,SplitProportionally}-il.txt。规划不调用原生化学反应；未游戏内验收。
+
 - 2026-11-13芬太路线只读调查：程序集哈希仍与基线一致。管制用品拆包为2瓶前体+1瓶还原剂；稳定剂经原生酸碱沉淀转debris。合成每拍先按min(前体−稳定剂,还原剂)限量，实际耗还原剂为Round(反应量×0.75)、产物为Round(反应量×0.1)，须考虑尾量。前体/稳定剂/还原剂/酸碱/产物粒径均5且不挥发，现有孔径150→22过滤及蒸发不能分离残余试剂。配方每件需总干料500μL。完整流程、IL索引及入队/完成判定缺口见Research/FantaWorkflow-20261113.md；未改功能、未游戏内验收。
 
 - 0.4.7定向核对：GameItem.GetTagReadonly从modifiedState取TagState并Clone；ModifyTag(...,true)修改state且跳过ValidateShapeState，原生TransferLiquid批量走此路径。TagSystem.GetTag会InitTagString，不能用它做无副作用的原始状态读取；图标改用state.dict.TryGetValue读取现有CURRENT_PART，蒸发器路线观察也共用该实际液体读取。证据Research/icon-refresh-{GetTagReadonly,ModifyTag,TagSystem-GetTag}-il.txt。不通过UI刷新去改材料或强制原生化学缓存。

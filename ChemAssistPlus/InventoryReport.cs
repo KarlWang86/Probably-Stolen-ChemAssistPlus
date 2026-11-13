@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 using HarmonyLib;
@@ -18,9 +18,9 @@ namespace ChemAssistPlus
             lastFailure = null;
             try
             {
-                foreach (var blender in Scan().Where(x => x.IsID("blender") && HasPendingBatch(x)).OrderBy(x => x.uniqueId))
+                foreach (var blender in PendingMachines())
                 {
-                    selectedBlender = contextBlender = blender; contextPot = null; contextChain = null;
+                    selectedMachine = contextMachine = blender; contextPot = null; contextChain = null;
                     if (WaitingForDistillation(blender))
                     {
                         previewDetails.Add(new BatchDisplay { Title = Name(blender) + " #" + blender.uniqueId,
@@ -35,7 +35,7 @@ namespace ChemAssistPlus
                         continue;
                     }
                     PrepareRoute(p.Recipe); contextPot = p.Pot; contextChain = p.Recipe;
-                    if (p.Solid == null && AlreadyExtracted(p.Pot, p.Recipe)
+                    if (!IsFanta(p.Recipe) && p.Solid == null && AlreadyExtracted(p.Pot, p.Recipe)
                         && NativeChem.WetTotal(p.Pot) <= WaterHelper.DRY_TOLERANCE_UL)
                     {
                         Preflight(p.Recipe, null, p.Pot, false, false);
@@ -46,10 +46,10 @@ namespace ChemAssistPlus
                     }
                     else PreviewComposition(p, BuildBatchPlan(p));
                 }
-                SetReport(previewDetails.Count > 0 ? "各搅拌机独立预估；结束当天按顺序重新检查库存。" : "没有待处理原料。\n" + EvaporatorContents());
+                SetReport(previewDetails.Count > 0 ? "各设备独立预估；结束当天按顺序重新检查库存。" : "没有待处理原料。\n" + EvaporatorContents());
             }
             catch (Exception error) { SetReport(Bad("用量检查失败：" + error.Message)); log?.Error(error.ToString()); }
-            finally { contextBlender = contextPot = null; contextChain = null; }
+            finally { contextMachine = contextPot = null; contextChain = null; }
         }
 
         static string EvaporatorContents()

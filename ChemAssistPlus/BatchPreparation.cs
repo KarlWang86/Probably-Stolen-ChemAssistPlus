@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -30,7 +30,7 @@ namespace ChemAssistPlus
                 if (checkPlate == null || (MachineBlender.GetUpgradeCount(checkPlate) < 2 && !HeatingHookReady()))
                     throw new InvalidOperationException("加热条件已变化，尚未搅拌或补料。");
             }
-            Trace("步骤1 · 原料与容器：" + Name(p.Blender) + " #" + p.Blender.uniqueId + "；工作瓶 " + Name(p.Pot) + "，容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot)));
+            Trace("步骤1 · 原料与容器：" + Name(p.Machine) + " #" + p.Machine.uniqueId + "；工作瓶 " + Name(p.Pot) + "，容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot)));
             if (p.AutoPot)
             {
                 if (p.Solids.Count == 0 || p.Solids.Any(x => x.parentInventory != p.Parts.Input
@@ -45,7 +45,7 @@ namespace ChemAssistPlus
             if (p.Solid != null)
             {
                 CheckPot(p);
-                int before = WaterHelper.GetTotalVolume(p.Pot), loss = MachineBlender.GetLoss(p.Blender);
+                int before = WaterHelper.GetTotalVolume(p.Pot), loss = MachineBlender.GetLoss(p.Machine);
                 if (p.Solids.Sum(x => (long)ChemicalHelper.GetTotalVolume(x)) > WaterHelper.GetFreeCapacity(p.Pot))
                     throw new InvalidOperationException("[缺容器] 工作瓶装不下整批原料，尚未搅拌。");
                 int index = 0;
@@ -214,6 +214,7 @@ namespace ChemAssistPlus
         static void FinishPreparedBatch(NativeChem.ProbeResult p)
         {
             var c = p.Recipe;
+            if (IsFanta(c) && !FantaReady(p.Pot)) throw new InvalidOperationException("芬太残余未通过检查：" + FantaResidue(p.Pot));
             Trace("  反应后：" + Composition(p.Pot));
             CheckPot(p);
             Trace("步骤6 · 单道过滤：优先滤芯，无可用滤芯时使用棉布；每份原液仅过滤一次。只使用已有且可用的水壶/滤材，不使用净水器。");
@@ -230,6 +231,15 @@ namespace ChemAssistPlus
             Trace("  药片净水后：" + Composition(p.Pot));
             CaptureRunStage(3, "实际", c.ProductLiquid, p.Pot);
             CheckPot(p);
+            if (IsFanta(c))
+            {
+                if (!FantaReady(p.Pot)) throw new InvalidOperationException("净化后芬太残余未通过检查：" + FantaResidue(p.Pot));
+                if (NativeChem.WetTotal(p.Pot) <= WaterHelper.DRY_TOLERANCE_UL)
+                {
+                    DeliverFantaDry(p);
+                    return;
+                }
+            }
             var evaporator = FindEvaporator(p.Pot, c);
             if (evaporator == null) throw new InvalidOperationException("过滤已完成，" + EvaporatorBlockReason(p.Pot) + "原液已保留，自动开关仍开启。");
             var destination = DeliverToEvaporator(evaporator, p.Pot, c);

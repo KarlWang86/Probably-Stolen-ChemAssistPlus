@@ -157,7 +157,7 @@ namespace ChemAssistPlus
                     long total = snapshot.Parts.Sum(x => (long)x);
                     double purity = total > 0 ? 100d * Part(snapshot.Parts, snapshot.Primary) / total : 0;
                     DetailRow((snapshot.Estimated ? "约 " : "") + CompactVolume(total) + " / " + purity.ToString("0.#") + "%",
-                        StageNames[i], (float)(purity / 100), component: snapshot.Primary);
+                        batch.Primary == "fanta" && i == 1 ? "加热器原液" : StageNames[i], (float)(purity / 100), component: snapshot.Primary);
                 }
                 DetailRow("");
             }
@@ -176,7 +176,8 @@ namespace ChemAssistPlus
             displayStages[1] = Snapshot("预计", p.Recipe.FeedLiquids[0], plan.Kept);
             displaySupplies = plan.Supplies.ToArray();
             displayNightDetails = false;
-            previewDetails.Add(new BatchDisplay { Title = Name(p.Blender) + " #" + p.Blender.uniqueId,
+            previewDetails.Add(new BatchDisplay { Title = Name(p.Machine) + " #" + p.Machine.uniqueId,
+                Primary = p.Recipe.ProductLiquid,
                 Detail = PlanSummary(p, plan) + (!p.Ok ? "\n" + Bad(p.Block) : ""),
                 Stages = displayStages, Supplies = displaySupplies });
         }
@@ -186,7 +187,7 @@ namespace ChemAssistPlus
             runStages[0] = Snapshot("实际", p.Recipe.FeedLiquids[0], RawParts(p));
             runSupplies = lastCheckedPlan?.Supplies.ToArray() ?? Array.Empty<SupplySnapshot>();
             runPotId = p.Pot.uniqueId; runPrimary = p.Recipe.ProductLiquid;
-            runDetail = new BatchDisplay { Title = Name(p.Blender) + " #" + p.Blender.uniqueId,
+            runDetail = new BatchDisplay { Title = Name(p.Machine) + " #" + p.Machine.uniqueId,
                 Stages = runStages, Supplies = runSupplies, Actual = true };
             nightDetails.Add(runDetail); SyncRunDetail(); RestoreRunDisplay();
         }

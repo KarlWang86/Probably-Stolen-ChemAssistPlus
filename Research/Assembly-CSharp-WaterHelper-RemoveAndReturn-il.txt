@@ -1,0 +1,163 @@
+﻿Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>> WaterHelper::RemoveAndReturn(GameItem,System.Int32)
+  0: GameItem container None
+  1: System.Int32 volumeInPart None
+  local 0: System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>>
+  local 1: System.Int32
+  local 2: System.Int32
+  local 3: System.Int32[]
+  local 4: System.Int32[]
+  local 5: System.Collections.Generic.List`1/Enumerator<Liquid>
+  local 6: Liquid
+  local 7: Liquid
+  local 8: System.Int32
+  local 9: System.Int32
+  local 10: WaterHelper/<>c__DisplayClass80_0
+  local 11: Liquid
+  local 12: System.Int32
+IL_0000: newobj System.Void System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>>::.ctor()
+IL_0005: stloc.0
+IL_0006: ldarg.1
+IL_0007: ldc.i4.0
+IL_0008: bgt.s IL_000c
+IL_000a: ldloc.0
+IL_000b: ret
+IL_000c: ldarg.1
+IL_000d: stloc.1
+IL_000e: ldc.i4.0
+IL_000f: stloc.2
+IL_0010: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_0015: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_001a: stloc.s V_5
+IL_001c: br.s IL_003c
+IL_001e: ldloca.s V_5
+IL_0020: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_0025: stloc.s V_6
+IL_0027: ldloc.2
+IL_0028: ldarg.0
+IL_0029: ldloc.s V_6
+IL_002b: ldfld System.String Liquid::currentPart
+IL_0030: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0035: callvirt System.Int32 TagState::GetInt()
+IL_003a: add
+IL_003b: stloc.2
+IL_003c: ldloca.s V_5
+IL_003e: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_0043: brtrue.s IL_001e
+IL_0045: leave.s IL_0055
+IL_0047: ldloca.s V_5
+IL_0049: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_004f: callvirt System.Void System.IDisposable::Dispose()
+IL_0054: endfinally
+IL_0055: ldloc.2
+IL_0056: ldloc.1
+IL_0057: bgt IL_00ef
+IL_005c: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_0061: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Liquid>::GetEnumerator()
+IL_0066: stloc.s V_5
+IL_0068: br.s IL_00ce
+IL_006a: ldloca.s V_5
+IL_006c: call !0 System.Collections.Generic.List`1/Enumerator<Liquid>::get_Current()
+IL_0071: stloc.s V_7
+IL_0073: ldarg.0
+IL_0074: ldloc.s V_7
+IL_0076: ldfld System.String Liquid::currentPart
+IL_007b: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_0080: callvirt System.Int32 TagState::GetInt()
+IL_0085: stloc.s V_8
+IL_0087: ldloc.s V_8
+IL_0089: ldc.i4.0
+IL_008a: ble.s IL_00a0
+IL_008c: ldloc.0
+IL_008d: ldloc.s V_7
+IL_008f: ldfld System.String Liquid::identifier
+IL_0094: ldloc.s V_8
+IL_0096: newobj System.Void System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>::.ctor(!0,!1)
+IL_009b: callvirt System.Void System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>>::Add(!0)
+IL_00a0: ldarg.0
+IL_00a1: ldloc.s V_7
+IL_00a3: ldfld System.String Liquid::currentPart
+IL_00a8: ldsfld System.Action`1<TagState> WaterHelper/<>c::<>9__80_0
+IL_00ad: dup
+IL_00ae: brtrue.s IL_00c7
+IL_00b0: pop
+IL_00b1: ldsfld WaterHelper/<>c WaterHelper/<>c::<>9
+IL_00b6: ldftn System.Void WaterHelper/<>c::<RemoveAndReturn>b__80_0(TagState)
+IL_00bc: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_00c1: dup
+IL_00c2: stsfld System.Action`1<TagState> WaterHelper/<>c::<>9__80_0
+IL_00c7: ldc.i4.0
+IL_00c8: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00cd: pop
+IL_00ce: ldloca.s V_5
+IL_00d0: call System.Boolean System.Collections.Generic.List`1/Enumerator<Liquid>::MoveNext()
+IL_00d5: brtrue.s IL_006a
+IL_00d7: leave.s IL_00e7
+IL_00d9: ldloca.s V_5
+IL_00db: constrained. System.Collections.Generic.List`1/Enumerator<Liquid>
+IL_00e1: callvirt System.Void System.IDisposable::Dispose()
+IL_00e6: endfinally
+IL_00e7: ldarg.0
+IL_00e8: call System.Void WaterFeatureHelper::OnLiquidContainerPourOutOf(GameItem)
+IL_00ed: ldloc.0
+IL_00ee: ret
+IL_00ef: ldarg.0
+IL_00f0: call System.Int32[] WaterHelper::GetLiquidParts(GameItem)
+IL_00f5: stloc.3
+IL_00f6: ldloc.3
+IL_00f7: ldloc.1
+IL_00f8: call System.Int32[] WaterHelper::SplitProportionally(System.Int32[],System.Int32)
+IL_00fd: stloc.s V_4
+IL_00ff: ldc.i4.0
+IL_0100: stloc.s V_9
+IL_0102: br.s IL_0169
+IL_0104: newobj System.Void WaterHelper/<>c__DisplayClass80_0::.ctor()
+IL_0109: stloc.s V_10
+IL_010b: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_0110: ldloc.s V_9
+IL_0112: callvirt !0 System.Collections.Generic.List`1<Liquid>::get_Item(System.Int32)
+IL_0117: stloc.s V_11
+IL_0119: ldloc.s V_4
+IL_011b: ldloc.s V_9
+IL_011d: ldelem.i4
+IL_011e: stloc.s V_12
+IL_0120: ldloc.s V_12
+IL_0122: ldc.i4.0
+IL_0123: ble.s IL_0139
+IL_0125: ldloc.0
+IL_0126: ldloc.s V_11
+IL_0128: ldfld System.String Liquid::identifier
+IL_012d: ldloc.s V_12
+IL_012f: newobj System.Void System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>::.ctor(!0,!1)
+IL_0134: callvirt System.Void System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>>::Add(!0)
+IL_0139: ldloc.s V_10
+IL_013b: ldloc.3
+IL_013c: ldloc.s V_9
+IL_013e: ldelem.i4
+IL_013f: ldloc.s V_12
+IL_0141: sub
+IL_0142: stfld System.Int32 WaterHelper/<>c__DisplayClass80_0::newAmount
+IL_0147: ldarg.0
+IL_0148: ldloc.s V_11
+IL_014a: ldfld System.String Liquid::currentPart
+IL_014f: ldloc.s V_10
+IL_0151: ldftn System.Void WaterHelper/<>c__DisplayClass80_0::<RemoveAndReturn>b__1(TagState)
+IL_0157: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_015c: ldc.i4.0
+IL_015d: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0162: pop
+IL_0163: ldloc.s V_9
+IL_0165: ldc.i4.1
+IL_0166: add
+IL_0167: stloc.s V_9
+IL_0169: ldloc.s V_9
+IL_016b: ldsfld System.Collections.Generic.List`1<Liquid> Liquid::Liquids
+IL_0170: callvirt System.Int32 System.Collections.Generic.List`1<Liquid>::get_Count()
+IL_0175: blt.s IL_0104
+IL_0177: ldarg.0
+IL_0178: call System.Void WaterFeatureHelper::OnLiquidContainerPourOutOf(GameItem)
+IL_017d: ldloc.0
+IL_017e: ret
+  EH Finally: try IL_001c: br.s IL_003c -> IL_0047: ldloca.s V_5; handler IL_0047: ldloca.s V_5 -> IL_0055: ldloc.2; filter ; catch
+  EH Finally: try IL_0068: br.s IL_00ce -> IL_00d9: ldloca.s V_5; handler IL_00d9: ldloca.s V_5 -> IL_00e7: ldarg.0; filter ; catch

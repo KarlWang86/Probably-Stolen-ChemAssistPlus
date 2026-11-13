@@ -2,7 +2,7 @@
 
 本文的运行时文件名均相对ChemAssistPlus/；操作脚本、辅助工具、研究资料与截图分别位于仓库根目录的scripts/、Tools/、Research/、Screenshots/。完整目录与构建入口见[仓库说明](REPOSITORY.md)。
 
-## 架构总览（0.4.7）
+## 架构总览（0.4.9）
 
 下图按职责分组；箭头表示主要调用或数据依赖，并非独立服务。大多数业务文件都是同一个静态分部类Plus，共享当前存档的会话状态，由Unity主线程驱动。
 
@@ -17,6 +17,7 @@ flowchart TB
         Plan["BatchPlan.cs + DoseMath.cs<br/>整份选料 / 用量与容量规划"]
         Check["Preflight.cs + FilterPlan.cs<br/>开工复核 / 滤材选择"]
         Work["Workflow.cs + BatchPreparation.cs<br/>IEnumerator调度 / 分阶段加工 / 失败清理"]
+        Fanta["FantaPlan / FantaPreparation / FantaReaction<br/>加热器液体入口 / 储备边界 / 原生合成"]
         Heat["HeatingControl.cs<br/>原生加热与控温保护"]
         Purify["Purification.cs<br/>紫外线 / 含氯药片"]
         Distill["Distillation.cs<br/>接收 / 集中腾槽 / 干料转移"]
@@ -39,6 +40,9 @@ flowchart TB
     Auto --> Distill
     Auto --> Route
     Work --> Plan
+    Work --> Fanta
+    Fanta --> Distill
+    Fanta --> Heat
     Work --> Check
     Work --> Heat
     Work --> Purify
@@ -73,16 +77,16 @@ flowchart TD
     Click["玩家点击最终结束当天按钮"] --> Gate{"自动开启且可处理？"}
     Gate -->|关闭或未就绪| Night["执行原生过夜"]
     Gate -->|开启| Bottles["记住机器瓶号 → 转移已有干料 → 补空槽"]
-    Bottles --> Queue["按设备编号快照待处理搅拌机队列"]
+    Bottles --> Queue["快照待处理设备：芬太加热器 → 搅拌机<br/>各组按编号，每台一次"]
     Queue --> Next{"还有下一台？"}
     Next -->|有| Pre["识别配方 → 整份用量规划 → 只读预检"]
     Pre -->|不满足或等待蒸发| Skip["保留原料，记录本批原因"]
     Skip --> Next
     Pre -->|通过| Hold["挂起过夜请求，逐批复用加热板"]
-    Hold --> Prepare["必要时集中同类湿料腾槽<br/>再复核 → 搅拌 → 按真实浓度投料"]
+    Hold --> Prepare["再复核：搅拌机整份搅拌/补料<br/>芬太加热器跳过搅拌，原位前处理"]
     Prepare --> React["原生加热与反应 → 去蛋白 / 脂肪"]
     React --> Filter["单道过滤（滤芯优先，棉布备用） → 按需UV → 药片"]
-    Filter --> Deliver["按配方分工选择蒸发器<br/>复核容量 / 电量 / 干湿 / 浓度后交付"]
+    Filter --> Deliver["湿料按配方交蒸发器<br/>芬太干料直接交制剂机<br/>复核容量 / 电量 / 干湿 / 残余后交付"]
     Deliver --> Snapshot["保存本批实际用量、阶段快照与接收瓶号"]
     Snapshot --> Next
     Next -->|队列完成| Resume["释放加热器，恢复原生过夜一次"]
@@ -102,6 +106,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 
 ## 按问题定位
 
+0.4.9新增加热器液体入口：ProbeResult.Machine、selectedMachine/contextMachine统一表示批次来源设备。芬太批次直接读取加热器容器槽，其他配方仍走搅拌机。PendingMachines按加热器优先、组内编号排序，已占用的芬太加热器不能被其他批次借用；仅在瓶子移出、设备关闭后可借用。上方普通搅拌执行路径仍适用于原有配方。
+
 | 问题 | 文件 / 搜索入口 |
 | --- | --- |
 | 入口、配方、物品递归、按角色找槽位 | Core.cs；ProbeResult |
@@ -111,6 +117,9 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 只读预检、去蛋白方向 | Preflight.cs；ProteinReagent |
 | 执行调度、停止与原生成型 | Workflow.cs；Run、PrepareBatch、CancelJob、ProduceBatch |
 | 分阶段加工、反应、耗料与进度 | BatchPreparation.cs；PrepareMaterials、ExtractBatch、SettleImpurities、FinishPreparedBatch；HeatingControl.cs |
+| 芬太加热器入口、原始成分与只读保守储备 | FantaPlan.cs；ProbeFantaPlate、FantaSources、BuildFantaPlan、ReserveFantaSupply、FantaReady |
+| 芬太前处理、整份投料预检、酸碱处理与直接干料交付 | FantaPreparation.cs；PrepareFantaBatch、DoseFanta、PlanFantaDose、SettleFanta、NeutralizeFanta、DeliverFantaDry |
+| 芬太原位控温及原生整数尾量 | FantaReaction.cs；SynthesizeFanta、SafeFantaDose、FantaFeedForDose |
 | 滤材耐久排序、换装与归还 | FilterPlan.cs；Filtration.cs 的 FilterBatch |
 | 散片/瓶内片、真实耗片、净化下限 | Purification.cs；Tablets |
 | 紫外线设备检查、原生消毒、结果与跳过原因 | Purification.cs；PurifyWithUV；Workflow.cs 的 Publish |
@@ -126,6 +135,10 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 构建、扫描、查询、部署与打包 | DEVELOPMENT.md；Tools/NativeScan、Tools/AssemblyQuery |
 
 ## 状态与物料边界
+
+- 0.4.9芬太规划只读state.dict的实际成分，避免手动倒液后modifiedState滞后；执行原生反应/转液前才ValidateShapeState。储备为上限而非精确化学模拟：按真实来源含量预留试剂和杂质体积，运行同时限制有效投入、原溶液总量、拍数和无进度次数。达到边界保料停止，不承诺任意杂质组合均能处理完成。
+- 芬太还原剂在耗尽后按≤1000μL分次补充，用原生Math.Round规则计算该份最终消耗的前体总量，使新投料不越过剩余前体；成分更新全部交给HandleTemperatureReaction。已有还原剂超过可无残余处理的保守范围时预检阻断。前体、稳定剂、还原剂、酸和碱均须为0才通过FantaReady；该判定同时约束蒸发器合并和干料整理。
+- 芬太过滤净化后按真实挥发液量分流，干料复用MoveDryBottle直接从加热器交制剂机，源空瓶留原机器槽；湿料复用蒸发器分工。TransferSolution在不跨帧的原生扣液/加液中复用异常未转移份额回收，TransferWholeSolution为其整瓶包装。无接收设备保留当前工作瓶，不自动成型或给加热器补瓶。
 
 - Plus 的 partial 文件共享当前存档会话状态；切档清任务、来源偏好、报告和挂起过夜。
 - 0.4.7 MixingDialog仅在本模组已挂起的混液请求上临时设置共享GenericConfirmationUIManager：保存panel/body/两按钮的父级、同级序号和RectTransform、正文全部受影响文本样式；参照原生按钮字号固定正文（至少24号）和略大标题，并禁用自动缩字，按preferredHeight与画布尺寸布局。自建带遮罩的ScrollRect容纳长正文，按钮置底；pending请求关闭/替换/确认/取消后Tick恢复原生层级及样式，再销毁自建视口，切档/禁用立即清理。确认依旧只放行原有一次转液。

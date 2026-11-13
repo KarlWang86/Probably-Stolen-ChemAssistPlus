@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using ChemAssistPlus.Core;
@@ -105,20 +105,20 @@ namespace ChemAssistPlus
                 reportPotId = target.uniqueId;
                 foreach (var batch in nightDetails.Where(x => x.PotId == pot.uniqueId)) batch.PotId = target.uniqueId;
                 if (runPotId == pot.uniqueId) runPotId = target.uniqueId;
-                return (emptyReceiver ? "干料转入制剂机空接收瓶：蒸发器 #" : "干料合并至制剂机：蒸发器 #") + machine.uniqueId + " 的瓶 #" + pot.uniqueId
+                return (emptyReceiver ? "干料转入制剂机空接收瓶：" : "干料合并至制剂机：") + Name(machine) + " #" + machine.uniqueId + " 的瓶 #" + pot.uniqueId
                     + " → 制剂机 #" + finisher.uniqueId + " 的瓶 #" + target.uniqueId
                     + "；" + ChemNames.ProductName(recipe.ProductId) + "，整瓶转移 " + Vol(volume)
                     + "，合并后有效成分 " + Vol(Amount(target, recipe.ProductLiquid))
-                    + "；源空瓶留在蒸发器原液槽备用，待玩家制剂。";
+                    + "；源空瓶留在原机器槽备用，待玩家制剂。";
             }
             MovePot(pot, MachineView.Walk(finisher).Container);
             nightDidWork = true;
             // A dry bottle is parked for the player to produce through the game's controls.
             finisher.ModifyTag(MachineChemFinisher.SELECTED_CHEM_ID_TAG, s => s.SetString(recipe.ProductId), false);
-            return "干料转入制剂机：蒸发器 #" + machine.uniqueId + " → 制剂机 #" + finisher.uniqueId
+            return "干料转入制剂机：" + Name(machine) + " #" + machine.uniqueId + " → 制剂机 #" + finisher.uniqueId
                 + "；工作瓶 #" + pot.uniqueId + "，" + ChemNames.ProductName(recipe.ProductId)
                 + " " + Vol(Amount(pot, recipe.ProductLiquid)) + "，挥发液剩 " + Vol(NativeChem.WetTotal(pot))
-                + (matched ? "；沿用已设置配方。" : "；已设置对应配方。") + "蒸发器原液槽已腾空，待玩家制剂。";
+                + (matched ? "；沿用已设置配方。" : "；已设置对应配方。") + "原机器容器槽已腾空，待玩家制剂。";
         }
 
         sealed class ConsolidationPlan
@@ -277,8 +277,16 @@ namespace ChemAssistPlus
 
         static void TransferWholeSolution(GameItem source, GameItem target)
         {
-            int volume = WaterHelper.GetTotalVolume(source);
-            if (source == target || volume <= 0 || WaterHelper.GetFreeCapacity(target) < volume)
+            TransferSolution(source, target, WaterHelper.GetTotalVolume(source));
+        }
+
+        static void TransferSolution(GameItem source, GameItem target, int volume)
+        {
+            // Native transfer/reaction APIs read modifiedState. Refresh it only when
+            // executing a real transfer, never from a preview or a planning snapshot.
+            source.ValidateShapeState(); target.ValidateShapeState();
+            int sourceVolume = WaterHelper.GetTotalVolume(source);
+            if (source == target || volume <= 0 || volume > sourceVolume || WaterHelper.GetFreeCapacity(target) < volume)
                 throw new InvalidOperationException("整瓶转液容量或来源变化，尚未转液。");
             double temperature = SceneSnapshot.Temp(source);
             int targetVolume = WaterHelper.GetTotalVolume(target);
@@ -301,7 +309,7 @@ namespace ChemAssistPlus
                 WaterHelper.UpdateContainerGoodType(source);
                 WaterHelper.UpdateContainerGoodType(target);
             }
-            if (WaterHelper.GetTotalVolume(source) != 0 || WaterHelper.GetTotalVolume(target) != targetVolume + volume)
+            if (WaterHelper.GetTotalVolume(source) != sourceVolume - volume || WaterHelper.GetTotalVolume(target) != targetVolume + volume)
                 throw new InvalidOperationException("合并转移未完整完成，已停止；请检查源瓶和蒸发器内接收瓶。");
         }
     }
