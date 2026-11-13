@@ -1,0 +1,15 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameGridInventory::RemoveParent(GraphNodeStorage)
+  0: GraphNodeStorage node None
+IL_0000: ldarg.0
+IL_0001: call GraphNodeStorage GameInventory::get_parent()
+IL_0006: ldarg.1
+IL_0007: beq.s IL_000b
+IL_0009: ldc.i4.0
+IL_000a: ret
+IL_000b: ldarg.0
+IL_000c: ldnull
+IL_000d: call System.Void GameInventory::set_parent(GraphNodeStorage)
+IL_0012: ldc.i4.1
+IL_0013: ret

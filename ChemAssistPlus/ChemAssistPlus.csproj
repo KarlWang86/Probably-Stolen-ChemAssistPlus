@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Plus.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="InventoryCache.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="BatchPreparation.cs" />
     <Compile Include="FantaPlan.cs" />

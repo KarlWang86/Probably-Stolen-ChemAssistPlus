@@ -1,0 +1,140 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameSlotInventory::UncheckedAccept(GameItem)
+  0: GameItem item None
+  local 0: PixelElement
+  local 1: PixelWindow
+IL_0000: ldarg.1
+IL_0001: brtrue.s IL_0005
+IL_0003: ldc.i4.0
+IL_0004: ret
+IL_0005: ldarg.1
+IL_0006: callvirt GameInventory GameItem::get_parentInventory()
+IL_000b: brfalse.s IL_000f
+IL_000d: ldc.i4.0
+IL_000e: ret
+IL_000f: ldarg.0
+IL_0010: ldfld GameItem GameSlotInventory::currentItem
+IL_0015: ldarg.1
+IL_0016: bne.un.s IL_001a
+IL_0018: ldc.i4.0
+IL_0019: ret
+IL_001a: ldarg.0
+IL_001b: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotAddItemFunc()
+IL_0020: dup
+IL_0021: brtrue.s IL_0026
+IL_0023: pop
+IL_0024: br.s IL_0034
+IL_0026: ldarg.1
+IL_0027: ldarg.0
+IL_0028: ldarg.0
+IL_0029: ldarg.1
+IL_002a: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_002f: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_0034: ldarg.0
+IL_0035: ldarg.1
+IL_0036: stfld GameItem GameSlotInventory::currentItem
+IL_003b: ldarg.1
+IL_003c: ldarg.0
+IL_003d: callvirt System.Boolean GameItem::AddParent(GraphNodeStorage)
+IL_0042: pop
+IL_0043: ldarg.1
+IL_0044: isinst PixelElement
+IL_0049: stloc.0
+IL_004a: ldloc.0
+IL_004b: brfalse.s IL_0055
+IL_004d: ldloc.0
+IL_004e: ldarg.0
+IL_004f: callvirt System.Boolean PixelElement::SetRenderingParent(PixelElement)
+IL_0054: pop
+IL_0055: ldarg.1
+IL_0056: callvirt System.Action`3<GameItem,GameInventory,SlotMarker> GameItemFunc::get_onSlotAddItemFunc()
+IL_005b: dup
+IL_005c: brtrue.s IL_0061
+IL_005e: pop
+IL_005f: br.s IL_006f
+IL_0061: ldarg.1
+IL_0062: ldarg.0
+IL_0063: ldarg.0
+IL_0064: ldarg.1
+IL_0065: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_006a: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_006f: ldarg.0
+IL_0070: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotAddItemEndFunc()
+IL_0075: dup
+IL_0076: brtrue.s IL_007b
+IL_0078: pop
+IL_0079: br.s IL_0089
+IL_007b: ldarg.1
+IL_007c: ldarg.0
+IL_007d: ldarg.0
+IL_007e: ldarg.1
+IL_007f: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_0084: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_0089: ldarg.0
+IL_008a: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotAddItemLateFunc()
+IL_008f: dup
+IL_0090: brtrue.s IL_0095
+IL_0092: pop
+IL_0093: br.s IL_00a3
+IL_0095: ldarg.1
+IL_0096: ldarg.0
+IL_0097: ldarg.0
+IL_0098: ldarg.1
+IL_0099: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_009e: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_00a3: ldarg.1
+IL_00a4: callvirt System.Boolean GameItem::IsRootedInBackInv()
+IL_00a9: brfalse.s IL_00b5
+IL_00ab: call PlayerStore PlayerStore::get_Instance()
+IL_00b0: callvirt System.Void PlayerStore::OnWeightedAreaChanged()
+IL_00b5: ldarg.0
+IL_00b6: ldfld System.Boolean GameSlotInventory::stealUI
+IL_00bb: brfalse.s IL_0125
+IL_00bd: ldarg.1
+IL_00be: callvirt GraphNodeWindow GameItem::get_child()
+IL_00c3: isinst PixelWindow
+IL_00c8: stloc.1
+IL_00c9: ldloc.1
+IL_00ca: brfalse.s IL_0125
+IL_00cc: ldarg.0
+IL_00cd: ldloc.1
+IL_00ce: callvirt PixelElement PixelWindow::get_childElement()
+IL_00d3: stfld PixelElement GameSlotInventory::stolenUI
+IL_00d8: ldarg.0
+IL_00d9: ldfld PixelElement GameSlotInventory::stolenUI
+IL_00de: dup
+IL_00df: brtrue.s IL_00e4
+IL_00e1: pop
+IL_00e2: br.s IL_00eb
+IL_00e4: ldarg.0
+IL_00e5: callvirt System.Boolean PixelElement::SetRenderingParent(PixelElement)
+IL_00ea: pop
+IL_00eb: ldarg.0
+IL_00ec: ldfld PixelElement GameSlotInventory::stolenUI
+IL_00f1: dup
+IL_00f2: brtrue.s IL_00f7
+IL_00f4: pop
+IL_00f5: br.s IL_011e
+IL_00f7: callvirt TreeNodeRender PixelElement::get_handler()
+IL_00fc: dup
+IL_00fd: brtrue.s IL_0102
+IL_00ff: pop
+IL_0100: br.s IL_011e
+IL_0102: call UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0107: dup
+IL_0108: brtrue.s IL_010d
+IL_010a: pop
+IL_010b: br.s IL_011e
+IL_010d: ldarg.0
+IL_010e: ldfld TreeNodeRender GameSlotInventory::stolenInner
+IL_0113: callvirt UnityEngine.RectTransform TreeNodeRender::get_rectTransform()
+IL_0118: ldc.i4.0
+IL_0119: call System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
+IL_011e: ldloc.1
+IL_011f: callvirt PixelWindow PixelWindow::Lock()
+IL_0124: pop
+IL_0125: ldarg.1
+IL_0126: callvirt System.Void GameItem::ValidateShapeState()
+IL_012b: ldc.i4.1
+IL_012c: ret

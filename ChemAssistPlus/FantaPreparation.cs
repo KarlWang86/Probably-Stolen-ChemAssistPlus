@@ -96,7 +96,6 @@ namespace ChemAssistPlus
         static void FantaReactionTick(NativeChem.ProbeResult p)
         {
             CheckFantaPlate(p);
-            p.Pot.ValidateShapeState();
             ChemicalHelper.HandleTemperatureReaction(p.Pot);
             MarkAutoWork();
             p.Pot.ValidateShapeState();
@@ -104,53 +103,68 @@ namespace ChemAssistPlus
 
         static IEnumerator SettleFanta(NativeChem.ProbeResult p, FantaBudget budget)
         {
-            int stagnant = 0; long previous = long.MaxValue;
-            for (int tick = 0; tick < 2400; tick++)
+            using (var slice = new FantaWorkSlice("前后处理", p))
             {
-                CheckFantaPlate(p, FantaAmount(p.Pot, "methylol") > 0);
-                int stabilizer = FantaAmount(p.Pot, "stabilizing_agent"), protein = FantaAmount(p.Pot, "protein"), fat = FantaAmount(p.Pot, "fat");
-                long remaining = (long)stabilizer + protein + fat;
-                if (remaining == 0) yield break;
-                if (remaining >= previous) stagnant++; else stagnant = 0;
-                if (stagnant > 64) throw new InvalidOperationException("芬太前处理连续64拍没有进展，原液保留。");
-                previous = remaining;
-                if (stabilizer > 0 || protein > 0)
+                int stagnant = 0; long previous = long.MaxValue;
+                for (int tick = 0; tick < 2400; tick++)
                 {
-                    int net = FantaEffective(p.Pot, budget.Reagent);
-                    DoseFanta(p, budget, budget.Reagent, Math.Max(0, Math.Min(1000, checked(stabilizer + protein)) - net));
+                    CheckFantaPlate(p, FantaAmount(p.Pot, "methylol") > 0);
+                    int stabilizer = FantaAmount(p.Pot, "stabilizing_agent"), protein = FantaAmount(p.Pot, "protein"), fat = FantaAmount(p.Pot, "fat");
+                    long remaining = (long)stabilizer + protein + fat;
+                    if (remaining == 0) yield break;
+                    if (remaining >= previous) stagnant++; else stagnant = 0;
+                    if (stagnant > 64) throw new InvalidOperationException("芬太前处理连续64拍没有进展，原液保留。");
+                    previous = remaining;
+                    if (stabilizer > 0 || protein > 0)
+                    {
+                        int net = FantaEffective(p.Pot, budget.Reagent);
+                        DoseFanta(p, budget, budget.Reagent, Math.Max(0, Math.Min(1000, checked(stabilizer + protein)) - net));
+                    }
+                    if (fat > 0)
+                        DoseFanta(p, budget, "lipobond_agent", Math.Max(0, (fat + 7) / 8 - FantaAmount(p.Pot, "lipobond_agent")));
+                    CheckFantaPlate(p, FantaAmount(p.Pot, "methylol") > 0);
+                    FantaReactionTick(p);
+                    if (slice.EndTick())
+                    {
+                        if (slice.ProgressDue())
+                            Status("芬太前处理：稳定剂 " + Vol(FantaAmount(p.Pot, "stabilizing_agent")) + "；蛋白 " + Vol(FantaAmount(p.Pot, "protein")) + "；脂肪 " + Vol(FantaAmount(p.Pot, "fat")));
+                        slice.Pause();
+                        yield return null;
+                        slice.Resume();
+                    }
                 }
-                if (fat > 0)
-                    DoseFanta(p, budget, "lipobond_agent", Math.Max(0, (fat + 7) / 8 - FantaAmount(p.Pot, "lipobond_agent")));
-                CheckFantaPlate(p, FantaAmount(p.Pot, "methylol") > 0);
-                FantaReactionTick(p);
-                if (tick % 32 == 31)
-                {
-                    Status("芬太前处理：稳定剂 " + Vol(FantaAmount(p.Pot, "stabilizing_agent")) + "；蛋白 " + Vol(FantaAmount(p.Pot, "protein")) + "；脂肪 " + Vol(FantaAmount(p.Pot, "fat")));
-                    yield return null;
-                }
+                throw new InvalidOperationException("芬太前处理达到2400拍上限，原液保留。");
             }
-            throw new InvalidOperationException("芬太前处理达到2400拍上限，原液保留。");
         }
 
         static IEnumerator NeutralizeFanta(NativeChem.ProbeResult p, FantaBudget budget)
         {
-            int stagnant = 0; long previous = long.MaxValue;
-            for (int tick = 0; tick < 512; tick++)
+            using (var slice = new FantaWorkSlice("酸碱残余", p))
             {
-                CheckFantaPlate(p);
-                int acid = FantaAmount(p.Pot, "acid"), alkali = FantaAmount(p.Pot, "base");
-                if (acid == 0 && alkali == 0) yield break;
-                long remaining = (long)acid + alkali;
-                stagnant = remaining >= previous ? stagnant + 1 : 0; previous = remaining;
-                if (stagnant > 32) throw new InvalidOperationException("酸碱残余处理无进展，停止补料并保留原液。");
-                // Process already-mixed acid/base first. Top up the opposite reagent only
-                // when one side has actually run out, rather than chasing a moving ratio.
-                if (acid == 0) DoseFanta(p, budget, "acid", Math.Min(1000, alkali));
-                else if (alkali == 0) DoseFanta(p, budget, "base", Math.Min(1000, acid));
-                FantaReactionTick(p);
-                if (tick % 32 == 31) { Status("芬太酸碱残余：" + FantaResidue(p.Pot)); yield return null; }
+                int stagnant = 0; long previous = long.MaxValue;
+                for (int tick = 0; tick < 512; tick++)
+                {
+                    CheckFantaPlate(p);
+                    int acid = FantaAmount(p.Pot, "acid"), alkali = FantaAmount(p.Pot, "base");
+                    if (acid == 0 && alkali == 0) yield break;
+                    long remaining = (long)acid + alkali;
+                    stagnant = remaining >= previous ? stagnant + 1 : 0; previous = remaining;
+                    if (stagnant > 32) throw new InvalidOperationException("酸碱残余处理无进展，停止补料并保留原液。");
+                    // Process already-mixed acid/base first. Top up the opposite reagent only
+                    // when one side has actually run out, rather than chasing a moving ratio.
+                    if (acid == 0) DoseFanta(p, budget, "acid", Math.Min(1000, alkali));
+                    else if (alkali == 0) DoseFanta(p, budget, "base", Math.Min(1000, acid));
+                    FantaReactionTick(p);
+                    if (slice.EndTick())
+                    {
+                        if (slice.ProgressDue()) Status("芬太酸碱残余：" + FantaResidue(p.Pot));
+                        slice.Pause();
+                        yield return null;
+                        slice.Resume();
+                    }
+                }
+                throw new InvalidOperationException("酸碱处理达到512拍上限，残余保留。");
             }
-            throw new InvalidOperationException("酸碱处理达到512拍上限，残余保留。");
         }
 
         static IEnumerator PrepareFantaBatch(NativeChem.ProbeResult p)

@@ -1,0 +1,112 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameGridInventory::Expel(GameItem)
+  0: GameItem item None
+  local 0: System.Boolean
+  local 1: PixelElement
+IL_0000: ldarg.1
+IL_0001: brtrue.s IL_0005
+IL_0003: ldc.i4.0
+IL_0004: ret
+IL_0005: ldarg.1
+IL_0006: callvirt GameInventory GameItem::get_parentInventory()
+IL_000b: ldarg.0
+IL_000c: beq.s IL_0010
+IL_000e: ldc.i4.0
+IL_000f: ret
+IL_0010: ldarg.0
+IL_0011: ldfld System.Collections.Generic.List`1<GameItem> GameGridInventory::items
+IL_0016: ldarg.1
+IL_0017: callvirt System.Boolean System.Collections.Generic.List`1<GameItem>::Contains(!0)
+IL_001c: brtrue.s IL_0020
+IL_001e: ldc.i4.0
+IL_001f: ret
+IL_0020: ldarg.1
+IL_0021: callvirt System.Action`3<GameItem,GameInventory,SlotMarker> GameItemFunc::get_onSlotRemoveItemFunc()
+IL_0026: dup
+IL_0027: brtrue.s IL_002c
+IL_0029: pop
+IL_002a: br.s IL_003a
+IL_002c: ldarg.1
+IL_002d: ldarg.0
+IL_002e: ldarg.0
+IL_002f: ldarg.1
+IL_0030: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_0035: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_003a: ldarg.0
+IL_003b: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotRemoveItemFunc()
+IL_0040: dup
+IL_0041: brtrue.s IL_0046
+IL_0043: pop
+IL_0044: br.s IL_0054
+IL_0046: ldarg.1
+IL_0047: ldarg.0
+IL_0048: ldarg.0
+IL_0049: ldarg.1
+IL_004a: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_004f: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_0054: ldarg.0
+IL_0055: ldfld System.Collections.Generic.List`1<GameItem> GameGridInventory::items
+IL_005a: ldarg.1
+IL_005b: callvirt System.Boolean System.Collections.Generic.List`1<GameItem>::Remove(!0)
+IL_0060: stloc.0
+IL_0061: ldloc.0
+IL_0062: brtrue.s IL_0066
+IL_0064: ldc.i4.0
+IL_0065: ret
+IL_0066: ldarg.1
+IL_0067: ldarg.0
+IL_0068: callvirt System.Boolean GameItem::RemoveParent(GraphNodeStorage)
+IL_006d: pop
+IL_006e: ldarg.1
+IL_006f: isinst PixelElement
+IL_0074: stloc.1
+IL_0075: ldloc.1
+IL_0076: brfalse.s IL_0080
+IL_0078: ldloc.1
+IL_0079: ldarg.0
+IL_007a: callvirt System.Boolean PixelElement::RemoveRenderingParent(PixelElement)
+IL_007f: pop
+IL_0080: ldarg.0
+IL_0081: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotRemoveItemEndFunc()
+IL_0086: dup
+IL_0087: brtrue.s IL_008c
+IL_0089: pop
+IL_008a: br.s IL_009a
+IL_008c: ldarg.1
+IL_008d: ldarg.0
+IL_008e: ldarg.0
+IL_008f: ldarg.1
+IL_0090: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_0095: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_009a: ldarg.0
+IL_009b: call System.Action`3<GameItem,GameInventory,SlotMarker> GameInventoryFunc::get_onSlotRemoveItemLateFunc()
+IL_00a0: dup
+IL_00a1: brtrue.s IL_00a6
+IL_00a3: pop
+IL_00a4: br.s IL_00b4
+IL_00a6: ldarg.1
+IL_00a7: ldarg.0
+IL_00a8: ldarg.0
+IL_00a9: ldarg.1
+IL_00aa: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_00af: callvirt System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::Invoke(!0,!1,!2)
+IL_00b4: ldarg.0
+IL_00b5: ldnull
+IL_00b6: ldnull
+IL_00b7: call T GraphUtils::FindParentType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00bc: dup
+IL_00bd: dup
+IL_00be: brtrue.s IL_00c3
+IL_00c0: pop
+IL_00c1: br.s IL_00c8
+IL_00c3: call System.Void GameItem::ValidateShapeState()
+IL_00c8: dup
+IL_00c9: brtrue.s IL_00ce
+IL_00cb: pop
+IL_00cc: br.s IL_00d3
+IL_00ce: callvirt System.Void GameItem::Validate()
+IL_00d3: ldsfld OverlayHandler OverlayHandler::current
+IL_00d8: callvirt System.Void OverlayHandler::UpdateInventoryStateUI()
+IL_00dd: ldloc.0
+IL_00de: ret

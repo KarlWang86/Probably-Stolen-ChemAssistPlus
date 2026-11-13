@@ -7,10 +7,12 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 ## 2026-11-12 官方API核对
 
 - 官方变更：[APIChanges.zh-CN.md](https://github.com/dragonpan2/probably-stolen-modding/blob/main/APIChanges.zh-CN.md)；[版本与信任规则](https://github.com/dragonpan2/probably-stolen-modding/blob/main/ModdingGuide.zh-CN.md)。注意Rev14测试分支才支持GameVersions的1.0.0前缀匹配，并中性处理旧0.46/0.46D；Rev13仍将条目及Application.version归一化后比较，1.0.0在Rev13会标红。定向核对ModUIManager.VersionMatchesGame、NormalizeVersion及FormatGameVersions对应lambda，0.46匹配内部0.46D。版本声明不阻止加载，也不触发信任批准。
-- HeatingControl对MachineHeatingPlate.HandleHeating的字面AccessTools查找、NativeControls对MachineryButton.callback的字面反射均为游戏成员，无需reflection-external。四个Harmony补丁只针对游戏方法（0.4.4新增WaterHelper.TransferLiquid混液确认）；不调用信任写入、QFSW控制台执行、路径文件辅助方法或外部库补丁。
+- HeatingControl对MachineHeatingPlate.HandleHeating的字面AccessTools查找、NativeControls对MachineryButton.callback的字面反射均为游戏成员，无需reflection-external。Harmony补丁只针对游戏方法（0.4.4新增WaterHelper.TransferLiquid混液确认，0.4.12新增库存父节点变更监听）；不调用信任写入、QFSW控制台执行、路径文件辅助方法或外部库补丁。
 - PlusPump.Update在主线程推进工作流，不使用线程/Task或其他组件的协程。未读取Application.version、未处理右键绑定、未在销毁容器后读取其窗口；本轮无相关迁移。Capabilities保持为空。
 
 ## 常用接口
+
+- 0.4.12库存缓存失效点：GameItem.AddParent/RemoveParent及GameSlotInventory、GameGridInventory、GameGridScrollableInventory、GameCharacterRaidInventory同名方法成功返回时，父节点已实际改变。普通槽位/网格UncheckedAccept先改子项集合再调用GameItem.AddParent，Expel先移除子项再调用RemoveParent；GameItemElement.Destroy会先Expel。ModLoader.LoadModDll先PatchAll后Init/OnEnable，因此Enable可核对全部Postfix。FindAllItem(false)仍遍历同一组原生根，只省略最终拥有筛选；缓存收集可达对象，查询实时筛拥有状态和容器标签。只缓存成员，不缓存液体或数量，不因普通成分变化重扫；不得直接写原生图列表绕过API。程序集哈希与基线相同，完整证据Research/Inventory-*-20261113-il.txt。新增补丁只标记失效，不操作物品；使用字面游戏类型定位以通过原生扫描，不扩大权限。
 
 - 基因扫描仪原生为开关工具，不是拖到种子上使用：GeneScanner只注册切换回调，玩家拥有且开启时设置PlayerStore.isGeneScannerScanning；PlantGeneticsHelper.CreateSeedGeneticsTooltip要求SEED_ITEM_TAG、可识别PlantDefinition及IsScannerOn，直接在物品提示中追加基因读数，没有单独扫描动作。2026-11-13程序集哈希仍与基线一致；证据Research/GeneScanner-20261113-il.txt、AmenitiesScanner-callbacks-20261113-il.txt、SeedGeneticsTooltip-20261113-il.txt、SeedItemTooltip-20261113-il.txt。种子包与种子本体需区分；本结论未核实玩家当时开关与目标物品状态。
 
@@ -31,7 +33,7 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 | void WaterHelper.OnUVUsed(GameItem) | 目标液体容器；一次将全部microbe转为等体积water，不改其他成分；函数自身不校验灯。UVFilter使用回调无耗电/耐久/计时 | 目标需非空且有LIQUID_CONTAINER_TAG；刷新水特征、重置扫描结果，自动调用须先确认拥有灯；Research/UVPurificationMechanics.md、uv-filter-native-il.txt |
 | bool PowerHelper.CanDrawPowerSource(GameItem,int) | 电源、启动耗电；不能仅检查剩余电量>0 | Charged 使用 max(1,machinery_drawn_power)；Research/extra-api.txt |
 | GameItem GameItem.ModifyTag(string,Action<TagState>,bool) | true 跳过 modifiedState 刷新，GetTagReadonly 可能读旧缓存 | 业务更新用 false/ValidateShapeState；Research/game-api.txt |
-| PlayerStore.FindAllItem(true) | 库存根遍历；还需递归背包/瓶/机器，按拥有标签筛选并去重 | Core.cs；Research/native-0.3.4-il.txt |
+| PlayerStore.FindAllItem(bool isOwn) | 库存根遍历；还需递归背包/瓶/机器并去重。0.4.12用false缓存可达成员，查询时实时筛拥有标签 | Core.cs；Research/native-0.3.4-il.txt、Inventory-PlayerStore-FindAllItem-20261113-il.txt |
 | StoreUIManager.Instance.Notify(message,"default") | 第二参是颜色/气泡键，不是标题 | PowerMonitor.cs；新一天延迟2秒通知 |
 
 ## 数据与边界

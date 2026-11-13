@@ -42,25 +42,43 @@ namespace ChemAssistPlus.Core
     }
     public sealed class SceneSnapshot
     {
-        // 递归扫描玩家物品及嵌套容器；HashSet 防重复、深度上限防异常库存图循环。
-        // 只读快照，不缓存跨存档 GameItem 引用，不修改磁盘存档。
-        public List<GameItem> All = new List<GameItem>();
+        // Cache graph membership, never amounts or ownership. Native graph mutations
+        // invalidate this snapshot; lifecycle/root changes cannot reuse another save.
+        static SceneSnapshot cached;
+        static PlayerStore cachedStore;
+        static EmporiumEntry cachedEntry;
+        static bool cacheEnabled;
+        public static long TotalScans { get; private set; }
+        readonly List<GameItem> items = new List<GameItem>();
+        readonly HashSet<GameItem> membership = new HashSet<GameItem>();
+        public List<GameItem> All => items.Where(GeneralHelper.IsItemOwned).ToList();
         public List<GameItem> LiquidContainers => All.Where(x => x.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)).ToList();
+        public bool Contains(GameItem item) => item != null && membership.Contains(item) && GeneralHelper.IsItemOwned(item);
+        public static void ConfigureCache(bool enabled) { cacheEnabled = enabled; Invalidate(); }
+        public static void Invalidate() { cached = null; cachedStore = null; cachedEntry = null; }
         public static SceneSnapshot Run()
         {
+            if (!PlayerStore.IsInstanceExist()) { Invalidate(); return new SceneSnapshot(); }
+            var store = PlayerStore.Instance;
+            var entry = EmporiumEntry.Instance;
+            if (cacheEnabled && cached != null && cachedStore == store && cachedEntry == entry) return cached;
             var result = new SceneSnapshot();
-            if (!PlayerStore.IsInstanceExist()) return result;
+            TotalScans++;
             var seen = new HashSet<GraphNodeStorage>();
             // Native roots include front/back storage, counter, main inventory, showcase,
             // trash, documents, hidden/afterhour storage and vending machines.
             // Descend further into bags, tablet bottles and machine inventories.
-            foreach (var item in PlayerStore.Instance.FindAllItem(true)) Visit(item, result.All, seen, 0);
+            // Include unowned reachable objects so ownership changes only need live
+            // filtering, not a graph rescan. The same native roots are used.
+            foreach (var item in store.FindAllItem(false)) Visit(item, result.items, seen, 0);
+            result.membership.UnionWith(result.items);
+            if (cacheEnabled) { cached = result; cachedStore = store; cachedEntry = entry; }
             return result;
         }
         static void Visit(GraphNodeStorage node, List<GameItem> found, HashSet<GraphNodeStorage> seen, int depth)
         {
             if (node == null || depth > 24 || !seen.Add(node)) return;
-            if (node is GameItem item && GeneralHelper.IsItemOwned(item)) found.Add(item);
+            if (node is GameItem item) found.Add(item);
             foreach (var child in node.children.ToArray()) Visit(child, found, seen, depth + 1);
         }
         public static int Amount(GameItem item, string liquid)

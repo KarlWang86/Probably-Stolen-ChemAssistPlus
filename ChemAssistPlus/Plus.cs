@@ -35,6 +35,9 @@ namespace ChemAssistPlus
         {
             mixingGuardEnabled = true;
             if (pump != null) return;
+            bool inventoryCacheReady = InventoryGraphChanges.Ready();
+            SceneSnapshot.ConfigureCache(inventoryCacheReady);
+            log?.Log("[库存缓存] " + (inventoryCacheReady ? "已启用；库存结构变动后按需重扫，内容及所有权实时读取。" : "变动补丁不完整，回退实时扫描。"));
             log?.Log("模组已启用；低配板控温、自动换滤材、F10库存预检已接入。");
             pump = new GameObject("ChemAssistPlus.Pump");
             UnityEngine.Object.DontDestroyOnLoad(pump);
@@ -54,9 +57,11 @@ namespace ChemAssistPlus
             window?.Close(); window = null;
             if (pump != null) UnityEngine.Object.Destroy(pump);
             pump = null;
+            SceneSnapshot.ConfigureCache(false);
         }
         static void ResetSession()
         {
+            SceneSnapshot.Invalidate();
             ClearMixConfirmation();
             CancelJob("存档已切换。", true);
             headers.Clear(); selectedMachine = contextMachine = contextPot = null;
@@ -100,15 +105,15 @@ namespace ChemAssistPlus
             { if (window != null && window.IsAlive && window.IsVisible) window.Hide(); else Open(); }
         }
         public static bool ReadyForUi() => PlayerStore.IsInstanceExist() && CustomUIManager.Instance != null;
-        // 每次重新遍历玩家拥有物品（包括机器内物品），此处没有库存缓存。
+        // 库存结构按原生变动失效；拥有状态始终实时过滤。
         // F10 和选项改变时主动刷新；运行中保留实际日志。
-        static List<GameItem> Scan() => SceneSnapshot.Run().All.Where(Owned).Distinct().ToList();
+        static List<GameItem> Scan() => SceneSnapshot.Run().All;
         static bool Owned(GameItem item) => item != null && GeneralHelper.IsItemOwned(item);
         static int Amount(GameItem item, string id) => item == null ? 0 : SceneSnapshot.Amount(item, id);
         static string Vol(double ul) => (ul / 1000d).ToString("0.###", CultureInfo.InvariantCulture) + " mL";
         static string Name(GameItem item) => item == null ? "未选择" : NativeChem.NameOf(item);
         static string LiquidName(string id) => ChemNames.Name(id);
-        static bool Present(GameItem item) => item != null && Scan().Contains(item);
+        static bool Present(GameItem item) => SceneSnapshot.Run().Contains(item);
         static bool SlotFree(GameItem item)
         {
             var parts = MachineView.Walk(item);

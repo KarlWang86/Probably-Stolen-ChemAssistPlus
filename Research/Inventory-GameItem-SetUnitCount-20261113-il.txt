@@ -1,0 +1,11 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem GameItem::SetUnitCount(System.Int32)
+  0: System.Int32 num None
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: call System.Void GameItem::set_unitCount(System.Int32)
+IL_0007: ldarg.0
+IL_0008: callvirt System.Void GameItem::Validate()
+IL_000d: ldarg.0
+IL_000e: ret

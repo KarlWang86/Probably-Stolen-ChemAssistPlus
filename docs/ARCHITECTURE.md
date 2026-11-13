@@ -136,6 +136,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 
 ## 状态与物料边界
 
+- 0.4.12库存结构缓存位于Core.SceneSnapshot，InventoryCache.cs监听GameItem及四类原生库存的AddParent/RemoveParent成功结果，只标记失效、下次查询重建；未变化时跨帧/跨批复用。FindAllItem(false)从相同原生根收集可达物品，以HashSet查询成员，拥有状态、容器标签及成分/容量/槽位实时读取；切档/禁用清空，PlayerStore/EmporiumEntry实例不匹配时重建。启动核对全部变动补丁，缺失时回退实时扫描。FantaWorkSlice按约4ms工作预算或最多32拍让帧，单次原生操作不可拆分；进度最多250ms刷新，阶段结束/中断记录拍数、让帧、实际扫描次数和耗时。合成仍由finally关火；手动运行沿用原调度间隔，机器队列仍串行。
+
 - 0.4.9芬太规划只读state.dict的实际成分，避免手动倒液后modifiedState滞后；执行原生反应/转液前才ValidateShapeState。储备为上限而非精确化学模拟：按真实来源含量预留试剂和杂质体积，运行同时限制有效投入、原溶液总量、拍数和无进度次数。达到边界保料停止，不承诺任意杂质组合均能处理完成。
 - 芬太还原剂在耗尽后按≤1000μL分次补充，用原生Math.Round规则计算该份最终消耗的前体总量，使新投料不越过剩余前体；成分更新全部交给HandleTemperatureReaction。已有还原剂超过可无残余处理的保守范围时预检阻断。前体、稳定剂、还原剂、酸和碱均须为0才通过FantaReady；该判定同时约束蒸发器合并和干料整理。
 - 芬太过滤净化后按真实挥发液量分流，干料复用MoveDryBottle直接从加热器交制剂机，源空瓶留原机器槽；湿料复用蒸发器分工。TransferSolution在不跨帧的原生扣液/加液中复用异常未转移份额回收，TransferWholeSolution为其整瓶包装。无接收设备保留当前工作瓶，不自动成型或给加热器补瓶。

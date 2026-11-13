@@ -1,0 +1,103 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Collections.Generic.List`1<GameItem> PlayerStore::FindAllItem(System.Boolean)
+  0: System.Boolean isOwn Optional, HasDefault
+  local 0: System.Collections.Generic.List`1<GameItem>
+IL_0000: newobj System.Void System.Collections.Generic.List`1<GameItem>::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_000c: callvirt PixelWindow EmporiumEntry::get_frontInvWindow()
+IL_0011: ldnull
+IL_0012: ldnull
+IL_0013: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0018: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_001d: ldloc.0
+IL_001e: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0023: callvirt PixelWindow EmporiumEntry::get_backInvWindow()
+IL_0028: ldnull
+IL_0029: ldnull
+IL_002a: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_002f: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0034: ldloc.0
+IL_0035: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_003a: callvirt GameGridInventory EmporiumEntry::get_backInvinvElementCounter()
+IL_003f: ldnull
+IL_0040: ldnull
+IL_0041: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0046: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_004b: ldloc.0
+IL_004c: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0051: callvirt PixelWindow EmporiumEntry::get_invWindow()
+IL_0056: ldnull
+IL_0057: ldnull
+IL_0058: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_005d: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0062: ldloc.0
+IL_0063: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0068: callvirt PixelWindow EmporiumEntry::get_showcaseWindow()
+IL_006d: ldnull
+IL_006e: ldnull
+IL_006f: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_0074: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0079: ldloc.0
+IL_007a: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_007f: callvirt PixelWindow EmporiumEntry::get_trashInvWindow()
+IL_0084: ldnull
+IL_0085: ldnull
+IL_0086: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_008b: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0090: ldloc.0
+IL_0091: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0096: callvirt PixelWindow EmporiumEntry::get_docInvWindow()
+IL_009b: ldnull
+IL_009c: ldnull
+IL_009d: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00a2: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00a7: ldloc.0
+IL_00a8: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00ad: callvirt PixelWindow EmporiumEntry::get_hiddenWindow()
+IL_00b2: ldnull
+IL_00b3: ldnull
+IL_00b4: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00b9: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00be: ldloc.0
+IL_00bf: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00c4: ldfld PixelWindow EmporiumEntry::afterhourWindow
+IL_00c9: ldnull
+IL_00ca: ldnull
+IL_00cb: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00d0: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00d5: ldloc.0
+IL_00d6: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00db: callvirt PixelWindow EmporiumEntry::get_vendingFountainWindow()
+IL_00e0: ldnull
+IL_00e1: ldnull
+IL_00e2: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00e7: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_00ec: ldloc.0
+IL_00ed: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_00f2: callvirt PixelWindow EmporiumEntry::get_vendingMachineWindow()
+IL_00f7: ldnull
+IL_00f8: ldnull
+IL_00f9: call System.Collections.Generic.List`1<T> GraphUtils::FindAllChildrenType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_00fe: callvirt System.Void System.Collections.Generic.List`1<GameItem>::AddRange(System.Collections.Generic.IEnumerable`1<!0>)
+IL_0103: ldarg.1
+IL_0104: brfalse.s IL_0131
+IL_0106: ldloc.0
+IL_0107: ldsfld System.Func`2<GameItem,System.Boolean> PlayerStore/<>c::<>9__290_0
+IL_010c: dup
+IL_010d: brtrue.s IL_0126
+IL_010f: pop
+IL_0110: ldsfld PlayerStore/<>c PlayerStore/<>c::<>9
+IL_0115: ldftn System.Boolean PlayerStore/<>c::<FindAllItem>b__290_0(GameItem)
+IL_011b: newobj System.Void System.Func`2<GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0120: dup
+IL_0121: stsfld System.Func`2<GameItem,System.Boolean> PlayerStore/<>c::<>9__290_0
+IL_0126: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Where<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
+IL_012b: call System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_0130: stloc.0
+IL_0131: ldloc.0
+IL_0132: call System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Distinct<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_0137: call System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<GameItem>(System.Collections.Generic.IEnumerable`1<!!0>)
+IL_013c: ret
