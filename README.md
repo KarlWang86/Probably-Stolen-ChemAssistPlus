@@ -2,7 +2,7 @@
 
 在《Probably Stolen》中安排化学加工：放好原料和设备，点击“结束当天”，助手自动逐批处理，并在次日汇总结果。使用游戏原生化学与耗料接口，蒸发仍由原生过夜流程完成。
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025) · [当前版本](ChemAssistPlus/VERSION) · [更新记录](docs/CHANGELOG.md) · [完整使用说明](docs/使用说明.txt)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025) · [当前版本](ChemAssistPlus/VERSION) · [更新记录](docs/CHANGELOG.md) · [完整使用说明](docs/使用说明.md)
 
 ## 主要功能
 

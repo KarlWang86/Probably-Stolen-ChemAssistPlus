@@ -54,7 +54,7 @@ CHANGELOG.md按每个有据可查的版本记录完整变化，已从归档补�
 ### 目录与参数
 
 上传工作区为游戏根目录的 WorkshopUpload/，与 Modding/ 同级；不用每次新建工作区。
-content/ 只放 ChemAssistPlus.dll、manifest.xml、使用说明.txt。
+content/ 只放 ChemAssistPlus.dll、manifest.xml、使用说明.txt。说明源文档为 docs/使用说明.md，构建时保留 Markdown 内容并输出为使用说明.txt，沿用部署、扫描与工坊的运行文件清单。
 upload.ps1、upload.cmd、upload.vdf、steamcmd/、preview.png、简介/更新说明及回执均放在 content/ 外。
 
 | upload.vdf 字段 | 本项目配置 / 含义 |

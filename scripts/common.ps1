@@ -33,7 +33,7 @@ function Sync-TaskVersion {
     $text = [regex]::Replace($text, '<ModVersion>[^<]+</ModVersion>', "<ModVersion>$v</ModVersion>")
     $text = [regex]::Replace($text, '(化学流程助手)\d+\.\d+\.\d+', ('${1}' + $v))
     Write-TaskFile $path $text
-    $path = Join-Path $docsRoot '使用说明.txt'
+    $path = Join-Path $docsRoot '使用说明.md'
     $text = [IO.File]::ReadAllText($path)
     $text = [regex]::Replace($text, '(化学流程助手 )\d+\.\d+\.\d+', ('${1}' + $v))
     $text = [regex]::Replace($text, '(标题应为)\d+\.\d+\.\d+', ('${1}' + $v))

@@ -156,7 +156,7 @@ namespace ChemAssistPlus
             Estimate("lipobond_agent", Math.Max(0, (Part(projected, "fat") + 7) / 8 - Part(projected, "lipobond_agent")));
             var tabletItems = Tablets();
             int tablets = tabletItems.Count, bottledTablets = tabletItems.Count(InTabletBottle);
-            // Reactions and both filters run before dosing; raw components cannot predict final demand.
+            // Reactions and single-pass filtration run before dosing; raw components cannot predict final demand.
             plan.Supplies.Add(new SupplySnapshot { Id = "water_tablet", Name = "净水药片", Available = tablets,
                 Tablets = true });
             plan.Lines.Add("净水药片：过滤后按需使用；库存 " + tablets + " 片（散片 " + (tablets - bottledTablets)
@@ -199,7 +199,9 @@ namespace ChemAssistPlus
                         plan.Lines.Add("蒸发器 #" + receiver.uniqueId + " 可接收同类原液；净化后复核浓度差≤5个百分点及实际容量，不合格则保留本瓶。");
                 }
             }
-            foreach (string key in new[] { "cloth", "fine" }) if (PlanFilter(key) == null) plan.Errors.Add(FilterReason(key));
+            string filterKey = PreferredFilterKey();
+            if (filterKey == null) plan.Errors.Add(NoFilterReason());
+            else plan.Lines.Add(PlannedFilterName(filterKey));
             return plan;
         }
         static string PlanSummary(NativeChem.ProbeResult p, BatchPlan plan)

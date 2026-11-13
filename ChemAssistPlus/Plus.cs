@@ -136,7 +136,7 @@ namespace ChemAssistPlus
             return f != null && (f.IsID("water_filter") || f.IsID("water_filter_adv"));
         }
         static GameItem Filter(string key) => PlanFilter(key)?.Pitcher;
-        public static GameItem FindPitcher() => Filter("cloth") ?? Filter("fine");
+        public static GameItem FindPitcher() => Filter("fine") ?? Filter("cloth");
 
         static Recipe Detect(GameItem pot, GameItem solid)
         {

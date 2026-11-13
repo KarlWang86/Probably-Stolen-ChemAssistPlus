@@ -216,7 +216,7 @@ namespace ChemAssistPlus
             var c = p.Recipe;
             Trace("  反应后：" + Composition(p.Pot));
             CheckPot(p);
-            Trace("步骤6 · 固定顺序：滤布预过滤 → 水过滤器精滤。只使用已有且可用的水壶/滤材，不使用净水器。");
+            Trace("步骤6 · 单道过滤：优先滤芯，无可用滤芯时使用棉布；每份原液仅过滤一次。只使用已有且可用的水壶/滤材，不使用净水器。");
             var filtered = new StringBuilder(); var warnings = new List<string>();
             try { FilterBatch(p.Pot, filtered, warnings); if (filtered.Length > 0) MarkAutoWork(); }
             finally

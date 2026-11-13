@@ -27,38 +27,43 @@ namespace ChemAssistPlus
         }
         public static void FilterBatch(GameItem pot, StringBuilder report, List<string> warnings)
         {
-            foreach (string key in new[] { "cloth", "fine" })
+            var buffered = new List<KeyValuePair<string, int>>();
+            int chunks = 0, original = WaterHelper.GetTotalVolume(pot);
+            double temperature = SceneSnapshot.Temp(pot);
+            bool usedCloth = false;
+            try
             {
-                var buffered = new List<KeyValuePair<string, int>>();
-                int chunks = 0, original = WaterHelper.GetTotalVolume(pot);
-                double temperature = SceneSnapshot.Temp(pot);
-                try
+                while (WaterHelper.GetTotalVolume(pot) > 0)
                 {
-                    while (WaterHelper.GetTotalVolume(pot) > 0)
+                    if (++chunks > 4096) throw new InvalidOperationException("过滤分批达到上限，剩余原液保留。");
+                    string key = PreferredFilterKey();
+                    if (key == null) throw new InvalidOperationException(NoFilterReason() + "剩余原液保留。");
+                    var pitcher = EnsureFilter(key, report);
+                    if (pitcher == null) throw new InvalidOperationException(FilterReason(key) + "剩余原液保留。");
+                    if (pitcher == pot) throw new InvalidOperationException("工作瓶不能同时作为过滤水壶。");
+                    if (key == "cloth" && !usedCloth)
                     {
-                        if (++chunks > 4096) throw new InvalidOperationException("过滤分批达到上限，剩余原液保留。");
-                        var pitcher = EnsureFilter(key, report);
-                        if (pitcher == null) throw new InvalidOperationException(FilterReason(key) + "剩余原液保留。");
-                        if (pitcher == pot) throw new InvalidOperationException("工作瓶不能同时作为过滤水壶。");
-                        var material = WaterHelper.GetFilterItem(pitcher);
-                        int portion = FilterPortionVolume(pot, pitcher, material);
-                        int durability = DurabilityHelper.GetRealDurability(material);
-                        var taken = WaterHelper.RemoveAndReturn(pot, portion).ToList();
-                        int start = buffered.Count;
-                        buffered.AddRange(taken); // Keep every removed component recoverable even if a native call fails.
-                        MarkAutoWork();
-                        FilterComponents(pot, material, taken, buffered, start);
-                        report.AppendLine((key == "cloth" ? "滤布" : "滤芯") + " #" + material.uniqueId + "：处理 " + Vol(portion)
-                            + "，耐久 " + durability + " → " + DurabilityHelper.GetRealDurability(material));
+                        warnings.Add("无可用滤芯，剩余原液改用棉布单道过滤；棉布孔径较大，不能达到滤芯的精滤效果。");
+                        usedCloth = true;
                     }
+                    var material = WaterHelper.GetFilterItem(pitcher);
+                    int portion = FilterPortionVolume(pot, pitcher, material);
+                    int durability = DurabilityHelper.GetRealDurability(material);
+                    var taken = WaterHelper.RemoveAndReturn(pot, portion).ToList();
+                    int start = buffered.Count;
+                    buffered.AddRange(taken); // Keep every removed component recoverable even if a native call fails.
+                    MarkAutoWork();
+                    FilterComponents(pot, material, taken, buffered, start);
+                    report.AppendLine((key == "cloth" ? "备用棉布" : "优先滤芯") + " #" + material.uniqueId + "：处理 " + Vol(portion)
+                        + "，耐久 " + durability + " → " + DurabilityHelper.GetRealDurability(material));
                 }
-                finally
-                {
-                    AddSolution(pot, buffered, temperature);
-                    WaterHelper.UpdateContainerGoodType(pot);
-                }
-                report.AppendLine((key == "cloth" ? "滤布完成" : "精滤完成") + "：" + chunks + "批，" + Vol(original) + " → " + Vol(WaterHelper.GetTotalVolume(pot)));
             }
+            finally
+            {
+                AddSolution(pot, buffered, temperature);
+                WaterHelper.UpdateContainerGoodType(pot);
+            }
+            report.AppendLine("单道过滤完成：" + chunks + "批，" + Vol(original) + " → " + Vol(WaterHelper.GetTotalVolume(pot)));
         }
         // 二分查找本次滤材耐久与水壶容量都能处理的最大份额。
         static int FilterPortionVolume(GameItem pot, GameItem pitcher, GameItem material)

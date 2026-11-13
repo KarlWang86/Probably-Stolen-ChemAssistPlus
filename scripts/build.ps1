@@ -9,6 +9,6 @@ if (Test-Path -LiteralPath $receipt) { Remove-Item -LiteralPath $receipt }
 dotnet build (Join-Path $taskProject 'ChemAssistPlus.csproj') -c Release -o $buildFolder --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$repoRoot/NuGet.Config"
 if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
 Copy-Item -LiteralPath (Join-Path $taskProject 'manifest.xml') -Destination $buildFolder
-Copy-Item -LiteralPath (Join-Path $docsRoot '使用说明.txt') -Destination $buildFolder
+Copy-Item -LiteralPath (Join-Path $docsRoot '使用说明.md') -Destination (Join-Path $buildFolder '使用说明.txt')
 & (Join-Path $PSScriptRoot 'validate.ps1')
 Write-Output "Built and scanned: $buildFolder"
