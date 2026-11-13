@@ -1,0 +1,151 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameInventory::CheckChangeParentShapeStateModifier(GameItem,SlotMarker,GridShape,TagSystem)
+  0: GameItem newItem None
+  1: SlotMarker newSlot None
+  2: GridShape newGridShape None
+  3: TagSystem newState None
+  local 0: GameInventory/<>c__DisplayClass5_0
+  local 1: System.Collections.Generic.List`1<GameItem>
+  local 2: System.Collections.Generic.IEnumerator`1<System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>
+  local 3: GameItem
+  local 4: GridShape
+  local 5: GridShape
+  local 6: System.Collections.Generic.List`1<ItemStateModifier>
+  local 7: System.Collections.Generic.List`1<ItemStateModifier>
+  local 8: GridShape
+  local 9: TagSystem
+  local 10: System.Boolean
+IL_0000: newobj System.Void GameInventory/<>c__DisplayClass5_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.1
+IL_0008: stfld GameItem GameInventory/<>c__DisplayClass5_0::newItem
+IL_000d: ldloc.0
+IL_000e: ldarg.2
+IL_000f: stfld SlotMarker GameInventory/<>c__DisplayClass5_0::newSlot
+IL_0014: ldloc.0
+IL_0015: ldarg.3
+IL_0016: stfld GridShape GameInventory/<>c__DisplayClass5_0::newGridShape
+IL_001b: ldloc.0
+IL_001c: ldarg.s newState
+IL_001e: stfld TagSystem GameInventory/<>c__DisplayClass5_0::newState
+IL_0023: ldarg.0
+IL_0024: ldnull
+IL_0025: ldnull
+IL_0026: call System.Collections.Generic.List`1<T> GraphUtils::FindParentsType<GameItem>(GraphNodeStorage,System.Func`2<T,System.Boolean>,System.Func`2<T,System.Boolean>)
+IL_002b: stloc.1
+IL_002c: ldloc.1
+IL_002d: callvirt System.Int32 System.Collections.Generic.List`1<GameItem>::get_Count()
+IL_0032: ldc.i4.1
+IL_0033: bge.s IL_0037
+IL_0035: ldc.i4.1
+IL_0036: ret
+IL_0037: ldloc.0
+IL_0038: newobj System.Void System.Collections.Generic.List`1<System.ValueTuple`2<GridShape,GridShape>>::.ctor()
+IL_003d: stfld System.Collections.Generic.List`1<System.ValueTuple`2<GridShape,GridShape>> GameInventory/<>c__DisplayClass5_0::parentItemMods
+IL_0042: ldloc.0
+IL_0043: newobj System.Void System.Collections.Generic.List`1<System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>::.ctor()
+IL_0048: stfld System.Collections.Generic.List`1<System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>> GameInventory/<>c__DisplayClass5_0::parentItemStateMods
+IL_004d: ldloc.1
+IL_004e: ldloc.0
+IL_004f: ldftn System.Void GameInventory/<>c__DisplayClass5_0::<CheckChangeParentShapeStateModifier>b__0(GameItem)
+IL_0055: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_005a: callvirt System.Void System.Collections.Generic.List`1<GameItem>::ForEach(System.Action`1<!0>)
+IL_005f: ldloc.1
+IL_0060: ldloc.0
+IL_0061: ldftn System.Void GameInventory/<>c__DisplayClass5_0::<CheckChangeParentShapeStateModifier>b__1(GameItem)
+IL_0067: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_006c: callvirt System.Void System.Collections.Generic.List`1<GameItem>::ForEach(System.Action`1<!0>)
+IL_0071: ldloc.1
+IL_0072: ldloc.0
+IL_0073: ldfld System.Collections.Generic.List`1<System.ValueTuple`2<GridShape,GridShape>> GameInventory/<>c__DisplayClass5_0::parentItemMods
+IL_0078: ldsfld System.Func`3<GameItem,System.ValueTuple`2<GridShape,GridShape>,System.ValueTuple`3<GameItem,GridShape,GridShape>> GameInventory/<>c::<>9__5_2
+IL_007d: dup
+IL_007e: brtrue.s IL_0097
+IL_0080: pop
+IL_0081: ldsfld GameInventory/<>c GameInventory/<>c::<>9
+IL_0086: ldftn System.ValueTuple`3<GameItem,GridShape,GridShape> GameInventory/<>c::<CheckChangeParentShapeStateModifier>b__5_2(GameItem,System.ValueTuple`2<GridShape,GridShape>)
+IL_008c: newobj System.Void System.Func`3<GameItem,System.ValueTuple`2<GridShape,GridShape>,System.ValueTuple`3<GameItem,GridShape,GridShape>>::.ctor(System.Object,System.IntPtr)
+IL_0091: dup
+IL_0092: stsfld System.Func`3<GameItem,System.ValueTuple`2<GridShape,GridShape>,System.ValueTuple`3<GameItem,GridShape,GridShape>> GameInventory/<>c::<>9__5_2
+IL_0097: call System.Collections.Generic.IEnumerable`1<!!2> System.Linq.Enumerable::Zip<GameItem,System.ValueTuple`2<GridShape,GridShape>,System.ValueTuple`3<GameItem,GridShape,GridShape>>(System.Collections.Generic.IEnumerable`1<!!0>,System.Collections.Generic.IEnumerable`1<!!1>,System.Func`3<!!0,!!1,!!2>)
+IL_009c: ldloc.0
+IL_009d: ldfld System.Collections.Generic.List`1<System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>> GameInventory/<>c__DisplayClass5_0::parentItemStateMods
+IL_00a2: ldsfld System.Func`3<System.ValueTuple`3<GameItem,GridShape,GridShape>,System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>,System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>> GameInventory/<>c::<>9__5_3
+IL_00a7: dup
+IL_00a8: brtrue.s IL_00c1
+IL_00aa: pop
+IL_00ab: ldsfld GameInventory/<>c GameInventory/<>c::<>9
+IL_00b0: ldftn System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>> GameInventory/<>c::<CheckChangeParentShapeStateModifier>b__5_3(System.ValueTuple`3<GameItem,GridShape,GridShape>,System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>)
+IL_00b6: newobj System.Void System.Func`3<System.ValueTuple`3<GameItem,GridShape,GridShape>,System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>,System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>::.ctor(System.Object,System.IntPtr)
+IL_00bb: dup
+IL_00bc: stsfld System.Func`3<System.ValueTuple`3<GameItem,GridShape,GridShape>,System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>,System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>> GameInventory/<>c::<>9__5_3
+IL_00c1: call System.Collections.Generic.IEnumerable`1<!!2> System.Linq.Enumerable::Zip<System.ValueTuple`3<GameItem,GridShape,GridShape>,System.ValueTuple`2<System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>,System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>(System.Collections.Generic.IEnumerable`1<!!0>,System.Collections.Generic.IEnumerable`1<!!1>,System.Func`3<!!0,!!1,!!2>)
+IL_00c6: callvirt System.Collections.Generic.IEnumerator`1<!0> System.Collections.Generic.IEnumerable`1<System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>::GetEnumerator()
+IL_00cb: stloc.2
+IL_00cc: br.s IL_014a
+IL_00ce: ldloc.2
+IL_00cf: callvirt !0 System.Collections.Generic.IEnumerator`1<System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>>::get_Current()
+IL_00d4: dup
+IL_00d5: ldfld !0 System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>::Item1
+IL_00da: stloc.3
+IL_00db: dup
+IL_00dc: ldfld !1 System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>::Item2
+IL_00e1: stloc.s V_4
+IL_00e3: dup
+IL_00e4: ldfld !2 System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>::Item3
+IL_00e9: stloc.s V_5
+IL_00eb: dup
+IL_00ec: ldfld !3 System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>::Item4
+IL_00f1: stloc.s V_6
+IL_00f3: ldfld !4 System.ValueTuple`5<GameItem,GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>>::Item5
+IL_00f8: stloc.s V_7
+IL_00fa: ldloc.s V_4
+IL_00fc: brtrue.s IL_0102
+IL_00fe: ldloc.s V_5
+IL_0100: brfalse.s IL_014a
+IL_0102: ldloc.3
+IL_0103: ldloc.s V_4
+IL_0105: ldloc.s V_5
+IL_0107: ldloc.s V_6
+IL_0109: ldloc.s V_7
+IL_010b: ldloc.0
+IL_010c: ldfld GameItem GameInventory/<>c__DisplayClass5_0::newItem
+IL_0111: callvirt System.ValueTuple`4<GridShape,System.Int32,System.Int32,TagSystem> GameItem::ComputeModifiedShapeState(GridShape,GridShape,System.Collections.Generic.List`1<ItemStateModifier>,System.Collections.Generic.List`1<ItemStateModifier>,GameItem)
+IL_0116: dup
+IL_0117: ldfld !0 System.ValueTuple`4<GridShape,System.Int32,System.Int32,TagSystem>::Item1
+IL_011c: stloc.s V_8
+IL_011e: ldfld !3 System.ValueTuple`4<GridShape,System.Int32,System.Int32,TagSystem>::Item4
+IL_0123: stloc.s V_9
+IL_0125: ldloc.3
+IL_0126: brtrue.s IL_012b
+IL_0128: ldnull
+IL_0129: br.s IL_0131
+IL_012b: ldloc.3
+IL_012c: call GameInventory GameItem::get_parentInventory()
+IL_0131: brfalse.s IL_014a
+IL_0133: ldloc.3
+IL_0134: callvirt GameInventory GameItem::get_parentInventory()
+IL_0139: ldloc.3
+IL_013a: ldloc.s V_8
+IL_013c: ldloc.s V_9
+IL_013e: callvirt System.Boolean GameInventory::CheckInventorySlotStillValid(GameItem,GridShape,TagSystem)
+IL_0143: brtrue.s IL_014a
+IL_0145: ldc.i4.0
+IL_0146: stloc.s V_10
+IL_0148: leave.s IL_0163
+IL_014a: ldloc.2
+IL_014b: callvirt System.Boolean System.Collections.IEnumerator::MoveNext()
+IL_0150: brtrue IL_00ce
+IL_0155: leave.s IL_0161
+IL_0157: ldloc.2
+IL_0158: brfalse.s IL_0160
+IL_015a: ldloc.2
+IL_015b: callvirt System.Void System.IDisposable::Dispose()
+IL_0160: endfinally
+IL_0161: ldc.i4.1
+IL_0162: ret
+IL_0163: ldloc.s V_10
+IL_0165: ret
+  EH Finally: try IL_00cc: br.s IL_014a -> IL_0157: ldloc.2; handler IL_0157: ldloc.2 -> IL_0161: ldc.i4.1; filter ; catch

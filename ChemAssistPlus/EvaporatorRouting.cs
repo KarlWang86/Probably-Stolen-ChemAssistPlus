@@ -7,6 +7,37 @@ namespace ChemAssistPlus
     {
         // Saved by the game's ordinary machine tag serialization, not a cross-save static cache.
         const string EvaporatorRecipeMemoryTag = "CHEMASSISTPLUS_EVAPORATOR_RECIPE_V1";
+        static CustomUIWindow routeWindow;
+
+        static void OpenEvaporatorRoute(GameItem machine)
+        {
+            if (!ReadyForUi() || !Present(machine)) return;
+            routeWindow?.Close();
+            var route = EvaporatorRoute(machine);
+            var bottle = MachineView.Walk(machine).Container?.childItem;
+            bool editable = !busy && (bottle == null || EmptyMachineBottle(bottle));
+            var ui = CustomUIManager.Window(Id + ".evaporator_route", "蒸发器 #" + machine.uniqueId + " · 原液分工", CustomUIManager.LAYER_PAPER)
+                .UseMetaPrefabs(false).UseMachineryStyle(true).SetSize(450, 540).SetDraggable(true).SetCloseOnEscape(true);
+            ui.AddLabel("当前分工：" + (route == null ? "尚未分配" : ChemNames.ProductName(route.ProductId))
+                + "\n原液槽：" + (bottle == null ? "空槽" : "瓶 #" + bottle.uniqueId + "，容量 " + Vol(WaterHelper.GetTotalCapacity(bottle))))
+                .AddLabel(editable ? "选择用途后保存记忆；不会移动瓶子或液体。" : "仅在助手空闲且原液槽为空或装有空瓶时可更改分工。");
+            if (editable)
+                foreach (var recipe in RecipeCatalog.Recipes)
+                {
+                    var selected = recipe;
+                    ui.AddButton(ChemNames.ProductName(selected.ProductId), () => SetEvaporatorRoute(machine, selected));
+                }
+            ui.AddButton("关闭", () => routeWindow?.Close());
+            routeWindow = ui.Show();
+        }
+
+        static void SetEvaporatorRoute(GameItem machine, Recipe recipe)
+        {
+            if (busy || !Present(machine)) { routeWindow?.Close(); return; }
+            var bottle = MachineView.Walk(machine).Container?.childItem;
+            if (bottle == null || EmptyMachineBottle(bottle)) RememberEvaporatorRoute(machine, recipe);
+            OpenEvaporatorRoute(machine);
+        }
 
         static Recipe EvaporatorRoute(GameItem machine)
         {

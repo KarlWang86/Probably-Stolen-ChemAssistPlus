@@ -69,6 +69,7 @@ namespace ChemAssistPlus
         static bool CanReceiveEmptyFinisher(GameItem finisher, GameItem source)
         {
             var target = MachineView.Walk(finisher).Container?.childItem;
+            if (CanSwapLargerWorkBottle(source, MachineView.Walk(finisher).Container)) return true;
             return target != source && EmptyMachineBottle(target) && source != null && Owned(source)
                 && WaterHelper.GetTotalVolume(source) <= WaterHelper.GetFreeCapacity(target);
         }

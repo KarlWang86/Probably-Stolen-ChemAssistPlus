@@ -1,0 +1,38 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+  0: GameItem item None
+  1: GameInventory inventory None
+  2: GridShape placedShape None
+  local 0: System.Int32
+IL_0000: ldarg.0
+IL_0001: brfalse.s IL_0009
+IL_0003: ldarg.1
+IL_0004: brfalse.s IL_0009
+IL_0006: ldarg.2
+IL_0007: brtrue.s IL_000b
+IL_0009: ldc.i4.0
+IL_000a: ret
+IL_000b: ldarg.0
+IL_000c: callvirt System.Int32 GameItem::get_unitCount()
+IL_0011: stloc.0
+IL_0012: newobj System.Void SlotMarker::.ctor()
+IL_0017: dup
+IL_0018: ldarg.0
+IL_0019: stfld GameItem SlotMarker::item
+IL_001e: dup
+IL_001f: ldarg.1
+IL_0020: stfld GameInventory SlotMarker::inventory
+IL_0025: dup
+IL_0026: ldarg.2
+IL_0027: stfld GridShape SlotMarker::itemGridShape
+IL_002c: dup
+IL_002d: ldloc.0
+IL_002e: stfld System.Int32 SlotMarker::numTransfer
+IL_0033: ldc.i4.m1
+IL_0034: callvirt System.Int32 SlotMarker::TryAcceptOnce(System.Int32)
+IL_0039: ldloc.0
+IL_003a: clt
+IL_003c: ldc.i4.0
+IL_003d: ceq
+IL_003f: ret

@@ -196,7 +196,9 @@ namespace ChemAssistPlus
                 else
                 {
                     plan.Lines.Add(EvaporatorRouteSummary(receiver, p.Recipe));
-                    if (MachineView.Walk(receiver).Container.childItem != null
+                    if (CanSwapLargerWorkBottle(p.Pot, MachineView.Walk(receiver).Container, distillationVolume))
+                        plan.Lines.Add("当前工作瓶更大，完成后整瓶移入蒸发器；下游空瓶换回原机器槽，不受小空瓶容量限制。");
+                    else if (MachineView.Walk(receiver).Container.childItem != null
                         && MachineView.Walk(receiver).Container.childItem != p.Pot)
                         plan.Lines.Add("蒸发器 #" + receiver.uniqueId + " 可接收同类原液；净化后复核浓度差≤5个百分点及实际容量，不合格则保留本瓶。");
                 }

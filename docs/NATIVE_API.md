@@ -12,6 +12,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 常用接口
 
+- 0.4.11定向核对GraphUtils.SwapItemsInPlace，哈希仍与上方基线一致：通过EmporiumEntry.swapBufferElement依次交换两瓶原库存/形状；缓冲已占用时会尝试移出其物品，因此本Mod要求缓冲预先为空。原生PlaceAtShape直接构造SlotMarker并TryAcceptOnce，不替代完整槽位校验；本Mod交换前另行调用MayHaveValidInventorySlot、CheckIsStateValid、CheckChangeParentShapeStateModifier及MaxNumAdd/Remove做双向检查，仅两台机器的主容器槽、单只普通瓶及真实空接收瓶可交换。SwapItemsInPlace失败会尝试复原，调用后仍核对两瓶位置，异常记录实际位置停止，不宣称异常必然回原位。证据Research/GraphUtils-{SwapItemsInPlace,PlaceAtShape}-20261113-il.txt、GameSlotInventory-{MayHaveValidInventorySlot,CheckInventorySlotStillValid}-20261113-il.txt、SlotMarker-TryAcceptOnce-20261113-il.txt及GameItem/GameInventory对应定向IL。
+
 | 签名（省略 System 前缀） | 参数、语义与副作用 | 用法 / 证据 |
 | --- | --- | --- |
 | List<KeyValuePair<string,int>> WaterHelper.RemoveAndReturn(GameItem,int) | 源瓶、取出体积 μL；真实扣除，各成分同比返回 | TakeLiquid → AddSolution；Research/transfer-il.txt、game-api.txt |

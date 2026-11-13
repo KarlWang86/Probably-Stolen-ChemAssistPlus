@@ -1,0 +1,104 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GraphUtils::SwapItemsInPlace(GameItem,GameItem)
+  0: GameItem source None
+  1: GameItem target None
+  local 0: GameSlotInventory
+  local 1: GameInventory
+  local 2: GameInventory
+  local 3: GridShape
+  local 4: GridShape
+IL_0000: ldarg.0
+IL_0001: brfalse.s IL_000a
+IL_0003: ldarg.1
+IL_0004: brfalse.s IL_000a
+IL_0006: ldarg.0
+IL_0007: ldarg.1
+IL_0008: bne.un.s IL_000c
+IL_000a: ldc.i4.0
+IL_000b: ret
+IL_000c: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0011: ldnull
+IL_0012: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_0017: brtrue.s IL_001c
+IL_0019: ldnull
+IL_001a: br.s IL_0026
+IL_001c: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_0021: callvirt GameSlotInventory EmporiumEntry::get_swapBufferElement()
+IL_0026: stloc.0
+IL_0027: ldloc.0
+IL_0028: brtrue.s IL_002c
+IL_002a: ldc.i4.0
+IL_002b: ret
+IL_002c: ldarg.0
+IL_002d: callvirt GameInventory GameItem::get_parentInventory()
+IL_0032: stloc.1
+IL_0033: ldarg.1
+IL_0034: callvirt GameInventory GameItem::get_parentInventory()
+IL_0039: stloc.2
+IL_003a: ldloc.1
+IL_003b: brfalse.s IL_0040
+IL_003d: ldloc.2
+IL_003e: brtrue.s IL_0042
+IL_0040: ldc.i4.0
+IL_0041: ret
+IL_0042: ldarg.0
+IL_0043: callvirt GridShape GameItem::get_modifiedShape()
+IL_0048: stloc.3
+IL_0049: ldarg.1
+IL_004a: callvirt GridShape GameItem::get_modifiedShape()
+IL_004f: stloc.s V_4
+IL_0051: ldloc.0
+IL_0052: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0057: brfalse.s IL_007a
+IL_0059: call EmporiumEntry EmporiumEntry::get_Instance()
+IL_005e: callvirt GameGridInventory EmporiumEntry::get_invElement()
+IL_0063: ldloc.0
+IL_0064: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0069: ldc.i4.m1
+IL_006a: call System.Int32 GraphUtils::TryAcceptOnce(GraphNodeStorage,GameItem,System.Int32)
+IL_006f: pop
+IL_0070: ldloc.0
+IL_0071: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0076: brfalse.s IL_007a
+IL_0078: ldc.i4.0
+IL_0079: ret
+IL_007a: ldloc.0
+IL_007b: ldarg.0
+IL_007c: ldc.i4.m1
+IL_007d: call System.Int32 GraphUtils::TryAcceptOnce(GraphNodeStorage,GameItem,System.Int32)
+IL_0082: ldc.i4.0
+IL_0083: ble.s IL_0087
+IL_0085: ldc.i4.0
+IL_0086: ret
+IL_0087: ldarg.1
+IL_0088: ldloc.1
+IL_0089: ldloc.3
+IL_008a: call System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+IL_008f: brtrue.s IL_009c
+IL_0091: ldarg.0
+IL_0092: ldloc.1
+IL_0093: ldloc.3
+IL_0094: call System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+IL_0099: pop
+IL_009a: ldc.i4.0
+IL_009b: ret
+IL_009c: ldarg.0
+IL_009d: ldloc.2
+IL_009e: ldloc.s V_4
+IL_00a0: call System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+IL_00a5: brtrue.s IL_00bc
+IL_00a7: ldarg.1
+IL_00a8: ldloc.2
+IL_00a9: ldloc.s V_4
+IL_00ab: call System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+IL_00b0: pop
+IL_00b1: ldarg.0
+IL_00b2: ldloc.1
+IL_00b3: ldloc.3
+IL_00b4: call System.Boolean GraphUtils::PlaceAtShape(GameItem,GameInventory,GridShape)
+IL_00b9: pop
+IL_00ba: ldc.i4.0
+IL_00bb: ret
+IL_00bc: ldc.i4.1
+IL_00bd: ret

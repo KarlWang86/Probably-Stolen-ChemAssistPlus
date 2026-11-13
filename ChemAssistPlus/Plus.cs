@@ -50,6 +50,7 @@ namespace ChemAssistPlus
             ModHelper.RemoveGameOptions(Id);
             foreach (var pair in headers) { try { pair.Key.contentWindow?.RemoveHeaderButton(pair.Value); } catch { } }
             headers.Clear();
+            routeWindow?.Close(); routeWindow = null;
             window?.Close(); window = null;
             if (pump != null) UnityEngine.Object.Destroy(pump);
             pump = null;
@@ -59,6 +60,7 @@ namespace ChemAssistPlus
             ClearMixConfirmation();
             CancelJob("存档已切换。", true);
             headers.Clear(); selectedMachine = contextMachine = contextPot = null;
+            routeWindow?.Close(); routeWindow = null;
             contextChain = null; busy = false;
             preferredSources.Clear(); powerWarning = lastPowerNotice = null; powerNoticeAt = 0;
             autoProcessing = true; pendingEndDay = null; pendingEndDayStore = null; resumingEndDay = false; autoWaitReason = lastPreflightLog = null;
@@ -80,11 +82,13 @@ namespace ChemAssistPlus
             if (!PlayerStore.IsInstanceExist()) return;
             RememberOccupiedEvaporators();
             UpdatePowerWarning();
-            foreach (var item in Scan().Where(x => x.IsID("blender") || x.IsID("heating_plate")))
+            foreach (var item in Scan().Where(x => x.IsID("blender") || x.IsID("heating_plate") || x.IsID("evaporator")))
             {
                 if (item.contentWindow == null || headers.ContainsKey(item)) continue;
                 var captured = item;
-                var button = new MachineryButton("化学助手", () => { selectedMachine = captured; Open(); });
+                var button = item.IsID("evaporator")
+                    ? new MachineryButton("原液分工", () => OpenEvaporatorRoute(captured))
+                    : new MachineryButton("化学助手", () => { selectedMachine = captured; Open(); });
                 item.contentWindow.AddHeaderButton(button);
                 headers[item] = button;
             }

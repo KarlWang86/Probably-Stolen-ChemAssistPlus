@@ -113,7 +113,12 @@ namespace ChemAssistPlus
             {
                 var receiver = FindEvaporator(p.Pot, p.Recipe, plan.Peak, true);
                 if (receiver == null) plan.Errors.Add(EvaporatorBlockReason(p.Pot, p.Recipe, plan.Peak, true));
-                else plan.Lines.Add(EvaporatorRouteSummary(receiver, p.Recipe));
+                else
+                {
+                    plan.Lines.Add(EvaporatorRouteSummary(receiver, p.Recipe));
+                    if (CanSwapLargerWorkBottle(p.Pot, MachineView.Walk(receiver).Container, plan.Peak))
+                        plan.Lines.Add("当前工作瓶更大，完成后整瓶移入蒸发器；下游空瓶换回加热器槽，不受小空瓶容量限制。");
+                }
             }
             else plan.Lines.Add("当前储备未预计产生超容差挥发液，无需为合成本身准备蒸发器；完成后仍按真实干湿复核。");
             plan.Lines.Add("加热器直接处理，不搅拌、不自动拆包或取前体。试剂用量为保守储备上限，实际按成分分次投料；达到储备边界则停止保料。");

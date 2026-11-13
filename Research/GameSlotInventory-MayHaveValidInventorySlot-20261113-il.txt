@@ -1,0 +1,63 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameSlotInventory::MayHaveValidInventorySlot(GameItem)
+  0: GameItem item None
+IL_0000: ldarg.1
+IL_0001: brtrue.s IL_0005
+IL_0003: ldc.i4.0
+IL_0004: ret
+IL_0005: ldarg.0
+IL_0006: call System.Boolean GameInventory::IsInsertLocked()
+IL_000b: brfalse.s IL_000f
+IL_000d: ldc.i4.0
+IL_000e: ret
+IL_000f: ldarg.0
+IL_0010: ldarg.1
+IL_0011: call System.Boolean GraphUtils::FindParentEquals(GraphNodeStorage,GraphNodeStorage)
+IL_0016: brfalse.s IL_001a
+IL_0018: ldc.i4.0
+IL_0019: ret
+IL_001a: ldarg.1
+IL_001b: ldarg.0
+IL_001c: call System.Boolean GeneralHelper::MayOwnershipAcceptItem(GameItem,GameInventory)
+IL_0021: brtrue.s IL_0025
+IL_0023: ldc.i4.0
+IL_0024: ret
+IL_0025: ldarg.1
+IL_0026: callvirt System.Func`3<GameItem,GameInventory,System.Boolean> GameItemFunc::get_mayInventoryAddItemFunc()
+IL_002b: dup
+IL_002c: brtrue.s IL_0032
+IL_002e: pop
+IL_002f: ldc.i4.0
+IL_0030: br.s IL_0048
+IL_0032: ldarg.1
+IL_0033: ldarg.0
+IL_0034: ldnull
+IL_0035: ldftn System.Boolean InvokeFuncExtensions::BoolReduceOR(System.Boolean,System.Boolean)
+IL_003b: newobj System.Void System.Func`3<System.Boolean,System.Boolean,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0040: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,System.Boolean>(System.Func`3<T0,T1,R>,T0,T1,System.Func`3<R,R,R>)
+IL_0045: ldc.i4.0
+IL_0046: ceq
+IL_0048: brfalse.s IL_004c
+IL_004a: ldc.i4.0
+IL_004b: ret
+IL_004c: ldarg.0
+IL_004d: call System.Func`3<GameItem,GameInventory,System.Boolean> GameInventoryFunc::get_mayInventoryAddItemFunc()
+IL_0052: dup
+IL_0053: brtrue.s IL_0059
+IL_0055: pop
+IL_0056: ldc.i4.0
+IL_0057: br.s IL_006f
+IL_0059: ldarg.1
+IL_005a: ldarg.0
+IL_005b: ldnull
+IL_005c: ldftn System.Boolean InvokeFuncExtensions::BoolReduceOR(System.Boolean,System.Boolean)
+IL_0062: newobj System.Void System.Func`3<System.Boolean,System.Boolean,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0067: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,System.Boolean>(System.Func`3<T0,T1,R>,T0,T1,System.Func`3<R,R,R>)
+IL_006c: ldc.i4.0
+IL_006d: ceq
+IL_006f: brfalse.s IL_0073
+IL_0071: ldc.i4.0
+IL_0072: ret
+IL_0073: ldc.i4.1
+IL_0074: ret

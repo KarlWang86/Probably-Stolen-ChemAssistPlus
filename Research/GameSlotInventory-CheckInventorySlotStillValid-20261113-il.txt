@@ -1,0 +1,84 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Boolean GameSlotInventory::CheckInventorySlotStillValid(GameItem,GridShape,TagSystem)
+  0: GameItem item None
+  1: GridShape tempShape None
+  2: TagSystem tempState None
+  local 0: SlotMarker
+IL_0000: newobj System.Void SlotMarker::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.1
+IL_0008: stfld GameItem SlotMarker::item
+IL_000d: ldloc.0
+IL_000e: ldarg.0
+IL_000f: stfld GameInventory SlotMarker::inventory
+IL_0014: ldarg.1
+IL_0015: brtrue.s IL_0019
+IL_0017: ldc.i4.0
+IL_0018: ret
+IL_0019: ldarg.2
+IL_001a: brtrue.s IL_0024
+IL_001c: ldarg.1
+IL_001d: callvirt GridShape GameItem::get_modifiedShape()
+IL_0022: starg.s tempShape
+IL_0024: ldarg.3
+IL_0025: brtrue.s IL_002f
+IL_0027: ldarg.1
+IL_0028: callvirt TagSystem GameItem::get_modifiedState()
+IL_002d: starg.s tempState
+IL_002f: ldloc.0
+IL_0030: ldarg.2
+IL_0031: stfld GridShape SlotMarker::itemGridShape
+IL_0036: ldarg.0
+IL_0037: ldarg.1
+IL_0038: callvirt System.Boolean GameInventory::MayHaveValidInventorySlot(GameItem)
+IL_003d: brtrue.s IL_0041
+IL_003f: ldc.i4.0
+IL_0040: ret
+IL_0041: ldarg.0
+IL_0042: ldfld GameItem GameSlotInventory::currentItem
+IL_0047: brfalse.s IL_0054
+IL_0049: ldarg.0
+IL_004a: ldfld GameItem GameSlotInventory::currentItem
+IL_004f: ldarg.1
+IL_0050: beq.s IL_0054
+IL_0052: ldc.i4.0
+IL_0053: ret
+IL_0054: ldloc.0
+IL_0055: ldarg.2
+IL_0056: newobj System.Void GridShapeBuilder::.ctor(GridShape)
+IL_005b: ldc.i4.0
+IL_005c: ldc.i4.0
+IL_005d: ldc.i4.0
+IL_005e: ldarg.0
+IL_005f: ldfld System.Int32 GameSlotInventory::defaultOrientation
+IL_0064: call GridShapeBuilder GridShapeBuilder::SetTransform(System.Int32,System.Int32,System.Boolean,System.Int32)
+IL_0069: stfld GridShape SlotMarker::itemGridShape
+IL_006e: ldarg.1
+IL_006f: ldarg.0
+IL_0070: ldloc.0
+IL_0071: ldarg.2
+IL_0072: ldarg.3
+IL_0073: callvirt System.Boolean GameItem::CheckIsStateValid(GameInventory,SlotMarker,GridShape,TagSystem)
+IL_0078: brtrue.s IL_007c
+IL_007a: ldc.i4.0
+IL_007b: ret
+IL_007c: ldarg.0
+IL_007d: ldarg.1
+IL_007e: ldloc.0
+IL_007f: ldarg.2
+IL_0080: ldarg.3
+IL_0081: call System.Boolean GameInventory::CheckChangeParentShapeStateModifier(GameItem,SlotMarker,GridShape,TagSystem)
+IL_0086: brtrue.s IL_008a
+IL_0088: ldc.i4.0
+IL_0089: ret
+IL_008a: ldarg.1
+IL_008b: ldloc.0
+IL_008c: callvirt System.Int32 GameItem::MaxNumAdd(SlotMarker)
+IL_0091: ldc.i4.1
+IL_0092: bge.s IL_0096
+IL_0094: ldc.i4.0
+IL_0095: ret
+IL_0096: ldc.i4.1
+IL_0097: ret

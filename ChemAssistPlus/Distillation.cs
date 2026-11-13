@@ -93,6 +93,14 @@ namespace ChemAssistPlus
                 throw new InvalidOperationException("设备或干燥条件已变化，取消移瓶。");
             bool matched = finisher.GetTagReadonly(MachineChemFinisher.SELECTED_CHEM_ID_TAG).GetString() == recipe.ProductId;
             var target = MachineView.Walk(finisher).Container?.childItem;
+            if (CanSwapLargerWorkBottle(pot, MachineView.Walk(finisher).Container))
+            {
+                SwapLargerWorkBottle(pot, MachineView.Walk(finisher).Container);
+                finisher.ModifyTag(MachineChemFinisher.SELECTED_CHEM_ID_TAG, s => s.SetString(recipe.ProductId), false);
+                nightDidWork = true;
+                return "干料大瓶转入制剂机：" + Name(machine) + " #" + machine.uniqueId + " → 制剂机 #" + finisher.uniqueId
+                    + "；工作瓶 #" + pot.uniqueId + "，有效成分 " + Vol(Amount(pot, recipe.ProductLiquid)) + "；下游空瓶换回原机器槽，待玩家制剂。";
+            }
             if (target != null)
             {
                 bool emptyReceiver = CanReceiveEmptyFinisher(finisher, pot);
@@ -209,6 +217,7 @@ namespace ChemAssistPlus
             if (pot == null || slot == null) return false;
             var target = slot.childItem;
             if (target == null || target == pot) return target == pot || GraphUtils.CanAccept(slot, pot);
+            if (CanSwapLargerWorkBottle(pot, slot, volume)) return true;
             if (!Owned(target) || !target.IsTag(WaterHelper.LIQUID_CONTAINER_TAG)
                 || target.IsTag(WaterHelper.FILTER_CONTAINER_TAG) || volume <= 0
                 || WaterHelper.GetFreeCapacity(target) < volume) return false;
@@ -238,8 +247,19 @@ namespace ChemAssistPlus
             var machines = Scan().Where(x => x.IsID("evaporator")).ToList();
             if (machines.Count == 0) return "缺蒸发器。";
             var routed = machines.Where(x => AcceptsEvaporatorRoute(x, recipe)).ToList();
-            if (routed.Count == 0) return "没有对应配方或尚未分配的蒸发器；其他设备保留原料记忆，不自动改作其他原液。请准备新设备，或手动放入对应单一原液调整用途。";
+            if (routed.Count == 0) return "没有对应配方或尚未分配的蒸发器；其他设备保留原料记忆。请在空槽或空瓶蒸发器标题栏点击“原液分工”设置用途，或手动放入对应单一原液调整用途。";
             var compatible = machines.Where(x => CanReceiveBatch(x, pot, recipe, volume, planning)).ToList();
+            if (compatible.Count == 0 && routed.All(x => MachineView.Walk(x).Container?.childItem != null))
+            {
+                string bottles = string.Join("；", routed.Select(x =>
+                {
+                    var bottle = MachineView.Walk(x).Container.childItem;
+                    return "蒸发器 #" + x.uniqueId + " / 瓶 #" + bottle.uniqueId + "：容量 "
+                        + Vol(WaterHelper.GetTotalCapacity(bottle)) + "，剩余 " + Vol(WaterHelper.GetFreeCapacity(bottle));
+                }));
+                return "本批" + (planning ? "保守接收预留 " : "实际接收量 ") + Vol(volume) + "；" + bottles
+                    + "。接收瓶须空间足够；非空瓶还须为可合并的同配方湿料。可更换大空瓶，或取走空瓶后由工作瓶整瓶入槽；原液分工可在蒸发器标题栏调整。";
+            }
             if (compatible.Count == 0) return planning
                 ? "对应蒸发器没有可用空槽或整批接收瓶；保留其他设备的原料记忆。请等待原批次完成，或检查本配方接收瓶容量、电池及同类存量集中条件。"
                 : "对应蒸发器没有可用空槽或可整批接收的容器；不借用其他原料设备。合并须同种已提取湿原液、浓度差≤5个百分点且空间足够。";
@@ -255,6 +275,12 @@ namespace ChemAssistPlus
                 throw new InvalidOperationException("蒸发器接收条件变化，原液保留在工作瓶。");
             var slot = MachineView.Walk(machine).Container;
             var target = slot.childItem;
+            if (CanSwapLargerWorkBottle(source, slot))
+            {
+                SwapLargerWorkBottle(source, slot);
+                RememberEvaporatorRoute(machine, recipe);
+                return source;
+            }
             if (target == null || target == source)
             {
                 MovePot(source, slot);

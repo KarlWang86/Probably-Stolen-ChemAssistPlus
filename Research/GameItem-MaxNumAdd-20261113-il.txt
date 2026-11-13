@@ -1,0 +1,128 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 GameItem::MaxNumAdd()
+  local 0: SlotMarker
+IL_0000: ldarg.0
+IL_0001: call GameInventory GameItem::get_parentInventory()
+IL_0006: brtrue.s IL_000e
+IL_0008: ldc.i4 2147483647
+IL_000d: ret
+IL_000e: ldarg.0
+IL_000f: call GameInventory GameItem::get_parentInventory()
+IL_0014: ldarg.0
+IL_0015: callvirt SlotMarker GameInventory::GetIncompleteItemInventorySlot(GameItem)
+IL_001a: stloc.0
+IL_001b: ldloc.0
+IL_001c: ldarg.0
+IL_001d: stfld GameItem SlotMarker::targetItem
+IL_0022: ldarg.0
+IL_0023: ldloc.0
+IL_0024: call System.Int32 GameItem::MaxNumAdd(SlotMarker)
+IL_0029: ret
+System.Int32 GameItem::MaxNumAdd(SlotMarker)
+  0: SlotMarker slot None
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Int32
+IL_0000: ldarg.1
+IL_0001: brtrue.s IL_0005
+IL_0003: ldc.i4.0
+IL_0004: ret
+IL_0005: ldarg.1
+IL_0006: ldfld GameInventory SlotMarker::inventory
+IL_000b: brtrue.s IL_0013
+IL_000d: ldc.i4 2147483647
+IL_0012: ret
+IL_0013: ldarg.1
+IL_0014: ldfld GameInventory SlotMarker::inventory
+IL_0019: callvirt System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameInventoryFunc::get_maxSlotAmountItemFunc()
+IL_001e: dup
+IL_001f: brtrue.s IL_0029
+IL_0021: pop
+IL_0022: ldc.i4 2147483647
+IL_0027: br.s IL_0042
+IL_0029: ldarg.0
+IL_002a: ldarg.1
+IL_002b: ldfld GameInventory SlotMarker::inventory
+IL_0030: ldarg.1
+IL_0031: ldnull
+IL_0032: ldftn System.Int32 InvokeFuncExtensions::BoolReduceMax(System.Int32,System.Int32)
+IL_0038: newobj System.Void System.Func`3<System.Int32,System.Int32,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_003d: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,SlotMarker,System.Int32>(System.Func`4<T0,T1,T2,R>,T0,T1,T2,System.Func`3<R,R,R>)
+IL_0042: ldarg.0
+IL_0043: call System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameItemFunc::get_maxSlotAmountItemFunc()
+IL_0048: dup
+IL_0049: brtrue.s IL_0053
+IL_004b: pop
+IL_004c: ldc.i4 2147483647
+IL_0051: br.s IL_006c
+IL_0053: ldarg.0
+IL_0054: ldarg.1
+IL_0055: ldfld GameInventory SlotMarker::inventory
+IL_005a: ldarg.1
+IL_005b: ldnull
+IL_005c: ldftn System.Int32 InvokeFuncExtensions::BoolReduceMax(System.Int32,System.Int32)
+IL_0062: newobj System.Void System.Func`3<System.Int32,System.Int32,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_0067: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,SlotMarker,System.Int32>(System.Func`4<T0,T1,T2,R>,T0,T1,T2,System.Func`3<R,R,R>)
+IL_006c: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0071: stloc.0
+IL_0072: ldarg.1
+IL_0073: ldfld GameInventory SlotMarker::inventory
+IL_0078: callvirt System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameInventoryFunc::get_maxSlotAmountItemFunc()
+IL_007d: brtrue.s IL_0089
+IL_007f: ldarg.0
+IL_0080: call System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameItemFunc::get_maxSlotAmountItemFunc()
+IL_0085: brtrue.s IL_0089
+IL_0087: ldc.i4.1
+IL_0088: stloc.0
+IL_0089: ldloc.0
+IL_008a: ldarg.1
+IL_008b: ldfld GameItem SlotMarker::targetItem
+IL_0090: dup
+IL_0091: brtrue.s IL_0097
+IL_0093: pop
+IL_0094: ldc.i4.0
+IL_0095: br.s IL_009c
+IL_0097: call System.Int32 GameItem::get_unitCount()
+IL_009c: sub
+IL_009d: stloc.1
+IL_009e: ldarg.1
+IL_009f: ldfld GameInventory SlotMarker::inventory
+IL_00a4: callvirt System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameInventoryFunc::get_maxSlotAddItemFunc()
+IL_00a9: dup
+IL_00aa: brtrue.s IL_00b4
+IL_00ac: pop
+IL_00ad: ldc.i4 2147483647
+IL_00b2: br.s IL_00cd
+IL_00b4: ldarg.0
+IL_00b5: ldarg.1
+IL_00b6: ldfld GameInventory SlotMarker::inventory
+IL_00bb: ldarg.1
+IL_00bc: ldnull
+IL_00bd: ldftn System.Int32 InvokeFuncExtensions::BoolReduceMax(System.Int32,System.Int32)
+IL_00c3: newobj System.Void System.Func`3<System.Int32,System.Int32,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_00c8: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,SlotMarker,System.Int32>(System.Func`4<T0,T1,T2,R>,T0,T1,T2,System.Func`3<R,R,R>)
+IL_00cd: ldarg.0
+IL_00ce: call System.Func`4<GameItem,GameInventory,SlotMarker,System.Int32> GameItemFunc::get_maxSlotAddItemFunc()
+IL_00d3: dup
+IL_00d4: brtrue.s IL_00de
+IL_00d6: pop
+IL_00d7: ldc.i4 2147483647
+IL_00dc: br.s IL_00f7
+IL_00de: ldarg.0
+IL_00df: ldarg.1
+IL_00e0: ldfld GameInventory SlotMarker::inventory
+IL_00e5: ldarg.1
+IL_00e6: ldnull
+IL_00e7: ldftn System.Int32 InvokeFuncExtensions::BoolReduceMax(System.Int32,System.Int32)
+IL_00ed: newobj System.Void System.Func`3<System.Int32,System.Int32,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_00f2: call R InvokeFuncExtensions::InvokeAllReduce<GameItem,GameInventory,SlotMarker,System.Int32>(System.Func`4<T0,T1,T2,R>,T0,T1,T2,System.Func`3<R,R,R>)
+IL_00f7: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_00fc: stloc.2
+IL_00fd: ldloc.2
+IL_00fe: ldloc.1
+IL_00ff: bge.s IL_0103
+IL_0101: ldloc.2
+IL_0102: stloc.1
+IL_0103: ldloc.1
+IL_0104: ret

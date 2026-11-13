@@ -127,6 +127,8 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 混液确认大字布局／滚动及原生样式恢复 | MixingDialog.cs；MixDialogView、MixRectState、RestoreMixDialogView |
 | 实际液体成分、体积与单配方只读识别 | LiquidState.cs；LiveLiquidAmount、LiveLiquidVolume、LiveLiquidRecipe |
 | 蒸发器配方记忆与固定分配 | EvaporatorRouting.cs；EvaporatorRoute、RememberOccupiedEvaporators、AcceptsEvaporatorRoute；Distillation.cs各接收/集中/空瓶路径 |
+| 手动设置蒸发器分工 | EvaporatorRouting.cs；OpenEvaporatorRoute、SetEvaporatorRoute；仅空闲且空槽/真实空瓶时写既有记忆标签，切档/禁用关闭窗口 |
+| 上游大工作瓶与下游小空瓶交换 | MachineBottleSwap.cs；CanSwapLargerWorkBottle、SwapLargerWorkBottle；蒸发器预检/交付及干料制剂机候选/交付共用，GraphUtils.SwapItemsInPlace完成整瓶交换，空瓶回原槽 |
 | 过夜恢复机器空容器／制剂机空瓶接料 | MachineBottles.cs；RememberMachineBottles、RefillMachineBottles、CanReceiveEmptyFinisher |
 | 湿料缺电持续监测与小通知 | PowerMonitor.cs；Charged；InventoryReport.cs |
 | 面板布局与预计/实际报告 | CompositionPanel.cs、PanelLayout.cs；450×720、按设备纵向行池、左侧名称及条内用量/库存或剂量/纯度、当前用量/本晚结果切换、固定底栏；缩放时重算文字高度 |
