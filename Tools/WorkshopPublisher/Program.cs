@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 // Explicit invocation only. Never creates an item or starts the game.
 const uint App = 4348910;
 const ulong Item = 3836818025;
-if (args.Length < 2 || args[1] is not ("--check" or "--publish" or "--schinese-only"))
+if (args.Length < 2 || args[1] is not ("--check" or "--diagnose" or "--publish" or "--schinese-only"))
 {
-    Console.Error.WriteLine("WorkshopPublisher <WorkshopUpload directory> --check|--publish|--schinese-only [additional image paths...]");
+    Console.Error.WriteLine("WorkshopPublisher <WorkshopUpload directory> --check|--diagnose|--publish|--schinese-only [additional image paths...]");
     return 2;
 }
 var workspace = Path.GetFullPath(args[0]);
@@ -64,6 +64,8 @@ try
     if (!(initialized = SteamAPI.Init())) throw new Exception("SteamAPI.Init failed. Steam must be running and signed in to the workshop owner account.");
     if (!SteamUser.BLoggedOn()) throw new Exception("Steam client is offline; reconnect before publishing.");
     Console.WriteLine($"Steam initialized; AppID={SteamUtils.GetAppID()}, owner={SteamUser.GetSteamID()}");
+    if (args[1] == "--diagnose")
+        Console.WriteLine($"License: subscribed={SteamApps.BIsSubscribedApp(new AppId_t(App))}, appOwner={SteamApps.GetAppOwner()}, familySharing={SteamApps.BIsSubscribedFromFamilySharing()}, VACBanned={SteamApps.BIsVACBanned()}");
     if (SteamUtils.GetAppID().m_AppId != App) throw new Exception("Steam AppID mismatch.");
     T Wait<T>(SteamAPICall_t call) where T : struct
     {
@@ -97,11 +99,13 @@ try
     foreach (var language in args[1] == "--check" ? new[] { "english", "schinese" } : new[] { "english" })
     {
         var before = Read(language, true);
+        if (args[1] == "--diagnose")
+            Console.WriteLine($"Item: creatorApp={before.m_nCreatorAppID}, consumerApp={before.m_nConsumerAppID}, banned={before.m_bBanned}; changenoteUtf8Bytes={Encoding.UTF8.GetByteCount(fields["changenote"])}");
         if (args[1] == "--schinese-only" && language == "english" && (before.m_rgchTitle != fields["title"] || before.m_rgchDescription != description))
             throw new Exception("Default-language text differs from this prepared release. Verify the content release before retrying Chinese alone.");
         Console.WriteLine($"{language}: current title={before.m_rgchTitle}; matches prepared={before.m_rgchDescription == description}");
     }
-    if (args[1] == "--check") { Console.WriteLine("Read-only preflight passed; nothing submitted."); return 0; }
+    if (args[1] is "--check" or "--diagnose") { Console.WriteLine("Read-only preflight passed; nothing submitted."); return 0; }
     Save("in-progress");
     foreach (var language in args[1] == "--schinese-only" ? new[] { "schinese" } : new[] { "english", "schinese" })
     {
@@ -132,5 +136,5 @@ try
     Console.WriteLine("Receipt: " + receiptPath);
     return 0;
 }
-catch (Exception e) { Console.Error.WriteLine(e.Message); if (args[1] != "--check") Save("incomplete"); return 1; }
+catch (Exception e) { Console.Error.WriteLine(e.Message); if (args[1] is not ("--check" or "--diagnose")) Save("incomplete"); return 1; }
 finally { if (initialized) SteamAPI.Shutdown(); }

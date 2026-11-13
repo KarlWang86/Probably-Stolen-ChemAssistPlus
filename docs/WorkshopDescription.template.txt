@@ -30,8 +30,8 @@
 
 [h2]鸣谢[/h2]
 [list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3830072589]化学一键制作 / Chem One-Click Craft[/url]：流程思路参考。
-作者：[url=https://steamcommunity.com/profiles/76561198096759167/]线上真实（清单署名n1ght）[/url]。
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3831472187]更好的液体扫描仪 / Better Liquid Scanner[/url]：成分条形布局参考。
-作者：[url=https://steamcommunity.com/profiles/76561199043886662/]rikuvunua[/url]。
+[*]化学一键制作 / Chem One-Click Craft：流程思路参考。
+作者：线上真实（清单署名n1ght）。
+[*]更好的液体扫描仪 / Better Liquid Scanner：成分条形布局参考。
+作者：rikuvunua。
 [/list]
