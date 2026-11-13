@@ -4,7 +4,7 @@
 
 ## 独立工程
 
-开发主目录：`D:\work\Probably-Stolen-ChemAssistPlus\ChemAssistPlus`。
+从仓库根目录执行开发操作；运行时源码项目位于 `ChemAssistPlus/`，不依赖仓库的绝对路径。
 本仓库由游戏目录中的 Modding 完整复制而来，源码独立于 Steam 游戏安装目录；卸载游戏不会删除本仓库。
 原游戏目录中的 Modding 保留为迁移时备份，后续开发请使用本仓库，避免两份源码分叉。
 
@@ -15,19 +15,40 @@ bin/、obj/、build/、staging/、releases/、ZIP、游戏/工具二进制与提
 ## 配置与构建
 
 需要 .NET SDK（主 Mod 为 netstandard2.1，工具为 net8.0）及已安装的游戏。
-在 `ChemAssistPlus/GameRoot.local.txt` 中写入游戏根目录的绝对路径（单行，无引号）；此文件已忽略。
-本机已配置为 `E:\SteamLibrary\steamapps\common\Probably Stolen`。
+辅助工具默认仍为net8.0；只有.NET 9 SDK及运行时的机器可先设置 `$env:PROBABLY_STOLEN_TOOL_FRAMEWORK = 'net9.0'`，该设置只影响三个辅助工具，不改变Mod的netstandard2.1目标。离线包源配置要求目标框架的引用包已在本机安装。
+在仓库根目录的 `GameRoot.local.txt` 中写入游戏根目录的绝对路径（单行，无引号）；此文件已忽略，不包含在源码发布包中。
 也可设置环境变量 `PROBABLY_STOLEN_GAME_ROOT`，优先级高于本地文件。
-未配置时兼容原有 Modding/ChemAssistPlus 相对目录。
+未配置时尝试仓库的父目录作为游戏根目录；独立克隆请显式配置。
 
-在 `ChemAssistPlus` 目录执行：
+在仓库根目录执行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build.ps1
 ```
 
 只构建并运行原生 ModScanner，输出到 build/；部署、打包与工坊上传需按开发文档单独执行。
-开发约定见 [AGENTS.md](../ChemAssistPlus/AGENTS.md)，当前状态见 [HANDOFF.md](../ChemAssistPlus/HANDOFF.md)，操作见 [DEVELOPMENT.md](../ChemAssistPlus/DEVELOPMENT.md)。
+开发约定见 [AGENTS.md](../AGENTS.md)，当前状态见 [HANDOFF.md](HANDOFF.md)，操作见 [DEVELOPMENT.md](DEVELOPMENT.md)。
+
+## 目录分工
+
+```text
+仓库根目录/
+├─ ChemAssistPlus/          C#运行时源码、csproj、manifest.xml、VERSION
+├─ docs/                    开发文档、使用说明、更新记录、工坊文案
+├─ scripts/                 构建、扫描、查询、部署、打包与工坊发布入口
+├─ Tools/                   NativeScan、AssemblyQuery、WorkshopPublisher源码
+├─ Research/                调查报告、原生IL及历史备份，不参与Mod构建
+├─ Screenshots/             README及工坊使用的截图
+├─ Tests/                   历史测试存档，保留但不运行
+├─ build/                   当前构建与扫描结果、工具成品（忽略）
+├─ releases/                显式打包的安装包与源码包（忽略）
+├─ AGENTS.md                仓库开发约定
+├─ Directory.Build.props    运行时项目和辅助工具共用游戏引用路径
+├─ NuGet.Config             共用离线包源配置
+└─ GameRoot.local.txt       本机游戏路径（忽略）
+```
+
+`bin/`、`obj/`是各项目自身生成的缓存，可留在项目内。所有脚本按自身位置解析仓库路径；无需进入源码目录。源码包保留同样的目录关系和构建入口，按白名单排除Research、历史Tests、游戏DLL及本机路径配置。
 
 ## 备份到 GitHub
 

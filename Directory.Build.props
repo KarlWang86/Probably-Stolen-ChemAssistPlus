@@ -1,7 +1,9 @@
 <Project>
   <PropertyGroup>
+    <ToolTargetFramework Condition="'$(ToolTargetFramework)' == ''">$(PROBABLY_STOLEN_TOOL_FRAMEWORK)</ToolTargetFramework>
+    <ToolTargetFramework Condition="'$(ToolTargetFramework)' == ''">net8.0</ToolTargetFramework>
     <GameRoot Condition="'$(GameRoot)' == ''">$(PROBABLY_STOLEN_GAME_ROOT)</GameRoot>
     <GameRoot Condition="'$(GameRoot)' == '' and Exists('$(MSBuildThisFileDirectory)GameRoot.local.txt')">$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)GameRoot.local.txt').Trim())</GameRoot>
-    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)../..</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)..</GameRoot>
   </PropertyGroup>
 </Project>

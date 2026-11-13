@@ -8,7 +8,7 @@ using ChemAssistPlus.Core;
 
 namespace ChemAssistPlus
 {
-    // 架构入口：见本目录 ARCHITECTURE.md 与 HANDOFF.md。
+    // 架构入口：见仓库 docs/ARCHITECTURE.md 与 docs/HANDOFF.md。
     // 独立 Mod；Plus 的 partial 文件共享当前存档会话状态，均由 Unity 主线程驱动。
     // 本文件负责：生命周期、设备选择、配方识别、真实溶液投料、过滤、开工预检和 F10 页面。
     // Workflow.cs 负责执行；Core.cs 封装游戏对象遍历；PanelLayout.cs 只处理显示。

@@ -1,5 +1,11 @@
 # 当前交接
 
+## 仓库目录整理 · 2026-11-13
+
+- ChemAssistPlus/收拢为运行时源码、csproj、manifest.xml和VERSION；开发文档、使用说明与工坊文案移至docs/，入口脚本移至scripts/，Research/、Screenshots/、Tools/、历史Tests/移至仓库根目录。原有架构图保留在docs/ARCHITECTURE.md，历史研究与截图内容不变。
+- AGENTS.md、Directory.Build.props及NuGet.Config改为仓库级文件；GameRoot.local.txt位于根目录且保持忽略。build/、releases/输出也改为根目录。脚本同步修正工具、文案、查询结果和源码包的路径，源码包保持可构建的仓库结构。
+- 本机只有.NET 9，工具默认net8.0不变，新增可选PROBABLY_STOLEN_TOOL_FRAMEWORK=net9.0。已用此设置完成主Mod、原生扫描和三个辅助工具编译；0警告0错误，ModScanner PASS（507 methods，capabilities none），查询工具定向签名查询成功。未改功能或版本，未运行测试、部署、上传或启动游戏。
+
 ## 专项调研 · 芬太片（2026-11-13，仅研究）
 
 - 按玩家要求核对DEVELOPMENT及本机原生IL；哈希与既有基线一致。报告Research/FantaWorkflow-20261113.md，新增定向IL为Research/fanta-*-20261113-il.txt。除稳定剂前处理外，发现无挥发液前体可能被HasPendingBatch跳过、受抑制残余前体可能被完成判定忽略、还原剂尾量及不可过滤/蒸发残余试剂等接入边界。NATIVE_API已记短结论。本轮未修改功能/版本、未构建/部署/发布、未运行测试或游戏、未改存档/消耗材料；玩家随后要求将超科技与芬太片资料一起提交，本次将两份主题报告、原生IL证据及文档索引合并留档。

@@ -5,9 +5,9 @@ param(
     [string]$WorkshopState
 )
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot 'scripts/common.ps1')
+. (Join-Path $PSScriptRoot 'common.ps1')
 # 重新扫描并核对 build，杜绝复制未通过扫描或被修改的产物。
-& (Join-Path $taskProject 'validate.ps1')
+& (Join-Path $PSScriptRoot 'validate.ps1')
 $destination = Join-Path $gameRoot 'Mods/ChemicalWorkflowAssistant'
 New-Item -ItemType Directory -Path $destination -Force | Out-Null
 foreach ($file in @('ChemAssistPlus.dll','manifest.xml','使用说明.txt')) {

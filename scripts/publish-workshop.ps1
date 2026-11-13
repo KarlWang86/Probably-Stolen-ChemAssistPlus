@@ -1,7 +1,7 @@
 ﻿# Explicitly publish prepared content and synchronize english/schinese. Never starts the game.
 param([switch]$CheckOnly, [switch]$SchineseOnly, [string[]]$AdditionalPreview = @())
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot 'scripts/common.ps1')
+. (Join-Path $PSScriptRoot 'common.ps1')
 if ($AdditionalPreview.Count -gt 0 -and ($CheckOnly -or $SchineseOnly)) { throw 'Additional previews require a full publish.' }
 $previewPaths = @($AdditionalPreview | ForEach-Object { (Resolve-Path -LiteralPath $_ -ErrorAction Stop).ProviderPath })
 $workspace = Join-Path $gameRoot 'WorkshopUpload'
@@ -16,7 +16,7 @@ foreach ($file in @('ChemAssistPlus.dll','manifest.xml','使用说明.txt')) {
 & (Join-Path $workspace 'upload.ps1') -CheckOnly
 if ($LASTEXITCODE -ne 0) { throw 'Workshop preflight failed.' }
 $toolOutput = Join-Path $buildFolder 'tools/WorkshopPublisher'
-& dotnet build (Join-Path $taskProject 'Tools/WorkshopPublisher/WorkshopPublisher.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$taskProject/NuGet.Config"
+& dotnet build (Join-Path $toolsRoot 'WorkshopPublisher/WorkshopPublisher.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$repoRoot/NuGet.Config"
 if ($LASTEXITCODE -ne 0) { throw 'WorkshopPublisher build failed.' }
 $mode = if ($CheckOnly) { '--check' } elseif ($SchineseOnly) { '--schinese-only' } else { '--publish' }
 & dotnet (Join-Path $toolOutput 'WorkshopPublisher.dll') $workspace $mode @previewPaths

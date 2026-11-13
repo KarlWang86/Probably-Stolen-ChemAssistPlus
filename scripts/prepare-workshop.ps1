@@ -1,6 +1,6 @@
 ﻿# Prepare local upload files and formatted text. Never logs in, uploads, deploys, or starts the game.
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot 'scripts/common.ps1')
+. (Join-Path $PSScriptRoot 'common.ps1')
 $version = Get-TaskVersion
 $workspace = Join-Path $gameRoot 'WorkshopUpload'
 $vdfPath = Join-Path $workspace 'upload.vdf'
@@ -15,8 +15,8 @@ foreach ($file in $runtimeFiles) {
     }
 }
 
-$changelog = [IO.File]::ReadAllText((Join-Path $taskProject 'CHANGELOG.md'))
-$workshopChanges = [IO.File]::ReadAllText((Join-Path $taskProject 'WorkshopChangelog.md'))
+$changelog = [IO.File]::ReadAllText((Join-Path $docsRoot 'CHANGELOG.md'))
+$workshopChanges = [IO.File]::ReadAllText((Join-Path $docsRoot 'WorkshopChangelog.md'))
 function Convert-ChangesToBBCode([string]$Markdown) {
     $lines = New-Object 'System.Collections.Generic.List[string]'
     $inList = $false
@@ -41,7 +41,7 @@ $current = $currentMatches[0]
 $currentBrief = Convert-ChangesToBBCode $briefMatches[0].Value
 if ($currentBrief -notmatch '\[\*\]') { throw 'Current workshop changes must contain at least one bullet.' }
 $note = Convert-ChangesToBBCode ("## $version`r`n" + $current.Groups[1].Value)
-$template = [IO.File]::ReadAllText((Join-Path $taskProject 'WorkshopDescription.template.txt'))
+$template = [IO.File]::ReadAllText((Join-Path $docsRoot 'WorkshopDescription.template.txt'))
 $description = $template.Replace('{{VERSION}}', $version).Replace('{{CURRENT_CHANGES}}', $currentBrief).Trim()
 $description = [regex]::Replace($description, '\r?\n', "`r`n")
 if ($description.Contains('{{')) { throw 'Unresolved workshop description placeholder.' }

@@ -6,16 +6,16 @@ param(
     [switch]$IL
 )
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot 'scripts/common.ps1')
+. (Join-Path $PSScriptRoot 'common.ps1')
 if (!$Assembly) { $Assembly = Join-Path $managed 'Assembly-CSharp.dll' }
 $toolOutput = Join-Path $buildFolder 'tools/AssemblyQuery'
-$buildLog = & dotnet build (Join-Path $taskProject 'Tools/AssemblyQuery/AssemblyQuery.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$taskProject/NuGet.Config"
+$buildLog = & dotnet build (Join-Path $toolsRoot 'AssemblyQuery/AssemblyQuery.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$repoRoot/NuGet.Config"
 if ($LASTEXITCODE -ne 0) { throw ($buildLog -join "`n") }
 $queryArgs = @($Assembly,$Type,$Method)
 if ($IL) { $queryArgs += '--il' }
 $result = & dotnet (Join-Path $toolOutput 'AssemblyQuery.dll') @queryArgs
 if ($LASTEXITCODE -ne 0) { throw 'Assembly query failed.' }
-$research = Join-Path $taskProject 'Research'
+$research = Join-Path $repoRoot 'Research'
 New-Item -ItemType Directory -Path $research -Force | Out-Null
 $kind = if ($IL) { 'il' } else { 'api' }
 $safe = ("{0}-{1}-{2}" -f [IO.Path]::GetFileNameWithoutExtension($Assembly),$Type,$Method) -replace '[^\w.-]','_'

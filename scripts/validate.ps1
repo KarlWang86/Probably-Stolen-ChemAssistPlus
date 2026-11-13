@@ -1,7 +1,7 @@
 ﻿# 默认扫描 build；不写 Mods，不启动游戏。
 param([string]$ModFolder)
 $ErrorActionPreference = 'Stop'
-. (Join-Path $PSScriptRoot 'scripts/common.ps1')
+. (Join-Path $PSScriptRoot 'common.ps1')
 if (!$ModFolder) { $ModFolder = $buildFolder }
 $ModFolder = [IO.Path]::GetFullPath($ModFolder)
 $receiptPath = Join-Path $ModFolder 'validation.json'
@@ -14,7 +14,7 @@ $dll = Join-Path $ModFolder 'ChemAssistPlus.dll'
 $version = Get-TaskVersion
 if ($manifest.Manifest.ModVersion -ne $version -or [Reflection.AssemblyName]::GetAssemblyName($dll).Version.ToString(3) -ne $version) { throw 'Assembly / manifest / VERSION mismatch.' }
 $toolOutput = Join-Path $buildFolder 'tools/NativeScan'
-dotnet build (Join-Path $taskProject 'Tools/NativeScan/NativeScan.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$taskProject/NuGet.Config"
+dotnet build (Join-Path $toolsRoot 'NativeScan/NativeScan.csproj') -c Release -o $toolOutput --ignore-failed-sources -p:NuGetAudit=false "-p:RestoreConfigFile=$repoRoot/NuGet.Config"
 if ($LASTEXITCODE -ne 0) { throw 'Native scanner build failed.' }
 # 扫描器会递归检查载荷目录；工具二进制必须与运行载荷隔离。
 $scanFolder = Join-Path $buildFolder 'scan-input'

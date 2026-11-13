@@ -2,7 +2,7 @@
 
 在《Probably Stolen》中安排化学加工：放好原料和设备，点击“结束当天”，助手自动逐批处理，并在次日汇总结果。使用游戏原生化学与耗料接口，蒸发仍由原生过夜流程完成。
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025) · [当前版本](ChemAssistPlus/VERSION) · [更新记录](ChemAssistPlus/CHANGELOG.md) · [完整使用说明](ChemAssistPlus/使用说明.txt)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3836818025) · [当前版本](ChemAssistPlus/VERSION) · [更新记录](docs/CHANGELOG.md) · [完整使用说明](docs/使用说明.txt)
 
 ## 主要功能
 
@@ -42,10 +42,10 @@
 
 | 0.4.1 用量与结果面板 | 0.3.7 面板 |
 | --- | --- |
-| <img src="ChemAssistPlus/Screenshots/panel-0.4.1.png" alt="0.4.1 分批用量与处理结果面板" width="300"> | <img src="ChemAssistPlus/Screenshots/panel-0.3.7.png" alt="0.3.7 化学流程助手面板" width="300"> |
+| <img src="Screenshots/panel-0.4.1.png" alt="0.4.1 分批用量与处理结果面板" width="300"> | <img src="Screenshots/panel-0.3.7.png" alt="0.3.7 化学流程助手面板" width="300"> |
 
 ## 开发与反馈
 
 遇到问题时，请提供模组版本、相关设备与瓶号、面板提示及游戏日志，便于核对实际加工过程。
 
-源码构建、仓库备份和目录说明见 [仓库说明](docs/REPOSITORY.md)；开发操作见 [DEVELOPMENT.md](ChemAssistPlus/DEVELOPMENT.md)。代码使用 [MIT License](LICENSE)，游戏与第三方材料的权利归原作者。
+源码构建、仓库备份和目录说明见 [仓库说明](docs/REPOSITORY.md)；开发操作见 [DEVELOPMENT.md](docs/DEVELOPMENT.md)。代码使用 [MIT License](LICENSE)，游戏与第三方材料的权利归原作者。

@@ -1,5 +1,100 @@
 # 模块与状态边界
 
+本文的运行时文件名均相对ChemAssistPlus/；操作脚本、辅助工具、研究资料与截图分别位于仓库根目录的scripts/、Tools/、Research/、Screenshots/。完整目录与构建入口见[仓库说明](REPOSITORY.md)。
+
+## 架构总览（0.4.7）
+
+下图按职责分组；箭头表示主要调用或数据依赖，并非独立服务。大多数业务文件都是同一个静态分部类Plus，共享当前存档的会话状态，由Unity主线程驱动。
+
+```mermaid
+flowchart TB
+    Game["游戏加载器 / IMod生命周期"] --> Entry["Core.cs · ModEntry"]
+    Entry --> Plus["Plus.cs · 初始化 / 启用 / 禁用 / 切档清理"]
+    Plus --> Pump["PlusPump.Update · Unity主线程"]
+
+    subgraph Business["Plus分部类 · 按职责拆文件"]
+        Auto["AutoWorkflow.cs<br/>结束当天拦截 / 多机队列 / 防重入"]
+        Plan["BatchPlan.cs + DoseMath.cs<br/>整份选料 / 用量与容量规划"]
+        Check["Preflight.cs + FilterPlan.cs<br/>开工复核 / 滤材选择"]
+        Work["Workflow.cs<br/>IEnumerator任务 / 实际加工 / 失败清理"]
+        Heat["HeatingControl.cs<br/>原生加热与控温保护"]
+        Purify["Purification.cs<br/>紫外线 / 含氯药片"]
+        Distill["Distillation.cs<br/>接收 / 集中腾槽 / 干料转移"]
+        Route["EvaporatorRouting.cs + MachineBottles.cs<br/>配方分工 / 原瓶优先补槽"]
+        Report["InventoryReport.cs + CompositionPanel.cs<br/>库存预估 / 逐批快照 / 次日报告"]
+        UI["Plus.OpenPanel + PanelLayout.cs<br/>F10原生窗口 / 适配与样式"]
+        Mix["MixingGuard.cs + MixingDialog.cs<br/>手动倒液检查 / 一次确认 / 对话框恢复"]
+        Icons["MaterialIcons.cs<br/>实际成分映射 / 瓶身与机器图标"]
+        Power["PowerMonitor.cs<br/>湿料缺电监测与通知"]
+    end
+
+    Pump --> Work
+    Pump --> UI
+    Pump --> Mix
+    Pump --> Icons
+    Pump --> Power
+    Pump --> Report
+    Hook["Harmony：结束当天按钮"] --> Auto
+    Auto --> Work
+    Auto --> Distill
+    Auto --> Route
+    Work --> Plan
+    Work --> Check
+    Work --> Heat
+    Work --> Purify
+    Work --> Distill
+    Check --> Plan
+    Distill --> Route
+    Work --> Report
+    UI --> Report
+    Report --> Plan
+    Report --> Check
+    TransferHook["Harmony：原生倒液"] --> Mix
+
+    Core["Core.cs · RecipeCatalog / SceneSnapshot<br/>MachineView / NativeChem"]
+    Plan --> Core
+    Check --> Core
+    Work --> Core
+    Distill --> Core
+    Native["游戏原生API<br/>库存 / 扣液与加液 / 化学反应 / 移瓶 / UI"]
+    Core --> Native
+    Work --> Native
+    Heat --> Native
+    Purify --> Native
+    Distill --> Native
+    Mix --> Native
+    UI --> Native
+```
+
+## 结束当天的数据与控制流
+
+```mermaid
+flowchart TD
+    Click["玩家点击最终结束当天按钮"] --> Gate{"自动开启且可处理？"}
+    Gate -->|关闭或未就绪| Night["执行原生过夜"]
+    Gate -->|开启| Bottles["记住机器瓶号 → 转移已有干料 → 补空槽"]
+    Bottles --> Queue["按设备编号快照待处理搅拌机队列"]
+    Queue --> Next{"还有下一台？"}
+    Next -->|有| Pre["识别配方 → 整份用量规划 → 只读预检"]
+    Pre -->|不满足或等待蒸发| Skip["保留原料，记录本批原因"]
+    Skip --> Next
+    Pre -->|通过| Hold["挂起过夜请求，逐批复用加热板"]
+    Hold --> Prepare["必要时集中同类湿料腾槽<br/>再复核 → 搅拌 → 按真实浓度投料"]
+    Prepare --> React["原生加热与反应 → 去蛋白 / 脂肪"]
+    React --> Filter["滤布 → 滤芯 → 按需UV → 药片"]
+    Filter --> Deliver["按配方分工选择蒸发器<br/>复核容量 / 电量 / 干湿 / 浓度后交付"]
+    Deliver --> Snapshot["保存本批实际用量、阶段快照与接收瓶号"]
+    Snapshot --> Next
+    Next -->|队列完成| Resume["释放加热器，恢复原生过夜一次"]
+    Resume --> Night
+    Night --> Morning["BeginDay后核对接收瓶结果<br/>转移干料 → 补空槽 → 更新报告"]
+    Morning --> Popup["实际有操作且开启次日弹窗时显示F10结果"]
+```
+
+图中为正常完成路径。重复结束当天请求由pendingEndDay/resumingEndDay防重入；执行异常或取消会停止任务、关火并保留物料，是否继续过夜由对应停止路径决定，不能按成功流程推断。预检失败只跳过该批，执行异常会停止队列。
+
+状态分三类：任务、队列、来源偏好、逐批报告及待确认混液请求保存在当前会话，切档/禁用时清理；蒸发器配方与机器首选瓶号写入机器原生自定义标签，随游戏正常存档；液体、设备和库存始终使用游戏原生对象与操作。图标与面板负责展示，不生成材料。干料可转入制剂机，当前自动流程不按制剂按钮，成型由玩家操作。
+
 ## 执行路径
 
 Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有待处理搅拌机 → 当前批只读预检 → 暂缓原生过夜 → 首种原料按酒精库存及工作瓶容量选择完整份数 → BlendInto → 同比补溶剂 → 原生加热/反应 → 去蛋白/脂肪 → 滤布 → 滤芯 → 按需紫外线消毒 → 含氯药片 → 独立蒸发器原液槽 → 下一台重新预检并逐批复用加热器 → 队列结束恢复原生过夜一次。

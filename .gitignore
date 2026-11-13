@@ -12,5 +12,5 @@
 .vs/
 .vscode/
 # Local inspection output; do not redistribute game method bodies.
-/ChemAssistPlus/Research/ModTrust-signature-20261112-il.txt
-/ChemAssistPlus/Research/TrustStoreCloudDiagnosis-20261112.txt
+/Research/ModTrust-signature-20261112-il.txt
+/Research/TrustStoreCloudDiagnosis-20261112.txt

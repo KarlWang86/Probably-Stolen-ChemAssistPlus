@@ -1,25 +1,27 @@
-﻿# 常用操作
+# 常用操作
 
-开发主目录现为 D:\work\Probably-Stolen-ChemAssistPlus\ChemAssistPlus。独立目录需在 GameRoot.local.txt 中填写游戏根目录（单行、无引号），或设置优先级更高的 PROBABLY_STOLEN_GAME_ROOT 环境变量；本地路径文件不提交。项目引用和脚本共用该配置，详见仓库 README。
+源码项目为仓库根目录下的 ChemAssistPlus/；文档位于 docs/，脚本位于 scripts/。独立目录需在仓库根目录的 GameRoot.local.txt 中填写游戏根目录（单行、无引号），或设置优先级更高的 PROBABLY_STOLEN_GAME_ROOT 环境变量；本地路径文件不提交。项目引用和脚本共用该配置，详见仓库 README。
 
 
-在本目录执行，Windows PowerShell 5，统一前缀：
+在仓库根目录执行，Windows PowerShell 5，统一前缀：
 `powershell -NoProfile -ExecutionPolicy Bypass -File`。
+
+辅助工具默认net8.0；本机仅有.NET 9时，先在当前PowerShell设置 `$env:PROBABLY_STOLEN_TOOL_FRAMEWORK = 'net9.0'`，再运行下列脚本。主Mod目标框架不变。
 
 | 目标 | 接在前缀后的命令 | 输出与边界 |
 | --- | --- | --- |
-| 日常构建 | .\build.ps1 | build/ 中 DLL、清单、说明、原生扫描结果；不部署/打包 |
-| 重扫已有构建 | .\validate.ps1 | build/验证结果.txt 与 validation.json（记录文件/游戏哈希） |
-| 准备工坊内容与排版 | .\prepare-workshop.ps1 | 核对已扫描构建、备份旧上传工作区、同步3个运行文件/用法与功能/当前版本改动/鸣谢与VDF；配置预检，不登录/上传 |
-| 可选人工核查 | .\publish-workshop.ps1 -CheckOnly | 需要时只读查询english/schinese与本地是否一致；不提交，日常发布无需另跑 |
-| 发布并同步简介 | .\publish-workshop.ps1 | english上传内容/封面/标题/简介，schinese同步标题/简介；两次Steam提交均成功即完成，自动保存简短结果 |
-| 单独重试简中简介 | .\publish-workshop.ps1 -SchineseOnly | 仅在默认语言已提交当前构建时使用，更新schinese标题/简介，不上传运行文件 |
-| 查签名与参数 | .\query-api.ps1 -Type WaterHelper -Method RemoveAndReturn | 终端短结果，完整结果保存在 Research/ |
-| 查指定方法 IL | .\query-api.ps1 -Type ChemicalHelper -Method HandleChlorine -IL | 仅显示保存路径；类型/方法支持单独 * 匹配全部 |
-| 查参考程序集 | .\query-api.ps1 -Assembly <DLL路径> -Type <类型> -Method <方法> | 只读元数据，不执行目标方法 |
-| 专项本地部署 | .\deploy.ps1 -WorkshopState Disabled | 用户已核对禁用同类工坊项时；重新扫描后只复制3个运行文件 |
-| 同ID工坊并存部署 | .\deploy.ps1 -WorkshopState SameIdLocalPriorityConfirmed | 已核对同ID本地优先且无其他同类项冲突时使用 |
-| 留档/发布打包 | .\release.ps1 | releases/<版本-时间>/ 下安装包+源码包；不自动上传 |
+| 日常构建 | .\scripts\build.ps1 | build/ 中 DLL、清单、说明、原生扫描结果；不部署/打包 |
+| 重扫已有构建 | .\scripts\validate.ps1 | build/验证结果.txt 与 validation.json（记录文件/游戏哈希） |
+| 准备工坊内容与排版 | .\scripts\prepare-workshop.ps1 | 核对已扫描构建、备份旧上传工作区、同步3个运行文件/用法与功能/当前版本改动/鸣谢与VDF；配置预检，不登录/上传 |
+| 可选人工核查 | .\scripts\publish-workshop.ps1 -CheckOnly | 需要时只读查询english/schinese与本地是否一致；不提交，日常发布无需另跑 |
+| 发布并同步简介 | .\scripts\publish-workshop.ps1 | english上传内容/封面/标题/简介，schinese同步标题/简介；两次Steam提交均成功即完成，自动保存简短结果 |
+| 单独重试简中简介 | .\scripts\publish-workshop.ps1 -SchineseOnly | 仅在默认语言已提交当前构建时使用，更新schinese标题/简介，不上传运行文件 |
+| 查签名与参数 | .\scripts\query-api.ps1 -Type WaterHelper -Method RemoveAndReturn | 终端短结果，完整结果保存在 Research/ |
+| 查指定方法 IL | .\scripts\query-api.ps1 -Type ChemicalHelper -Method HandleChlorine -IL | 仅显示保存路径；类型/方法支持单独 * 匹配全部 |
+| 查参考程序集 | .\scripts\query-api.ps1 -Assembly <DLL路径> -Type <类型> -Method <方法> | 只读元数据，不执行目标方法 |
+| 专项本地部署 | .\scripts\deploy.ps1 -WorkshopState Disabled | 用户已核对禁用同类工坊项时；重新扫描后只复制3个运行文件 |
+| 同ID工坊并存部署 | .\scripts\deploy.ps1 -WorkshopState SameIdLocalPriorityConfirmed | 已核对同ID本地优先且无其他同类项冲突时使用 |
+| 留档/发布打包 | .\scripts\release.ps1 | releases/<版本-时间>/ 下安装包+源码包；不自动上传 |
 
 VERSION 为版本唯一来源，build 自动同步程序集、清单、UI/日志及使用说明；修改记录中的历史版本不替换。
 推进新版本前先检查Git工作区：如有旧版本未提交的源码、文档或发布记录，先按旧版本完成提交，再更新VERSION并开发新版本，避免多版本内容混在同一提交。2026-11-12玩家明确本次0.4.1不拆分，此后遵循该约定；发布后的回执/交接记录可另作当前版本的记录提交。
@@ -34,11 +36,11 @@ VERSION 为版本唯一来源，build 自动同步程序集、清单、UI/日志
 
 ## 文件分工
 
-AGENTS.md 固定约定；HANDOFF.md 当前状态；ARCHITECTURE.md 按模块定位；
+根目录 AGENTS.md 固定约定；docs/HANDOFF.md 当前状态；docs/ARCHITECTURE.md 按模块定位；
 NATIVE_API.md 原生接口缓存；MOD_REFERENCE.md 参考实现缓存；CHANGELOG.md 历史变更；
-Research/ 完整IL、旧调查与整理前备份。历史 Tests/ 保留但不运行，不纳入发布源码包。
+路径以仓库根目录为基准：Research/ 完整IL、旧调查与整理前备份。历史 Tests/ 保留但不运行，不纳入发布源码包。
 
-游戏机制资料按主题存放于 Research/，保留来源、整理日期与验证状态；已核实的原生接口短结论再写入 NATIVE_API.md。超科技物品的获取、六类货品用途、供电与升级限制见 [Research/HypertechMechanics.md](Research/HypertechMechanics.md)（社区资料整理，尚未逐项核对本机原生实现）。
+游戏机制资料按主题存放于 Research/，保留来源、整理日期与验证状态；已核实的原生接口短结论再写入 NATIVE_API.md。超科技物品的获取、六类货品用途、供电与升级限制见 [Research/HypertechMechanics.md](../Research/HypertechMechanics.md)（社区资料整理，尚未逐项核对本机原生实现）。
 
 CHANGELOG.md按每个有据可查的版本记录完整变化，已从归档补回早期版本，缺失版本不补写。WorkshopChangelog.md保留各版精简稿，生成简介只要求当前VERSION条目唯一且有内容，不再要求历史版本集合一致；Steam简介上限为8000 UTF-8字节，生成与上传预检均要求小于8000，不能只查字符数。WorkshopDescription.template.txt按用法/功能→当前版本改动→末尾鸣谢排版，prepare-workshop.ps1只嵌入WorkshopChangelog的当前版本，另存完整CHANGELOG-source.md。旧版本内容由工坊更新记录和仓库保留，不再全部重复到简介。
 
