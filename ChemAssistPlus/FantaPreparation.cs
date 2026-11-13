@@ -174,6 +174,8 @@ namespace ChemAssistPlus
             var budget = lastCheckedPlan.Fanta;
             CheckFantaPlate(p);
             Trace("芬太步骤1 · 加热器 #" + p.Machine.uniqueId + " 的工作瓶 #" + p.Pot.uniqueId + "；直接处理前体液，不搅拌。初始：" + Composition(p.Pot));
+            var moduleWarning = FantaModuleWarning(p.Machine);
+            if (moduleWarning != null) Trace(moduleWarning);
             CaptureRunStage(1, "实际（未搅拌）", "methylol", p.Pot);
             yield return null;
             Trace("芬太步骤2 · 先按真实成分处理稳定剂、蛋白及脂肪，再处理残余酸碱。");
@@ -193,6 +195,20 @@ namespace ChemAssistPlus
                 + "；有效投入 " + Vol(budget.Used.TryGetValue(usage.Key, out int amount) ? amount : 0));
             CaptureRunStage(2, "实际", "fanta", p.Pot);
             FinishPreparedBatch(p);
+        }
+
+        static void PrepareFantaWater(NativeChem.ProbeResult p)
+        {
+            CheckFantaPlate(p);
+            var budget = lastCheckedPlan?.Fanta ?? throw new InvalidOperationException("缺少芬太后处理水量预算。");
+            int before = FantaAmount(p.Pot, "water");
+            DoseFanta(p, budget, "water", Math.Max(0, FantaPurificationWater - before));
+            Trace("芬太后处理补水：工作瓶 #" + p.Pot.uniqueId + "；水 " + Vol(before) + " → "
+                + Vol(FantaAmount(p.Pot, "water")) + "；实际耗水源溶液 "
+                + Vol(actualUsage.TryGetValue("water", out long waterUsed) ? waterUsed : 0)
+                + "；混合后 " + SceneSnapshot.Temp(p.Pot).ToString("0.0") + "℃。");
+            if (SceneSnapshot.Temp(p.Pot) >= 100)
+                throw new InvalidOperationException("补水后仍达到100℃，请先冷却再继续；未投净水药片，原液保留。");
         }
 
         static void DeliverFantaDry(NativeChem.ProbeResult p)

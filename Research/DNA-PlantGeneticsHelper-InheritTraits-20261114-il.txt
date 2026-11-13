@@ -1,0 +1,35 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PlantGeneticsHelper::InheritTraits(GameItem,GameItem)
+  0: GameItem parentSeed None
+  1: GameItem childSeed None
+  local 0: System.Collections.Generic.IEnumerator`1<PlantTrait>
+  local 1: PlantTrait
+IL_0000: call System.Collections.Generic.IReadOnlyList`1<PlantTrait> PlantTraitRegistry::get_All()
+IL_0005: callvirt System.Collections.Generic.IEnumerator`1<!0> System.Collections.Generic.IEnumerable`1<PlantTrait>::GetEnumerator()
+IL_000a: stloc.0
+IL_000b: br.s IL_002c
+IL_000d: ldloc.0
+IL_000e: callvirt !0 System.Collections.Generic.IEnumerator`1<PlantTrait>::get_Current()
+IL_0013: stloc.1
+IL_0014: ldarg.1
+IL_0015: ldloc.1
+IL_0016: ldfld System.String PlantTrait::id
+IL_001b: ldarg.0
+IL_001c: ldloc.1
+IL_001d: ldfld System.String PlantTrait::id
+IL_0022: call System.Int32 PlantGeneticsHelper::GetTraitRank(GameItem,System.String)
+IL_0027: call System.Void PlantGeneticsHelper::SetTraitRank(GameItem,System.String,System.Int32)
+IL_002c: ldloc.0
+IL_002d: callvirt System.Boolean System.Collections.IEnumerator::MoveNext()
+IL_0032: brtrue.s IL_000d
+IL_0034: leave.s IL_0040
+IL_0036: ldloc.0
+IL_0037: brfalse.s IL_003f
+IL_0039: ldloc.0
+IL_003a: callvirt System.Void System.IDisposable::Dispose()
+IL_003f: endfinally
+IL_0040: ldarg.1
+IL_0041: call System.Void PlantGeneticsHelper::ClearHeat(GameItem)
+IL_0046: ret
+  EH Finally: try IL_000b: br.s IL_002c -> IL_0036: ldloc.0; handler IL_0036: ldloc.0 -> IL_0040: ldarg.1; filter ; catch

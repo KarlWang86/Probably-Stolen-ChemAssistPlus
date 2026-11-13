@@ -75,17 +75,21 @@ namespace ChemAssistPlus
             report.AppendLine("自动安装滤材：" + Name(plan.Pitcher) + " ← " + Name(plan.Material));
             return plan.Pitcher;
         }
-        static string PreferredFilterKey() => PlanFilter("fine") != null ? "fine" : PlanFilter("cloth") != null ? "cloth" : null;
-        static string NoFilterReason() => "单道过滤不可用（滤芯优先，棉布备用）：\n" + FilterReason("fine") + "\n" + FilterReason("cloth");
+        static void PlanFiltration(BatchPlan plan)
+        {
+            foreach (var key in new[] { "cloth", "fine" })
+                if (PlanFilter(key) == null) plan.Errors.Add(FilterReason(key));
+                else plan.Lines.Add(PlannedFilterName(key));
+        }
         static string PlannedFilterName(string key)
         {
             var p = PlanFilter(key);
-            return p == null ? FilterReason(key) : (key == "fine" ? "单道过滤：优先滤芯；" : "单道过滤：无可用滤芯，改用棉布；") + Name(p.Pitcher) + " / " + Name(p.Material) + (p.Change ? "（将自动换装；旧滤材归还仓库）" : "（已装好）");
+            return p == null ? FilterReason(key) : (key == "fine" ? "第二道过滤：滤芯；" : "第一道过滤：棉布；") + Name(p.Pitcher) + " / " + Name(p.Material) + (p.Change ? "（将自动换装；旧滤材归还仓库）" : "（已装好）");
         }
         static string FilterReason(string key)
         {
             var all = Scan();
-            string stage = key == "cloth" ? "备用棉布" : "优先滤芯";
+            string stage = key == "cloth" ? "第一道棉布" : "第二道滤芯";
             var pitchers = all.Where(x => x != contextPot && IsPitcher(x)).ToList();
             if (pitchers.Count == 0) return stage + "：[缺容器] 没有可操作的过滤水罐。";
             if (!pitchers.Any(WaterHelper.IsEmpty)) return stage + "：[容器占用] 请先清空所选水罐。";

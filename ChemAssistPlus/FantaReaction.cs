@@ -96,7 +96,7 @@ namespace ChemAssistPlus
                 plate.ModifyTag(MachineHeatingPlate.CURRENT_TARGET_TEMP, s => s.SetInt(c.Target), false);
                 plate.ModifyTag(MachineHeatingPlate.HEATING_PLATE_STATE, s => s.SetInt(2), false);
                 Trace("芬太步骤3 · 原位控温合成：加热器 #" + plate.uniqueId + "，工作瓶 #" + p.Pot.uniqueId
-                    + "，目标 " + c.Target + "℃；还原剂按原生整数尾量分次补充，不按一次理论总量过投。");
+                    + "，模组 " + activeModules + " 个，目标 " + c.Target + "℃；还原剂按原生整数尾量分次补充，不按一次理论总量过投。");
                 using (var slice = new FantaWorkSlice("合成", p))
                 {
                     int stagnant = 0, previousFeed = FantaAmount(p.Pot, "methylol");
@@ -109,7 +109,8 @@ namespace ChemAssistPlus
                         {
                             if (FantaAmount(p.Pot, "reducing_agent") > 0)
                                 throw new InvalidOperationException("前体耗尽但还原剂有残余，不能靠过滤或蒸发清除：" + FantaResidue(p.Pot));
-                            Trace("  芬太合成结束：前体及还原剂均为0，目标成分 " + Vol(FantaAmount(p.Pot, "fanta")) + "；已关闭加热并恢复原目标。");
+                            Trace("  芬太合成结束：前体及还原剂均为0，目标成分 " + Vol(FantaAmount(p.Pot, "fanta"))
+                                + "；实际温度 " + SceneSnapshot.Temp(p.Pot).ToString("0.0") + "℃；即将关闭加热并恢复原目标。");
                             yield break;
                         }
                         if (FantaAmount(p.Pot, "stabilizing_agent") > 0)

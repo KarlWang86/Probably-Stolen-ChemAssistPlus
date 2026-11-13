@@ -1,0 +1,483 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PlantTraitList::Register()
+IL_0000: ldstr "edible"
+IL_0005: ldstr "Edible"
+IL_000a: ldc.i4.2
+IL_000b: ldstr "Everything this plant produces can be eaten."
+IL_0010: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0015: ldstr "edible"
+IL_001a: call PlantTrait PlantTrait::Exclusive(System.String)
+IL_001f: ldnull
+IL_0020: ldftn System.Void PlantTraitList::MakeEdible(PlantTraitContext)
+IL_0026: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_002b: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_0030: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0035: pop
+IL_0036: ldstr "nutritious"
+IL_003b: ldstr "Nutritious"
+IL_0040: ldc.i4.3
+IL_0041: ldstr "Produce carries more calories."
+IL_0046: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_004b: ldstr "CALORIES"
+IL_0050: ldc.r4 25
+IL_0055: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_005a: callvirt PlantTrait PlantTrait::Unlimited()
+IL_005f: ldstr "nutrition"
+IL_0064: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0069: ldnull
+IL_006a: ldftn System.Void PlantTraitList::ScaleCalories(PlantTraitContext)
+IL_0070: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0075: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_007a: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_007f: pop
+IL_0080: ldstr "nutrient_poor"
+IL_0085: ldstr "Nutrient-Poor"
+IL_008a: ldc.i4.s -2
+IL_008c: ldstr "Produce carries fewer calories."
+IL_0091: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0096: ldstr "CALORIES"
+IL_009b: ldc.r4 -25
+IL_00a0: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_00a5: callvirt PlantTrait PlantTrait::Unlimited()
+IL_00aa: ldstr "nutrition"
+IL_00af: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_00b4: ldnull
+IL_00b5: ldftn System.Void PlantTraitList::ScaleCalories(PlantTraitContext)
+IL_00bb: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_00c0: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_00c5: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_00ca: pop
+IL_00cb: ldstr "fast_grower"
+IL_00d0: ldstr "Fast Grower"
+IL_00d5: ldc.i4.4
+IL_00d6: ldstr "Grows faster."
+IL_00db: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_00e0: ldstr "GROWTH_SPEED"
+IL_00e5: ldc.r4 25
+IL_00ea: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_00ef: callvirt PlantTrait PlantTrait::Unlimited()
+IL_00f4: ldstr "growth"
+IL_00f9: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_00fe: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0103: pop
+IL_0104: ldstr "slow_grower"
+IL_0109: ldstr "Slow Grower"
+IL_010e: ldc.i4.s -3
+IL_0110: ldstr "Grows slower."
+IL_0115: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_011a: ldstr "GROWTH_SPEED"
+IL_011f: ldc.r4 -25
+IL_0124: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_0129: callvirt PlantTrait PlantTrait::Unlimited()
+IL_012e: ldstr "growth"
+IL_0133: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0138: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_013d: pop
+IL_013e: ldstr "bountiful"
+IL_0143: ldstr "Bountiful"
+IL_0148: ldc.i4.4
+IL_0149: ldstr "Yields more produce."
+IL_014e: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0153: ldstr "HARVEST_QUANTITY"
+IL_0158: ldc.r4 20
+IL_015d: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_0162: callvirt PlantTrait PlantTrait::Unlimited()
+IL_0167: ldstr "yield"
+IL_016c: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0171: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0176: pop
+IL_0177: ldstr "sparse"
+IL_017c: ldstr "Sparse"
+IL_0181: ldc.i4.s -3
+IL_0183: ldstr "Yields less produce."
+IL_0188: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_018d: ldstr "HARVEST_QUANTITY"
+IL_0192: ldc.r4 -20
+IL_0197: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_019c: callvirt PlantTrait PlantTrait::Unlimited()
+IL_01a1: ldstr "yield"
+IL_01a6: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_01ab: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_01b0: pop
+IL_01b1: ldstr "delicious"
+IL_01b6: ldstr "Delicious"
+IL_01bb: ldc.i4.3
+IL_01bc: ldstr "Edible produce sells for more."
+IL_01c1: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_01c6: call PlantTrait PlantTrait::Unlimited()
+IL_01cb: ldstr "taste"
+IL_01d0: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_01d5: ldsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_0
+IL_01da: dup
+IL_01db: brtrue.s IL_01f4
+IL_01dd: pop
+IL_01de: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_01e3: ldftn System.String PlantTraitList/<>c::<Register>b__60_0(System.Int32)
+IL_01e9: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_01ee: dup
+IL_01ef: stsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_0
+IL_01f4: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_01f9: ldsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_1
+IL_01fe: dup
+IL_01ff: brtrue.s IL_0218
+IL_0201: pop
+IL_0202: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0207: ldftn System.Void PlantTraitList/<>c::<Register>b__60_1(PlantTraitContext)
+IL_020d: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0212: dup
+IL_0213: stsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_1
+IL_0218: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_021d: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0222: pop
+IL_0223: ldstr "unappetizing"
+IL_0228: ldstr "Unappetizing"
+IL_022d: ldc.i4.s -2
+IL_022f: ldstr "Edible produce sells for less."
+IL_0234: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0239: call PlantTrait PlantTrait::Unlimited()
+IL_023e: ldstr "taste"
+IL_0243: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0248: ldsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_2
+IL_024d: dup
+IL_024e: brtrue.s IL_0267
+IL_0250: pop
+IL_0251: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0256: ldftn System.String PlantTraitList/<>c::<Register>b__60_2(System.Int32)
+IL_025c: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_0261: dup
+IL_0262: stsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_2
+IL_0267: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_026c: ldsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_3
+IL_0271: dup
+IL_0272: brtrue.s IL_028b
+IL_0274: pop
+IL_0275: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_027a: ldftn System.Void PlantTraitList/<>c::<Register>b__60_3(PlantTraitContext)
+IL_0280: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0285: dup
+IL_0286: stsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_3
+IL_028b: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_0290: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0295: pop
+IL_0296: ldstr "drought_resistant"
+IL_029b: ldstr "Drought Resistant"
+IL_02a0: ldc.i4.2
+IL_02a1: ldstr "Drinks less water."
+IL_02a6: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_02ab: ldstr "WATER_USE"
+IL_02b0: ldc.r4 -25
+IL_02b5: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_02ba: callvirt PlantTrait PlantTrait::Unlimited()
+IL_02bf: ldstr "water"
+IL_02c4: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_02c9: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_02ce: pop
+IL_02cf: ldstr "thirsty"
+IL_02d4: ldstr "Thirsty"
+IL_02d9: ldc.i4.m1
+IL_02da: ldstr "Drinks more water."
+IL_02df: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_02e4: ldstr "WATER_USE"
+IL_02e9: ldc.r4 25
+IL_02ee: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_02f3: callvirt PlantTrait PlantTrait::Unlimited()
+IL_02f8: ldstr "water"
+IL_02fd: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0302: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0307: pop
+IL_0308: ldstr "hardy"
+IL_030d: ldstr "Hardy"
+IL_0312: ldc.i4.3
+IL_0313: ldstr "Less sensitive to contaminants in the water."
+IL_0318: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_031d: ldstr "CONTAMINANT_SENSITIVITY"
+IL_0322: ldc.r4 -30
+IL_0327: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_032c: callvirt PlantTrait PlantTrait::Unlimited()
+IL_0331: ldstr "resilience"
+IL_0336: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_033b: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0340: pop
+IL_0341: ldstr "frail"
+IL_0346: ldstr "Frail"
+IL_034b: ldc.i4.s -2
+IL_034d: ldstr "More sensitive to contaminants in the water."
+IL_0352: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0357: ldstr "CONTAMINANT_SENSITIVITY"
+IL_035c: ldc.r4 30
+IL_0361: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_0366: callvirt PlantTrait PlantTrait::Unlimited()
+IL_036b: ldstr "resilience"
+IL_0370: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0375: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_037a: pop
+IL_037b: ldstr "fertile"
+IL_0380: ldstr "Fertile"
+IL_0385: ldc.i4.2
+IL_0386: ldstr "Gives back more seeds when harvested."
+IL_038b: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0390: ldstr "SEED_YIELD"
+IL_0395: ldc.r4 25
+IL_039a: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_039f: callvirt PlantTrait PlantTrait::Unlimited()
+IL_03a4: ldstr "seeds"
+IL_03a9: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_03ae: ldsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_4
+IL_03b3: dup
+IL_03b4: brtrue.s IL_03cd
+IL_03b6: pop
+IL_03b7: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_03bc: ldftn System.Boolean PlantTraitList/<>c::<Register>b__60_4(PlantDefinition)
+IL_03c2: newobj System.Void System.Func`2<PlantDefinition,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_03c7: dup
+IL_03c8: stsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_4
+IL_03cd: callvirt PlantTrait PlantTrait::RequiresCrop(System.Func`2<PlantDefinition,System.Boolean>)
+IL_03d2: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_03d7: pop
+IL_03d8: ldstr "infertile"
+IL_03dd: ldstr "Infertile"
+IL_03e2: ldc.i4.m1
+IL_03e3: ldstr "Gives back fewer seeds when harvested."
+IL_03e8: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_03ed: ldstr "SEED_YIELD"
+IL_03f2: ldc.r4 -25
+IL_03f7: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_03fc: callvirt PlantTrait PlantTrait::Unlimited()
+IL_0401: ldstr "seeds"
+IL_0406: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_040b: ldsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_5
+IL_0410: dup
+IL_0411: brtrue.s IL_042a
+IL_0413: pop
+IL_0414: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0419: ldftn System.Boolean PlantTraitList/<>c::<Register>b__60_5(PlantDefinition)
+IL_041f: newobj System.Void System.Func`2<PlantDefinition,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0424: dup
+IL_0425: stsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_5
+IL_042a: callvirt PlantTrait PlantTrait::RequiresCrop(System.Func`2<PlantDefinition,System.Boolean>)
+IL_042f: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0434: pop
+IL_0435: ldstr "simple_genome"
+IL_043a: ldstr "Simple Genome"
+IL_043f: ldc.i4.0
+IL_0440: ldstr "An uncomplicated genome: edits are easier."
+IL_0445: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_044a: ldc.i4.s -4
+IL_044c: call PlantTrait PlantTrait::ComplexityOffset(System.Int32)
+IL_0451: callvirt PlantTrait PlantTrait::Unlimited()
+IL_0456: ldstr "genome"
+IL_045b: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0460: callvirt PlantTrait PlantTrait::Locked()
+IL_0465: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_046a: pop
+IL_046b: ldstr "complex_genome"
+IL_0470: ldstr "Complex Genome"
+IL_0475: ldc.i4.0
+IL_0476: ldstr "A tangled genome: edits are harder."
+IL_047b: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0480: ldc.i4.4
+IL_0481: call PlantTrait PlantTrait::ComplexityOffset(System.Int32)
+IL_0486: callvirt PlantTrait PlantTrait::Unlimited()
+IL_048b: ldstr "genome"
+IL_0490: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0495: callvirt PlantTrait PlantTrait::Locked()
+IL_049a: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_049f: pop
+IL_04a0: ldstr "perennial"
+IL_04a5: ldstr "Perennial"
+IL_04aa: ldc.i4.5
+IL_04ab: ldstr "Survives its harvest and fruits again."
+IL_04b0: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_04b5: call PlantTrait PlantTrait::Perennial()
+IL_04ba: ldstr "HARVEST_QUANTITY"
+IL_04bf: ldc.r4 -25
+IL_04c4: callvirt PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_04c9: ldstr "GROWTH_SPEED"
+IL_04ce: ldc.r4 -20
+IL_04d3: callvirt PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_04d8: ldstr "SEED_YIELD"
+IL_04dd: ldc.r4 -50
+IL_04e2: callvirt PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_04e7: ldc.i4.1
+IL_04e8: newarr System.String
+IL_04ed: dup
+IL_04ee: ldc.i4.0
+IL_04ef: ldstr "infertile"
+IL_04f4: stelem.ref
+IL_04f5: callvirt PlantTrait PlantTrait::IncompatibleWith(System.String[])
+IL_04fa: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_04ff: pop
+IL_0500: ldstr "purifying"
+IL_0505: ldstr "Purifying"
+IL_050a: ldc.i4.3
+IL_050b: ldstr "Cleans the water it grows in."
+IL_0510: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0515: call PlantTrait PlantTrait::Unlimited()
+IL_051a: ldstr "water_quality"
+IL_051f: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0524: ldsfld System.Action`3<GameItem,GameItem,System.Int32> PlantTraitList/<>c::<>9__60_6
+IL_0529: dup
+IL_052a: brtrue.s IL_0543
+IL_052c: pop
+IL_052d: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0532: ldftn System.Void PlantTraitList/<>c::<Register>b__60_6(GameItem,GameItem,System.Int32)
+IL_0538: newobj System.Void System.Action`3<GameItem,GameItem,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_053d: dup
+IL_053e: stsfld System.Action`3<GameItem,GameItem,System.Int32> PlantTraitList/<>c::<>9__60_6
+IL_0543: callvirt PlantTrait PlantTrait::OnGrowTick(System.Action`3<GameItem,GameItem,System.Int32>)
+IL_0548: ldnull
+IL_0549: ldftn System.String PlantWaterQuality::DescribePurifying(System.Int32)
+IL_054f: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_0554: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_0559: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_055e: pop
+IL_055f: ldstr "polluting"
+IL_0564: ldstr "Polluting"
+IL_0569: ldc.i4.s -2
+IL_056b: ldstr "Fouls the water it grows in."
+IL_0570: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0575: call PlantTrait PlantTrait::Unlimited()
+IL_057a: ldstr "water_quality"
+IL_057f: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0584: ldsfld System.Action`3<GameItem,GameItem,System.Int32> PlantTraitList/<>c::<>9__60_7
+IL_0589: dup
+IL_058a: brtrue.s IL_05a3
+IL_058c: pop
+IL_058d: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0592: ldftn System.Void PlantTraitList/<>c::<Register>b__60_7(GameItem,GameItem,System.Int32)
+IL_0598: newobj System.Void System.Action`3<GameItem,GameItem,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL_059d: dup
+IL_059e: stsfld System.Action`3<GameItem,GameItem,System.Int32> PlantTraitList/<>c::<>9__60_7
+IL_05a3: callvirt PlantTrait PlantTrait::OnGrowTick(System.Action`3<GameItem,GameItem,System.Int32>)
+IL_05a8: ldnull
+IL_05a9: ldftn System.String PlantWaterQuality::DescribePolluting(System.Int32)
+IL_05af: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_05b4: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_05b9: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_05be: pop
+IL_05bf: ldstr "dense"
+IL_05c4: ldstr "Dense"
+IL_05c9: ldc.i4.3
+IL_05ca: ldstr "Harvested items last longer."
+IL_05cf: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_05d4: ldstr "DURABILITY"
+IL_05d9: ldc.r4 25
+IL_05de: call PlantTrait PlantTrait::Stat(System.String,System.Single)
+IL_05e3: callvirt PlantTrait PlantTrait::Unlimited()
+IL_05e8: ldstr "fibre"
+IL_05ed: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_05f2: ldsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_8
+IL_05f7: dup
+IL_05f8: brtrue.s IL_0611
+IL_05fa: pop
+IL_05fb: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0600: ldftn System.Boolean PlantTraitList/<>c::<Register>b__60_8(PlantDefinition)
+IL_0606: newobj System.Void System.Func`2<PlantDefinition,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_060b: dup
+IL_060c: stsfld System.Func`2<PlantDefinition,System.Boolean> PlantTraitList/<>c::<>9__60_8
+IL_0611: callvirt PlantTrait PlantTrait::RequiresCrop(System.Func`2<PlantDefinition,System.Boolean>)
+IL_0616: ldnull
+IL_0617: ldftn System.Void PlantTraitList::ScaleDurability(PlantTraitContext)
+IL_061d: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0622: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_0627: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_062c: pop
+IL_062d: ldstr "caffeine"
+IL_0632: ldc.r4 2
+IL_0637: ldc.i4.3
+IL_0638: ldnull
+IL_0639: ldc.i4.0
+IL_063a: call PlantTrait PlantTraitList::Production(System.String,System.Single,System.Int32,System.String,System.Int32)
+IL_063f: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0644: pop
+IL_0645: ldstr "coffee_mush"
+IL_064a: ldc.r4 10
+IL_064f: ldc.i4.2
+IL_0650: ldnull
+IL_0651: ldc.i4.0
+IL_0652: call PlantTrait PlantTraitList::Production(System.String,System.Single,System.Int32,System.String,System.Int32)
+IL_0657: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_065c: pop
+IL_065d: ldstr "dream_cap_mush"
+IL_0662: ldc.r4 2
+IL_0667: ldc.i4.4
+IL_0668: ldstr "farm_module_dream_cap"
+IL_066d: ldc.i4.2
+IL_066e: call PlantTrait PlantTraitList::Production(System.String,System.Single,System.Int32,System.String,System.Int32)
+IL_0673: ldstr "farm_module_nightmare_cap"
+IL_0678: ldstr "nightmare_cap_mush"
+IL_067d: callvirt PlantTrait PlantTrait::ConvertedBy(System.String,System.String)
+IL_0682: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0687: pop
+IL_0688: ldstr "potent"
+IL_068d: ldstr "Potent"
+IL_0692: ldc.i4.3
+IL_0693: ldstr "More of every active ingredient."
+IL_0698: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_069d: call PlantTrait PlantTrait::Unlimited()
+IL_06a2: ldstr "potency"
+IL_06a7: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_06ac: callvirt PlantTrait PlantTrait::AppliesToSeedProduce()
+IL_06b1: ldnull
+IL_06b2: ldftn System.Boolean PlantGeneticsHelper::HasActiveLiquid(GameItem)
+IL_06b8: newobj System.Void System.Func`2<GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_06bd: callvirt PlantTrait PlantTrait::RequiresSeed(System.Func`2<GameItem,System.Boolean>)
+IL_06c2: ldsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_9
+IL_06c7: dup
+IL_06c8: brtrue.s IL_06e1
+IL_06ca: pop
+IL_06cb: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_06d0: ldftn System.Void PlantTraitList/<>c::<Register>b__60_9(PlantTraitContext)
+IL_06d6: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_06db: dup
+IL_06dc: stsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_9
+IL_06e1: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_06e6: ldsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_10
+IL_06eb: dup
+IL_06ec: brtrue.s IL_0705
+IL_06ee: pop
+IL_06ef: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_06f4: ldftn System.String PlantTraitList/<>c::<Register>b__60_10(System.Int32)
+IL_06fa: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_06ff: dup
+IL_0700: stsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_10
+IL_0705: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_070a: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_070f: pop
+IL_0710: ldstr "weak"
+IL_0715: ldstr "Weak"
+IL_071a: ldc.i4.s -2
+IL_071c: ldstr "Less of every active ingredient."
+IL_0721: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0726: call PlantTrait PlantTrait::Unlimited()
+IL_072b: ldstr "potency"
+IL_0730: callvirt PlantTrait PlantTrait::Exclusive(System.String)
+IL_0735: callvirt PlantTrait PlantTrait::AppliesToSeedProduce()
+IL_073a: ldnull
+IL_073b: ldftn System.Boolean PlantGeneticsHelper::HasActiveLiquid(GameItem)
+IL_0741: newobj System.Void System.Func`2<GameItem,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_0746: callvirt PlantTrait PlantTrait::RequiresSeed(System.Func`2<GameItem,System.Boolean>)
+IL_074b: ldsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_11
+IL_0750: dup
+IL_0751: brtrue.s IL_076a
+IL_0753: pop
+IL_0754: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_0759: ldftn System.Void PlantTraitList/<>c::<Register>b__60_11(PlantTraitContext)
+IL_075f: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0764: dup
+IL_0765: stsfld System.Action`1<PlantTraitContext> PlantTraitList/<>c::<>9__60_11
+IL_076a: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_076f: ldsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_12
+IL_0774: dup
+IL_0775: brtrue.s IL_078e
+IL_0777: pop
+IL_0778: ldsfld PlantTraitList/<>c PlantTraitList/<>c::<>9
+IL_077d: ldftn System.String PlantTraitList/<>c::<Register>b__60_12(System.Int32)
+IL_0783: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_0788: dup
+IL_0789: stsfld System.Func`2<System.Int32,System.String> PlantTraitList/<>c::<>9__60_12
+IL_078e: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_0793: call PlantTrait PlantTraitRegistry::Add(PlantTrait)
+IL_0798: pop
+IL_0799: ret

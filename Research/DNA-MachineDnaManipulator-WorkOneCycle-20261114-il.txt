@@ -1,0 +1,16 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineDnaManipulator::WorkOneCycle(GameItem,GameGridInventory)
+  0: GameItem machine None
+  1: GameGridInventory moduleGrid None
+IL_0000: ldarg.0
+IL_0001: call System.Void MachineProgressHelper::ContinueProgressTypeMachine(GameItem)
+IL_0006: ldarg.0
+IL_0007: ldarg.1
+IL_0008: call System.Void MachineHelper::OnMachineActioned(GameItem,GameInventory)
+IL_000d: ldarg.0
+IL_000e: call System.Boolean MachineProgressHelper::IsProgressTypeMachineFinished(GameItem)
+IL_0013: brfalse.s IL_001b
+IL_0015: ldarg.0
+IL_0016: call System.Void MachineDnaManipulator::FinishOperation(GameItem)
+IL_001b: ret

@@ -17,6 +17,10 @@ namespace ChemAssistPlus
         }
 
         static bool IsFanta(Recipe recipe) => recipe?.ProductId == "fanta_pill";
+        const int FantaPurificationWater = 200000;
+        static string FantaModuleWarning(GameItem plate) => plate != null && MachineBlender.GetUpgradeCount(plate) < 2
+            ? "警告：前体液加热器 #" + plate.uniqueId + " 仅有 " + MachineBlender.GetUpgradeCount(plate)
+                + " 个模组（建议至少2个）；允许继续，助手沿用低配板控温，实际温度以日志为准。" : null;
         // Read actual state in previews too: manual pours can leave modifiedState stale.
         static int FantaAmount(GameItem pot, string id) => LiveLiquidAmount(pot, id);
         static int[] FantaParts(GameItem pot) => Liquid.Liquids.Select(x => FantaAmount(pot, x.identifier)).ToArray();
@@ -54,7 +58,12 @@ namespace ChemAssistPlus
                 && new[] { "acid", "base", "reducing_agent", "lipobond_agent" }
                     .All(other => other == id || ((id == "acid" || id == "base") && (other == "acid" || other == "base"))
                         || FantaAmount(x, other) == 0))
-            .OrderByDescending(x => preferredSources.TryGetValue(id, out var preferred) && x == preferred)
+            .Where(x => id != "water" || Liquid.Liquids.All(liquid => liquid.identifier == "water"
+                || liquid.identifier == "heavy_metal" || liquid.identifier == "chemical_contaminant"
+                || liquid.identifier == "physical_contaminant" || liquid.identifier == "mineral"
+                || liquid.identifier == "microbe" || FantaAmount(x, liquid.identifier) == 0))
+            .OrderByDescending(x => id == "water" ? FantaEffective(x, id) / (double)Math.Max(1, FantaParts(x).Sum()) : 0)
+            .ThenByDescending(x => preferredSources.TryGetValue(id, out var preferred) && x == preferred)
             .ThenByDescending(x => FantaEffective(x, id) / (double)Math.Max(1, FantaParts(x).Sum()))
             .ThenBy(x => x.uniqueId);
 
@@ -69,6 +78,8 @@ namespace ChemAssistPlus
             else if (!PlateAvailable(p.Machine)) plan.Errors.Add("请先关闭前体液所在加热器，助手只接管关闭的设备。");
             else if (feed > 0 && MachineBlender.GetUpgradeCount(p.Machine) < 2 && !HeatingHookReady())
                 plan.Errors.Add("低配板控温补丁未加载。");
+            var moduleWarning = FantaModuleWarning(p.Machine);
+            if (moduleWarning != null) plan.Lines.Add(Warn(moduleWarning));
             if (Detect(p.Pot, null) != p.Recipe) plan.Errors.Add("工作瓶混有其他配方，不能处理。");
             if (feed == 0 && FantaAmount(p.Pot, "fanta") == 0) plan.Errors.Add("没有前体或目标产物。");
             if (SceneSnapshot.Temp(p.Pot) > p.Recipe.High) plan.Errors.Add("工作瓶温度过高，请先冷却。");
@@ -99,14 +110,21 @@ namespace ChemAssistPlus
             int neutralizer = checked((int)Math.Abs((long)Part(projected, "acid") - Part(projected, "base")));
             // Covers at most a 1 mL top-up/rounding tail as well as the conservative reserve.
             ReserveFantaSupply(plan, p.Pot, projected, opposite, neutralizer > 0 ? checked(neutralizer + 1000) : 0);
+            // Existing water can evaporate during synthesis. Reserve a full post-reaction top-up.
+            ReserveFantaSupply(plan, p.Pot, projected, "water", feed > 0 ? FantaPurificationWater
+                : Math.Max(0, FantaPurificationWater - FantaAmount(p.Pot, "water")));
             plan.RawPeak = plan.KeepVolume;
             plan.SolutionPeak = checked(plan.KeepVolume + budget.Volumes.Values.Sum());
             plan.TabletReserve = Tablets().Count > 0 ? 15000 : 0;
+            int tablets = Tablets().Count;
+            plan.Supplies.Add(new SupplySnapshot { Id = "water_tablet", Name = "净水药片", Available = tablets,
+                Required = 1, Tablets = true, Known = true, Short = tablets == 0 });
+            if (tablets == 0) plan.Errors.Add("芬太后处理缺净水药片，请准备散片或瓶内真实药片。");
+            plan.Lines.Add("芬太后处理：关火后从真实水源将水补足200 mL，再棉布→滤芯过滤、按需消毒和投净水药片；药片按原生反应实际需要消耗，随后送蒸发器过夜。");
             plan.Peak = plan.SolutionPeak + plan.TabletReserve;
             if (plan.Peak > WaterHelper.GetTotalCapacity(p.Pot))
                 plan.Errors.Add("工作瓶容量不足：保守储备峰值 " + Vol(plan.Peak) + "，当前容量 " + Vol(WaterHelper.GetTotalCapacity(p.Pot)) + "。请换大瓶。");
-            string filter = PreferredFilterKey();
-            if (filter == null) plan.Errors.Add(NoFilterReason()); else plan.Lines.Add(PlannedFilterName(filter));
+            PlanFiltration(plan);
             long wetUpper = Liquid.Liquids.Select((liquid, i) => liquid.isEvaporative ? (long)projected[i] : 0).Sum()
                 + Part(projected, "microbe");
             if (wetUpper > WaterHelper.DRY_TOLERANCE_UL)

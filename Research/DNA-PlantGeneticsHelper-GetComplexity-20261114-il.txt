@@ -1,0 +1,80 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 PlantGeneticsHelper::GetComplexity(GameItem)
+  0: GameItem seed None
+  local 0: PlantDefinition
+  local 1: System.Int32
+  local 2: System.Collections.Generic.IEnumerator`1<PlantTrait>
+  local 3: PlantTrait
+  local 4: System.Int32
+  local 5: System.Int32
+  local 6: System.Int32
+IL_0000: ldarg.0
+IL_0001: call PlantDefinition HydroponicHelper::GetPlant(GameItem)
+IL_0006: stloc.0
+IL_0007: ldc.i4.0
+IL_0008: stloc.1
+IL_0009: call System.Collections.Generic.IReadOnlyList`1<PlantTrait> PlantTraitRegistry::get_All()
+IL_000e: callvirt System.Collections.Generic.IEnumerator`1<!0> System.Collections.Generic.IEnumerable`1<PlantTrait>::GetEnumerator()
+IL_0013: stloc.2
+IL_0014: br.s IL_0077
+IL_0016: ldloc.2
+IL_0017: callvirt !0 System.Collections.Generic.IEnumerator`1<PlantTrait>::get_Current()
+IL_001c: stloc.3
+IL_001d: ldarg.0
+IL_001e: ldloc.3
+IL_001f: ldfld System.String PlantTrait::id
+IL_0024: call System.Int32 PlantGeneticsHelper::GetTraitRank(GameItem,System.String)
+IL_0029: stloc.s V_4
+IL_002b: ldloc.0
+IL_002c: brtrue.s IL_0031
+IL_002e: ldc.i4.0
+IL_002f: br.s IL_003d
+IL_0031: ldloc.0
+IL_0032: ldloc.3
+IL_0033: ldfld System.String PlantTrait::id
+IL_0038: callvirt System.Int32 PlantDefinition::GetInnateRank(System.String)
+IL_003d: stloc.s V_5
+IL_003f: ldloc.s V_4
+IL_0041: ldloc.s V_5
+IL_0043: sub
+IL_0044: stloc.s V_6
+IL_0046: ldloc.s V_6
+IL_0048: ldc.i4.0
+IL_0049: blt.s IL_0059
+IL_004b: ldloc.1
+IL_004c: ldloc.3
+IL_004d: ldfld System.Int32 PlantTrait::complexity
+IL_0052: ldloc.s V_6
+IL_0054: mul
+IL_0055: add
+IL_0056: stloc.1
+IL_0057: br.s IL_006b
+IL_0059: ldloc.1
+IL_005a: ldloc.3
+IL_005b: ldfld System.Int32 PlantTrait::complexity
+IL_0060: call System.Int32 System.Math::Abs(System.Int32)
+IL_0065: ldloc.s V_6
+IL_0067: neg
+IL_0068: mul
+IL_0069: add
+IL_006a: stloc.1
+IL_006b: ldloc.1
+IL_006c: ldloc.3
+IL_006d: ldfld System.Int32 PlantTrait::complexityOffsetPerRank
+IL_0072: ldloc.s V_4
+IL_0074: mul
+IL_0075: add
+IL_0076: stloc.1
+IL_0077: ldloc.2
+IL_0078: callvirt System.Boolean System.Collections.IEnumerator::MoveNext()
+IL_007d: brtrue.s IL_0016
+IL_007f: leave.s IL_008b
+IL_0081: ldloc.2
+IL_0082: brfalse.s IL_008a
+IL_0084: ldloc.2
+IL_0085: callvirt System.Void System.IDisposable::Dispose()
+IL_008a: endfinally
+IL_008b: ldloc.1
+IL_008c: ret
+  EH Finally: try IL_0014: br.s IL_0077 -> IL_0081: ldloc.2; handler IL_0081: ldloc.2 -> IL_008b: ldloc.1; filter ; catch

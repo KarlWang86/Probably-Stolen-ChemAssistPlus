@@ -83,7 +83,7 @@ flowchart TD
     Pre -->|通过| Hold["挂起过夜请求，逐批复用加热板"]
     Hold --> Prepare["再复核：搅拌机整份搅拌/补料<br/>芬太加热器跳过搅拌，原位前处理"]
     Prepare --> React["原生加热与反应 → 去蛋白 / 脂肪"]
-    React --> Filter["单道过滤（滤芯优先，棉布备用） → 按需UV → 药片"]
+    React --> Filter["两道过滤（棉布→滤芯） → 按需UV → 药片"]
     Filter --> Deliver["湿料按配方交蒸发器<br/>芬太干料直接交制剂机<br/>复核容量 / 电量 / 干湿 / 残余后交付"]
     Deliver --> Snapshot["保存本批实际用量、阶段快照与接收瓶号"]
     Snapshot --> Next
@@ -99,7 +99,7 @@ flowchart TD
 
 ## 执行路径
 
-Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有待处理搅拌机 → 当前批只读预检 → 暂缓原生过夜 → 首种原料按酒精库存及工作瓶容量选择完整份数 → BlendInto → 同比补溶剂 → 原生加热/反应 → 去蛋白/脂肪 → 单道过滤（滤芯优先，棉布备用） → 按需紫外线消毒 → 含氯药片 → 独立蒸发器原液槽 → 下一台重新预检并逐批复用加热器 → 队列结束恢复原生过夜一次。
+Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有待处理搅拌机 → 当前批只读预检 → 暂缓原生过夜 → 首种原料按酒精库存及工作瓶容量选择完整份数 → BlendInto → 同比补溶剂 → 原生加热/反应 → 去蛋白/脂肪 → 两道过滤（棉布→滤芯） → 按需紫外线消毒 → 含氯药片 → 独立蒸发器原液槽 → 下一台重新预检并逐批复用加热器 → 队列结束恢复原生过夜一次。
 产物留原工作瓶，馏出槽回收溶剂。放料白天不开工，无任务正常过夜；没有新料且蒸发器全占用时正常等待。
 
 ## 按问题定位
@@ -110,7 +110,7 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | --- | --- |
 | 入口、配方、物品递归、按角色找槽位 | Core.cs；ProbeResult |
 | 来源浓度/排序、真实投料、F10 | Plus.cs；Sources、TakeLiquid、SolventTargetForParts |
-| 原生过滤执行、分批容量、异常回收 | Filtration.cs；FilterBatch、FilterPortionVolume、FilterComponents |
+| 原生过滤执行、分批容量、异常回收 | Filtration.cs；FilterBatch、FilterStage、FilterPortionVolume、FilterComponents |
 | 完整份数、试剂/峰值预估 | BatchPlan.cs；PlanWholeMaterials、BuildBatchPlan；DoseMath.cs |
 | 只读预检、去蛋白方向 | Preflight.cs；ProteinReagent |
 | 执行调度、停止与原生成型 | Workflow.cs；Run、PrepareBatch、CancelJob、ProduceBatch |
@@ -140,6 +140,7 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 
 - 0.4.9芬太规划只读state.dict的实际成分，避免手动倒液后modifiedState滞后；执行原生反应/转液前才ValidateShapeState。储备为上限而非精确化学模拟：按真实来源含量预留试剂和杂质体积，运行同时限制有效投入、原溶液总量、拍数和无进度次数。达到边界保料停止，不承诺任意杂质组合均能处理完成。
 - 芬太还原剂在耗尽后按≤1000μL分次补充，用原生Math.Round规则计算该份最终消耗的前体总量，使新投料不越过剩余前体；成分更新全部交给HandleTemperatureReaction。已有还原剂超过可无残余处理的保守范围时预检阻断。前体、稳定剂、还原剂、酸和碱均须为0才通过FantaReady；该判定同时约束蒸发器合并和干料整理。
+- 0.4.13芬太加热器少于两个模组只警告，沿用现有低配板控温，不以模组数阻断。合成后从FantaSources的真实水源补水至200mL，水源排除酒精、合成试剂及其他产品，优先水浓度；DoseFanta/TransferSolution同比转液及温度混合，预检保守储备水、药片、容量与有电蒸发器。混合后仍≥100℃则停止保料。全部路线FilterBatch顺序执行cloth/fine两道FilterStage，各道缓冲回收及真实耐久接续，无替代跳道。
 - 芬太过滤净化后按真实挥发液量分流，干料复用MoveDryBottle直接从加热器交制剂机，源空瓶留原机器槽；湿料复用蒸发器分工。TransferSolution在不跨帧的原生扣液/加液中复用异常未转移份额回收，TransferWholeSolution为其整瓶包装。无接收设备保留当前工作瓶，不自动成型或给加热器补瓶。
 
 - Plus 的 partial 文件共享当前存档会话状态；切档清任务、来源偏好、报告和挂起过夜。
@@ -155,7 +156,7 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 - nightBlenders 每晚快照并且每台只访问一次；不重复处理限量余料。前批送入蒸发器并关闭/释放加热器后才启动下一批。不同配方不合液；已有接收瓶仅在同种已提取湿半成品、有效成分浓度差≤5个百分点、容量足够整批且有电时接收；空接收瓶可直接装液。优先接收瓶，次选空槽，干料/待提取原料不混入。预检保守检查预计体积与同类接收可能，最终按实际浓度/容量/供电复核。
 - DeliverToEvaporator 同步原生RemoveAndReturn→AddSolution，不跨帧悬空；finally根据接收瓶实际增加量归还未转移成分。合并不换接收瓶，源空瓶优先放其他空闲蒸发器原液槽；runPotId转向实际接收瓶，净化前四阶段保留本批快照、过夜阶段显示接收瓶合计。预检失败继续下一台，执行异常/停止/切档清队列；nightBatchReports 汇总文字结果；nightDetails 独立保存每批阶段数组、实际试剂用量/开工库存、接收瓶编号及配方。过夜按各接收瓶分别补阶段快照，合并批次过夜量为接收瓶合计。previewDetails 每次只读刷新列出全部待处理搅拌机，失败原因仅归所属批次，不叠加旧失败横幅。
 - 失败/取消通过 finally 关火、保液并恢复过夜；自动开关不因此关闭。
-- 过滤按原生元数据与耐久分份，每份只过滤一次；优先可用滤芯，无可用滤芯时棉布接续尚未过滤的原液；已处理液体同步缓冲并 finally 回瓶，不跨帧悬空。
+- 全部路线按棉布→滤芯两道过滤；每道按原生元数据与耐久分份，同一道的每份只过滤一次，耗尽后只接续同类滤材；已处理液体同步缓冲并 finally 回瓶，不跨帧悬空。
 - nightDidWork 仅实际操作后为 true；仅实际工作且 Popup 开启才次日弹 F10。供电小通知独立，每日/状态去重。
 - API 的签名、单位与副作用只在 NATIVE_API.md 维护。
 

@@ -1,0 +1,74 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineDnaManipulator::FinishExtract(GameItem,GameItem,GameItem,System.Boolean)
+  0: GameItem machine None
+  1: GameItem seed None
+  2: GameItem disk None
+  3: System.Boolean success None
+  local 0: System.Boolean
+  local 1: PlantTrait
+  local 2: System.Int32
+IL_0000: ldarg.2
+IL_0001: call System.Boolean PlantGeneticsHelper::IsWrittenDisk(GameItem)
+IL_0006: stloc.0
+IL_0007: ldloc.0
+IL_0008: brtrue.s IL_0018
+IL_000a: ldarg.1
+IL_000b: ldarg.0
+IL_000c: call System.Func`2<PlantTrait,System.Boolean> MachineDnaManipulator::GetExtractionFilter(GameItem)
+IL_0011: call PlantTrait PlantGeneticsHelper::PickRandomTrait(GameItem,System.Func`2<PlantTrait,System.Boolean>)
+IL_0016: br.s IL_001e
+IL_0018: ldarg.2
+IL_0019: call PlantTrait PlantGeneticsHelper::GetDiskTrait(GameItem)
+IL_001e: stloc.1
+IL_001f: ldloc.0
+IL_0020: brfalse.s IL_0036
+IL_0022: ldloc.1
+IL_0023: brfalse.s IL_0036
+IL_0025: ldarg.1
+IL_0026: ldloc.1
+IL_0027: ldfld System.String PlantTrait::id
+IL_002c: call System.Int32 PlantGeneticsHelper::GetTraitRank(GameItem,System.String)
+IL_0031: ldc.i4.0
+IL_0032: bgt.s IL_0036
+IL_0034: ldnull
+IL_0035: stloc.1
+IL_0036: ldarg.0
+IL_0037: call System.Boolean MachineDnaManipulator::HasStabilizer(GameItem)
+IL_003c: ldarg.3
+IL_003d: brfalse.s IL_005f
+IL_003f: ldloc.1
+IL_0040: brfalse.s IL_005f
+IL_0042: ldarg.1
+IL_0043: ldloc.1
+IL_0044: call System.Int32 PlantGeneticsHelper::ExtractionUses(GameItem,PlantTrait)
+IL_0049: stloc.2
+IL_004a: ldloc.0
+IL_004b: brfalse.s IL_0056
+IL_004d: ldarg.2
+IL_004e: ldloc.2
+IL_004f: call System.Void PlantGeneticsHelper::AddDiskUses(GameItem,System.Int32)
+IL_0054: br.s IL_005f
+IL_0056: ldarg.2
+IL_0057: ldloc.1
+IL_0058: ldc.i4.1
+IL_0059: ldloc.2
+IL_005a: call System.Void PlantGeneticsHelper::WriteDisk(GameItem,PlantTrait,System.Int32,System.Int32)
+IL_005f: brfalse.s IL_007d
+IL_0061: ldarg.3
+IL_0062: brfalse.s IL_006f
+IL_0064: ldloc.1
+IL_0065: brfalse.s IL_006f
+IL_0067: ldarg.1
+IL_0068: ldloc.1
+IL_0069: call System.Int32 PlantGeneticsHelper::RemoveTraitRank(GameItem,PlantTrait)
+IL_006e: pop
+IL_006f: ldarg.1
+IL_0070: ldloc.1
+IL_0071: call System.Void PlantGeneticsHelper::AddHeat(GameItem,PlantTrait)
+IL_0076: ldarg.1
+IL_0077: callvirt System.Void GameItem::Validate()
+IL_007c: ret
+IL_007d: ldarg.1
+IL_007e: callvirt System.Void GameItem::Destroy()
+IL_0083: ret

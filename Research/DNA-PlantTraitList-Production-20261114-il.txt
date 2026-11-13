@@ -1,0 +1,54 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+PlantTrait PlantTraitList::Production(System.String,System.Single,System.Int32,System.String,System.Int32)
+  0: System.String liquidId None
+  1: System.Single mlAtRankOne None
+  2: System.Int32 complexity None
+  3: System.String neutralizerModuleId Optional, HasDefault
+  4: System.Int32 contrabandLevel Optional, HasDefault
+  local 0: PlantTraitList/<>c__DisplayClass61_0
+IL_0000: newobj System.Void PlantTraitList/<>c__DisplayClass61_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: stfld System.String PlantTraitList/<>c__DisplayClass61_0::liquidId
+IL_000d: ldloc.0
+IL_000e: ldarg.1
+IL_000f: stfld System.Single PlantTraitList/<>c__DisplayClass61_0::mlAtRankOne
+IL_0014: ldloc.0
+IL_0015: ldarg.3
+IL_0016: stfld System.String PlantTraitList/<>c__DisplayClass61_0::neutralizerModuleId
+IL_001b: ldloc.0
+IL_001c: ldarg.s contrabandLevel
+IL_001e: stfld System.Int32 PlantTraitList/<>c__DisplayClass61_0::contrabandLevel
+IL_0023: ldloc.0
+IL_0024: ldfld System.String PlantTraitList/<>c__DisplayClass61_0::liquidId
+IL_0029: call System.String PlantTraitList::ProductionId(System.String)
+IL_002e: ldloc.0
+IL_002f: ldfld System.String PlantTraitList/<>c__DisplayClass61_0::liquidId
+IL_0034: ldstr " Production"
+IL_0039: call System.String System.String::Concat(System.String,System.String)
+IL_003e: ldarg.2
+IL_003f: ldstr ""
+IL_0044: newobj System.Void PlantTrait::.ctor(System.String,System.String,System.Int32,System.String)
+IL_0049: ldloc.0
+IL_004a: ldftn System.String PlantTraitList/<>c__DisplayClass61_0::<Production>b__1()
+IL_0050: newobj System.Void System.Func`1<System.String>::.ctor(System.Object,System.IntPtr)
+IL_0055: ldloc.0
+IL_0056: ldftn System.String PlantTraitList/<>c__DisplayClass61_0::<Production>b__2()
+IL_005c: newobj System.Void System.Func`1<System.String>::.ctor(System.Object,System.IntPtr)
+IL_0061: call PlantTrait PlantTrait::Named(System.Func`1<System.String>,System.Func`1<System.String>)
+IL_0066: ldloc.0
+IL_0067: ldfld System.String PlantTraitList/<>c__DisplayClass61_0::liquidId
+IL_006c: callvirt PlantTrait PlantTrait::Infuses(System.String)
+IL_0071: callvirt PlantTrait PlantTrait::Unlimited()
+IL_0076: callvirt PlantTrait PlantTrait::AppliesToSeedProduce()
+IL_007b: ldloc.0
+IL_007c: ldftn System.Void PlantTraitList/<>c__DisplayClass61_0::<Production>b__3(PlantTraitContext)
+IL_0082: newobj System.Void System.Action`1<PlantTraitContext>::.ctor(System.Object,System.IntPtr)
+IL_0087: callvirt PlantTrait PlantTrait::OnHarvestItem(System.Action`1<PlantTraitContext>)
+IL_008c: ldloc.0
+IL_008d: ldftn System.String PlantTraitList/<>c__DisplayClass61_0::<Production>b__4(System.Int32)
+IL_0093: newobj System.Void System.Func`2<System.Int32,System.String>::.ctor(System.Object,System.IntPtr)
+IL_0098: callvirt PlantTrait PlantTrait::Describe(System.Func`2<System.Int32,System.String>)
+IL_009d: ret

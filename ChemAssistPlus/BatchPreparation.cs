@@ -217,7 +217,8 @@ namespace ChemAssistPlus
             if (IsFanta(c) && !FantaReady(p.Pot)) throw new InvalidOperationException("芬太残余未通过检查：" + FantaResidue(p.Pot));
             Trace("  反应后：" + Composition(p.Pot));
             CheckPot(p);
-            Trace("步骤6 · 单道过滤：优先滤芯，无可用滤芯时使用棉布；每份原液仅过滤一次。只使用已有且可用的水壶/滤材，不使用净水器。");
+            if (IsFanta(c)) PrepareFantaWater(p);
+            Trace("步骤6 · 两道过滤：先棉布、后滤芯；每道分别结算真实滤材耐久。只使用已有且可用的水壶/滤材，不使用净水器。");
             var filtered = new StringBuilder(); var warnings = new List<string>();
             try { FilterBatch(p.Pot, filtered, warnings); if (filtered.Length > 0) MarkAutoWork(); }
             finally

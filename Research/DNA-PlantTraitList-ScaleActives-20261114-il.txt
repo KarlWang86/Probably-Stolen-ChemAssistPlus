@@ -1,0 +1,63 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PlantTraitList::ScaleActives(PlantTraitContext,System.Single)
+  0: PlantTraitContext ctx None
+  1: System.Single percentAtRankOne None
+  local 0: PlantTraitList/<>c__DisplayClass65_0
+  local 1: System.Collections.Generic.List`1/Enumerator<System.String>
+  local 2: System.String
+  local 3: System.Action`1<TagState>
+IL_0000: newobj System.Void PlantTraitList/<>c__DisplayClass65_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldloc.0
+IL_0007: ldc.r4 1
+IL_000c: ldarg.0
+IL_000d: ldarg.1
+IL_000e: callvirt System.Single PlantTraitContext::RankedPercent(System.Single)
+IL_0013: ldc.r4 100
+IL_0018: div
+IL_0019: add
+IL_001a: stfld System.Single PlantTraitList/<>c__DisplayClass65_0::multiplier
+IL_001f: ldarg.0
+IL_0020: ldfld System.Collections.Generic.List`1<System.String> PlantTraitContext::activeLiquids
+IL_0025: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<System.String>::GetEnumerator()
+IL_002a: stloc.1
+IL_002b: br.s IL_0075
+IL_002d: ldloca.s V_1
+IL_002f: call !0 System.Collections.Generic.List`1/Enumerator<System.String>::get_Current()
+IL_0034: call System.String Liquid::GetCurrentPartFromId(System.String)
+IL_0039: stloc.2
+IL_003a: ldarg.0
+IL_003b: ldfld GameItem PlantTraitContext::item
+IL_0040: ldloc.2
+IL_0041: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0046: brfalse.s IL_0075
+IL_0048: ldarg.0
+IL_0049: ldfld GameItem PlantTraitContext::item
+IL_004e: ldloc.2
+IL_004f: ldloc.0
+IL_0050: ldfld System.Action`1<TagState> PlantTraitList/<>c__DisplayClass65_0::<>9__0
+IL_0055: dup
+IL_0056: brtrue.s IL_006e
+IL_0058: pop
+IL_0059: ldloc.0
+IL_005a: ldloc.0
+IL_005b: ldftn System.Void PlantTraitList/<>c__DisplayClass65_0::<ScaleActives>b__0(TagState)
+IL_0061: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_0066: dup
+IL_0067: stloc.3
+IL_0068: stfld System.Action`1<TagState> PlantTraitList/<>c__DisplayClass65_0::<>9__0
+IL_006d: ldloc.3
+IL_006e: ldc.i4.0
+IL_006f: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_0074: pop
+IL_0075: ldloca.s V_1
+IL_0077: call System.Boolean System.Collections.Generic.List`1/Enumerator<System.String>::MoveNext()
+IL_007c: brtrue.s IL_002d
+IL_007e: leave.s IL_008e
+IL_0080: ldloca.s V_1
+IL_0082: constrained. System.Collections.Generic.List`1/Enumerator<System.String>
+IL_0088: callvirt System.Void System.IDisposable::Dispose()
+IL_008d: endfinally
+IL_008e: ret
+  EH Finally: try IL_002b: br.s IL_0075 -> IL_0080: ldloca.s V_1; handler IL_0080: ldloca.s V_1 -> IL_008e: ret; filter ; catch

@@ -1,0 +1,12 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 PlantGeneticsHelper::GetOperationProgress(System.Int32)
+  0: System.Int32 effectiveComplexity None
+IL_0000: ldc.i4.s 20
+IL_0002: ldc.i4.4
+IL_0003: ldc.i4.0
+IL_0004: ldarg.0
+IL_0005: call System.Int32 System.Math::Max(System.Int32,System.Int32)
+IL_000a: mul
+IL_000b: add
+IL_000c: ret

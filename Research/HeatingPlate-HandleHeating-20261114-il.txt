@@ -1,0 +1,75 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void MachineHeatingPlate::HandleHeating(GameSlotInventory,System.Int32,GameItem)
+  0: GameSlotInventory containerSlot None
+  1: System.Int32 heatingState None
+  2: GameItem machine None
+  local 0: MachineHeatingPlate/<>c__DisplayClass7_0
+  local 1: System.Double
+  local 2: System.Double
+  local 3: System.Int32
+  local 4: System.Int32
+IL_0000: newobj System.Void MachineHeatingPlate/<>c__DisplayClass7_0::.ctor()
+IL_0005: stloc.0
+IL_0006: ldc.r8 10
+IL_000f: stloc.1
+IL_0010: ldarg.1
+IL_0011: ldc.i4.2
+IL_0012: bne.un.s IL_001e
+IL_0014: ldc.r8 30
+IL_001d: stloc.1
+IL_001e: ldarg.0
+IL_001f: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0024: ldstr "CONTAINER_TEMP_TAG"
+IL_0029: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_002e: callvirt System.Double TagState::GetDouble()
+IL_0033: stloc.2
+IL_0034: ldarg.0
+IL_0035: callvirt GameItem GameSlotInventory::get_childItem()
+IL_003a: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_003f: stloc.3
+IL_0040: ldarg.2
+IL_0041: ldstr "CURRENT_TARGET_TEMP"
+IL_0046: callvirt TagState GameItem::GetTagReadonly(System.String)
+IL_004b: callvirt System.Int32 TagState::GetInt()
+IL_0050: stloc.s V_4
+IL_0052: ldarg.2
+IL_0053: call System.Int32 MachineBlender::GetUpgradeCount(GameItem)
+IL_0058: ldc.i4.3
+IL_0059: bne.un.s IL_0069
+IL_005b: ldloc.1
+IL_005c: ldc.r8 4
+IL_0065: mul
+IL_0066: stloc.1
+IL_0067: br.s IL_007e
+IL_0069: ldarg.2
+IL_006a: call System.Int32 MachineBlender::GetUpgradeCount(GameItem)
+IL_006f: ldc.i4.4
+IL_0070: bne.un.s IL_007e
+IL_0072: ldloc.1
+IL_0073: ldc.r8 16
+IL_007c: mul
+IL_007d: stloc.1
+IL_007e: ldloc.0
+IL_007f: ldloc.2
+IL_0080: ldloc.s V_4
+IL_0082: conv.r8
+IL_0083: ldloc.3
+IL_0084: ldloc.1
+IL_0085: call System.Double MachineHeatingPlate::HeatLiquidOnStove(System.Double,System.Double,System.Int32,System.Double)
+IL_008a: stfld System.Double MachineHeatingPlate/<>c__DisplayClass7_0::newTemp
+IL_008f: ldarg.0
+IL_0090: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0095: ldstr "CONTAINER_TEMP_TAG"
+IL_009a: ldloc.0
+IL_009b: ldftn System.Void MachineHeatingPlate/<>c__DisplayClass7_0::<HandleHeating>b__0(TagState)
+IL_00a1: newobj System.Void System.Action`1<TagState>::.ctor(System.Object,System.IntPtr)
+IL_00a6: ldc.i4.1
+IL_00a7: callvirt GameItem GameItem::ModifyTag(System.String,System.Action`1<TagState>,System.Boolean)
+IL_00ac: pop
+IL_00ad: ldarg.2
+IL_00ae: ldstr "HEATING_TAG"
+IL_00b3: ldc.i4.1
+IL_00b4: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_00b9: pop
+IL_00ba: ret

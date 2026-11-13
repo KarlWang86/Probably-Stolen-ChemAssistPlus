@@ -1,0 +1,147 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+MachineDnaManipulator/OperationPlan MachineDnaManipulator::PlanOperation(GameItem)
+  0: GameItem machine None
+  local 0: GameItem
+  local 1: GameItem
+  local 2: GameItem
+  local 3: System.Int32
+  local 4: MachineDnaManipulator/OperationPlan
+  local 5: System.String
+  local 6: PlantTrait
+  local 7: System.String
+IL_0000: ldarg.0
+IL_0001: call GameSlotInventory MachineDnaManipulator::GetSeedSlot(GameItem)
+IL_0006: callvirt GameItem GameSlotInventory::get_childItem()
+IL_000b: stloc.0
+IL_000c: ldloc.0
+IL_000d: brtrue.s IL_0011
+IL_000f: ldnull
+IL_0010: ret
+IL_0011: ldarg.0
+IL_0012: call GameSlotInventory MachineDnaManipulator::GetInputDiskSlot(GameItem)
+IL_0017: callvirt GameItem GameSlotInventory::get_childItem()
+IL_001c: stloc.1
+IL_001d: ldarg.0
+IL_001e: call GameSlotInventory MachineDnaManipulator::GetOutputDiskSlot(GameItem)
+IL_0023: callvirt GameItem GameSlotInventory::get_childItem()
+IL_0028: stloc.2
+IL_0029: ldloc.0
+IL_002a: call System.Int32 PlantGeneticsHelper::GetEffectiveComplexity(GameItem)
+IL_002f: stloc.3
+IL_0030: newobj System.Void MachineDnaManipulator/OperationPlan::.ctor()
+IL_0035: dup
+IL_0036: ldloc.3
+IL_0037: ldarg.0
+IL_0038: call System.Int32 ModuleHelper::GetAjustedQuality(GameItem)
+IL_003d: call System.Int32 PlantGeneticsHelper::GetSuccessChance(System.Int32,System.Int32)
+IL_0042: stfld System.Int32 MachineDnaManipulator/OperationPlan::successChance
+IL_0047: dup
+IL_0048: ldloc.3
+IL_0049: call System.Int32 PlantGeneticsHelper::GetOperationProgress(System.Int32)
+IL_004e: stfld System.Int32 MachineDnaManipulator/OperationPlan::progress
+IL_0053: stloc.s V_4
+IL_0055: ldloc.1
+IL_0056: call System.Boolean PlantGeneticsHelper::IsWrittenDisk(GameItem)
+IL_005b: brfalse.s IL_00af
+IL_005d: ldloc.s V_4
+IL_005f: ldstr "apply"
+IL_0064: stfld System.String MachineDnaManipulator/OperationPlan::operation
+IL_0069: ldloc.s V_4
+IL_006b: ldloc.1
+IL_006c: call PlantTrait PlantGeneticsHelper::GetDiskTrait(GameItem)
+IL_0071: stfld PlantTrait MachineDnaManipulator/OperationPlan::trait
+IL_0076: ldloc.s V_4
+IL_0078: ldloc.0
+IL_0079: ldloc.s V_4
+IL_007b: ldfld PlantTrait MachineDnaManipulator/OperationPlan::trait
+IL_0080: ldfld System.String PlantTrait::id
+IL_0085: call System.Int32 PlantGeneticsHelper::GetTraitRank(GameItem,System.String)
+IL_008a: ldc.i4.0
+IL_008b: cgt
+IL_008d: stfld System.Boolean MachineDnaManipulator/OperationPlan::isStacking
+IL_0092: ldloc.0
+IL_0093: ldloc.s V_4
+IL_0095: ldfld PlantTrait MachineDnaManipulator/OperationPlan::trait
+IL_009a: ldloca.s V_5
+IL_009c: call System.Boolean PlantGeneticsHelper::CanApplyTrait(GameItem,PlantTrait,System.String&)
+IL_00a1: brtrue.s IL_00ac
+IL_00a3: ldloc.s V_4
+IL_00a5: ldloc.s V_5
+IL_00a7: stfld System.String MachineDnaManipulator/OperationPlan::blockedReason
+IL_00ac: ldloc.s V_4
+IL_00ae: ret
+IL_00af: ldloc.2
+IL_00b0: call System.Boolean PlantGeneticsHelper::IsBlankDisk(GameItem)
+IL_00b5: brfalse IL_0153
+IL_00ba: ldloc.s V_4
+IL_00bc: ldstr "extract"
+IL_00c1: stfld System.String MachineDnaManipulator/OperationPlan::operation
+IL_00c6: ldarg.0
+IL_00c7: call PlantTrait MachineDnaManipulator::GetPrecisionTrait(GameItem)
+IL_00cc: stloc.s V_6
+IL_00ce: ldloc.s V_6
+IL_00d0: brfalse.s IL_00db
+IL_00d2: ldloc.s V_4
+IL_00d4: ldloc.s V_6
+IL_00d6: stfld PlantTrait MachineDnaManipulator/OperationPlan::trait
+IL_00db: ldloc.0
+IL_00dc: ldarg.0
+IL_00dd: call System.Func`2<PlantTrait,System.Boolean> MachineDnaManipulator::GetExtractionFilter(GameItem)
+IL_00e2: call System.Boolean PlantGeneticsHelper::HasExtractableTrait(GameItem,System.Func`2<PlantTrait,System.Boolean>)
+IL_00e7: brtrue.s IL_0150
+IL_00e9: ldloc.s V_4
+IL_00eb: ldloc.s V_6
+IL_00ed: brtrue.s IL_013f
+IL_00ef: ldarg.0
+IL_00f0: ldstr "dna_manipulator_module_positive_filter"
+IL_00f5: call System.Boolean MachineDnaManipulator::HasModule(GameItem,System.String)
+IL_00fa: brfalse.s IL_0109
+IL_00fc: ldarg.0
+IL_00fd: ldstr "dna_manipulator_module_negative_filter"
+IL_0102: call System.Boolean MachineDnaManipulator::HasModule(GameItem,System.String)
+IL_0107: brtrue.s IL_0138
+IL_0109: ldarg.0
+IL_010a: ldstr "dna_manipulator_module_positive_filter"
+IL_010f: call System.Boolean MachineDnaManipulator::HasModule(GameItem,System.String)
+IL_0114: brtrue.s IL_0131
+IL_0116: ldarg.0
+IL_0117: ldstr "dna_manipulator_module_negative_filter"
+IL_011c: call System.Boolean MachineDnaManipulator::HasModule(GameItem,System.String)
+IL_0121: brtrue.s IL_012a
+IL_0123: call System.String PlantGeneticsText::BlockNoTrait()
+IL_0128: br.s IL_014b
+IL_012a: call System.String PlantGeneticsText::BlockNoNegativeTrait()
+IL_012f: br.s IL_014b
+IL_0131: call System.String PlantGeneticsText::BlockNoPositiveTrait()
+IL_0136: br.s IL_014b
+IL_0138: call System.String PlantGeneticsText::BlockBothFilters()
+IL_013d: br.s IL_014b
+IL_013f: ldloc.s V_6
+IL_0141: callvirt System.String PlantTrait::get_displayName()
+IL_0146: call System.String PlantGeneticsText::BlockPrecisionMissing(System.String)
+IL_014b: stfld System.String MachineDnaManipulator/OperationPlan::blockedReason
+IL_0150: ldloc.s V_4
+IL_0152: ret
+IL_0153: ldloc.2
+IL_0154: call System.Boolean PlantGeneticsHelper::IsWrittenDisk(GameItem)
+IL_0159: brfalse.s IL_018b
+IL_015b: ldloc.s V_4
+IL_015d: ldstr "extract"
+IL_0162: stfld System.String MachineDnaManipulator/OperationPlan::operation
+IL_0167: ldloc.s V_4
+IL_0169: ldloc.2
+IL_016a: call PlantTrait PlantGeneticsHelper::GetDiskTrait(GameItem)
+IL_016f: stfld PlantTrait MachineDnaManipulator/OperationPlan::trait
+IL_0174: ldloc.0
+IL_0175: ldloc.2
+IL_0176: ldloca.s V_7
+IL_0178: call System.Boolean PlantGeneticsHelper::CanExtractOntoDisk(GameItem,GameItem,System.String&)
+IL_017d: brtrue.s IL_0188
+IL_017f: ldloc.s V_4
+IL_0181: ldloc.s V_7
+IL_0183: stfld System.String MachineDnaManipulator/OperationPlan::blockedReason
+IL_0188: ldloc.s V_4
+IL_018a: ret
+IL_018b: ldnull
+IL_018c: ret

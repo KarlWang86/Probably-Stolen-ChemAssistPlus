@@ -1,0 +1,83 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Int32 MachinePurifier::PurifyContainer(GameItem,GameItem,System.Boolean)
+  0: GameItem machine None
+  1: GameItem waterContainer None
+  2: System.Boolean ignoreBonus Optional, HasDefault
+  local 0: System.Int32
+  local 1: System.Int32
+  local 2: System.Double
+  local 3: System.Int64
+IL_0000: ldarg.1
+IL_0001: ldstr "LIQUID_CONTAINER_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brtrue.s IL_000f
+IL_000d: ldc.i4.0
+IL_000e: ret
+IL_000f: ldstr "Purifying water container"
+IL_0014: call System.Void Debug::Log(System.Object)
+IL_0019: ldarg.0
+IL_001a: call System.Int32 MachineryHelper::GetCurrentPerformanceBonus(GameItem)
+IL_001f: stloc.0
+IL_0020: ldarg.0
+IL_0021: call System.Int32 MachineryHelper::GetCurrentQualityBonus(GameItem)
+IL_0026: stloc.1
+IL_0027: ldarg.1
+IL_0028: call System.Int32 WaterHelper::GetTotalVolume(GameItem)
+IL_002d: ldarg.2
+IL_002e: brfalse.s IL_0034
+IL_0030: ldc.i4.0
+IL_0031: stloc.0
+IL_0032: ldc.i4.0
+IL_0033: stloc.1
+IL_0034: ldarg.1
+IL_0035: call System.Int32 WaterHelper::GetWaterPurity(GameItem)
+IL_003a: call System.Double MachinePurifier::GetDirtBonus(System.Int32)
+IL_003f: stloc.2
+IL_0040: ldloc.2
+IL_0041: ldloc.0
+IL_0042: conv.r8
+IL_0043: ldc.r8 100
+IL_004c: div
+IL_004d: add
+IL_004e: stloc.2
+IL_004f: ldloc.2
+IL_0050: ldc.r8 0
+IL_0059: bge.un.s IL_0065
+IL_005b: ldc.r8 0
+IL_0064: stloc.2
+IL_0065: ldloc.2
+IL_0066: ldc.r8 1.25
+IL_006f: mul
+IL_0070: stloc.2
+IL_0071: ldstr "Amount multiplier: "
+IL_0076: ldloca.s V_2
+IL_0078: call System.String System.Double::ToString()
+IL_007d: call System.String System.String::Concat(System.String,System.String)
+IL_0082: call System.Void Debug::Log(System.Object)
+IL_0087: ldc.i4 10000000
+IL_008c: call System.Int32 System.Math::Min(System.Int32,System.Int32)
+IL_0091: conv.i8
+IL_0092: ldc.i4.3
+IL_0093: conv.i8
+IL_0094: mul
+IL_0095: ldc.i4 1000
+IL_009a: conv.i8
+IL_009b: div
+IL_009c: ldc.i4 25000
+IL_00a1: conv.i8
+IL_00a2: add
+IL_00a3: conv.r8
+IL_00a4: ldloc.2
+IL_00a5: mul
+IL_00a6: conv.i8
+IL_00a7: stloc.3
+IL_00a8: ldarg.1
+IL_00a9: ldloc.1
+IL_00aa: call System.Int32 MachinePurifier::GetMaxPurityCap(System.Int32)
+IL_00af: ldloc.3
+IL_00b0: call System.Int32 MachinePurifier::RemoveLargestFirst(GameItem,System.Int32,System.Int64)
+IL_00b5: ldarg.1
+IL_00b6: ldc.i4.0
+IL_00b7: call System.Void WaterFeatureHelper::UpdateWaterFeature(GameItem,System.Boolean)
+IL_00bc: ret

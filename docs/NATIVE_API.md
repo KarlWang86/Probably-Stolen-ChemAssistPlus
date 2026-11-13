@@ -1,4 +1,4 @@
-# 已核实原生接口索引
+﻿# 已核实原生接口索引
 
 核对基线：2026-11-12，本机程序集哈希与2026-11-10一致，界面为100-Rev13，启动日志内部版本0.46D；尚未以100-Rev14测试分支验证。0.4.3将清单修正为0.46，匹配Rev13现有菜单规则；点分1.0.0只适用于Rev14起的新规则。
 Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05。
@@ -11,6 +11,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 - PlusPump.Update在主线程推进工作流，不使用线程/Task或其他组件的协程。未读取Application.version、未处理右键绑定、未在销毁容器后读取其窗口；本轮无相关迁移。Capabilities保持为空。
 
 ## 常用接口
+
+- 2026-11-14 DNA编辑只读核查，程序集哈希仍同基线：FinishExtract无稳定模组时无论成功失败均销毁目标；有稳定模组时成功降所选特质一级，失败不降，均加热。已写盘补次数直接按盘中特质提取；ExtractionUses对作物原生特质按当前等级给次数，外加特质只给一次，写盘等级固定I（三级供体并非直接安装三级）。InheritTraits复制各特质等级并清除子代热度；GetComplexity按相对原生等级差计算，去掉原生负面特质也会增加复杂度。PlantTraitList将梦帽浆在梦魇模组下转换为梦魇浆，potent/weak作用于有效液体，且二者互斥。完整证据Research/DNA-{MachineDnaManipulator,PlantGeneticsHelper,PlantTraitList}-*-20261114-il.txt；未启动游戏或改档耗料。
 
 - 0.4.12库存缓存失效点：GameItem.AddParent/RemoveParent及GameSlotInventory、GameGridInventory、GameGridScrollableInventory、GameCharacterRaidInventory同名方法成功返回时，父节点已实际改变。普通槽位/网格UncheckedAccept先改子项集合再调用GameItem.AddParent，Expel先移除子项再调用RemoveParent；GameItemElement.Destroy会先Expel。ModLoader.LoadModDll先PatchAll后Init/OnEnable，因此Enable可核对全部Postfix。FindAllItem(false)仍遍历同一组原生根，只省略最终拥有筛选；缓存收集可达对象，查询实时筛拥有状态和容器标签。只缓存成员，不缓存液体或数量，不因普通成分变化重扫；不得直接写原生图列表绕过API。程序集哈希与基线相同，完整证据Research/Inventory-*-20261113-il.txt。新增补丁只标记失效，不操作物品；使用字面游戏类型定位以通过原生扫描，不扩大权限。
 
@@ -37,6 +39,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 | StoreUIManager.Instance.Notify(message,"default") | 第二参是颜色/气泡键，不是标题 | PowerMonitor.cs；新一天延迟2秒通知 |
 
 ## 数据与边界
+
+- 2026-11-14定向核对MachineHeatingPlate.HandleHeating，程序集哈希仍与基线一致：从CURRENT_TARGET_TEMP读取目标并传给HeatLiquidOnStove，本方法未按少于两个模组钳制为99℃，3/4模组只在此改变加热速率。因此不能将本批高污染直接归因于无模组99℃。0.4.13保留既有低配板目标控制，模组不足仅警告并记录实际温度；完整证据Research/HeatingPlate-HandleHeating-20261114-il.txt。滤布/普通和高级滤芯孔径分别150/22/22，重金属粒径12，HandleFilter在孔径大于粒径时直接保留该成分；恢复两道过滤不能保证去除重金属。证据Research/fanta-filter-sizes-20261113-il.txt、fanta-liquid-definitions-20261113-il.txt、fanta-filter-20261113-il.txt。
 
 - 0.4.9接入芬太加热器流程；本机程序集SHA256仍为725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05。补查RemoveAndReturn：全取返回全部成分，部分取直接调用GetLiquidParts→SplitProportionally，再按返回数组扣除。SplitProportionally采用整数比例向下取整后按余数/原分量顺序补余数，不保证每次净有效量恰等于比例目标；DoseFanta先规划整份投料并约束不超目标，再真实扣液。证据Research/Assembly-CSharp-WaterHelper-{RemoveAndReturn,SplitProportionally}-il.txt。规划不调用原生化学反应；未游戏内验收。
 
