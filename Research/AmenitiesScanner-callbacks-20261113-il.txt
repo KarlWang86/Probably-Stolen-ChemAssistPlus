@@ -1,0 +1,514 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void AmenitiesItemDirectory/<>c::.cctor()
+IL_0000: newobj System.Void AmenitiesItemDirectory/<>c::.ctor()
+IL_0005: stsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_000a: ret
+System.Void AmenitiesItemDirectory/<>c::.ctor()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Object::.ctor()
+IL_0006: ret
+GameItem AmenitiesItemDirectory/<>c::<InitDirectory>b__0_19()
+IL_0000: call GameItem WaterTankHelper::Create()
+IL_0005: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: ldstr "IS_SPENT"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: ldc.i4.0
+IL_000c: ceq
+IL_000e: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: ldstr "IS_SPENT"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: ldc.i4.0
+IL_000c: ceq
+IL_000e: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_2(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.1
+IL_0001: ldstr "IS_SPENT"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brfalse.s IL_000f
+IL_000d: ldc.i4.0
+IL_000e: ret
+IL_000f: ldarg.2
+IL_0010: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_0015: brfalse.s IL_0019
+IL_0017: ldc.i4.0
+IL_0018: ret
+IL_0019: ldarg.2
+IL_001a: ldstr "LIQUID_CONTAINER_TAG"
+IL_001f: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0024: brfalse.s IL_0028
+IL_0026: ldc.i4.1
+IL_0027: ret
+IL_0028: ldc.i4.0
+IL_0029: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_3(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldc.i4.1
+IL_0001: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_5(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: ldstr "IS_SPENT"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_6(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: ldstr "IS_SPENT"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: ret
+System.Void AmenitiesItemDirectory/<>c::<WaterTestStrip>b__14_7(GameItem,GameInventory,SlotMarker)
+  0: GameItem curItem None
+  1: GameInventory curInv None
+  2: SlotMarker marker None
+IL_0000: call WaterStripUIManager WaterStripUIManager::get_Instance()
+IL_0005: ldarg.1
+IL_0006: callvirt System.Void WaterStripUIManager::Open(GameItem)
+IL_000b: ret
+System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldc.i4.1
+IL_0001: ret
+System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldc.i4.1
+IL_0001: ret
+System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_2(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.2
+IL_0001: call System.Boolean WaterHelper::IsEmpty(GameItem)
+IL_0006: brfalse.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: ldarg.2
+IL_000b: ldstr "LIQUID_CONTAINER_TAG"
+IL_0010: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0015: brfalse.s IL_0019
+IL_0017: ldc.i4.1
+IL_0018: ret
+IL_0019: ldc.i4.0
+IL_001a: ret
+System.Boolean AmenitiesItemDirectory/<>c::<UVFilter>b__15_3(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldc.i4.1
+IL_0001: ret
+System.Void AmenitiesItemDirectory/<>c::<UVFilter>b__15_4(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.2
+IL_0001: call System.Void WaterHelper::OnUVUsed(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_2(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: ldarg.2
+IL_000b: ldstr "LIQUID_CONTAINER_TAG"
+IL_0010: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0015: brfalse.s IL_0019
+IL_0017: ldc.i4.1
+IL_0018: ret
+IL_0019: ldc.i4.0
+IL_001a: ret
+System.Boolean AmenitiesItemDirectory/<>c::<AquaScan>b__16_3(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldc.i4.1
+IL_0001: ret
+System.Void AmenitiesItemDirectory/<>c::<AquaScan>b__16_4(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.2
+IL_0001: ldstr "LIQUID_CONTAINER_TAG"
+IL_0006: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000b: brfalse.s IL_002f
+IL_000d: call AudioManager AudioManager::get_Instance()
+IL_0012: ldstr "scanner_activate"
+IL_0017: callvirt System.Boolean AudioManager::Play3(System.String)
+IL_001c: pop
+IL_001d: ldarg.2
+IL_001e: call System.Void WaterHelper::SetLastScanResult(GameItem)
+IL_0023: call WaterScannerUIManager WaterScannerUIManager::get_Instance()
+IL_0028: ldarg.1
+IL_0029: ldarg.2
+IL_002a: callvirt System.Void WaterScannerUIManager::Open(GameItem,GameItem)
+IL_002f: ret
+System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_2(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: call AudioManager AudioManager::get_Instance()
+IL_0005: ldstr "scanner_activate"
+IL_000a: callvirt System.Boolean AudioManager::Play3(System.String)
+IL_000f: pop
+IL_0010: ldarg.1
+IL_0011: ldstr "IS_ITEM_TOGGLE_ON_TAG"
+IL_0016: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_001b: brfalse.s IL_0037
+IL_001d: ldarg.1
+IL_001e: ldstr "IS_ITEM_TOGGLE_ON_TAG"
+IL_0023: ldc.i4.0
+IL_0024: callvirt System.Boolean GameItem::DisableTag(System.String,System.Boolean)
+IL_0029: pop
+IL_002a: call PlayerStore PlayerStore::get_Instance()
+IL_002f: ldc.i4.0
+IL_0030: stfld System.Boolean PlayerStore::isGeneScannerScanning
+IL_0035: br.s IL_004f
+IL_0037: ldarg.1
+IL_0038: ldstr "IS_ITEM_TOGGLE_ON_TAG"
+IL_003d: ldc.i4.0
+IL_003e: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0043: pop
+IL_0044: call PlayerStore PlayerStore::get_Instance()
+IL_0049: ldc.i4.1
+IL_004a: stfld System.Boolean PlayerStore::isGeneScannerScanning
+IL_004f: ldarg.1
+IL_0050: call System.Void AmenitiesItemDirectory::UpdateGeneScannerSprite(GameItem)
+IL_0055: ret
+System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_3(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brfalse.s IL_0020
+IL_0008: ldarg.1
+IL_0009: ldstr "IS_ITEM_TOGGLE_ON_TAG"
+IL_000e: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0013: brfalse.s IL_0020
+IL_0015: call PlayerStore PlayerStore::get_Instance()
+IL_001a: ldc.i4.1
+IL_001b: stfld System.Boolean PlayerStore::isGeneScannerScanning
+IL_0020: ret
+System.Void AmenitiesItemDirectory/<>c::<KottonFabric>b__24_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4 150
+IL_000b: callvirt TagState TagState::SetInt(System.Int32)
+IL_0010: pop
+IL_0011: ret
+System.Void AmenitiesItemDirectory/<>c::<WaterFilter>b__25_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.s 22
+IL_0008: callvirt TagState TagState::SetInt(System.Int32)
+IL_000d: pop
+IL_000e: ret
+System.Void AmenitiesItemDirectory/<>c::<WaterFilterAdvanced>b__26_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.s 22
+IL_0008: callvirt TagState TagState::SetInt(System.Int32)
+IL_000d: pop
+IL_000e: ret
+System.Void AmenitiesItemDirectory/<>c::<WaterFilterAdvanced>b__26_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem curItem None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: ldc.i4.s 50
+IL_0003: call System.Void DurabilityHelper::ChangeDurability(GameItem,System.Int32)
+IL_0008: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_2(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.1
+IL_0001: ldarg.2
+IL_0002: call System.Boolean AmenitiesItemDirectory::CanPurifierTarget(GameItem,GameItem)
+IL_0007: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_3(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.1
+IL_0001: ldarg.2
+IL_0002: call System.Boolean AmenitiesItemDirectory::CanPurifierTarget(GameItem,GameItem)
+IL_0007: ret
+System.Void AmenitiesItemDirectory/<>c::<PortableWaterPurifier>b__27_4(GameItem,GameItem)
+  0: GameItem s None
+  1: GameItem t None
+IL_0000: ldarg.1
+IL_0001: ldarg.2
+IL_0002: call System.Void AmenitiesItemDirectory::OnPortableWaterPurifierUsed(GameItem,GameItem)
+IL_0007: ret
+System.Void AmenitiesItemDirectory/<>c::<ShowPurifierMessage>b__31_0()
+IL_0000: call GenericConfirmationUIManager GenericConfirmationUIManager::get_Instance()
+IL_0005: callvirt System.Void GenericConfirmationUIManager::ClosePanel()
+IL_000a: ret
+System.Void AmenitiesItemDirectory/<>c::<HydroreedFilter>b__32_0(TagState)
+  0: TagState state None
+IL_0000: ldarg.1
+IL_0001: callvirt TagState TagState::Enable()
+IL_0006: ldc.i4.s 22
+IL_0008: callvirt TagState TagState::SetInt(System.Int32)
+IL_000d: pop
+IL_000e: ret
+System.Boolean AmenitiesItemDirectory/<>c::<WaterPitcher>b__33_0(GameItem,GameInventory)
+  0: GameItem item None
+  1: GameInventory _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brfalse.s IL_0026
+IL_0008: ldarg.1
+IL_0009: ldstr "WATER_FILTER"
+IL_000e: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_0013: brfalse.s IL_0026
+IL_0015: ldarg.1
+IL_0016: callvirt System.String GameItem::get_identifier()
+IL_001b: ldstr "uv_filter"
+IL_0020: call System.Boolean System.String::op_Inequality(System.String,System.String)
+IL_0025: ret
+IL_0026: ldc.i4.0
+IL_0027: ret
+System.Boolean AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brfalse.s IL_000f
+IL_0008: ldarg.1
+IL_0009: call System.Boolean LotteryHelper::CanRedeemPrize(GameItem)
+IL_000e: ret
+IL_000f: ldc.i4.0
+IL_0010: ret
+System.Boolean AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem item None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brfalse.s IL_000f
+IL_0008: ldarg.1
+IL_0009: call System.Boolean LotteryHelper::CanRedeemPrize(GameItem)
+IL_000e: ret
+IL_000f: ldc.i4.0
+IL_0010: ret
+System.Void AmenitiesItemDirectory/<>c::<LotteryTicket>b__34_2(GameItem,GameInventory,SlotMarker)
+  0: GameItem curItem None
+  1: GameInventory curInv None
+  2: SlotMarker marker None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean LotteryHelper::TryRedeemPrize(GameItem)
+IL_0006: pop
+IL_0007: ret
+System.Void AmenitiesItemDirectory/<>c::<InitLotteryPaper>b__36_0(GameItem)
+  0: GameItem loaded None
+IL_0000: ldarg.1
+IL_0001: ldstr "LOTTERY_PAPER_TAG"
+IL_0006: ldc.i4.0
+IL_0007: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_000c: pop
+IL_000d: ldarg.1
+IL_000e: ldstr "DOCUMENT"
+IL_0013: callvirt System.Void GameItem::RemoveGameItemType(System.String)
+IL_0018: ret
+System.Boolean AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: call PlayerStore PlayerStore::get_Instance()
+IL_000f: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0014: brtrue.s IL_0018
+IL_0016: ldc.i4.0
+IL_0017: ret
+IL_0018: call PlayerStore PlayerStore::get_Instance()
+IL_001d: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0022: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0027: ldfld System.Int32 StoreClient::perfumeInfluence
+IL_002c: brfalse.s IL_0030
+IL_002e: ldc.i4.0
+IL_002f: ret
+IL_0030: ldarg.1
+IL_0031: ldc.i4.1
+IL_0032: call System.Boolean UseCountHelper::CanUse(GameItem,System.Int32)
+IL_0037: brtrue.s IL_003b
+IL_0039: ldc.i4.0
+IL_003a: ret
+IL_003b: ldc.i4.1
+IL_003c: ret
+System.Boolean AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: call PlayerStore PlayerStore::get_Instance()
+IL_000f: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0014: brtrue.s IL_0018
+IL_0016: ldc.i4.0
+IL_0017: ret
+IL_0018: call PlayerStore PlayerStore::get_Instance()
+IL_001d: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0022: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0027: ldfld System.Int32 StoreClient::perfumeInfluence
+IL_002c: brfalse.s IL_0030
+IL_002e: ldc.i4.0
+IL_002f: ret
+IL_0030: ldc.i4.1
+IL_0031: ret
+System.Void AmenitiesItemDirectory/<>c::<InitNeuroactivePerfumeSpray>b__38_2(GameItem,GameInventory,SlotMarker)
+  0: GameItem curItem None
+  1: GameInventory curInv None
+  2: SlotMarker marker None
+IL_0000: ldarg.1
+IL_0001: ldc.i4.1
+IL_0002: call System.Void UseCountHelper::Use(GameItem,System.Int32)
+IL_0007: call PlayerStore PlayerStore::get_Instance()
+IL_000c: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0011: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0016: ldc.i4.1
+IL_0017: stfld System.Int32 StoreClient::perfumeInfluence
+IL_001c: call PlayerStore PlayerStore::get_Instance()
+IL_0021: callvirt System.Void PlayerStore::RefreshCounterItem()
+IL_0026: call AudioManager AudioManager::get_Instance()
+IL_002b: ldstr "perfume_spray"
+IL_0030: callvirt System.Boolean AudioManager::Play2(System.String)
+IL_0035: pop
+IL_0036: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_0(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: call PlayerStore PlayerStore::get_Instance()
+IL_000f: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0014: brtrue.s IL_0018
+IL_0016: ldc.i4.0
+IL_0017: ret
+IL_0018: call PlayerStore PlayerStore::get_Instance()
+IL_001d: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0022: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0027: ldfld System.Int32 StoreClient::perfumeInfluence
+IL_002c: ldc.i4.2
+IL_002d: bne.un.s IL_0031
+IL_002f: ldc.i4.0
+IL_0030: ret
+IL_0031: ldc.i4.1
+IL_0032: ret
+System.Boolean AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_1(GameItem,GameInventory,SlotMarker)
+  0: GameItem s None
+  1: GameInventory _ None
+  2: SlotMarker _ None
+IL_0000: ldarg.1
+IL_0001: call System.Boolean GeneralHelper::IsItemOwned(GameItem)
+IL_0006: brtrue.s IL_000a
+IL_0008: ldc.i4.0
+IL_0009: ret
+IL_000a: call PlayerStore PlayerStore::get_Instance()
+IL_000f: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0014: brtrue.s IL_0018
+IL_0016: ldc.i4.0
+IL_0017: ret
+IL_0018: call PlayerStore PlayerStore::get_Instance()
+IL_001d: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0022: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0027: ldfld System.Int32 StoreClient::perfumeInfluence
+IL_002c: ldc.i4.2
+IL_002d: bne.un.s IL_0031
+IL_002f: ldc.i4.0
+IL_0030: ret
+IL_0031: ldc.i4.1
+IL_0032: ret
+System.Void AmenitiesItemDirectory/<>c::<PheromonePerfume>b__42_2(GameItem,GameInventory,SlotMarker)
+  0: GameItem curItem None
+  1: GameInventory curInv None
+  2: SlotMarker marker None
+IL_0000: ldarg.1
+IL_0001: ldc.i4.1
+IL_0002: call System.Void UseCountHelper::Use(GameItem,System.Int32)
+IL_0007: call PlayerStore PlayerStore::get_Instance()
+IL_000c: ldfld StoreClientInstance PlayerStore::currentClientInstance
+IL_0011: callvirt StoreClient StoreClientInstance::GetClientBlueprint()
+IL_0016: ldc.i4.2
+IL_0017: stfld System.Int32 StoreClient::perfumeInfluence
+IL_001c: call PlayerStore PlayerStore::get_Instance()
+IL_0021: callvirt System.Void PlayerStore::RefreshCounterItem()
+IL_0026: call AudioManager AudioManager::get_Instance()
+IL_002b: ldstr "perfume_spray"
+IL_0030: callvirt System.Boolean AudioManager::Play2(System.String)
+IL_0035: pop
+IL_0036: ret

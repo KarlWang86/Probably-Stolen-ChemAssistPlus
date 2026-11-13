@@ -12,6 +12,8 @@ Assembly-CSharp.dll SHA256：725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F
 
 ## 常用接口
 
+- 基因扫描仪原生为开关工具，不是拖到种子上使用：GeneScanner只注册切换回调，玩家拥有且开启时设置PlayerStore.isGeneScannerScanning；PlantGeneticsHelper.CreateSeedGeneticsTooltip要求SEED_ITEM_TAG、可识别PlantDefinition及IsScannerOn，直接在物品提示中追加基因读数，没有单独扫描动作。2026-11-13程序集哈希仍与基线一致；证据Research/GeneScanner-20261113-il.txt、AmenitiesScanner-callbacks-20261113-il.txt、SeedGeneticsTooltip-20261113-il.txt、SeedItemTooltip-20261113-il.txt。种子包与种子本体需区分；本结论未核实玩家当时开关与目标物品状态。
+
 - 0.4.11定向核对GraphUtils.SwapItemsInPlace，哈希仍与上方基线一致：通过EmporiumEntry.swapBufferElement依次交换两瓶原库存/形状；缓冲已占用时会尝试移出其物品，因此本Mod要求缓冲预先为空。原生PlaceAtShape直接构造SlotMarker并TryAcceptOnce，不替代完整槽位校验；本Mod交换前另行调用MayHaveValidInventorySlot、CheckIsStateValid、CheckChangeParentShapeStateModifier及MaxNumAdd/Remove做双向检查，仅两台机器的主容器槽、单只普通瓶及真实空接收瓶可交换。SwapItemsInPlace失败会尝试复原，调用后仍核对两瓶位置，异常记录实际位置停止，不宣称异常必然回原位。证据Research/GraphUtils-{SwapItemsInPlace,PlaceAtShape}-20261113-il.txt、GameSlotInventory-{MayHaveValidInventorySlot,CheckInventorySlotStillValid}-20261113-il.txt、SlotMarker-TryAcceptOnce-20261113-il.txt及GameItem/GameInventory对应定向IL。
 
 | 签名（省略 System 前缀） | 参数、语义与副作用 | 用法 / 证据 |

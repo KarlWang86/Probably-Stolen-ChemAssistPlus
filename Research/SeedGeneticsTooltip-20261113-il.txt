@@ -1,0 +1,209 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+System.Void PlantGeneticsHelper::CreateSeedGeneticsTooltip(RichTextBuilder,GameItem)
+  0: RichTextBuilder builder None
+  1: GameItem item None
+  local 0: PlantDefinition
+  local 1: System.Int32
+  local 2: System.Collections.Generic.List`1/Enumerator<System.ValueTuple`2<PlantTrait,System.Int32>>
+  local 3: PlantTrait
+  local 4: System.Int32
+  local 5: System.Boolean
+  local 6: RenderHandler/ColorPalette
+  local 7: System.String
+  local 8: System.String
+  local 9: System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Int32>
+  local 10: System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>
+  local 11: PlantTrait
+IL_0000: ldarg.1
+IL_0001: brfalse.s IL_0010
+IL_0003: ldarg.1
+IL_0004: ldstr "SEED_ITEM_TAG"
+IL_0009: callvirt System.Boolean GameItem::IsTag(System.String)
+IL_000e: brtrue.s IL_0011
+IL_0010: ret
+IL_0011: ldarg.1
+IL_0012: call PlantDefinition HydroponicHelper::GetPlant(GameItem)
+IL_0017: brtrue.s IL_001a
+IL_0019: ret
+IL_001a: call System.Boolean PlantGeneticsHelper::IsScannerOn()
+IL_001f: brtrue.s IL_0022
+IL_0021: ret
+IL_0022: ldarg.1
+IL_0023: call PlantDefinition HydroponicHelper::GetPlant(GameItem)
+IL_0028: stloc.0
+IL_0029: ldarg.1
+IL_002a: call System.Collections.Generic.List`1<System.ValueTuple`2<PlantTrait,System.Int32>> PlantGeneticsHelper::GetTraits(GameItem)
+IL_002f: ldarg.1
+IL_0030: call System.Int32 PlantGeneticsHelper::GetHeat(GameItem)
+IL_0035: stloc.1
+IL_0036: ldarg.0
+IL_0037: ldloc.1
+IL_0038: ldc.i4.0
+IL_0039: bgt.s IL_0048
+IL_003b: ldarg.1
+IL_003c: call System.Int32 PlantGeneticsHelper::GetComplexity(GameItem)
+IL_0041: call System.String PlantGeneticsText::ReadoutHeader(System.Int32)
+IL_0046: br.s IL_0054
+IL_0048: ldarg.1
+IL_0049: call System.Int32 PlantGeneticsHelper::GetComplexity(GameItem)
+IL_004e: ldloc.1
+IL_004f: call System.String PlantGeneticsText::ReadoutHeaderHeat(System.Int32,System.Int32)
+IL_0054: ldc.i4.1
+IL_0055: ldc.i4 11567781
+IL_005a: ldc.i4.0
+IL_005b: ldc.i4.0
+IL_005c: ldc.i4.0
+IL_005d: ldc.i4.0
+IL_005e: ldc.i4.m1
+IL_005f: ldc.i4.m1
+IL_0060: ldc.i4.m1
+IL_0061: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_0066: pop
+IL_0067: dup
+IL_0068: callvirt System.Int32 System.Collections.Generic.List`1<System.ValueTuple`2<PlantTrait,System.Int32>>::get_Count()
+IL_006d: brtrue.s IL_0088
+IL_006f: ldarg.0
+IL_0070: call System.String PlantGeneticsText::ReadoutNoTraits()
+IL_0075: ldc.i4.1
+IL_0076: ldc.i4 8950922
+IL_007b: ldc.i4.0
+IL_007c: ldc.i4.0
+IL_007d: ldc.i4.0
+IL_007e: ldc.i4.0
+IL_007f: ldc.i4.m1
+IL_0080: ldc.i4.m1
+IL_0081: ldc.i4.m1
+IL_0082: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_0087: pop
+IL_0088: callvirt System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<System.ValueTuple`2<PlantTrait,System.Int32>>::GetEnumerator()
+IL_008d: stloc.2
+IL_008e: br IL_014c
+IL_0093: ldloca.s V_2
+IL_0095: call !0 System.Collections.Generic.List`1/Enumerator<System.ValueTuple`2<PlantTrait,System.Int32>>::get_Current()
+IL_009a: dup
+IL_009b: ldfld !0 System.ValueTuple`2<PlantTrait,System.Int32>::Item1
+IL_00a0: stloc.3
+IL_00a1: ldfld !1 System.ValueTuple`2<PlantTrait,System.Int32>::Item2
+IL_00a6: stloc.s V_4
+IL_00a8: ldloc.0
+IL_00a9: ldloc.3
+IL_00aa: ldfld System.String PlantTrait::id
+IL_00af: callvirt System.Int32 PlantDefinition::GetInnateRank(System.String)
+IL_00b4: ldloc.s V_4
+IL_00b6: clt
+IL_00b8: ldc.i4.0
+IL_00b9: ceq
+IL_00bb: stloc.s V_5
+IL_00bd: ldloc.3
+IL_00be: callvirt System.Boolean PlantTrait::get_IsNegative()
+IL_00c3: brtrue.s IL_00cc
+IL_00c5: ldc.i4 8035658
+IL_00ca: br.s IL_00d1
+IL_00cc: ldc.i4 12615037
+IL_00d1: stloc.s V_6
+IL_00d3: ldarg.1
+IL_00d4: ldloc.3
+IL_00d5: ldloca.s V_8
+IL_00d7: call System.Boolean PlantGeneticsHelper::IsTraitUsable(GameItem,PlantTrait,System.String&)
+IL_00dc: ldloc.3
+IL_00dd: ldfld System.Int32 PlantTrait::maxRank
+IL_00e2: ldc.i4.1
+IL_00e3: bgt.s IL_00ed
+IL_00e5: ldloc.3
+IL_00e6: callvirt System.String PlantTrait::get_displayName()
+IL_00eb: br.s IL_00ff
+IL_00ed: ldloc.3
+IL_00ee: callvirt System.String PlantTrait::get_displayName()
+IL_00f3: ldloc.s V_4
+IL_00f5: call System.String PlantGeneticsHelper::RankLabel(System.Int32)
+IL_00fa: call System.String PlantGeneticsText::TraitWithRank(System.String,System.String)
+IL_00ff: stloc.s V_7
+IL_0101: ldloc.3
+IL_0102: ldfld System.Boolean PlantTrait::locked
+IL_0107: brfalse.s IL_0114
+IL_0109: ldloc.s V_7
+IL_010b: call System.String PlantGeneticsText::OriginLocked(System.String)
+IL_0110: stloc.s V_7
+IL_0112: br.s IL_0121
+IL_0114: ldloc.s V_5
+IL_0116: brfalse.s IL_0121
+IL_0118: ldloc.s V_7
+IL_011a: call System.String PlantGeneticsText::OriginInnate(System.String)
+IL_011f: stloc.s V_7
+IL_0121: brtrue.s IL_012c
+IL_0123: ldloc.s V_7
+IL_0125: call System.String PlantGeneticsText::NoEffectSuffix(System.String)
+IL_012a: stloc.s V_7
+IL_012c: ldarg.0
+IL_012d: ldloc.s V_7
+IL_012f: ldloc.3
+IL_0130: ldloc.s V_4
+IL_0132: call System.String PlantGeneticsHelper::DescribeEffect(PlantTrait,System.Int32)
+IL_0137: call System.String PlantGeneticsText::ReadoutTraitLine(System.String,System.String)
+IL_013c: ldc.i4.1
+IL_013d: ldloc.s V_6
+IL_013f: ldc.i4.0
+IL_0140: ldc.i4.0
+IL_0141: ldc.i4.0
+IL_0142: ldc.i4.0
+IL_0143: ldc.i4.m1
+IL_0144: ldc.i4.m1
+IL_0145: ldc.i4.m1
+IL_0146: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_014b: pop
+IL_014c: ldloca.s V_2
+IL_014e: call System.Boolean System.Collections.Generic.List`1/Enumerator<System.ValueTuple`2<PlantTrait,System.Int32>>::MoveNext()
+IL_0153: brtrue IL_0093
+IL_0158: leave.s IL_0168
+IL_015a: ldloca.s V_2
+IL_015c: constrained. System.Collections.Generic.List`1/Enumerator<System.ValueTuple`2<PlantTrait,System.Int32>>
+IL_0162: callvirt System.Void System.IDisposable::Dispose()
+IL_0167: endfinally
+IL_0168: ldloc.0
+IL_0169: ldfld System.Collections.Generic.Dictionary`2<System.String,System.Int32> PlantDefinition::innateTraits
+IL_016e: callvirt System.Collections.Generic.Dictionary`2/Enumerator<!0,!1> System.Collections.Generic.Dictionary`2<System.String,System.Int32>::GetEnumerator()
+IL_0173: stloc.s V_9
+IL_0175: br.s IL_01c8
+IL_0177: ldloca.s V_9
+IL_0179: call System.Collections.Generic.KeyValuePair`2<!0,!1> System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Int32>::get_Current()
+IL_017e: stloc.s V_10
+IL_0180: ldloca.s V_10
+IL_0182: call !0 System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>::get_Key()
+IL_0187: call PlantTrait PlantTraitRegistry::Get(System.String)
+IL_018c: stloc.s V_11
+IL_018e: ldloc.s V_11
+IL_0190: brfalse.s IL_01c8
+IL_0192: ldarg.1
+IL_0193: ldloc.s V_11
+IL_0195: ldfld System.String PlantTrait::id
+IL_019a: call System.Int32 PlantGeneticsHelper::GetTraitRank(GameItem,System.String)
+IL_019f: ldloca.s V_10
+IL_01a1: call !1 System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>::get_Value()
+IL_01a6: bge.s IL_01c8
+IL_01a8: ldarg.0
+IL_01a9: ldloc.s V_11
+IL_01ab: callvirt System.String PlantTrait::get_displayName()
+IL_01b0: call System.String PlantGeneticsText::ReadoutInnateRemoved(System.String)
+IL_01b5: ldc.i4.1
+IL_01b6: ldc.i4 8950922
+IL_01bb: ldc.i4.0
+IL_01bc: ldc.i4.0
+IL_01bd: ldc.i4.0
+IL_01be: ldc.i4.0
+IL_01bf: ldc.i4.m1
+IL_01c0: ldc.i4.m1
+IL_01c1: ldc.i4.m1
+IL_01c2: callvirt RichTextBuilder RichTextBuilder::AddLine(System.String,System.Boolean,RenderHandler/ColorPalette,System.Boolean,System.Boolean,System.Boolean,System.Boolean,RenderHandler/ColorPalette,RenderHandler/ColorPalette,RenderHandler/ColorPalette)
+IL_01c7: pop
+IL_01c8: ldloca.s V_9
+IL_01ca: call System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Int32>::MoveNext()
+IL_01cf: brtrue.s IL_0177
+IL_01d1: leave.s IL_01e1
+IL_01d3: ldloca.s V_9
+IL_01d5: constrained. System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Int32>
+IL_01db: callvirt System.Void System.IDisposable::Dispose()
+IL_01e0: endfinally
+IL_01e1: ret
+  EH Finally: try IL_008e: br IL_014c -> IL_015a: ldloca.s V_2; handler IL_015a: ldloca.s V_2 -> IL_0168: ldloc.0; filter ; catch 
+  EH Finally: try IL_0175: br.s IL_01c8 -> IL_01d3: ldloca.s V_9; handler IL_01d3: ldloca.s V_9 -> IL_01e1: ret; filter ; catch 

@@ -1,0 +1,87 @@
+Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+SHA256: 725CB999D019DFF1FF31BED353C7F9BB8D81A7605A15DE1F80F5A3A6CF7B1D05
+GameItem AmenitiesItemDirectory::GeneScanner()
+IL_0000: ldarg.0
+IL_0001: callvirt T Directory`1<GameItem>::Empty()
+IL_0006: ldstr "Items/items_amenities"
+IL_000b: ldstr "genetic_scanner"
+IL_0010: callvirt GameItem GameItem::SetSpriteAndShape(System.String,System.String)
+IL_0015: dup
+IL_0016: ldstr "item_genetic_scanner_name"
+IL_001b: call !!0[] System.Array::Empty<System.Object>()
+IL_0020: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_0025: callvirt System.Void GameItem::set_name(System.String)
+IL_002a: dup
+IL_002b: ldstr "item_genetic_scanner_desc"
+IL_0030: call !!0[] System.Array::Empty<System.Object>()
+IL_0035: call System.String LocHelper::GetLocalizedItem(System.String,System.Object[])
+IL_003a: callvirt System.Void GameItem::set_shortDescription(System.String)
+IL_003f: dup
+IL_0040: ldstr "TOOL"
+IL_0045: callvirt System.Void GameItem::SetGameItemType(System.String)
+IL_004a: dup
+IL_004b: ldc.i4 500
+IL_0050: conv.i8
+IL_0051: callvirt GameItem GameItem::SetValue(System.Int64)
+IL_0056: pop
+IL_0057: dup
+IL_0058: ldstr "IMPORTANT_TAG"
+IL_005d: ldc.i4.0
+IL_005e: callvirt System.Boolean GameItem::EnableTag(System.String,System.Boolean)
+IL_0063: pop
+IL_0064: dup
+IL_0065: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_0
+IL_006a: dup
+IL_006b: brtrue.s IL_0084
+IL_006d: pop
+IL_006e: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0073: ldftn System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_0(GameItem,GameInventory,SlotMarker)
+IL_0079: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_007e: dup
+IL_007f: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_0
+IL_0084: callvirt System.Void GameItemFunc::set_mayToggleSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_0089: dup
+IL_008a: ldsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_1
+IL_008f: dup
+IL_0090: brtrue.s IL_00a9
+IL_0092: pop
+IL_0093: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0098: ldftn System.Boolean AmenitiesItemDirectory/<>c::<GeneScanner>b__18_1(GameItem,GameInventory,SlotMarker)
+IL_009e: newobj System.Void System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>::.ctor(System.Object,System.IntPtr)
+IL_00a3: dup
+IL_00a4: stsfld System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean> AmenitiesItemDirectory/<>c::<>9__18_1
+IL_00a9: callvirt System.Void GameItemFunc::set_canToggleSlotItemFunc(System.Func`4<GameItem,GameInventory,SlotMarker,System.Boolean>)
+IL_00ae: dup
+IL_00af: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_2
+IL_00b4: dup
+IL_00b5: brtrue.s IL_00ce
+IL_00b7: pop
+IL_00b8: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_00bd: ldftn System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_2(GameItem,GameInventory,SlotMarker)
+IL_00c3: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_00c8: dup
+IL_00c9: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_2
+IL_00ce: callvirt System.Void GameItemFunc::set_onToggleSlotItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_00d3: dup
+IL_00d4: dup
+IL_00d5: callvirt System.Action`1<GameItem> GameItemFunc::get_onLoaded()
+IL_00da: ldnull
+IL_00db: ldftn System.Void AmenitiesItemDirectory::UpdateGeneScannerSprite(GameItem)
+IL_00e1: newobj System.Void System.Action`1<GameItem>::.ctor(System.Object,System.IntPtr)
+IL_00e6: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+IL_00eb: castclass System.Action`1<GameItem>
+IL_00f0: callvirt System.Void GameItemFunc::set_onLoaded(System.Action`1<GameItem>)
+IL_00f5: dup
+IL_00f6: ldsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_3
+IL_00fb: dup
+IL_00fc: brtrue.s IL_0115
+IL_00fe: pop
+IL_00ff: ldsfld AmenitiesItemDirectory/<>c AmenitiesItemDirectory/<>c::<>9
+IL_0104: ldftn System.Void AmenitiesItemDirectory/<>c::<GeneScanner>b__18_3(GameItem,GameInventory,SlotMarker)
+IL_010a: newobj System.Void System.Action`3<GameItem,GameInventory,SlotMarker>::.ctor(System.Object,System.IntPtr)
+IL_010f: dup
+IL_0110: stsfld System.Action`3<GameItem,GameInventory,SlotMarker> AmenitiesItemDirectory/<>c::<>9__18_3
+IL_0115: callvirt System.Void GameItemFunc::set_onOneSecondItemFunc(System.Action`3<GameItem,GameInventory,SlotMarker>)
+IL_011a: dup
+IL_011b: call System.Void AudioHelper::InitSmallMachine(GameItem)
+IL_0120: ret
