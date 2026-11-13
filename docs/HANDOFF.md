@@ -1,4 +1,9 @@
-# 当前交接
+﻿# 当前交接
+
+## 可读性重构 · 2026-11-13（0.4.7，已构建）
+
+- 按玩家要求检查超400行文件、深层循环及长条件；运行时Workflow.cs原450行，PrepareBatch单方法约220行。按阶段提取至BatchPreparation.cs，调度入口仅16行，子迭代器通过using释放，保留取消关火、yield时机及材料操作顺序。过滤独立至Filtration.cs，过滤与用量预估的三层循环拆为最多两层；Distillation分离单瓶移交并分组短路条件。运行时最大单文件326行；Plus仍为共享会话状态的分部类，未改成独立服务。架构定位与整理说明已同步ARCHITECTURE。
+- 保持VERSION 0.4.7，未修改功能文案。最终build.ps1构建0警告0错误，原生ModScanner PASS（531 methods，capabilities none）；DLL SHA256：07379282C924FA5A912C5BF226F3BEB81AFDC7B17C14C1AE2717925BAE196CDF。git diff --check通过。按AGENTS约定未新增/运行测试，未部署/上传、未启动游戏；停止加热、异常回收、半成品跳过加热和干料转移仍待游戏内验收。
 
 ## 仓库目录整理 · 2026-11-13
 

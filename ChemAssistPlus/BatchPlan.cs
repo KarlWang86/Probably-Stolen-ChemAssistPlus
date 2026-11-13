@@ -102,6 +102,16 @@ namespace ChemAssistPlus
                 plan = BuildBatchPlanForCount(p, plan.Selected.Count - 1);
             return plan;
         }
+        // 只更新预估数组：扣除来源份额，并逐项累计目标瓶成分；溢出规则与实际规划一致。
+        static void ApplyProjectedPour(int[] remaining, int[] projected, int[] taken)
+        {
+            for (int i = 0; i < remaining.Length; i++)
+            {
+                remaining[i] -= taken[i];
+                projected[i] = checked(projected[i] + taken[i]);
+            }
+        }
+
         static BatchPlan BuildBatchPlanForCount(NativeChem.ProbeResult p, int limit)
         {
             var plan = PlanWholeMaterials(p, limit);
@@ -123,7 +133,7 @@ namespace ChemAssistPlus
                         int pour = (int)Math.Min(total, DoseMath.RequiredSolution(missing, active, total));
                         var taken = WaterHelper.SplitProportionally(parts, pour);
                         int delivered = EffectivePart(taken, id);
-                        for (int i = 0; i < parts.Length; i++) { parts[i] -= taken[i]; projected[i] = checked(projected[i] + taken[i]); }
+                        ApplyProjectedPour(parts, projected, taken);
                         volume += pour; missing -= delivered;
                         if (delivered <= 0) break;
                     }

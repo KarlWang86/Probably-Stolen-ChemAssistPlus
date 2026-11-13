@@ -11,6 +11,8 @@
     <Compile Include="Plus.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Workflow.cs" />
+    <Compile Include="BatchPreparation.cs" />
+    <Compile Include="Filtration.cs" />
     <Compile Include="AutoWorkflow.cs" />
     <Compile Include="Distillation.cs" />
     <Compile Include="EvaporatorRouting.cs" />

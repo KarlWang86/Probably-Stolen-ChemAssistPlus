@@ -1,4 +1,4 @@
-# 模块与状态边界
+﻿# 模块与状态边界
 
 本文的运行时文件名均相对ChemAssistPlus/；操作脚本、辅助工具、研究资料与截图分别位于仓库根目录的scripts/、Tools/、Research/、Screenshots/。完整目录与构建入口见[仓库说明](REPOSITORY.md)。
 
@@ -16,7 +16,7 @@ flowchart TB
         Auto["AutoWorkflow.cs<br/>结束当天拦截 / 多机队列 / 防重入"]
         Plan["BatchPlan.cs + DoseMath.cs<br/>整份选料 / 用量与容量规划"]
         Check["Preflight.cs + FilterPlan.cs<br/>开工复核 / 滤材选择"]
-        Work["Workflow.cs<br/>IEnumerator任务 / 实际加工 / 失败清理"]
+        Work["Workflow.cs + BatchPreparation.cs<br/>IEnumerator调度 / 分阶段加工 / 失败清理"]
         Heat["HeatingControl.cs<br/>原生加热与控温保护"]
         Purify["Purification.cs<br/>紫外线 / 含氯药片"]
         Distill["Distillation.cs<br/>接收 / 集中腾槽 / 干料转移"]
@@ -105,11 +105,13 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 | 问题 | 文件 / 搜索入口 |
 | --- | --- |
 | 入口、配方、物品递归、按角色找槽位 | Core.cs；ProbeResult |
-| 来源浓度/排序、真实投料、过滤、F10 | Plus.cs；Sources、TakeLiquid、SolventTargetForParts、FilterBatch |
+| 来源浓度/排序、真实投料、F10 | Plus.cs；Sources、TakeLiquid、SolventTargetForParts |
+| 原生过滤执行、分批容量、异常回收 | Filtration.cs；FilterBatch、FilterPortionVolume、FilterComponents |
 | 完整份数、试剂/峰值预估 | BatchPlan.cs；PlanWholeMaterials、BuildBatchPlan；DoseMath.cs |
 | 只读预检、去蛋白方向 | Preflight.cs；ProteinReagent |
-| 实际执行、反应、耗料与进度 | Workflow.cs；Run；HeatingControl.cs |
-| 滤材耐久排序、换装与归还 | FilterPlan.cs；Plus.cs 的 FilterBatch |
+| 执行调度、停止与原生成型 | Workflow.cs；Run、PrepareBatch、CancelJob、ProduceBatch |
+| 分阶段加工、反应、耗料与进度 | BatchPreparation.cs；PrepareMaterials、ExtractBatch、SettleImpurities、FinishPreparedBatch；HeatingControl.cs |
+| 滤材耐久排序、换装与归还 | FilterPlan.cs；Filtration.cs 的 FilterBatch |
 | 散片/瓶内片、真实耗片、净化下限 | Purification.cs；Tablets |
 | 紫外线设备检查、原生消毒、结果与跳过原因 | Purification.cs；PurifyWithUV；Workflow.cs 的 Publish |
 | 过夜拦截、防重入、无新料等待 | AutoWorkflow.cs；WaitingForDistillation、EndDayProcessingHook |
@@ -143,3 +145,13 @@ Unity 主线程 PlusPump → 最终结束当天按钮 → 按编号快照所有�
 - 过滤按原生元数据与耐久分份，每份每道一次；已处理液体同步缓冲并 finally 回瓶，不跨帧悬空。
 - nightDidWork 仅实际操作后为 true；仅实际工作且 Popup 开启才次日弹 F10。供电小通知独立，每日/状态去重。
 - API 的签名、单位与副作用只在 NATIVE_API.md 维护。
+
+## 可读性整理（2026-11-13）
+
+运行时仍使用 Plus 分部类共享会话状态；拆文件不等于拆成独立类。本轮保留该边界，按加工阶段拆长方法，避免引入新的跨模块状态传递。
+
+- Workflow.cs 从450行降至246行；PrepareBatch 从约220行缩为16行，仅负责阶段顺序、转发yield和释放子迭代器。取消时通过using释放ExtractBatch，继续触发StopPlate的finally。
+- BatchPreparation.cs承接装瓶/搅拌、加热提取、沉淀、过滤净化与交付四个阶段；无需加热的半成品提前结束提取阶段，仍记录有效成分快照。
+- Filtration.cs独立管理过滤，分离最大份额二分查找和逐成分过滤；BatchPlan分离预估转液的成分累计。两处显式循环嵌套均从三层降到两层，原有缓冲回收、取整与checked溢出规则保留。
+- Distillation.cs将日界扫描与单瓶移交分开；干料合并和湿料集中条件按设备、瓶位、容器、配方、干湿及容量逐组返回，保持短路检查顺序和失败报告。
+- 整理后运行时源码单文件最多326行（Plus.cs）；Plus整体仍是超过400行的分部类。辅助工具源码未发现超过400行的文件。统计排除obj/bin及历史Tests。
